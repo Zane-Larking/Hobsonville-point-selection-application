@@ -1,0 +1,41 @@
+body {
+    font-family: 'Source Sans Pro';
+    background: #2d91ad;
+    font-size: 12px;
+    margin:0;
+    color:#FFFFFF;
+   
+}
+#selections { 
+    margin: 10%;
+	display: grid;
+    grid-template: auto/auto;
+    grid-template-areas: 
+    "modules"
+    "term1Spins"
+    "term2Spins"
+    "applicationForm"
+    ;
+
+}
+#modules {
+	grid-area: modules;
+	display: grid;
+	grid-template: auto/ repeat(7, auto);
+}
+
+#term1Spins {
+	grid-area: term1Spins;
+	display: grid;
+	grid-template: auto/ repeat(7, auto);
+}
+
+#term2Spins {
+	grid-area: term2Spins;
+	display: grid;
+	grid-template: auto/ repeat(7, auto);
+}
+
+#applicationForm{
+	grid-area: applicationForm;
+}

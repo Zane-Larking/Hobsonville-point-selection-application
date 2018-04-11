@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hobsonville Selections</title>
+</head>
+<body>
+	<h1>Welcome</h1>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<form id="login-form">
+	    <span id="name"></span><br>
+	    <input id="username-input" type="text" placeholder="USERNAME">
+	</form>
+	<script> 
+		$(function () {
+	    $("#username-input")
+	        .keyup(function () {
+	            function addRemoveUsername() {
+	                var inputChecker = document.getElementById("username-input");
+	                if (inputChecker.value == "") {
+	                    document.getElementById("name")
+	                        .innerHTML = "";
+	                } else {
+	                    document.getElementById("name")
+	                        .innerHTML = inputChecker.value;
+	                }
+	            }
+	            addRemoveUsername();
+	        });
+		});
+	</script>
+
+
+
+</body>
+</html>
+
+<style type="text/css">
+	body {
+		color: black;
+	}
+</style>
