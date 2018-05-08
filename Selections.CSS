@@ -14,11 +14,11 @@ body {
 	display: grid;
     grid-template: auto/auto;
     grid-template-areas: 
-    "subjects"
-    "modules"
-    "term1Spins"
-    "term2Spins"
-    "applicationForm"
+        "subjects"
+        "modules"
+        "term1Spins"
+        "term2Spins"
+        "applicationForm"
     ;
 
 }
@@ -39,6 +39,8 @@ body {
 	grid-area: modules;
 	display: grid;
 	grid-template: auto/ repeat(7, 14.2857142857%);
+    grid-template-areas: 
+        "Maths Science English Technology SocialScience Languages TheArts"
 }
 
 #term1Spins {
