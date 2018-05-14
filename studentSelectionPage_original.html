@@ -3,7 +3,6 @@
 <head>
 	<title>Student Selections - Hobsonvillepoint Secondary School</title>
 	<link rel="stylesheet" type="text/css" href="selections.css">
-	<script src="Scripts/MyFunctions.js"></script>
 
 </head>
 <body>
@@ -32,56 +31,33 @@
 								name: "The Good Life", code: "GOODLIFE", teachers: ["Rebecca", "Dhiren"], subject: ["Technology", "Maths"], desc: "In this module, we will be looking at garden spaces in our community and how we can provide solutions to growing fresh produce. This could look like greenhouses or planting structures. You will be applying maths skills to create the most efficient growing spaces and communicate your ideas using design and visual communication techniques. <br> We will be choosing a location and doing a site analysis for our design. We will follow the design process by mapping out spaces, freehand sketching, model making and instrumental drawing. During the process, you will be developing the aesthetic and functional components of yourdesign and looking at resourcing your final concept, considering sustainability. <br> If you are interested in DVC in the future, you <bold>SHOULD​</bold> take DVC in both semesters. <bold>Compulsory course cost of $20</bold>"
 							},
 							{
-								name: "Wall Street Bull", code: "WALLST", teachers: ["Jessica", "Yu-Ting"], subject: ["Maths", "SocialScience"], desc: "In this course, you will focus on accounting concepts and bookkeeping skills for small businesses/ individual. This will involve problem-solving, decision-making, source documents and cash management for small businesses. We will also be applying mathematical skills involving number knowledge and using projections to predict future income and spending. <br> We will be working towards planning and budgeting events, taking into account the values and identity of the client, to ensure that the finances have been managed in a sustainable way. You will then investigate the purpose of various financial documents and the cash management of the entity."
+								name: "Wall Street Bull", code: "WALLST", teachers: ["Jessica", "Yu-Ting"], subject: ["Maths", "SocialScience"], desc: "In this course, you will focus on accounting concepts and bookkeeping skills for small businesses/ individual. This will involve problem-solving, decision-making, source documents and cash management for small businesses. We will also be applying mathematical skills involving number knowledge and using projections to predict future income and spending. <br> We will be working towards planning and budgeting events, taking into account the values and identity of the client, to ensure that the finances have been managed in a sustainable way. You will then investigate the purpose of various financial documents and the cash management of the entity.",
 							},
 							{
-								name: "What did the cheese say to itself in the mirror?", 
-								code: "HALLOUMI", 
-								teachers:["Tanya", "Danielle"], 
-								subject: ["Maths", "​Science"], 
-								desc: "This module will examine the microscopic world of microbes and their uses in society. We will learn about cheese, yogurt, winemaking, gut bacteria and extreme bacteria. You will be required to research and plan investigations, and collect, analyse and interpret data. Students will be using statistics to interpret data and will use their knowledge of fractions, decimals and percentages to solve problems."
+								name: "Wall Street Bull", code: "WALLST", teachers: ["Jessica", "Yu-Ting"], subject: ["Maths", "SocialScience"], desc: "In this course, you will focus on accounting concepts and bookkeeping skills for small businesses/ individual. This will involve problem-solving, decision-making, source documents and cash management for small businesses. We will also be applying mathematical skills involving number knowledge and using projections to predict future income and spending. <br> We will be working towards planning and budgeting events, taking into account the values and identity of the client, to ensure that the finances have been managed in a sustainable way. You will then investigate the purpose of various financial documents and the cash management of the entity.",
 							}, 
 							{
 								name: "Climate Fiction", code: "CLIFI", desc: "blah blah blah", 
-								teachers: ["person1", "person2"], subject: ["English", "Science"]
+								teachers: ["person1", "person2"], subject: ["English", "Maths"]
 							}
 						];
 						var classesEl = [];
 
 						///*
-						//creates all model selection elements
 						for (var i = 0; i < classes.length; i++) {
-							//creates the markup of each element 
-							var c = document.createElement("div");
+							classesEl[i] = document.createElement("div");
+							var c = classesEl[i];
 							var h = document.createElement("H1")
-							var t = document.createTextNode(classes[i].code);
+							var t = document.createTextNode(classes[i].name);
 
-							//sets all the element's attributes
-							c.setAttribute("grid-area", classes[i].subject.join(" "))
-							c.setAttribute("id", classes[i].code);
-							c.setAttribute("onclick", InfoPannel(classes[i].code));
-							if (c.addEventListener) {
-								c.addEventListener("mouseOver", () => {c.setAttribute('color', 'green');} /*nfoPannel(c)*/);
-								c.addEventListener("click", () => {c.setAttribute('color', 'blue');}/*OnClickHandler(c)*/);
-							} else if (c.attachEvent) {
-								c.attachEvent("click", myFunction);
-							}
+							classesEl[i].setAttribute("grid-area", classes[i].subject.join(" "))
+							console.log(classesEl[i].getAttribute("grid-area"));
 
 
-							//testing
-							console.log(c.getAttribute("grid-area"));
+							h.appendChild(t);
+							classesEl[i].appendChild(h);
 
-							//appends the markup to the page.
-							/*
-							classesEl[i] = c.appendChild(h.appendChild(t));
 							document.getElementById("modules").appendChild(classesEl[i]);
-							*/
-							
-							h.appendChild(t)
-							c.appendChild(h);
-							console.log(classesEl[i]);
-							document.getElementById("modules").appendChild(c);
-							
 						}
 						//*/
 						/*classes.foreach(function(x) {
