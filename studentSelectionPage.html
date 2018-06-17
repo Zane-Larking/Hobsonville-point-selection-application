@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Student Selections - Hobsonvillepoint Secondary School</title>
+	<link rel="stylesheet" type="text/css" href="selections.css">
+	<script src="Scripts/MyFunctions.js"></script>
+
+</head>
+<body>
+	<script>
+	
+	</script>
+
+
+	<article id = "selections">
+			<div id = "subjects">
+
+				
+				<div><h2>maths</h2></div>
+				<div><h2>Science</h2></div>
+				<div><h2>English</h2></div>
+				<div><h2>Technology</h2></div>
+				<div><h2>Social Science</h2></div>
+				<div><h2>Languages</h2></div>
+				<div><h2>The Arts</h2></div>
+			</div>
+			<div id = "modules">
+				<script type="text/javascript">
+						var classes = [
+							 
+							{
+								name: "The Good Life", code: "GOODLIFE", teachers: ["Rebecca", "Dhiren"], subject: ["Technology", "Maths"], desc: "In this module, we will be looking at garden spaces in our community and how we can provide solutions to growing fresh produce. This could look like greenhouses or planting structures. You will be applying maths skills to create the most efficient growing spaces and communicate your ideas using design and visual communication techniques. <br> We will be choosing a location and doing a site analysis for our design. We will follow the design process by mapping out spaces, freehand sketching, model making and instrumental drawing. During the process, you will be developing the aesthetic and functional components of yourdesign and looking at resourcing your final concept, considering sustainability. <br> If you are interested in DVC in the future, you <bold>SHOULD​</bold> take DVC in both semesters. <bold>Compulsory course cost of $20</bold>"
+							},
+							{
+								name: "Wall Street Bull", code: "WALLST", teachers: ["Jessica", "Yu-Ting"], subject: ["Maths", "SocialScience"], desc: "In this course, you will focus on accounting concepts and bookkeeping skills for small businesses/ individual. This will involve problem-solving, decision-making, source documents and cash management for small businesses. We will also be applying mathematical skills involving number knowledge and using projections to predict future income and spending. <br> We will be working towards planning and budgeting events, taking into account the values and identity of the client, to ensure that the finances have been managed in a sustainable way. You will then investigate the purpose of various financial documents and the cash management of the entity."
+							},
+							{
+								name: "What did the cheese say to itself in the mirror?", 
+								code: "HALLOUMI", 
+								teachers:["Tanya", "Danielle"], 
+								subject: ["Maths", "​Science"], 
+								desc: "This module will examine the microscopic world of microbes and their uses in society. We will learn about cheese, yogurt, winemaking, gut bacteria and extreme bacteria. You will be required to research and plan investigations, and collect, analyse and interpret data. Students will be using statistics to interpret data and will use their knowledge of fractions, decimals and percentages to solve problems."
+							}, 
+							{
+								name: "Climate Fiction", code: "CLIFI", desc: "blah blah blah", 
+								teachers: ["person1", "person2"], subject: ["English", "Science"]
+							}
+						];
+						var classesEl = [];
+
+						///*
+						//creates all model selection elements
+						for (var i = 0; i < classes.length; i++) {
+							//creates the markup of each element 
+							var c = document.createElement("div");
+							var h = document.createElement("H1")
+							var t = document.createTextNode(classes[i].code);
+
+							//sets all the element's attributes
+							c.setAttribute("grid-area", classes[i].subject.join(" "))
+							c.setAttribute("id", classes[i].code);
+							c.setAttribute("onclick", InfoPannel(classes[i].code));
+							if (c.addEventListener) {
+								c.addEventListener("mouseOver", () => {c.setAttribute('color', 'green');} /*nfoPannel(c)*/);
+								c.addEventListener("click", () => {c.setAttribute('color', 'blue');}/*OnClickHandler(c)*/);
+							} else if (c.attachEvent) {
+								c.attachEvent("click", myFunction);
+							}
+
+
+							//testing
+							console.log(c.getAttribute("grid-area"));
+
+							//appends the markup to the page.
+							/*
+							classesEl[i] = c.appendChild(h.appendChild(t));
+							document.getElementById("modules").appendChild(classesEl[i]);
+							*/
+							
+							h.appendChild(t)
+							c.appendChild(h);
+							console.log(classesEl[i]);
+							document.getElementById("modules").appendChild(c);
+							
+						}
+						//*/
+						/*classes.foreach(function(x) {
+							var d = document.createElement("div");
+							var h = document.createElement("H1")
+							var t = document.createTextNode(x.desc);
+
+							h.appendChild(t);
+							d.appendChild(h);
+
+							document.body.appendChild(x);
+						});
+						*/
+				</script>
+				<div grid-area ="Maths Science"><h2>Test Module</h2></div>
+				<div><h2>module</h2></div>
+				<div><h2>module</h2></div>
+				<div><h2>module</h2></div>
+				<div><h2>module</h2></div>
+				<div><h2>module</h2></div>
+				<div><h2>module</h2></div>
+				<div><h2>module</h2></div>
+				<div><h2>module</h2></div>
+				<div><h2>module</h2></div>
+				<div><h2>module</h2></div>
+			</div>
+			<div id = "term1Spins">
+				<div><h2>term 1 Spin</h2></div>
+				<div><h2>term 1 Spin</h2></div>
+				<div><h2>term 1 Spin</h2></div>
+				<div><h2>term 1 Spin</h2></div>
+				<div><h2>term 1 Spin</h2></div>
+				<div><h2>term 1 Spin</h2></div>
+				<div><h2>term 1 Spin</h2></div>
+				<div><h2>term 1 Spin</h2></div>
+				<div><h2>term 1 Spin</h2></div>
+				<div><h2>term 1 Spin</h2></div>
+				<div><h2>term 1 Spin</h2></div>
+				<div><h2>term 1 Spin</h2></div>
+			</div>
+			<div id = "term2Spins">
+				<div><h2>term 2 Spin</h2></div>
+				<div><h2>term 2 Spin</h2></div>
+				<div><h2>term 2 Spin</h2></div>
+				<div><h2>term 2 Spin</h2></div>
+				<div><h2>term 2 Spin</h2></div>
+				<div><h2>term 2 Spin</h2></div>
+				<div><h2>term 2 Spin</h2></div>
+				<div><h2>term 2 Spin</h2></div>
+				<div><h2>term 2 Spin</h2></div>
+				<div><h2>term 2 Spin</h2></div>
+				<div><h2>term 2 Spin</h2></div>
+			</div>
+			<form action="/action_page.php" id = "applicationForm">
+				Application: <br>
+				<input type="text" name="SelectApp" size="100"><br>
+				<input type="submit" value="Submit Applaction">
+			</form>
+
+	</article>
+
+	
+
+
+
+</body>
+</html>
