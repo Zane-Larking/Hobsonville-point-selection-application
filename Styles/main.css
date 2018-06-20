@@ -1,3 +1,9 @@
+html {
+    font-size: 1px;
+}
+body {
+    font-size: 16px;
+}
 header {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     position: absolute; /* Fixed Sidebar (stay in place on scroll) */
@@ -5,17 +11,17 @@ header {
     top: 0; /* Stay at the top */
     left: 0;
     width: 100%;
-    height: 50px;
+    height: 50rem;
     background-color: darkslategrey;
-    margin: 0px;
+    margin: 0;
 
 
 }
 header #grid-container {
     display: grid;
     position: relative;
-    padding: 0px 20px 0px 20px;
-    grid-column-gap: 10px;
+    padding: 0 20rem 0 20rem;
+    grid-column-gap: 10rem;
     grid-template-columns:  min-content max-content 1fr min-content min-content;
 
 }
@@ -24,27 +30,27 @@ header #grid-container {
 
 }*/
 .Logo {
-    border-radius: 5px;
-    margin: 5px;
-    padding: 5px;
+    border-radius: 5rem;
+    margin: 5rem;
+    padding: 5rem;
     height: fit-content;
     width: fit-content;
     background-color: rgb(255, 255, 255);
 
 }
 #Profile {
-    border-radius: 5px;
-    margin: 5px;
-    padding: 5px;
+    border-radius: 5rem;
+    margin: 5rem;
+    padding: 5rem;
     height: fit-content;
-    min-width: 75px;
+    min-width: 75rem;
     background-color: rgb(255, 255, 255);
 
     display: grid;
     grid-template-columns: auto 2fr auto 1fr;
 }
 #Profile:hover {
-    box-shadow: 0 0 20px 5px rgba(67, 216, 223, 0.407);
+    box-shadow: 0 0 20rem 5rem rgba(67, 216, 223, 0.407);
 
 }
 #Profile img {
@@ -53,7 +59,7 @@ header #grid-container {
 
 }
 #YearLevel {
-    width: 50px;
+    width: 2em;
     height: auto;
 
     display: flex;
@@ -70,7 +76,7 @@ nav {
     grid-template-columns:  1fr 1fr 1fr;
 }
 nav a {
-    padding: 8px, 0px;
+    padding: 8rem, 0rem;
     text-decoration-style: none;
     text-decoration-line: none;
     color: rgb(0,0,0);
@@ -84,16 +90,60 @@ nav a {
     align-self: center;
 
     position: inherit;
-    width: 25px;
-    height: 25px;
+    width: 25rem;
+    height: 25rem;
     background-color: rgb(80, 80, 80);
     
-    -webkit-clip-path: polygon(75% 40%, 50% 65%, 25% 40%);
     clip-path: polygon(75% 40%, 50% 65%, 25% 40%);
+    -webkit-clip-path: polygon(75% 40%, 50% 65%, 25% 40%);
     /* equalateral triangle
       -webkit-clip-path: polygon(75% 31.7%, 50% 75%, 25% 31.7%);
     clip-path: polygon(75% 31.7%, 50% 75%, 25% 31.7%);
     */
+}
+.PriorityDropdownButton {
+    justify-self: center;
+    align-self: center;
+
+    position: inherit;
+    width: 25rem;
+    height: 25rem;
+    background-color: rgb(80, 80, 80);
+    clip-path: polygon(40% 5%, 50% 15%, 25% 45%, 0% 15%, 10% 5%, 25% 22.5%);
+    -webkit-clip-path: polygon(40% 5%, 50% 15%, 25% 45%, 0% 15%, 10% 5%, 25% 22.5%);
+}
+.PeriodDropdownButton {
+    justify-self: center;
+    align-self: center;
+
+    position: inherit;
+    width: 25rem;
+    height: 25rem;
+    background-color: rgb(80, 80, 80);
+    clip-path: polygon(80% 10%, 100% 30%, 50% 85%, 0% 30%, 20% 10%, 50% 45%);
+    -webkit-clip-path: polygon(80% 10%, 100% 30%, 50% 85%, 0% 30%, 20% 10%, 50% 45%);
+}
+.ClassesDropdownButton {
+    justify-self: center;
+    align-self: center;
+
+    position: inherit;
+    width: 25rem;
+    height: 25rem;
+    background-color: rgb(80, 80, 80);
+    clip-path: polygon(65% 30%, 75% 40%, 50% 70%, 25% 40%, 35% 30%, 50% 47.5%);
+    -webkit-clip-path: polygon(65% 30%, 75% 40%, 50% 70%, 25% 40%, 35% 30%, 50% 47.5%);
+}
+.ChosenClassesDropdownButton {
+    justify-self: center;
+    align-self: center;
+
+    position: inherit;
+    width: 25rem;
+    height: 25rem;
+    background-color: rgb(80, 80, 80);
+    clip-path: polygon(65% 30%, 75% 40%, 50% 70%, 25% 40%, 35% 30%, 50% 47.5%);
+    -webkit-clip-path: polygon(65% 30%, 75% 40%, 50% 70%, 25% 40%, 35% 30%, 50% 47.5%);
 }
 
 /*Main body*/
@@ -102,23 +152,26 @@ nav a {
     width: 100%;
     min-height: 100%;
     background-color: rgb(125, 125, 125);
-    top: 0;
+    top: 50rem;
     left: 0;
     margin: 0;
 
     
 }
 #mainGrid {
-    margin: 25px;
-    width: 100%;
-
+    background-color: rgb(80, 80, 80);
+    margin: 5%;
+    width: 90%;
+    min-width: fit-content;
+    display: grid;
+    grid-gap: 25rem;
 
 }
 #mainGrid > div {
-    height: 10%;
+    height: auto;
     width: 90%;
     align-content: center;
-    border: solid 10px rgb(80, 80, 80);
+    margin: 0 5% 0 5%;
 
 }
 /*General style of the Curriculum, Period and Class Header Bars*/ 
@@ -129,10 +182,10 @@ nav a {
     .HeaderBarTitle {
         background-color: rgb(150, 150, 150);
         color: rgb(255, 255, 255);
-        border: 1px solid rgb(255,255, 255);
+        border: 1rem solid rgb(255,255, 255);
         
         display: grid;
-        grid-template-columns:  40% 60%;
+        grid-template-columns:  20% 80%;
     }
         .Title {
             display: flex;
@@ -140,36 +193,70 @@ nav a {
             align-self: center;
             grid-column: 1/3;
         }
+        .BarTitle {
+            display: flex;
+            justify-content: center;
+            align-self: center;
+        }
         .PeriodName {
-            grid-column: auto;
-
+            font-size: 1.6em;
+        }
+        .ClassCode {
+            font-size: 1em; 
+            justify-content: flex-start;
+        }
+        .DropdownButton {
+            align-content: center;
         }
 
     /*Places Subjects div's into grids*/ 
     .Subjects {
         background-color: rgb(200, 200, 200);
+        min-height: fit-content;
         display: grid;
         grid-template-columns: repeat(8,1fr); 
 
     }
     .Subjects div{
+        display: flex;
+        font-size: 1em;    
         word-break: break-word;
         min-width: 0;
-        
+        height: inherit;
+        flex-direction: column;
+        justify-content: center;
         text-align: center;
-        border: 1px solid #FFFFFF; 
+        border: 1rem solid #FFFFFF; 
     }
-
+/*CurriculumBar{
+    
+}*/
+/*PeriodBar{
+    
+}*/
+/*.ClassBar {
+    
+}*/
 .ClassDropdownDescription {
     background-color: rgb(235, 235, 235);
     display: grid;
-    grid-template: 25px 25px 25px/20% 3fr 5fr;
+    grid-template: 25rem 25rem 25rem/20% 3fr 5fr;
     grid-template-areas: 
     "Name NCEA Description"
     "Teachers NCEA Description"
     "Inputs NCEA Description";
-
 }
+
+    .ClassDropdownDescription #Name, 
+    .ClassDropdownDescription #Teachers,
+    .ClassDropdownDescription #Description,
+    .ClassDropdownDescription #NCEA {
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+    }
     .ClassDropdownDescription #Name {
         grid-area: Name;
 
@@ -182,6 +269,9 @@ nav a {
         grid-area: Inputs;
 
     }
+        .ClassDropdownDescription #Inputs button {
+            width: auto;    
+        }
     .ClassDropdownDescription #Description {
         grid-area: Description;
 
@@ -192,13 +282,55 @@ nav a {
     }
 
     .ClassDropdownDescription div {
-        border: 1px solid rgb(255, 255, 255);
+        border: 1rem solid rgb(255, 255, 255);
 
     }
 #Application {
     width: 100%;
-    min-height: 100px;
+    
+    min-height: 100rem;
 
     background-color: rgb(150, 150, 150);
+
+}
+    #Application input[type="text"]{
+        height: -webkit-fill-available;
+        width: calc(100% - 4px);
+        width: -webkit-fill-available;
+    }
+
+@media only screen and (max-width: 1000px) {
+    body{
+        font-size: 12px;
+    }
+    #mainGrid {
+        margin: 3.5%;
+        width: 91.5%;
+        grid-gap: 20rem;
+    
+    }
+}
+@media only screen and (max-width: 750px) {
+    body{
+        font-size: 8px;
+    }
+    #mainGrid {
+        margin: 2%;
+        width: 93%;
+        grid-gap: 10rem;
+    
+    }
+
+}
+@media only screen and (max-width: 500px) {
+    body{
+        font-size: 6px;
+    }
+    #mainGrid {
+        margin: 1%;
+        width: 94%;
+        grid-gap: 5rem;
+    
+    }
 
 }
