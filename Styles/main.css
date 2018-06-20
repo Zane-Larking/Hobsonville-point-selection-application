@@ -209,6 +209,14 @@ nav a {
             align-content: center;
         }
 
+    .priority{
+        display: grid;
+        border: 1px solid #FFFFFF; 
+        color: #FFFFFF;
+        background-color: rgb(150, 150, 150);
+        font-family: sans-serif; 
+        grid-template-columns:  20% 80%;
+    }
     /*Places Subjects div's into grids*/ 
     .Subjects {
         background-color: rgb(200, 200, 200);
