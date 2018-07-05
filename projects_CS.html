@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>HPSS Class Selections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="Styles/main.css" />
+    <script src="Scripts/main.js"></script>
+    <script src="Scripts/HtmlInclude.js"></script>
+</head>
+<body>
+    <header w3-include-html="headerBar_CS.html"></header>
+    <script>
+        console.log("test");
+        function includeHTML() {
+            var z, i, elmnt, file, xhttp;
+            /*loop through a collection of all HTML elements:*/
+            z = document.getElementsByTagName("*");
+            console.log(z);
+            for (i = 0; i < z.length; i++) {
+                console.log("test");
+                elmnt = z[i];
+                /*search for elements with a certain atrribute:*/
+                file = elmnt.getAttribute("w3-include-html");
+                if (file) {
+                    console.log(file);
+                    /*make an HTTP request using the attribute value as the file name:*/
+                    xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
+                        console.log(this.readyState);
+                        if (this.readyState == 4) {
+                            console.log(this.status);
+                            if (this.status == 200) {elmnt.innerHTML = this.responseText;
+                            console.log(this.responseText);}
+                            if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+                            /*remove the attribute, and call this function once more:*/
+                            elmnt.removeAttribute("w3-include-html");
+                            includeHTML();
+                        }
+                    } 
+                    xhttp.open("GET", file, true);
+                    xhttp.send();
+                    /*exit the function:*/
+                    return;
+                }
+            }
+        }
+        includeHTML();
+
+    </script>
+</body>
+</html>
