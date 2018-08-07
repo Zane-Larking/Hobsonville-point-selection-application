@@ -4,6 +4,7 @@
     padding: 1px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    border-color: black;
     }
 .ClassandTeachers[type=text], select, textarea {
     width: 50%;
@@ -12,6 +13,7 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     resize: vertical;
+    border-color: black;
     }
 .button {
     background-color: #0696CD;
@@ -24,17 +26,21 @@
     font-size: 16px;
     margin: 2px 1px;
     cursor: pointer;
+    background: linear-gradient( to top,#0696CD, #B7D2FF);
+
 }
 .ClassType {
     color: black;
     width: 25%;
     margin-top: 6px;
+    border-color: black;
 }
 
 .dropdown {
     color: black;
     width: 75%;
     margin-top: 6px;
+    border-color: black;
 }
 body {background-color: #0284B0}
 body {background-image: url(https://78.media.tumblr.com/64a88a6fd3da7f67a5282c0cfa893653/tumblr_inline_mjib9fyoK51qz4rgp.png);
@@ -50,4 +56,5 @@ body {background-image: url(https://78.media.tumblr.com/64a88a6fd3da7f67a5282c0c
     border: 1px solid #ccc;
     border-radius: 4px;
     resize: vertical;
+    border-color: black;
     }
