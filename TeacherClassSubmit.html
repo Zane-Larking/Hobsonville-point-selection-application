@@ -1,50 +1,79 @@
-<CDOCTYPE html>
+<DOCTYPE html>
 <html class="no-js" lang="en">
+<head>
 <title>Techer Student Class Check</title>
-<div style="background-color:White;width:1870px;height:1000px; border:1px solid black;padding:15px;">
+<link rel="stylesheet" type="text/css" href="Styles/CreateClassesStyle.css">
+
+</head>
+<body>
+<font face = "Verdana">
+<div style="background-color:White;width:1870px;height:auto; border:1px solid black;padding:15px;">
+<img src="images/HPSSLogo.png" alt="HPSS Logo" style="height: 100px">
 <p><form>
+  <h1><font face ="Verdana">Class Submissions</font></h1>
   Class Name:<br>
-  <input type="text" name="firstname"><br><br>
+  <input class="ClassandTeachers" type="text" name="firstname"><br><br>
   Teacher/s:<br>
-  <input type="text" name="lastname"><br><br>
-    Class Description:<br>
-  <input type="text" name="firstname"><br><br>
+  <input class="ClassandTeachers" type="text" name="lastname"><br><br>
   Kamar Code:<br>
-  <input type="text" name="lastname">
+  <input class="ClassandTeachers" type="text" name="lastname"><br><br>
+    Class Description:<br>
+  <textarea class="TextAreas" type="text" name="Description" placeholder="Write discription.."></textarea><br><br>
+  
 </form><br>
-Class Type:
-<form>
-  <input type="radio" name="ClassType" value="Module" checked> Module<br>
-  <input type="radio" name="ClassType" value="Spin"> Spin<br>
-  <input type="radio" name="ClassType" value="FloorTime"> FloorTime<br>
-  <input type="radio" name="ClassType" value="Projects"> Projects<br>
-</form><br><br>
-<style>
-.button {
-    background-color: #0696CD;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 2px 1px;
-    cursor: pointer;
-}
-</style>
-<button class="button">Button</button>
+<div class="row">
+      <div class="classtype">
+        <label for="ClassType">Class Type</label>
+      </div>
+      <div class="dropdown">
+        <select id="ClassType" name="ClassType">
+          <option value="Module">Module</option>
+          <option value="Spin">Spin</option>
+          <option value="Floortime">Floortime</option>
+          <option value="Projects">Projects</option>
+        </select>
+      </div>
+    </div>
+<br><br>
+
+<div class="row">
+      <div class="ClassSubject">
+        <label for="ClassSubject">Class Subject 1</label>
+      </div>
+      <div class="dropdown">
+        <select id="ClassSubject" name="ClassSubject">
+          <option value="None"></option>
+          <option value="Maths">Maths</option>
+          <option value="English">English</option>
+          <option value="Science">Science</option>
+          <option value="Health/P.E">Health/P.E</option>
+          <option value="Technology">Technology</option>
+          <option value="Other..">Other..</option>
+        </select>
+      </div>
+    </div>
+<br><br>
+<div class="row">
+      <div class="ClassSubject">
+        <label for="ClassSubject">Class Subject 2</label>
+      </div>
+      <div class="dropdown">
+        <select id="ClassSubject" name="ClassSubject">
+          <option value="None">None</option>
+          <option value="Maths">Maths</option>
+          <option value="English">English</option>
+          <option value="Science">Science</option>
+          <option value="Health/P.E">Health/P.E</option>
+          <option value="Technology">Technology</option>
+          <option value="Other..">Other..</option>
+        </select>
+      </div>
+    </div>
+<br><br>
+
+<button class="button" onclick="alert('Class Submitted. You may close the page.')">Submit</button>
 <!--<button type="button" onclick="alert('Class Submitted')">Submit</button></p>      *don't need this anymore but pls don't remove*
 </div>-->
-<style>
-body {background-color: #0284B0}
-body {background-image: url(https://78.media.tumblr.com/64a88a6fd3da7f67a5282c0cfa893653/tumblr_inline_mjib9fyoK51qz4rgp.png);
-	/*background-repeat: no-repeat;*/
-     background-attachment: center;
-     background-position: 75.5% 40%; 
-    background-position: ; 
-    }
-
-
-
+</font>
+</body>
 <html>
