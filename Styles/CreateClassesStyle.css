@@ -27,6 +27,7 @@
     margin: 2px 1px;
     cursor: pointer;
     background: linear-gradient( to top,#0696CD, #B7D2FF);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 
 }
 .ClassType {
