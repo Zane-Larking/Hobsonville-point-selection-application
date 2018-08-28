@@ -18,7 +18,7 @@
                 <img src="Images/Portrait_Placeholder.png" height="25rem" >
                 <div></div>
                 <div id ="dropdownArrow1"></div>
-            <div></div>
+                <div></div>
         </div>  
     </div>
 </header>
