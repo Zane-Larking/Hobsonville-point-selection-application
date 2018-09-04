@@ -1,0 +1,153 @@
+
+.DropdownClasses {
+    display: grid;
+    transition: height 1s;
+    overflow: hidden;
+    
+}
+.Course {
+    transition: height 1s;
+    height: auto;
+}
+.Subjects > div > p {
+    overflow: hidden;
+
+}
+/*General style of the Curriculum, Period and Class Header Bars*/ 
+.HeaderBar {
+    display: grid;
+    grid-template-columns: 20% 80%;
+}
+    .HeaderBarTitle {
+        background-color: rgb(150, 150, 150);
+        color: rgb(255, 255, 255);
+        border: 1rem solid rgb(255,255, 255);
+        
+        display: grid;
+        grid-template-columns:  20% 80%;
+    }
+        .Title {
+            display: flex;
+            justify-content: center;
+            align-self: center;
+            grid-column: 1/3;
+        }
+        .BarTitle {
+            display: flex;
+            justify-content: center;
+            align-self: center;
+        }
+        .PeriodName {
+            font-size: 1.6em;
+        }
+        .ClassCode {
+            font-size: 1em; 
+            justify-content: flex-start;
+        }
+        .DropdownButton {
+            align-content: center;
+        }
+
+    .priority{
+        display: grid;
+        border: 1px solid #FFFFFF; 
+        color: #FFFFFF;
+        background-color: rgb(150, 150, 150);
+        font-family: sans-serif; 
+        grid-template-columns:  20% 80%;
+    }
+    /*Places Subjects div's into grids*/ 
+    .Subjects {
+        background-color: rgb(200, 200, 200);
+        min-height: fit-content;
+        display: grid;
+        grid-template-columns: repeat(8,1fr); 
+
+    }
+    .Subjects div{
+        display: flex;
+        font-size: 1em;    
+        word-break: break-word;
+        min-width: 0;
+        height: inherit;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        border: 1rem solid #FFFFFF; 
+    }
+/*.CurriculumBar{
+    
+}*/
+/*.PeriodBar{
+    
+}*/
+.ClassBar div p{
+    margin: 0;
+}
+.ClassDropdownDescription {
+    background-color: rgb(235, 235, 235);
+    
+    transition: height 1s;
+    overflow: hidden;
+
+    display: grid;
+    grid-template: 25rem 25rem 25rem/20% 3fr 5fr;
+    grid-template-areas: 
+    "Name NCEA Description"
+    "Teachers NCEA Description"
+    "Inputs NCEA Description";
+}
+
+    .ClassDropdownDescription #Name, 
+    .ClassDropdownDescription #Teachers,
+    .ClassDropdownDescription #Description,
+    .ClassDropdownDescription #NCEA {
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+    }
+    .ClassDropdownDescription #Name {
+        grid-area: Name;
+
+    }
+    .ClassDropdownDescription #Teachers {
+        grid-area: Teachers;
+
+    }
+    .ClassDropdownDescription #Inputs {
+        grid-area: Inputs;
+
+    }
+        /*.ClassDropdownDescription #Inputs button {
+            width: auto;    
+        }*/
+    .ClassDropdownDescription #Description {
+        grid-area: Description;
+
+    }
+    .ClassDropdownDescription #NCEA {
+        grid-area: NCEA;
+
+    }
+
+    .ClassDropdownDescription div {
+        border: 1rem solid rgb(255, 255, 255);
+        -webkit-transition: height 2s; /* Safari */
+        transition: height 2s/*, opacity 2s ease-in-out*/;
+
+    }
+#Application {
+    width: 100%;
+    
+    min-height: 100rem;
+
+    background-color: rgb(150, 150, 150);
+
+}
+    #Application input[type="text"]{
+        height: -webkit-fill-available;
+        width: calc(100% - 4px);
+        width: -webkit-fill-available;
+    }

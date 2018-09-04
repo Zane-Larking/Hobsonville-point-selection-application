@@ -61,10 +61,8 @@
                         <div><p>Arts</p></div>
                         <div><p>Languages</p></div>
                     </div>
-                </div>
-
-                    
-                    <div>
+                </div>                   
+                <div>
                     <div>
                         <div class="ClassBar HeaderBar">
                             <div class="HeaderBarTitle">
@@ -206,7 +204,6 @@
                     </div>
 
                 </div>
-
                 <div class="priority"> 
                     <div class="HeaderBarTitle">
                         <div class= "Title">
