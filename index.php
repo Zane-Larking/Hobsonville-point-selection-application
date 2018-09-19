@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>HPSS Class Selections</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <link rel="stylesheet" type="text/css" media="screen" href="Styles/buttons.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="Styles/index.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="Styles/nav.css" />
@@ -14,18 +14,18 @@
 
 </head>
 <body>
-	<?php 
-		include ('HtmlSnippets/headerBar.html');		
+	<?php
+		include ('HtmlSnippets/headerBar.html');
 	?>
-        
+
     <article id="main">
         <div id="mainGrid">
-            <div id ="decription"> 
-                
+            <div id ="decription">
+
             </div>
             <!--Curriculum Tally Chart-->
             <!-- -->
-            <div id="CurriculumCoverage"> 
+            <div id="CurriculumCoverage">
                 <div id="CurriculumBar" class="CurriculumBar HeaderBar">
                     <div class="HeaderBarTitle">
                         <div class="Title">
@@ -44,7 +44,7 @@
                     </div>
                 </div>
 
-                <div class="priority"> 
+                <div class="priority">
                     <div class="HeaderBarTitle">
                         <div class= "Title">
                             1st choices
@@ -61,14 +61,16 @@
                         <div><p>Arts</p></div>
                         <div><p>Languages</p></div>
                     </div>
-                </div>                   
+                </div>
                 <div>
                     <div>
                         <div class="ClassBar HeaderBar">
                             <div class="HeaderBarTitle">
                                 <div class="DropdownButton ClassesDropdownButton"></div>
                                 <div class="ClassCode BarTitle">
-                                    M1EXMP1
+                                  <?php
+                                    ($dbconnect, SELECT `CODE` FROM classes WHERE QUAL = 1;)
+                                  ?>
                                 </div>
                             </div>
                             <div class="ClassSubjects Subjects">
@@ -86,11 +88,11 @@
                             <div id="Name">Module 1 Exemplar 1</div>
                             <div id="Teachers">Teacher 1 & Teacher 2</div>
                             <div id="Inputs">
-                                <button>Select</button> 
-                                <button>Dismiss</button> 
+                                <button>Select</button>
+                                <button>Dismiss</button>
                             </div>
                             <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah 
+                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
                             </div>
                             <div id="Description">
                                 Filler Text Filler Text Filler Text Filler Text
@@ -121,11 +123,11 @@
                             <div id="Name">Module 2 Exemplar 1</div>
                             <div id="Teachers">Teacher 1 & Teacher 2</div>
                             <div id="Inputs">
-                                <button>Select</button> 
-                                <button>Dismiss</button> 
+                                <button>Select</button>
+                                <button>Dismiss</button>
                             </div>
                             <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah 
+                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
                             </div>
                             <div id="Description">
                                 Filler Text Filler Text Filler Text Filler Text
@@ -156,11 +158,11 @@
                             <div id="Name">Spin 1 Exemplar 1</div>
                             <div id="Teachers">Teacher 1 & Teacher 2</div>
                             <div id="Inputs">
-                                <button>Select</button> 
-                                <button>Dismiss</button> 
+                                <button>Select</button>
+                                <button>Dismiss</button>
                             </div>
                             <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah 
+                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
                             </div>
                             <div id="Description">
                                 Filler Text Filler Text Filler Text Filler Text
@@ -191,11 +193,11 @@
                             <div id="Name">Spin 2 Exemplar 1</div>
                             <div id="Teachers">Teacher 1 & Teacher 2</div>
                             <div id="Inputs">
-                                <button>Select</button> 
-                                <button>Dismiss</button> 
+                                <button>Select</button>
+                                <button>Dismiss</button>
                             </div>
                             <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah 
+                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
                             </div>
                             <div id="Description">
                                 Filler Text Filler Text Filler Text Filler Text
@@ -204,7 +206,7 @@
                     </div>
 
                 </div>
-                <div class="priority"> 
+                <div class="priority">
                     <div class="HeaderBarTitle">
                         <div class= "Title">
                             2nd choices
@@ -223,7 +225,7 @@
                     </div>
                 </div>
 
-                <div class="priority"> 
+                <div class="priority">
                     <div class="HeaderBarTitle">
                         <div class= "Title">
                             3rd choices
@@ -243,9 +245,9 @@
                 </div>
 
             </div>
-            
+
             <!--Module 1 Table-->
-            <div id ="Module1"> 
+            <div id ="Module1">
                 <div id="Module1Bar" class="PeriodBar HeaderBar">
                     <div class="HeaderBarTitle">
                             <div class="DropdownButton PeriodDropdownButton"></div>
@@ -289,11 +291,11 @@
                             <div id="Name">Module 1 Exemplar 1</div>
                             <div id="Teachers">Teacher 1 & Teacher 2</div>
                             <div id="Inputs">
-                                <button>Select</button> 
-                                <button>Dismiss</button> 
+                                <button>Select</button>
+                                <button>Dismiss</button>
                             </div>
                             <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah 
+                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
                             </div>
                             <div id="Description">
                                 Filler Text Filler Text Filler Text Filler Text
@@ -323,11 +325,11 @@
                             <div id="Name">Module 1 Exemplar 2</div>
                             <div id="Teachers">Teacher 1 & Teacher 2</div>
                             <div id="Inputs">
-                                <button>Select</button> 
-                                <button>Dismiss</button> 
+                                <button>Select</button>
+                                <button>Dismiss</button>
                             </div>
                             <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah 
+                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
                             </div>
                             <div id="Description">
                                 Filler Text Filler Text Filler Text Filler Text
@@ -357,11 +359,11 @@
                             <div id="Name">Module 1 Exemplar 3</div>
                             <div id="Teachers">Teacher 1 & Teacher 2</div>
                             <div id="Inputs">
-                                <button>Select</button> 
-                                <button>Dismiss</button> 
+                                <button>Select</button>
+                                <button>Dismiss</button>
                             </div>
                             <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah 
+                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
                             </div>
                             <div id="Description">
                                 Filler Text Filler Text Filler Text Filler Text
@@ -392,25 +394,25 @@
                             <div id="Name">Module 1 Exemplar 4</div>
                             <div id="Teachers">Teacher 1 & Teacher 2</div>
                             <div id="Inputs">
-                                <button>Select</button> 
-                                <button>Dismiss</button> 
+                                <button>Select</button>
+                                <button>Dismiss</button>
                             </div>
                             <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah 
+                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
                             </div>
                             <div id="Description">
                                 Filler Text Filler Text Filler Text Filler Text
                             </div>
 
                         </div>
-                    </div>                       
+                    </div>
 
                 </div>
-                    
+
             </div>
 
             <!--Module 2 Table-->
-            <div id="Module2"> 
+            <div id="Module2">
                 <div id="Module2Bar" class="PeriodBar HeaderBar">
                     <div class="HeaderBarTitle">
                         <div class="DropdownButton PeriodDropdownButton"></div>
@@ -454,11 +456,11 @@
                             <div id="Name">Module 2 Exemplar 1</div>
                             <div id="Teachers">Teacher 1 & Teacher 2</div>
                             <div id="Inputs">
-                                <button>Select</button> 
-                                <button>Dismiss</button> 
+                                <button>Select</button>
+                                <button>Dismiss</button>
                             </div>
                             <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah 
+                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
                             </div>
                             <div id="Description">
                                 Filler Text Filler Text Filler Text Filler Text
@@ -488,11 +490,11 @@
                             <div id="Name">Module 2 Exemplar 2</div>
                             <div id="Teachers">Teacher 1 & Teacher 2</div>
                             <div id="Inputs">
-                                <button>Select</button> 
-                                <button>Dismiss</button> 
+                                <button>Select</button>
+                                <button>Dismiss</button>
                             </div>
                             <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah 
+                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
                             </div>
                             <div id="Description">
                                 Filler Text Filler Text Filler Text Filler Text
@@ -522,11 +524,11 @@
                             <div id="Name">Module 2 Exemplar 3</div>
                             <div id="Teachers">Teacher 1 & Teacher 2</div>
                             <div id="Inputs">
-                                <button>Select</button> 
-                                <button>Dismiss</button> 
+                                <button>Select</button>
+                                <button>Dismiss</button>
                             </div>
                             <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah 
+                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
                             </div>
                             <div id="Description">
                                 Filler Text Filler Text Filler Text Filler Text
@@ -556,11 +558,11 @@
                             <div id="Name">Module 2 Exemplar 4</div>
                             <div id="Teachers">Teacher 1 & Teacher 2</div>
                             <div id="Inputs">
-                                <button>Select</button> 
-                                <button>Dismiss</button> 
+                                <button>Select</button>
+                                <button>Dismiss</button>
                             </div>
                             <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah 
+                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
                             </div>
                             <div id="Description">
                                 Filler Text Filler Text Filler Text Filler Text
@@ -588,7 +590,7 @@
                         <div><p>Arts</p></div>
                         <div><p>Languages</p></div>
                     </div>
-                </div> 
+                </div>
                 <div class="SelectedClasses"></div>
                 <div class="DropdownClasses">
                     <div class="Course">
@@ -614,11 +616,11 @@
                             <div id="Name">Spin 1 Exemplar 1</div>
                             <div id="Teachers">Teacher 1 & Teacher 2</div>
                             <div id="Inputs">
-                                    <button>Select</button> 
-                                    <button>Dismiss</button> 
+                                    <button>Select</button>
+                                    <button>Dismiss</button>
                             </div>
                             <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah 
+                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
                             </div>
                             <div id="Description">
                                 Filler Text Filler Text Filler Text Filler Text
@@ -648,11 +650,11 @@
                             <div id="Name">Spin 1 Exemplar 2</div>
                             <div id="Teachers">Teacher 1 & Teacher 2</div>
                             <div id="Inputs">
-                                <button>Select</button> 
-                                <button>Dismiss</button> 
+                                <button>Select</button>
+                                <button>Dismiss</button>
                             </div>
                             <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah 
+                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
                             </div>
                             <div id="Description">
                                 Filler Text Filler Text Filler Text Filler Text
@@ -682,11 +684,11 @@
                             <div id="Name">Spin 1 Exemplar 3</div>
                             <div id="Teachers">Teacher 1 & Teacher 2</div>
                             <div id="Inputs">
-                                <button>Select</button> 
-                                <button>Dismiss</button> 
+                                <button>Select</button>
+                                <button>Dismiss</button>
                             </div>
                             <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah 
+                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
                             </div>
                             <div id="Description">
                                 Filler Text Filler Text Filler Text Filler Text
@@ -717,11 +719,11 @@
                             <div id="Name">Spin 1 Exemplar 4</div>
                             <div id="Teachers">Teacher 1 & Teacher 2</div>
                             <div id="Inputs">
-                                <button>Select</button> 
-                                <button>Dismiss</button> 
+                                <button>Select</button>
+                                <button>Dismiss</button>
                             </div>
                             <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah 
+                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
                             </div>
                             <div id="Description">
                                 Filler Text Filler Text Filler Text Filler Text
@@ -732,7 +734,7 @@
             </div>
 
             <!--Spin 2 Table-->
-            <div id ="Spin2"> 
+            <div id ="Spin2">
                 <div id="Spin2Bar" class="PeriodBar HeaderBar">
                     <div class="HeaderBarTitle">
                         <div class="DropdownButton PeriodDropdownButton"></div>
@@ -751,7 +753,7 @@
                         <div><p>Languages</p></div>
                     </div>
                 </div>
-                
+
                 <div class="SelectedClasses"></div>
                 <div class="DropdownClasses">
                     <div class="Course">
@@ -777,11 +779,11 @@
                             <div id="Name">Spin 2 Exemplar 1</div>
                             <div id="Teachers">Teacher 1 & Teacher 2</div>
                             <div id="Inputs">
-                                <button>Select</button> 
-                                <button>Dismiss</button> 
+                                <button>Select</button>
+                                <button>Dismiss</button>
                             </div>
                             <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah 
+                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
                             </div>
                             <div id="Description">
                                 Filler Text Filler Text Filler Text Filler Text
@@ -811,11 +813,11 @@
                             <div id="Name">Spin 2 Exemplar 2</div>
                             <div id="Teachers">Teacher 1 & Teacher 2</div>
                             <div id="Inputs">
-                                <button>Select</button> 
-                                <button>Dismiss</button> 
+                                <button>Select</button>
+                                <button>Dismiss</button>
                             </div>
                             <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah 
+                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
                             </div>
                             <div id="Description">
                                 Filler Text Filler Text Filler Text Filler Text
@@ -845,11 +847,11 @@
                             <div id="Name">Spin 2 Exemplar 3</div>
                             <div id="Teachers">Teacher 1 & Teacher 2</div>
                         <div id="Inputs">
-                                <button>Select</button> 
-                                <button>Dismiss</button> 
+                                <button>Select</button>
+                                <button>Dismiss</button>
                             </div>
                             <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah 
+                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
                             </div>
                             <div id="Description">
                                 Filler Text Filler Text Filler Text Filler Text
@@ -879,11 +881,11 @@
                             <div id="Name">Spin 2 Exemplar 4</div>
                             <div id="Teachers">Teacher 1 & Teacher 2</div>
                             <div id="Inputs">
-                                <button>Select</button> 
-                                <button>Dismiss</button> 
+                                <button>Select</button>
+                                <button>Dismiss</button>
                             </div>
                             <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah 
+                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
                             </div>
                             <div id="Description">
                                 Filler Text Filler Text Filler Text Filler Text
@@ -904,9 +906,9 @@
             </div>
         </div>
     </article>
-    
+
     <!--Scripts-->
     <script src="Scripts/DropDownBtn.js"></script>
-    
+
 </body>
 </html>
