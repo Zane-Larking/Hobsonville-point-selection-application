@@ -15,7 +15,8 @@
 </head>
 <body>
 	<?php 
-		include ('HtmlSnippets/headerBar.html');		
+        include ('HtmlSnippets/headerBar.html');	
+        include ('DataBase/Databaseconnect.php');	
 	?>
         
     <article id="main">
