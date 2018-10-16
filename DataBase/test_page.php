@@ -3,10 +3,10 @@
 </script>
 <?php
 
-$USER = 'jackf';
-$PSWD = 'happy';
+$USER = 'select_insert';
+$PSWD = 'hpss2014edge2018';
 $HOST = 'localhost';
-$NAME = 'jackf';
+$NAME = 'hpss_classes';
 
 $dbconnect = mysqli_connect("$HOST", "$USER", "$PSWD", "$NAME");
 
@@ -15,8 +15,10 @@ die('fail');
 }
 
 $result = mysqli_query($dbconnect, "select code, name, type from classes");
-while ($row = mysqli_fetch_array($result))
-{
+//echo mysqli_query($dbconnect,"SELECT * FROM classes");
+while ($row = mysqli_fetch_array($result)){
+
+  //echo $row;
 
     echo'  <!doctype HTML>
       <html>

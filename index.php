@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>HPSS Class Selections</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    
     <link rel="stylesheet" type="text/css" media="screen" href="Styles/buttons.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="Styles/index.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="Styles/nav.css" />
@@ -14,24 +14,37 @@
 
 </head>
 <body>
-<<<<<<< HEAD
 	<?php 
         include ('HtmlSnippets/headerBar.html');	
-        include ('DataBase/Databaseconnect.php');	
-=======
-	<?php
-		include ('HtmlSnippets/headerBar.html');
->>>>>>> 3c3c2157737d7bbf584c3d4671d123cfdb16ca35
+        include ('DataBase/Databaseconnect.php');
+        $Qual = 1;
+        switch ($Qual) {
+            case 0:
+                $moduleCount = 	3;
+                $spinCount = 3;
+                break;
+            case 1:
+                $moduleCount = 	2;
+                $spinCount = 2;
+                break;
+            case 2:
+                $moduleCount = 	1;
+                $spinCount = 3;
+                break;
+            case 3:
+                $moduleCount = 	0;
+                $spinCount = 5;
+        }
 	?>
-
+        
     <article id="main">
         <div id="mainGrid">
-            <div id ="decription">
-
+            <div id ="decription"> 
+                
             </div>
             <!--Curriculum Tally Chart-->
             <!-- -->
-            <div id="CurriculumCoverage">
+            <div id="CurriculumCoverage"> 
                 <div id="CurriculumBar" class="CurriculumBar HeaderBar">
                     <div class="HeaderBarTitle">
                         <div class="Title">
@@ -50,7 +63,7 @@
                     </div>
                 </div>
 
-                <div class="priority">
+                <div class="priority"> 
                     <div class="HeaderBarTitle">
                         <div class= "Title">
                             1st choices
@@ -67,214 +80,9 @@
                         <div><p>Arts</p></div>
                         <div><p>Languages</p></div>
                     </div>
-                </div>
+                </div>                   
                 <div>
                     <div>
-                        <div class="ClassBar HeaderBar">
-                            <div class="HeaderBarTitle">
-                                <div class="DropdownButton ClassesDropdownButton"></div>
-                                <div class="ClassCode BarTitle">
-                                  <?php
-                                    ($dbconnect, SELECT `CODE` FROM classes WHERE QUAL = 1;)
-                                  ?>
-                                </div>
-                            </div>
-                            <div class="ClassSubjects Subjects">
-                                <div><p>Maths</p></div>
-                                <div><p>English</p></div>
-                                <div><p>Science</p></div>
-                                <div><p>Social Science</p></div>
-                                <div><p>Technology</p></div>
-                                <div><p>HPE</p></div>
-                                <div><p>Arts</p></div>
-                                <div><p>Languages</p></div>
-                            </div>
-                        </div>
-                        <div class="ClassDropdownDescription">
-                            <div id="Name">Module 1 Exemplar 1</div>
-                            <div id="Teachers">Teacher 1 & Teacher 2</div>
-                            <div id="Inputs">
-                                <button>Select</button>
-                                <button>Dismiss</button>
-                            </div>
-                            <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
-                            </div>
-                            <div id="Description">
-                                Filler Text Filler Text Filler Text Filler Text
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="ClassBar HeaderBar">
-                            <div class="HeaderBarTitle">
-                                <div class="DropdownButton ClassesDropdownButton"></div>
-                                <div class="ClassCode BarTitle">
-                                    M2EXMP1
-                                </div>
-                            </div>
-                            <div class="ClassSubjects Subjects">
-                                <div><p>Maths</p></div>
-                                <div><p>English</p></div>
-                                <div><p>Science</p></div>
-                                <div><p>Social Science</p></div>
-                                <div><p>Technology</p></div>
-                                <div><p>HPE</p></div>
-                                <div><p>Arts</p></div>
-                                <div><p>Languages</p></div>
-                            </div>
-                        </div>
-                        <div class="ClassDropdownDescription">
-                            <div id="Name">Module 2 Exemplar 1</div>
-                            <div id="Teachers">Teacher 1 & Teacher 2</div>
-                            <div id="Inputs">
-                                <button>Select</button>
-                                <button>Dismiss</button>
-                            </div>
-                            <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
-                            </div>
-                            <div id="Description">
-                                Filler Text Filler Text Filler Text Filler Text
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="ClassBar HeaderBar">
-                            <div class="HeaderBarTitle">
-                                <div class="DropdownButton ClassesDropdownButton"></div>
-                                <div class="ClassCode BarTitle">
-                                    S1EXMP1
-                                </div>
-                            </div>
-                            <div class="ClassSubjects Subjects">
-                                <div><p>Maths</p></div>
-                                <div><p>English</p></div>
-                                <div><p>Science</p></div>
-                                <div><p>Social Science</p></div>
-                                <div><p>Technology</p></div>
-                                <div><p>HPE</p></div>
-                                <div><p>Arts</p></div>
-                                <div><p>Languages</p></div>
-                            </div>
-                        </div>
-                        <div class="ClassDropdownDescription">
-                            <div id="Name">Spin 1 Exemplar 1</div>
-                            <div id="Teachers">Teacher 1 & Teacher 2</div>
-                            <div id="Inputs">
-                                <button>Select</button>
-                                <button>Dismiss</button>
-                            </div>
-                            <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
-                            </div>
-                            <div id="Description">
-                                Filler Text Filler Text Filler Text Filler Text
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="ClassBar HeaderBar">
-                            <div class="HeaderBarTitle">
-                                <div class="DropdownButton ClassesDropdownButton"></div>
-                                <div class="ClassCode BarTitle">
-                                    S2EXMP1
-                                </div>
-                            </div>
-                            <div class="ClassSubjects Subjects">
-                                <div><p>Maths</p></div>
-                                <div><p>English</p></div>
-                                <div><p>Science</p></div>
-                                <div><p>Social Science</p></div>
-                                <div><p>Technology</p></div>
-                                <div><p>HPE</p></div>
-                                <div><p>Arts</p></div>
-                                <div><p>Languages</p></div>
-                            </div>
-                        </div>
-                        <div class="ClassDropdownDescription">
-                            <div id="Name">Spin 2 Exemplar 1</div>
-                            <div id="Teachers">Teacher 1 & Teacher 2</div>
-                            <div id="Inputs">
-                                <button>Select</button>
-                                <button>Dismiss</button>
-                            </div>
-                            <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
-                            </div>
-                            <div id="Description">
-                                Filler Text Filler Text Filler Text Filler Text
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="priority">
-                    <div class="HeaderBarTitle">
-                        <div class= "Title">
-                            2nd choices
-                        </div>
-                    </div>
-
-                    <div class="PrioritySubjects Subjects">
-                        <div><p>Maths</p></div>
-                        <div><p>English</p></div>
-                        <div><p>Science</p></div>
-                        <div><p>Social Science</p></div>
-                        <div><p>Technology</p></div>
-                        <div><p>HPE</p></div>
-                        <div><p>Arts</p></div>
-                        <div><p>Languages</p></div>
-                    </div>
-                </div>
-
-                <div class="priority">
-                    <div class="HeaderBarTitle">
-                        <div class= "Title">
-                            3rd choices
-                        </div>
-                    </div>
-
-                    <div class="PrioritySubjects Subjects">
-                        <div><p>Maths</p></div>
-                        <div><p>English</p></div>
-                        <div><p>Science</p></div>
-                        <div><p>Social Science</p></div>
-                        <div><p>Technology</p></div>
-                        <div><p>HPE</p></div>
-                        <div><p>Arts</p></div>
-                        <div><p>Languages</p></div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!--Module 1 Table-->
-            <div id ="Module1">
-                <div id="Module1Bar" class="PeriodBar HeaderBar">
-                    <div class="HeaderBarTitle">
-                            <div class="DropdownButton PeriodDropdownButton"></div>
-                            <div class="PeriodName BarTitle">
-                            Module 1
-                        </div>
-                    </div>
-                    <div class="PeriodSubjects Subjects">
-                        <div><p>Maths</p></div>
-                        <div><p>English</p></div>
-                        <div><p>Science</p></div>
-                        <div><p>Social Science</p></div>
-                        <div><p>Technology</p></div>
-                        <div><p>HPE</p></div>
-                        <div><p>Arts</p></div>
-                        <div><p>Languages</p></div>
-                    </div>
-                </div>
-                <div class="SelectedClasses"></div>
-                <div class="DropdownClasses">
-                    <div class="Course">
                         <div class="ClassBar HeaderBar">
                             <div class="HeaderBarTitle">
                                 <div class="DropdownButton ClassesDropdownButton"></div>
@@ -297,149 +105,19 @@
                             <div id="Name">Module 1 Exemplar 1</div>
                             <div id="Teachers">Teacher 1 & Teacher 2</div>
                             <div id="Inputs">
-                                <button>Select</button>
-                                <button>Dismiss</button>
+                                <button>Select</button> 
+                                <button>Dismiss</button> 
                             </div>
                             <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
+                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah 
                             </div>
                             <div id="Description">
                                 Filler Text Filler Text Filler Text Filler Text
                             </div>
                         </div>
                     </div>
-                    <div class="Course">
-                        <div class="ClassBar HeaderBar">
-                            <div class="HeaderBarTitle">
-                                <div class="DropdownButton ClassesDropdownButton"></div>
-                                <div class="ClassCode BarTitle">
-                                    M1EXMP2
-                                </div>
-                            </div>
-                            <div class="ClassSubjects Subjects">
-                                <div><p>Maths</p></div>
-                                <div><p>English</p></div>
-                                <div><p>Science</p></div>
-                                <div><p>Social Science</p></div>
-                                <div><p>Technology</p></div>
-                                <div><p>HPE</p></div>
-                                <div><p>Arts</p></div>
-                                <div><p>Languages</p></div>
-                            </div>
-                        </div>
-                        <div class="ClassDropdownDescription">
-                            <div id="Name">Module 1 Exemplar 2</div>
-                            <div id="Teachers">Teacher 1 & Teacher 2</div>
-                            <div id="Inputs">
-                                <button>Select</button>
-                                <button>Dismiss</button>
-                            </div>
-                            <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
-                            </div>
-                            <div id="Description">
-                                Filler Text Filler Text Filler Text Filler Text
-                            </div>
-                        </div>
-                    </div>
-                    <div class="Course">
-                        <div class="ClassBar HeaderBar">
-                            <div class="HeaderBarTitle">
-                                <div class="DropdownButton ClassesDropdownButton"></div>
-                                <div class="ClassCode BarTitle">
-                                    M1EXMP3
-                                </div>
-                            </div>
-                            <div class="ClassSubjects Subjects">
-                                <div><p>Maths</p></div>
-                                <div><p>English</p></div>
-                                <div><p>Science</p></div>
-                                <div><p>Social Science</p></div>
-                                <div><p>Technology</p></div>
-                                <div><p>HPE</p></div>
-                                <div><p>Arts</p></div>
-                                <div><p>Languages</p></div>
-                            </div>
-                        </div>
-                        <div class="ClassDropdownDescription">
-                            <div id="Name">Module 1 Exemplar 3</div>
-                            <div id="Teachers">Teacher 1 & Teacher 2</div>
-                            <div id="Inputs">
-                                <button>Select</button>
-                                <button>Dismiss</button>
-                            </div>
-                            <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
-                            </div>
-                            <div id="Description">
-                                Filler Text Filler Text Filler Text Filler Text
-                            </div>
 
-                        </div>
-                    </div>
-                    <div class="Course">
-                        <div class="ClassBar HeaderBar">
-                            <div class="HeaderBarTitle">
-                                <div class="DropdownButton ClassesDropdownButton"></div>
-                                <div class="ClassCode BarTitle">
-                                    M1EXMP4
-                                </div>
-                            </div>
-                            <div class="ClassSubjects Subjects">
-                                <div><p>Maths</p></div>
-                                <div><p>English</p></div>
-                                <div><p>Science</p></div>
-                                <div><p>Social Science</p></div>
-                                <div><p>Technology</p></div>
-                                <div><p>HPE</p></div>
-                                <div><p>Arts</p></div>
-                                <div><p>Languages</p></div>
-                            </div>
-                        </div>
-                        <div class="ClassDropdownDescription">
-                            <div id="Name">Module 1 Exemplar 4</div>
-                            <div id="Teachers">Teacher 1 & Teacher 2</div>
-                            <div id="Inputs">
-                                <button>Select</button>
-                                <button>Dismiss</button>
-                            </div>
-                            <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
-                            </div>
-                            <div id="Description">
-                                Filler Text Filler Text Filler Text Filler Text
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!--Module 2 Table-->
-            <div id="Module2">
-                <div id="Module2Bar" class="PeriodBar HeaderBar">
-                    <div class="HeaderBarTitle">
-                        <div class="DropdownButton PeriodDropdownButton"></div>
-                        <div class="PeriodName BarTitle">
-                            Module 2
-                        </div>
-                    </div>
-                    <div class="PeriodSubjects Subjects">
-                        <div><p>Maths</p></div>
-                        <div><p>English</p></div>
-                        <div><p>Science</p></div>
-                        <div><p>Social Science</p></div>
-                        <div><p>Technology</p></div>
-                        <div><p>HPE</p></div>
-                        <div><p>Arts</p></div>
-                        <div><p>Languages</p></div>
-                    </div>
-                </div>
-                <div class="SelectedClasses"></div>
-                <div class="DropdownClasses">
-                    <div class="Course">
+                    <div>
                         <div class="ClassBar HeaderBar">
                             <div class="HeaderBarTitle">
                                 <div class="DropdownButton ClassesDropdownButton"></div>
@@ -462,144 +140,19 @@
                             <div id="Name">Module 2 Exemplar 1</div>
                             <div id="Teachers">Teacher 1 & Teacher 2</div>
                             <div id="Inputs">
-                                <button>Select</button>
-                                <button>Dismiss</button>
+                                <button>Select</button> 
+                                <button>Dismiss</button> 
                             </div>
                             <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
+                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah 
                             </div>
                             <div id="Description">
                                 Filler Text Filler Text Filler Text Filler Text
                             </div>
                         </div>
                     </div>
-                    <div class="Course">
-                        <div class="ClassBar HeaderBar">
-                            <div class="HeaderBarTitle">
-                                <div class="DropdownButton ClassesDropdownButton"></div>
-                                <div class="ClassCode BarTitle">
-                                    M2EXMP2
-                                </div>
-                            </div>
-                            <div class="ClassSubjects Subjects">
-                                <div><p>Maths</p></div>
-                                <div><p>English</p></div>
-                                <div><p>Science</p></div>
-                                <div><p>Social Science</p></div>
-                                <div><p>Technology</p></div>
-                                <div><p>HPE</p></div>
-                                <div><p>Arts</p></div>
-                                <div><p>Languages</p></div>
-                            </div>
-                        </div>
-                        <div class="ClassDropdownDescription">
-                            <div id="Name">Module 2 Exemplar 2</div>
-                            <div id="Teachers">Teacher 1 & Teacher 2</div>
-                            <div id="Inputs">
-                                <button>Select</button>
-                                <button>Dismiss</button>
-                            </div>
-                            <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
-                            </div>
-                            <div id="Description">
-                                Filler Text Filler Text Filler Text Filler Text
-                            </div>
-                        </div>
-                    </div>
-                    <div class="Course">
-                        <div class="ClassBar HeaderBar">
-                            <div class="HeaderBarTitle">
-                                <div class="DropdownButton ClassesDropdownButton"></div>
-                                <div class="ClassCode BarTitle">
-                                    M2EXMP3
-                                </div>
-                            </div>
-                            <div class="ClassSubjects Subjects">
-                                <div><p>Maths</p></div>
-                                <div><p>English</p></div>
-                                <div><p>Science</p></div>
-                                <div><p>Social Science</p></div>
-                                <div><p>Technology</p></div>
-                                <div><p>HPE</p></div>
-                                <div><p>Arts</p></div>
-                                <div><p>Languages</p></div>
-                            </div>
-                        </div>
-                        <div class="ClassDropdownDescription">
-                            <div id="Name">Module 2 Exemplar 3</div>
-                            <div id="Teachers">Teacher 1 & Teacher 2</div>
-                            <div id="Inputs">
-                                <button>Select</button>
-                                <button>Dismiss</button>
-                            </div>
-                            <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
-                            </div>
-                            <div id="Description">
-                                Filler Text Filler Text Filler Text Filler Text
-                            </div>
-                        </div>
-                    </div>
-                    <div class="Course">
-                        <div class="ClassBar HeaderBar">
-                            <div class="HeaderBarTitle">
-                                <div class="DropdownButton ClassesDropdownButton"></div>
-                                <div class="ClassCode BarTitle">
-                                    M2EXMP4
-                                </div>
-                            </div>
-                            <div class="ClassSubjects Subjects">
-                                <div><p>Maths</p></div>
-                                <div><p>English</p></div>
-                                <div><p>Science</p></div>
-                                <div><p>Social Science</p></div>
-                                <div><p>Technology</p></div>
-                                <div><p>HPE</p></div>
-                                <div><p>Arts</p></div>
-                                <div><p>Languages</p></div>
-                            </div>
-                        </div>
-                        <div class="ClassDropdownDescription">
-                            <div id="Name">Module 2 Exemplar 4</div>
-                            <div id="Teachers">Teacher 1 & Teacher 2</div>
-                            <div id="Inputs">
-                                <button>Select</button>
-                                <button>Dismiss</button>
-                            </div>
-                            <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
-                            </div>
-                            <div id="Description">
-                                Filler Text Filler Text Filler Text Filler Text
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--Spin 1 Table-->
-            <div id="Spin1">
-                <div id="Spin1Bar" class="PeriodBar HeaderBar">
-                    <div class="HeaderBarTitle">
-                        <div class="DropdownButton PeriodDropdownButton"></div>
-                        <div class="PeriodName BarTitle">
-                        Spin 1
-                    </div>
-                    </div>
-                    <div class="PeriodSubjects Subjects">
-                        <div><p>Maths</p></div>
-                        <div><p>English</p></div>
-                        <div><p>Science</p></div>
-                        <div><p>Social Science</p></div>
-                        <div><p>Technology</p></div>
-                        <div><p>HPE</p></div>
-                        <div><p>Arts</p></div>
-                        <div><p>Languages</p></div>
-                    </div>
-                </div>
-                <div class="SelectedClasses"></div>
-                <div class="DropdownClasses">
-                    <div class="Course">
+
+                    <div>
                         <div class="ClassBar HeaderBar">
                             <div class="HeaderBarTitle">
                                 <div class="DropdownButton ClassesDropdownButton"></div>
@@ -622,147 +175,19 @@
                             <div id="Name">Spin 1 Exemplar 1</div>
                             <div id="Teachers">Teacher 1 & Teacher 2</div>
                             <div id="Inputs">
-                                    <button>Select</button>
-                                    <button>Dismiss</button>
+                                <button>Select</button> 
+                                <button>Dismiss</button> 
                             </div>
                             <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
+                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah 
                             </div>
                             <div id="Description">
                                 Filler Text Filler Text Filler Text Filler Text
                             </div>
                         </div>
                     </div>
-                    <div class="Course">
-                        <div class="ClassBar HeaderBar">
-                            <div class="HeaderBarTitle">
-                                <div class="DropdownButton ClassesDropdownButton"></div>
-                                <div class="ClassCode BarTitle">
-                                    S1EXMP2
-                                </div>
-                            </div>
-                            <div class="ClassSubjects Subjects">
-                                <div><p>Maths</p></div>
-                                <div><p>English</p></div>
-                                <div><p>Science</p></div>
-                                <div><p>Social Science</p></div>
-                                <div><p>Technology</p></div>
-                                <div><p>HPE</p></div>
-                                <div><p>Arts</p></div>
-                                <div><p>Languages</p></div>
-                            </div>
-                        </div>
-                        <div class="ClassDropdownDescription">
-                            <div id="Name">Spin 1 Exemplar 2</div>
-                            <div id="Teachers">Teacher 1 & Teacher 2</div>
-                            <div id="Inputs">
-                                <button>Select</button>
-                                <button>Dismiss</button>
-                            </div>
-                            <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
-                            </div>
-                            <div id="Description">
-                                Filler Text Filler Text Filler Text Filler Text
-                            </div>
-                        </div>
-                    </div>
-                    <div class="Course">
-                        <div class="ClassBar HeaderBar">
-                            <div class="HeaderBarTitle">
-                                <div class="DropdownButton ClassesDropdownButton"></div>
-                                <div class="ClassCode BarTitle">
-                                    S1EXMP3
-                                </div>
-                            </div>
-                            <div class="ClassSubjects Subjects">
-                                <div><p>Maths</p></div>
-                                <div><p>English</p></div>
-                                <div><p>Science</p></div>
-                                <div><p>Social Science</p></div>
-                                <div><p>Technology</p></div>
-                                <div><p>HPE</p></div>
-                                <div><p>Arts</p></div>
-                                <div><p>Languages</p></div>
-                            </div>
-                        </div>
-                        <div class="ClassDropdownDescription">
-                            <div id="Name">Spin 1 Exemplar 3</div>
-                            <div id="Teachers">Teacher 1 & Teacher 2</div>
-                            <div id="Inputs">
-                                <button>Select</button>
-                                <button>Dismiss</button>
-                            </div>
-                            <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
-                            </div>
-                            <div id="Description">
-                                Filler Text Filler Text Filler Text Filler Text
-                            </div>
 
-                        </div>
-                    </div>
-                    <div class="Course">
-                        <div class="ClassBar HeaderBar">
-                            <div class="HeaderBarTitle">
-                                <div class="DropdownButton ClassesDropdownButton"></div>
-                                <div class="ClassCode BarTitle">
-                                    S1EXMP4
-                                </div>
-                            </div>
-                            <div class="ClassSubjects Subjects">
-                                <div><p>Maths</p></div>
-                                <div><p>English</p></div>
-                                <div><p>Science</p></div>
-                                <div><p>Social Science</p></div>
-                                <div><p>Technology</p></div>
-                                <div><p>HPE</p></div>
-                                <div><p>Arts</p></div>
-                                <div><p>Languages</p></div>
-                            </div>
-                        </div>
-                        <div class="ClassDropdownDescription">
-                            <div id="Name">Spin 1 Exemplar 4</div>
-                            <div id="Teachers">Teacher 1 & Teacher 2</div>
-                            <div id="Inputs">
-                                <button>Select</button>
-                                <button>Dismiss</button>
-                            </div>
-                            <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
-                            </div>
-                            <div id="Description">
-                                Filler Text Filler Text Filler Text Filler Text
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!--Spin 2 Table-->
-            <div id ="Spin2">
-                <div id="Spin2Bar" class="PeriodBar HeaderBar">
-                    <div class="HeaderBarTitle">
-                        <div class="DropdownButton PeriodDropdownButton"></div>
-                        <div class="PeriodName BarTitle">
-                            Spin 2
-                        </div>
-                    </div>
-                    <div class="PeriodSubjects Subjects">
-                        <div><p>Maths</p></div>
-                        <div><p>English</p></div>
-                        <div><p>Science</p></div>
-                        <div><p>Social Science</p></div>
-                        <div><p>Technology</p></div>
-                        <div><p>HPE</p></div>
-                        <div><p>Arts</p></div>
-                        <div><p>Languages</p></div>
-                    </div>
-                </div>
-
-                <div class="SelectedClasses"></div>
-                <div class="DropdownClasses">
-                    <div class="Course">
+                    <div>
                         <div class="ClassBar HeaderBar">
                             <div class="HeaderBarTitle">
                                 <div class="DropdownButton ClassesDropdownButton"></div>
@@ -785,122 +210,200 @@
                             <div id="Name">Spin 2 Exemplar 1</div>
                             <div id="Teachers">Teacher 1 & Teacher 2</div>
                             <div id="Inputs">
-                                <button>Select</button>
-                                <button>Dismiss</button>
+                                <button>Select</button> 
+                                <button>Dismiss</button> 
                             </div>
                             <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
+                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah 
                             </div>
                             <div id="Description">
                                 Filler Text Filler Text Filler Text Filler Text
                             </div>
                         </div>
                     </div>
-                    <div class="Course">
-                        <div class="ClassBar HeaderBar">
-                            <div class="HeaderBarTitle">
-                                <div class="DropdownButton ClassesDropdownButton"></div>
-                                <div class="ClassCode BarTitle">
-                                    S2EXMP2
-                                </div>
-                            </div>
-                            <div class="ClassSubjects Subjects">
-                                <div><p>Maths</p></div>
-                                <div><p>English</p></div>
-                                <div><p>Science</p></div>
-                                <div><p>Social Science</p></div>
-                                <div><p>Technology</p></div>
-                                <div><p>HPE</p></div>
-                                <div><p>Arts</p></div>
-                                <div><p>Languages</p></div>
-                            </div>
-                        </div>
-                        <div class="ClassDropdownDescription">
-                            <div id="Name">Spin 2 Exemplar 2</div>
-                            <div id="Teachers">Teacher 1 & Teacher 2</div>
-                            <div id="Inputs">
-                                <button>Select</button>
-                                <button>Dismiss</button>
-                            </div>
-                            <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
-                            </div>
-                            <div id="Description">
-                                Filler Text Filler Text Filler Text Filler Text
-                            </div>
+
+                </div>
+                <div class="priority"> 
+                    <div class="HeaderBarTitle">
+                        <div class= "Title">
+                            2nd choices
                         </div>
                     </div>
-                    <div class="Course">
-                        <div class="ClassBar HeaderBar">
-                            <div class="HeaderBarTitle">
-                                <div class="DropdownButton ClassesDropdownButton"></div>
-                                <div class="ClassCode BarTitle">
-                                    S2EXMP3
-                                </div>
-                            </div>
-                            <div class="ClassSubjects Subjects">
-                                <div><p>Maths</p></div>
-                                <div><p>English</p></div>
-                                <div><p>Science</p></div>
-                                <div><p>Social Science</p></div>
-                                <div><p>Technology</p></div>
-                                <div><p>HPE</p></div>
-                                <div><p>Arts</p></div>
-                                <div><p>Languages</p></div>
-                            </div>
-                        </div>
-                        <div class="ClassDropdownDescription">
-                            <div id="Name">Spin 2 Exemplar 3</div>
-                            <div id="Teachers">Teacher 1 & Teacher 2</div>
-                        <div id="Inputs">
-                                <button>Select</button>
-                                <button>Dismiss</button>
-                            </div>
-                            <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
-                            </div>
-                            <div id="Description">
-                                Filler Text Filler Text Filler Text Filler Text
-                            </div>
-                        </div>
-                    </div>
-                    <div class="Course">
-                        <div class="ClassBar HeaderBar">
-                            <div class="HeaderBarTitle">
-                                <div class="DropdownButton ClassesDropdownButton"></div>
-                                <div class="ClassCode BarTitle">
-                                    S2EXMP4
-                                </div>
-                            </div>
-                            <div class="ClassSubjects Subjects">
-                                <div><p>Maths</p></div>
-                                <div><p>English</p></div>
-                                <div><p>Science</p></div>
-                                <div><p>Social Science</p></div>
-                                <div><p>Technology</p></div>
-                                <div><p>HPE</p></div>
-                                <div><p>Arts</p></div>
-                                <div><p>Languages</p></div>
-                            </div>
-                        </div>
-                        <div class="ClassDropdownDescription">
-                            <div id="Name">Spin 2 Exemplar 4</div>
-                            <div id="Teachers">Teacher 1 & Teacher 2</div>
-                            <div id="Inputs">
-                                <button>Select</button>
-                                <button>Dismiss</button>
-                            </div>
-                            <div id="NCEA">
-                                Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
-                            </div>
-                            <div id="Description">
-                                Filler Text Filler Text Filler Text Filler Text
-                            </div>
-                        </div>
+
+                    <div class="PrioritySubjects Subjects">
+                        <div><p>Maths</p></div>
+                        <div><p>English</p></div>
+                        <div><p>Science</p></div>
+                        <div><p>Social Science</p></div>
+                        <div><p>Technology</p></div>
+                        <div><p>HPE</p></div>
+                        <div><p>Arts</p></div>
+                        <div><p>Languages</p></div>
                     </div>
                 </div>
-            </div>
 
+                <div class="priority"> 
+                    <div class="HeaderBarTitle">
+                        <div class= "Title">
+                            3rd choices
+                        </div>
+                    </div>
+
+                    <div class="PrioritySubjects Subjects">
+                        <div><p>Maths</p></div>
+                        <div><p>English</p></div>
+                        <div><p>Science</p></div>
+                        <div><p>Social Science</p></div>
+                        <div><p>Technology</p></div>
+                        <div><p>HPE</p></div>
+                        <div><p>Arts</p></div>
+                        <div><p>Languages</p></div>
+                    </div>
+                </div>
+
+            </div>
+            
+            
+            
+                    <?php
+                    //--Modules--
+                    for ($i = 1; $i < $moduleCount + 1; $i++) {
+                        $query = "select code, name, type, TEACHER1, TEACHER2, DESCRIPTION from classes where qual = $Qual and type = 'MODULE$i'";
+                        $result = mysqli_query($dbconnect, $query);
+
+                        echo"
+                            <div id ='Module$i'> 
+                                <div id='Module$i"."Bar' class='PeriodBar HeaderBar'>
+                                    <div class='HeaderBarTitle'>
+                                        <div class='DropdownButton PeriodDropdownButton'></div>
+                                        <div class='PeriodName BarTitle'>Module $i</div>
+                                    </div>
+                                    <div class='PeriodSubjects Subjects'>
+                                        <div><p>Maths</p></div>
+                                        <div><p>English</p></div>
+                                        <div><p>Science</p></div>
+                                        <div><p>Social Science</p></div>
+                                        <div><p>Technology</p></div>
+                                        <div><p>HPE</p></div>
+                                        <div><p>Arts</p></div>
+                                        <div><p>Languages</p></div>
+                                    </div>
+                                </div>
+                                <div class='SelectedClasses'></div>
+                                <div class='DropdownClasses'>
+                        ";
+                        //echo mysqli_query($dbconnect,"SELECT * FROM classes");
+                        while ($row = mysqli_fetch_array($result)){
+                        echo"
+                            <div class='Course'>
+                                <div class='ClassBar HeaderBar'>
+                                    <div class='HeaderBarTitle'>
+                                        <div class='DropdownButton ClassesDropdownButton'></div>
+                                        <div class='ClassCode BarTitle'>
+                                            $row[code]
+                                        </div>
+                                    </div>
+                                    <div class='ClassSubjects Subjects'>
+                                        <div><p>Maths</p></div>
+                                        <div><p>English</p></div>
+                                        <div><p>Science</p></div>
+                                        <div><p>Social Science</p></div>
+                                        <div><p>Technology</p></div>
+                                        <div><p>HPE</p></div>
+                                        <div><p>Arts</p></div>
+                                        <div><p>Languages</p></div>
+                                    </div>
+                                </div>
+                                <div class='ClassDropdownDescription'>
+                                    <div id='Name'>$row[name]</div>
+                                    <div id='Teachers'>$row[TEACHER1] $row[TEACHER2]</div>
+                                    <div id='Inputs'>
+                                        <button>Select</button> 
+                                        <button>Dismiss</button> 
+                                    </div>
+                                    <div id='NCEA'>
+                                        Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah 
+                                    </div>
+                                    <div id='Description'>
+                                        $row[DESCRIPTION]
+                                    </div>
+                                </div>
+                            </div>";
+                        }
+                        echo"
+                            </div>
+                        </div>";
+                    }
+                    //--spins--        
+                    for ($i = 1; $i < $spinCount + 1; $i++) {
+                        $query = "select code, name, type, TEACHER1, TEACHER2, DESCRIPTION from classes where qual = $Qual and type = 'SPIN$i'";
+                        $result = mysqli_query($dbconnect, $query);
+
+                        echo"
+                            <div id ='Spin$i'> 
+                                <div id='Spin$i"."Bar' class='PeriodBar HeaderBar'>
+                                    <div class='HeaderBarTitle'>
+                                        <div class='DropdownButton PeriodDropdownButton'></div>
+                                        <div class='PeriodName BarTitle'>Spin $i</div>
+                                    </div>
+                                    <div class='PeriodSubjects Subjects'>
+                                        <div><p>Maths</p></div>
+                                        <div><p>English</p></div>
+                                        <div><p>Science</p></div>
+                                        <div><p>Social Science</p></div>
+                                        <div><p>Technology</p></div>
+                                        <div><p>HPE</p></div>
+                                        <div><p>Arts</p></div>
+                                        <div><p>Languages</p></div>
+                                    </div>
+                                </div>
+                                <div class='SelectedClasses'></div>
+                                <div class='DropdownClasses'>
+                        ";
+                        //echo mysqli_query($dbconnect,"SELECT * FROM classes");
+                        while ($row = mysqli_fetch_array($result)){
+                        echo"
+                            <div class='Course'>
+                                <div class='ClassBar HeaderBar'>
+                                    <div class='HeaderBarTitle'>
+                                        <div class='DropdownButton ClassesDropdownButton'></div>
+                                        <div class='ClassCode BarTitle'>
+                                            $row[code]
+                                        </div>
+                                    </div>
+                                    <div class='ClassSubjects Subjects'>
+                                        <div><p>Maths</p></div>
+                                        <div><p>English</p></div>
+                                        <div><p>Science</p></div>
+                                        <div><p>Social Science</p></div>
+                                        <div><p>Technology</p></div>
+                                        <div><p>HPE</p></div>
+                                        <div><p>Arts</p></div>
+                                        <div><p>Languages</p></div>
+                                    </div>
+                                </div>
+                                <div class='ClassDropdownDescription'>
+                                    <div id='Name'>$row[name]</div>
+                                    <div id='Teachers'>$row[TEACHER1]</div>
+                                    <div id='Inputs'>
+                                        <button>Select</button> 
+                                        <button>Dismiss</button> 
+                                    </div>
+                                    <div id='NCEA'>
+                                        Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah 
+                                    </div>
+                                    <div id='Description'>
+                                        $row[DESCRIPTION]
+                                    </div>
+                                </div>
+                            </div>";
+                        }
+                        echo"
+                            </div>
+                        </div>";
+                    }
+
+                    ?>
             <div id="Application">
                 <div>
                     If a class required a application please fill out on here.
@@ -912,9 +415,9 @@
             </div>
         </div>
     </article>
-
+    
     <!--Scripts-->
     <script src="Scripts/DropDownBtn.js"></script>
-
+    
 </body>
 </html>
