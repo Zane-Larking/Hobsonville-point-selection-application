@@ -1,5 +1,3 @@
-console.log("testng");
-
 function collapseSection(element) {
     console.log("Collapsing");
     // get the height of the element's inner content, regardless of its actual size
@@ -50,13 +48,86 @@ function expandSection(element) {
 function isCollapsed(element) {
     return element.getAttribute('data-collapsed') === 'true';
 }
+function CreateSelectorFromMouseEvent(e, end, siblingOfEnd) {
+    //format information from the 'MouseEvent' object (stored as 'e') to use as a CSS selector 
+    mappedE = e.path.reverse().slice(3,-1).map((x) => {
+        let output = [x.localName];
+        let idName = [];
+        if (x.id != "") {
+            idName = x.id.split(" ");
+        }
+        idName.forEach(e => {
+            output.push("#" + e);
+        });
+        let className = [];
+        if (x.className != "") {
+            className = x.className.split(" ");
+        }
+        className.forEach(e => {
+            output.push("." + e);
+        });
+        
+        return output.join("");
+    });
+    
+    /* ===== debugging ===== */
+    console.log(mappedE);
+    console.log(mappedE.slice(0, mappedE.indexOf(end)).concat([siblingOfEnd]).join(" "));
+
+    //output
+    return mappedE
+    .slice(0, mappedE.indexOf(end))
+    .concat([siblingOfEnd])
+    .join(" ");
+}
+var PriorityDDBtnFunct = function (e) {
+    /* ===== OLD CODE ===== */
+    //console.log("Priority test");
+    //console.log(e);
+    //console.log(e.target.parentElement.parentElement.nextElementSibling.nextElementSibling.atributes);
+    //let pannel = e.target.parentElement.parentElement.nextElementSibling;
+    let pannel = document.querySelector(CreateSelectorFromMouseEvent(e, "div.TallyBar", "div.DropdownClasses"));
+    console.log(pannel);
+    console.log("data collapsed attribute: "+ pannel.getAttribute('data-collapsed'));
+    if (pannel.getAttribute('data-collapsed') == null) {
+        pannel.setAttribute('data-collapsed', 'false')
+    }
+
+    var Classes = pannel.children;
+    console.log(Classes);
+    for (let i = 0; i < Classes.length; i++) {
+        console.log(Classes[i]);
+    }
+    
+
+    //toggle state
+    console.log("isCollapsed: " + isCollapsed(pannel));
+    if (isCollapsed(pannel)){
+        // for (let i = 0; i < Classes.length ; i ++) {
+        //     expandSection(Classes[i]);
+        // }
+        expandSection(pannel)
+    } else {
+        // for (let i = 0; i < Classes.length; i ++) {
+        //     collapseSection(Classes[i]);
+        // }
+        collapseSection(pannel)
+        
+    }
+    console.log(pannel.getAttribute('data-collapsed'));
+}
 
 var PeriodDDBtnFunct = function (e) {
     /* ===== debugging ===== */
-    console.log("Period test");
+    //console.log(mappedE);
+    //console.log(mappedE.slice(0, mappedE.indexOf("div.ClassBar.HeaderBar")).concat(["div.ClassDropdownDescription"]).join(" "));
+
+    /* ===== OLD CODE ===== */
+    //console.log("Period test");
     //console.log(e);
     //console.log(e.target.parentElement.parentElement.nextElementSibling.nextElementSibling.atributes);
-    let pannel = e.target.parentElement.parentElement.nextElementSibling.nextElementSibling;
+    //let pannel = e.target.parentElement.parentElement.nextElementSibling.nextElementSibling;
+    let pannel = document.querySelector(CreateSelectorFromMouseEvent(e, "div.PeriodBar.HeaderBar", "div.DropdownClasses"));
     console.log("data collapsed attribute: "+ pannel.getAttribute('data-collapsed'));
     if (pannel.getAttribute('data-collapsed') == null) {
         pannel.setAttribute('data-collapsed', 'false')
@@ -87,10 +158,16 @@ var PeriodDDBtnFunct = function (e) {
 }
 var ClassDDBtnFunct = function (e) {
     /* ===== debugging ===== */
-    console.log("Class test");
+    //console.log(mappedE);
+    //console.log(mappedE.slice(0, mappedE.indexOf("div.ClassBar.HeaderBar")).concat(["div.ClassDropdownDescription"]).join(" "));
+
+    /* ===== OLD CODE ===== */
+    //console.log("Class test");
     //console.log(e);
     //console.log(e.target.parentElement.parentElement.nextElementSibling.nextElementSibling.atributes);
-    let pannel = e.target.parentElement.parentElement.nextElementSibling;
+    //let pannel = e.target.parentElement.parentElement.nextElementSibling;
+
+    let pannel = document.querySelector(CreateSelectorFromMouseEvent(e, "div.ClassBar.HeaderBar", "div.ClassDropdownDescription"));
     console.log("data collapsed attribute: "+ pannel.getAttribute('data-collapsed'));
     if (pannel.getAttribute('data-collapsed') == null) {
         pannel.setAttribute('data-collapsed', 'false')
@@ -105,6 +182,13 @@ var ClassDDBtnFunct = function (e) {
     }
 }
 
+/* ===== Priority tabs ===== */
+var btns = document.getElementsByClassName("PriorityDropdownButton");
+for (var i = 0; i < btns.length; i ++) {
+    btns[i].addEventListener("click", PriorityDDBtnFunct);
+
+}
+
 /* ===== Period tabs ===== */
 var btns = document.getElementsByClassName("PeriodDropdownButton");
 for (var i = 0; i < btns.length; i ++) {
@@ -113,7 +197,7 @@ for (var i = 0; i < btns.length; i ++) {
 }
 
 /* ===== Class drop-down descriptions ===== */
-var btns = document.getElementsByClassName("ClassesDropdownButton");
+var btns = document.getElementsByClassName("ClassDropdownButton");
 for (var i = 0; i < btns.length; i ++) {
     btns[i].addEventListener("click", ClassDDBtnFunct);
     //console.log(i);

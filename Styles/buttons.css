@@ -15,7 +15,7 @@
     clip-path: polygon(75% 31.7%, 50% 75%, 25% 31.7%);
     */
 }
-.PriorityDropdownButton {
+.PriorityDropdownButton .DropdownButton {
     justify-self: center;
     align-self: center;
 
@@ -23,10 +23,16 @@
     width: 25rem;
     height: 25rem;
     background-color: rgb(80, 80, 80);
-    clip-path: polygon(40% 5%, 50% 15%, 25% 45%, 0% 15%, 10% 5%, 25% 22.5%);
-    -webkit-clip-path: polygon(40% 5%, 50% 15%, 25% 45%, 0% 15%, 10% 5%, 25% 22.5%);
+    clip-path: polygon(65% 30%, 75% 40%, 50% 70%, 25% 40%, 35% 30%, 50% 47.5%);
+    -webkit-clip-path: polygon(65% 30%, 75% 40%, 50% 70%, 25% 40%, 35% 30%, 50% 47.5%);
+    /* clip-path: polygon(40% 5%, 50% 15%, 25% 45%, 0% 15%, 10% 5%, 25% 22.5%);
+    -webkit-clip-path: polygon(40% 5%, 50% 15%, 25% 45%, 0% 15%, 10% 5%, 25% 22.5%); */
 }
-.PeriodDropdownButton {
+.PriorityDropdownButton {
+    display: flex;
+    justify-content: center;
+}
+.PeriodDropdownButton .DropdownButton {
     justify-self: center;
     align-self: center;
 
@@ -37,7 +43,11 @@
     clip-path: polygon(80% 10%, 100% 30%, 50% 85%, 0% 30%, 20% 10%, 50% 45%);
     -webkit-clip-path: polygon(80% 10%, 100% 30%, 50% 85%, 0% 30%, 20% 10%, 50% 45%);
 }
-.ClassesDropdownButton {
+.PeriodDropdownButton {
+    display: flex;
+    justify-content: center;
+}
+.ClassDropdownButton .DropdownButton {
     justify-self: center;
     align-self: center;
 
@@ -48,7 +58,11 @@
     clip-path: polygon(65% 30%, 75% 40%, 50% 70%, 25% 40%, 35% 30%, 50% 47.5%);
     -webkit-clip-path: polygon(65% 30%, 75% 40%, 50% 70%, 25% 40%, 35% 30%, 50% 47.5%);
 }
-.ChosenClassesDropdownButton {
+.ClassDropdownButton {
+    display: flex;
+    justify-content: center;
+}
+.SelectedClassesDropdownButton .DropdownButton {
     justify-self: center;
     align-self: center;
 
@@ -58,4 +72,8 @@
     background-color: rgb(80, 80, 80);
     clip-path: polygon(65% 30%, 75% 40%, 50% 70%, 25% 40%, 35% 30%, 50% 47.5%);
     -webkit-clip-path: polygon(65% 30%, 75% 40%, 50% 70%, 25% 40%, 35% 30%, 50% 47.5%);
+}
+.SelectedClassesDropdownButton {
+    display: flex;
+    justify-content: center;
 }
