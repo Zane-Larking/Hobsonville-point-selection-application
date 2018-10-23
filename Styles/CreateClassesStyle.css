@@ -1,20 +1,40 @@
-.TextAreas[type=text], select, textarea {
+html {
+    /*Test text*/
+    font-size: 1px;
+}
+body {
+    font-size: 16px;
+
+    /*background*/
+    background-color: #0284B0;
+    background-image: url(../Images/TeacherClassSubmit_BG_terrain.png);
+    /*background-repeat: no-repeat;*/
+    background-attachment: center;
+    background-position: 75.5% 40%; 
+}
+
+.TextAreas[type=text] {
     width: 50%;
     height: 20%;
     padding: 1px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    border-color: black;
-    }
-.ClassandTeachers[type=text], select, textarea {
-    width: 50%;
-    height: 1%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
     resize: vertical;
     border-color: black;
     }
+
+input[type=text] {
+    width: 50%;
+    padding: 6px;
+    border: 1px solid #ccc;
+    height: 2.25em;
+    border-radius: 4px;
+    resize: vertical;
+    border-color: black;
+}
+input:disabled {
+    display: none;
+}
 .button {
     background-color: #0696CD;
     border: none;
@@ -32,11 +52,12 @@
 }
 .ClassType {
     color: black;
-    width: 25%;
+    width: calc(25% - 3px);
     margin-top: 6px;
     border-color: black;
 }
 
+/*
 .dropdown {
     color: black;
     width: 110%;
@@ -45,19 +66,14 @@
     width: auto;
     height: auto;
 }
-body {background-color: #0284B0}
-body {background-image: url(https://78.media.tumblr.com/64a88a6fd3da7f67a5282c0cfa893653/tumblr_inline_mjib9fyoK51qz4rgp.png);
-    /*background-repeat: no-repeat;*/
-     background-attachment: center;
-     background-position: 75.5% 40%; 
-    background-position: ; 
-    }
-.input[type=text], select, textarea {
-    width: 10%;
-    height: 5%;
-    padding: 12px;
+*/
+
+select {
+    width: 50%;
+    height: 2.25em;
+    padding: 6px;
     border: 1px solid #ccc;
     border-radius: 4px;
     resize: vertical;
     border-color: black;
-    }
+}

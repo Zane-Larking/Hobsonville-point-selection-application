@@ -1,4 +1,6 @@
-
+#mainGrid {
+    color: #FFFFFF;
+}
 .DropdownClasses {
     display: grid;
     transition: height 1s;
@@ -9,9 +11,137 @@
     transition: height 1s;
     height: auto;
 }
-.Subjects > div > p {
+.Subjects > div {
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+    word-break: break-word;
     overflow: hidden;
 
+    font-size: 1em;   
+    min-width: 4em;
+    height: inherit;
+    background-color: rgb(200, 200, 200);
+    border: 1rem solid #FFFFFF; 
+    border-left-width: 0px;
+    border-top-width: 0px;
+    border-bottom-width: 0px;
+    
+    padding-block-start: 1em;
+    padding-block-end: 1em;
+
+}
+.CurriculumSubjects > div {
+    padding-block-start: 2em;
+    padding-block-end: 2em;
+}
+.TallySubjects > div {
+    padding-block-start: 1em;
+    padding-block-end: 1em;
+}
+.PeriodSubjects > div {
+    padding-block-start: 1em;
+    padding-block-end: 1em;
+}
+.ClassSubjects > div {
+    padding-block-start: 0.25em;
+    padding-block-end: 0.25em;
+    
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+}
+/*fix up borders  */
+/*rounding off SelectedClasses*/
+#FirstChoices .HeaderBarTitle, .FirstChoice .HeaderBarTitle {
+    background-color: rgb(97, 143, 212);
+}
+#FirstChoices .ClassBar .HeaderBarTitle, .FirstChoice .HeaderBarTitle {
+    border-top-left-radius: 10px;
+    background-color: rgb(97, 143, 212);
+}
+#FirstChoices .DropdownClasses, .FirstChoice {
+    background-color: rgb(97, 143, 212);
+    display: grid;
+    /* padding: 5px 0px; */
+}
+
+
+
+#SecondChoices .HeaderBarTitle, .SecondChoice .HeaderBarTitle {
+    background-color: rgb(103, 222, 183);
+}
+#SecondChoices .ClassBar .HeaderBarTitle, .SecondChoices .HeaderBarTitle {
+    border-top-left-radius: 10px;
+    background-color: rgb(103, 222, 183);
+}
+#SecondChoices .DropdownClasses, .SecondChoice {
+    background-color: rgb(103, 222, 183);
+    display: grid;
+    /* padding: 5px 0px; */
+}
+
+
+
+#ThirdChoices .HeaderBarTitle, .ThirdChoice .HeaderBarTitle {
+    background-color: rgb(212, 192, 97);
+}
+#ThirdChoices .ClassBar .HeaderBarTitle, .ThirdChoices .HeaderBarTitle {
+    border-top-left-radius: 10px;
+    background-color: rgb(212, 192, 97);
+}
+#ThirdChoices .DropdownClasses, .ThirdChoice {
+    background-color: rgb(212, 192, 97);
+    display: grid;
+    /* padding: 5px 0px; */
+}
+
+#CurriculumCoverage .DropdownClasses > div, .SelectedClasses > div > div {
+    margin: 5px 0px;
+}
+
+button { 
+    width: calc(50% - 2px);
+    font-size: 1em;
+    border-radius: 5px;
+}
+.FirstChoice div#Description, #FirstChoices div#Description,
+.SecondChoices div#Description, #SecondChoices div#Description,
+.ThirdChoices div#Description, #ThirdChoices div#Description {
+    border-bottom-right-radius: 10px;
+}
+#FirstChoices div#Inputs, .FirstChoice div#Inputs,
+#FirstChSecondChoicesoices div#Inputs, .SecondChoices div#Inputs,
+#ThirdChoices div#Inputs, .ThirdChoices div#Inputs {
+    border-bottom-left-radius: 10px;
+}
+#FirstChoices .ClassSubjects.Subjects div:last-child, .FirstChoice .ClassSubjects.Subjects div:last-child,
+#SecondChoices .ClassSubjects.Subjects div:last-child, .SecondChoice .ClassSubjects.Subjects div:last-child,
+#ThirdChoices .ClassSubjects.Subjects div:last-child, .ThirdChoice .ClassSubjects.Subjects div:last-child {
+    border-top-right-radius: 10px;
+}
+
+#FirstChoices .ClassDropdownButton, .FirstChoice .ClassDropdownButton,
+#FirstChoices .ClassDropdownButton, .FirstChoice .ClassDropdownButton,
+#FirstChoices .ClassDropdownButton, .FirstChoice .ClassDropdownButton{
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    margin: 4px 2px;
+}
+
+.PeriodSubjects, .CurriculumSubjects, .ThirdChoice .HeaderBarTitle {
+    border: 1px solid rgb(255,255, 255);
+    border-left-width: 0px;
+    border-right-width: 0px;
+}
+.PeriodBar > .HeaderBarTitle, .CurriculumBar > .HeaderBarTitle {
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+}
+.ClassBar > .HeaderBarTitle {
+    border-top-width: 1px;
+    border-bottom-width: 1px;
 }
 /*General style of the Curriculum, Period and Class Header Bars*/ 
 .HeaderBar {
@@ -22,6 +152,8 @@
         background-color: rgb(150, 150, 150);
         color: rgb(255, 255, 255);
         border: 1rem solid rgb(255,255, 255);
+        border-top-width: 0px;
+        border-bottom-width:  0px;
         
         display: grid;
         grid-template-columns:  20% 80%;
@@ -37,6 +169,9 @@
             justify-content: center;
             align-self: center;
         }
+        .Priority {
+            justify-content: flex-start;
+        }
         .PeriodName {
             font-size: 1.6em;
         }
@@ -48,33 +183,39 @@
             align-content: center;
         }
 
-    .priority{
+    .TallyBar{
         display: grid;
         border: 1px solid #FFFFFF; 
-        color: #FFFFFF;
+        border-left-width: 0px;
+        border-right-width: 0px;
+        border-top-width: 0px;
         background-color: rgb(150, 150, 150);
         font-family: sans-serif; 
         grid-template-columns:  20% 80%;
     }
     /*Places Subjects div's into grids*/ 
     .Subjects {
-        background-color: rgb(200, 200, 200);
         min-height: fit-content;
         display: grid;
         grid-template-columns: repeat(8,1fr); 
 
     }
-    .Subjects div{
-        display: flex;
-        font-size: 1em;    
-        word-break: break-word;
-        min-width: 0;
-        height: inherit;
-        flex-direction: column;
-        justify-content: center;
-        text-align: center;
-        border: 1rem solid #FFFFFF; 
+    .ClassDropdownDescription {
+        color: #000000;
     }
+    .SubjectOfClass{
+        color: #000000;
+    }
+    .FirstChoice .SubjectOfClass, #FirstChoices .SubjectOfClass {
+        background-color: rgb(97, 143, 212);
+    }
+    .SecondChoice .SubjectOfClass, #SecondChoices .SubjectOfClass {
+        background-color: rgb(103, 222, 183);
+    }
+    .ThirdChoice .SubjectOfClass, #ThirdChoices .SubjectOfClass {
+        background-color: rgb(212, 192, 97);
+    }
+    
 /*.CurriculumBar{
     
 }*/
@@ -84,9 +225,7 @@
 .ClassBar div p{
     margin: 0;
 }
-.ClassDropdownDescription {
-    background-color: rgb(235, 235, 235);
-    
+.ClassDropdownDescription {    
     transition: height 1s;
     overflow: hidden;
 
@@ -125,15 +264,18 @@
         }*/
     .ClassDropdownDescription #Description {
         grid-area: Description;
+        border-left-width: 0;
 
     }
     .ClassDropdownDescription #NCEA {
         grid-area: NCEA;
+        border-left-width: 0;
 
     }
 
     .ClassDropdownDescription div {
         border: 1rem solid rgb(255, 255, 255);
+        background-color: rgb(235, 235, 235);
         -webkit-transition: height 2s; /* Safari */
         transition: height 2s/*, opacity 2s ease-in-out*/;
 
@@ -146,7 +288,7 @@
     background-color: rgb(150, 150, 150);
 
 }
-    #Application input[type="text"]{
+    #Application textarea{
         height: -webkit-fill-available;
         width: calc(100% - 4px);
         width: -webkit-fill-available;

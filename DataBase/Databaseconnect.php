@@ -1,14 +1,18 @@
 <?php
-
-//ob
-ob_start();
-
-//session
-session_start();
-
 //connect to database
 $error = "Problem connecting";
-mysql_connect('server','username','password') or die($error);
-mysql_select_db('phpacade_emailactivation') or die($error);
+
+$USER = 'select_insert';
+$PSWD = 'hpss2014edge2018';
+$HOST = 'localhost';
+$NAME = 'hpss_classes';
+
+$dbconnect = mysqli_connect("$HOST", "$USER", "$PSWD", "$NAME");
+
+if (!$dbconnect) {
+    die('fail');
+}
+
+
 
 ?>
