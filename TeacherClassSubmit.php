@@ -3,6 +3,7 @@
   <head>
     <title>Teacher Student Class Check</title>
   <link rel="stylesheet" type="text/css" href="Styles/CreateClassesStyle.css">
+  <link rel="stylesheet" type="text/css" href="Styles/nav.css">
 <?php
 include "DataBase/Databaseconnect.php";
 include "HTMLSnippets/classesConstants.php";
@@ -10,8 +11,12 @@ include "HTMLSnippets/classesConstants.php";
 
   </head>
   <body>
+    <?php
+
+      include "HTMLSnippets/headerBar.php";
+    ?>
     <font face = "Verdana">
-    <div style="background-color:White;width:60%;height:auto; margin-left:20%; border:1px solid black;padding:15px;">
+    <div id = "main">
     <img src="images/HPSSLogo.png" alt="HPSS Logo" style="height: 100px">
     <h1><font face ="Verdana">Class Submissions</font></h1>
 
@@ -112,15 +117,15 @@ include "HTMLSnippets/classesConstants.php";
   //debugging
   
 
-  echo "<br> type: " . test_input($_POST['typeName']) . test_input($_POST['typeCount']);
-  echo "<br> \$_POST: " . json_encode($_POST);
-  echo "<br> <br> code values are equal: " . (string)($Code == $row['code']);
-  echo "<br> \$Code: \"" . $Code . "\"";
-  echo "<br> \$row['code']: " . json_encode($row['code']);
+  // echo "<br> type: " . test_input($_POST['typeName']) . test_input($_POST['typeCount']);
+  // echo "<br> \$_POST: " . json_encode($_POST);
+  // echo "<br> <br> code values are equal: " . (string)($Code == $row['code']);
+  // echo "<br> \$Code: \"" . $Code . "\"";
+  // echo "<br> \$row['code']: " . json_encode($row['code']);
 
-  echo "<br> <br> \$query: \"" . $query . "\"";
-  echo "<br> mysqli_query(\$dbconnect, \$query): " . json_encode(mysqli_query($dbconnect, $query));
-  echo "<br> mysqli_fetch_array(\$result): " . json_encode(mysqli_fetch_array($result));
+  // echo "<br> <br> \$query: \"" . $query . "\"";
+  // echo "<br> mysqli_query(\$dbconnect, \$query): " . json_encode(mysqli_query($dbconnect, $query));
+  // echo "<br> mysqli_fetch_array(\$result): " . json_encode(mysqli_fetch_array($result));
   
   if (!empty($_POST)){
     if (is_NULL($row['code'])){

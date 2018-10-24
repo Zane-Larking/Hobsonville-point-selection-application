@@ -10,6 +10,7 @@
             <a href="index.php">Modules & Spins</a>
             <a href="floortimes.php">FloorTimes</a>
             <a href="projects.php">Projects</a>
+            <a href="Home.php">Home</a>
         </nav> 
         <div id ="YearLevel">
                 Q1

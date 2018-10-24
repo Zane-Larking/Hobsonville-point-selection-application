@@ -29,8 +29,22 @@
         "HPE",
         "Arts",
         "Languages"
-    ]
+    ];
+    //parses $CPYL to "var CPYL = {modules: [3, 2, 1, 1], spins: [3, 2, 1, 0], floorTimes: [3, 2, 3, 5])}"
+    echo "<script type='text/javascript'>
+        var CPYL = {";
+    foreach($CPYL as $key => $displayed) {
+        echo "$key : [";
+        foreach($displayed as $index => $value){
+            echo "$value, ";
+            if ($index != "3"){
+                echo ", ";
+            }
+            echo "]";
+        }   
+    }
+    echo ", [1,1,1,1]};
+    </script>";
+
+
 ?>
-<script type="text/javascript">
-   var CPYL = <?php echo json_encode($CPYL); ?>;
-</script>
