@@ -36,14 +36,14 @@
     foreach($CPYL as $key => $displayed) {
         echo "$key : [";
         foreach($displayed as $index => $value){
-            echo "$value, ";
+            echo "$value";
             if ($index != "3"){
                 echo ", ";
             }
-            echo "]";
         }   
+        echo "], ";
     }
-    echo ", [1,1,1,1]};
+    echo " projects: [1,1,1,1]};
     </script>";
 
 

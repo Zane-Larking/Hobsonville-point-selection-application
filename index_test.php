@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="Styles/buttons.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="Styles/index.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="Styles/nav.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="Styles/main.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="Styles/main_test.css" />
 
     <script src="Scripts/main.js"></script>
 
@@ -380,7 +380,16 @@
                                     <div id='Name'>$row[NAME]</div>
                                     <div id='Teachers'>$row[TEACHER1] $row[TEACHER2]</div>
                                     <div id='Inputs'>
-                                        <button class='ClassSelectButton'>Select</button>
+                                        <div class='selectDropdown'>
+                                            <div class ='selectAbsolute'>
+                                                <button class='dropbtn'>Select</button>
+                                                <div class='dropdown-content'>
+                                                    <button class='ClassSelectButton'>First</button>
+                                                    <button class='ClassSelectButton'>Second</button>
+                                                    <button class='ClassSelectButton'>Third</button>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <button class='ClassDismissButton'>Dismiss</button>
                                         </div>
                                     <div id='NCEA'>
@@ -454,7 +463,16 @@
                                     <div id='Name'>$row[name]</div>
                                     <div id='Teachers'>$row[TEACHER1]</div>
                                     <div id='Inputs'>
-                                    <button class='ClassSelectButton'>Select</button>
+                                    <div class='selectDropdown'>
+                                        <div class ='selectAbsolute'>
+                                            <button class='dropbtn'>Select</button>
+                                            <div class='dropdown-content'>
+                                                <button class='ClassSelectButton'>First</button>
+                                                <button class='ClassSelectButton'>Second</button>
+                                                <button class='ClassSelectButton'>Third</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <button class='ClassDismissButton'>Dismiss</button>
                                     </div>
                                     <div id='NCEA'>
@@ -487,7 +505,7 @@
     <!--Scripts-->
     <script src="Scripts/CurriculumCoverage.js"></script>
     <script src="Scripts/DropDownBtn.js"></script>
-    <script src="Scripts/Select.js"></script>
+    <script src="Scripts/Select_test.js"></script>
     <script src="Scripts/Dismiss.js"></script>
 
 </body>

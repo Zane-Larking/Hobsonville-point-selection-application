@@ -5,23 +5,9 @@ html {
 body {
     font-size: 16px;
 
-    /*background*/
-    background-color: #0084ab;
-    background-image: url(../Images/TeacherClassSubmit_BG_terrain.png);
-    /*background-repeat: no-repeat;*/
-    background-attachment: center;
-    background-position: 75.5% 40%; 
+    
 }
-#main {
-    margin-top: 10px;
-    background-color:White;
-    width:60%;
-    height:auto; 
-    margin-left:20%; 
-    border:1px solid black;
-    padding:15px;
 
-}
 .TextAreas[type=text] {
     width: 50%;
     height: 20%;
@@ -85,4 +71,8 @@ select {
     border-radius: 4px;
     resize: vertical;
     border-color: black;
+}
+
+#main {
+    top: 0px !important;
 }

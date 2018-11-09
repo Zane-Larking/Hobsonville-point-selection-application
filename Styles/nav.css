@@ -1,20 +1,13 @@
-body {
-    margin: 0px;
-}
 header {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    position: relative; /* Fixed Sidebar (stay in place on scroll) */
+    position: absolute; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
     left: 0;
     width: 100%;
     height: 50rem;
     background-color: darkslategrey;
-    border: 1px solid rgb(0, 0, 0);
     margin: 0;
-    background-image: linear-gradient(rgb(117, 129, 211), rgb(117, 129, 211), rgb(117, 129, 211), rgb(52, 73, 109));
-    box-shadow: -1px 4px 20px 0.5px #000000a1;
-    
 
 
 }

@@ -2,22 +2,19 @@
 <html class="no-js" lang="en">
   <head>
     <title>Teacher Student Class Check</title>
+    <link rel="stylesheet" type="text/css" href="Styles/main.css">
   <link rel="stylesheet" type="text/css" href="Styles/CreateClassesStyle.css">
-  <link rel="stylesheet" type="text/css" href="Styles/nav.css">
 <?php
 include "DataBase/Databaseconnect.php";
-include "HTMLSnippets/classesConstants.php";
+include "HtmlSnippets/classesConstants.php";
 ?>
 
   </head>
   <body>
-    <?php
-
-      include "HTMLSnippets/headerBar.php";
-    ?>
-    <font face = "Verdana">
     <div id = "main">
-    <img src="images/HPSSLogo.png" alt="HPSS Logo" style="height: 100px">
+    <font face = "Verdana">
+    <div style="background-color:White;width:60%;height:auto; margin-left:20%; border:1px solid black;padding:15px;">
+    <img src="Images/HPSSLogo.png" alt="HPSS Logo" style="height: 100px">
     <h1><font face ="Verdana">Class Submissions</font></h1>
 
 
@@ -41,7 +38,7 @@ include "HTMLSnippets/classesConstants.php";
 
     //Code
     if (empty($_POST["code"])) {
-      $NameErr = "Email is required";
+      $NameErr = "Code is required";
     } else {
       $Code = test_input($_POST["code"]);
       // check if e-mail address is well-formed
@@ -115,18 +112,18 @@ include "HTMLSnippets/classesConstants.php";
   $result = mysqli_query($dbconnect, $query);
   $row = mysqli_fetch_array($result);
   //debugging
-  
+
 
   // echo "<br> type: " . test_input($_POST['typeName']) . test_input($_POST['typeCount']);
   // echo "<br> \$_POST: " . json_encode($_POST);
   // echo "<br> <br> code values are equal: " . (string)($Code == $row['code']);
   // echo "<br> \$Code: \"" . $Code . "\"";
   // echo "<br> \$row['code']: " . json_encode($row['code']);
-
+  //
   // echo "<br> <br> \$query: \"" . $query . "\"";
   // echo "<br> mysqli_query(\$dbconnect, \$query): " . json_encode(mysqli_query($dbconnect, $query));
   // echo "<br> mysqli_fetch_array(\$result): " . json_encode(mysqli_fetch_array($result));
-  
+
   if (!empty($_POST)){
     if (is_NULL($row['code'])){
       if (mysqli_query($dbconnect, $sql)) {
@@ -152,17 +149,17 @@ include "HTMLSnippets/classesConstants.php";
     <font face = "Verdana">
     <p><span class="error">Must Fill all Fields</span></p>
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-      
-      Class Name: <br> 
+
+      Class Name: <br>
       <input id="name" type="text" name="name" value="<?php echo $ClassName;?>">
       <span class="Classandteachers"> <?php echo $ClassNameErr;?></span>
       <br><br>
 
-      Class Code: <br> 
+      Class Code: <br>
       <input id="code" type="text" name="code" value="<?php echo $Code;?>">
       <span class="Classhandteachers"> <?php echo $CodeErr;?></span>
       <br><br>
-      
+
 
 
       Qual: <br>
@@ -182,7 +179,7 @@ include "HTMLSnippets/classesConstants.php";
                   document.getElementById('TypeCount').disabled = false;
                 }
                 break;
-              case 'MODULE': 
+              case 'MODULE':
                 if (CPYL['modules'][j] == 0) {
                   document.getElementById('TypeCount').disabled = true;
                   document.getElementById('TypeCount').innerHTML = '';
@@ -192,7 +189,7 @@ include "HTMLSnippets/classesConstants.php";
                   document.getElementById('TypeCount').disabled = false;
                 }
                 break;
-              case 'FLOORTIME': 
+              case 'FLOORTIME':
                 if (CPYL['floorTimes'][j] == 0) {
                   document.getElementById('TypeCount').disabled = true;
                   document.getElementById('TypeCount').innerHTML = '';
@@ -207,7 +204,7 @@ include "HTMLSnippets/classesConstants.php";
                 document.getElementById('TypeCount').innerHTML = '';
                 break;
             }
-          
+
           \">$j
           ";
         }
@@ -216,15 +213,15 @@ include "HTMLSnippets/classesConstants.php";
       <!--
       <input type="radio" name="qual" <?php if (isset($Qual) && $Qual=="0") echo "checked";?> value="0" onclick="
         switch (document.getElementById('TypeName').value) {
-          case 'SPIN': 
+          case 'SPIN':
             document.getElementById('TypeCount').innerHTML = '<?php for($i = 1; $i <= $CPYL['spins'][0]; $i ++){echo "<option value=\'$i\'>$i</option>";}?> ';
             document.getElementById('TypeCount').disabled = false;
             break;
-          case 'MODULE': 
+          case 'MODULE':
             document.getElementById('TypeCount').innerHTML = '<?php for($i = 1; $i <= $CPYL['modules'][0]; $i++){echo "<option value=\'$i\'>$i</option>";}?> ';
             document.getElementById('TypeCount').disabled = false;
             break;
-          case 'FLOORTIME': 
+          case 'FLOORTIME':
             document.getElementById('TypeCount').innerHTML = '<?php for($i = 1; $i <= $CPYL['floorTimes'][0]; $i++){echo "<option value=\'$i\'>$i</option>";}?> ';
             document.getElementById('TypeCount').disabled = false;
             break;
@@ -232,47 +229,47 @@ include "HTMLSnippets/classesConstants.php";
             document.getElementById('TypeCount').disabled = true;
             break;
         }
-        
+
         ">0
       <input type="radio" name="qual" <?php if (isset($Qual) && $Qual=="1") echo "checked";?> value="1" onclick="
         switch (document.getElementById('TypeName').value) {
-          case 'SPIN': 
+          case 'SPIN':
             document.getElementById('TypeCount').innerHTML = '<?php for($i = 1; $i <= $CPYL['spins'][1]; $i++){echo "<option value=\'$i\'>$i</option>";}?> ';
             document.getElementById('TypeCount').disabled = false;
             break;
-          case 'MODULE': 
+          case 'MODULE':
             document.getElementById('TypeCount').innerHTML = '<?php for($i = 1; $i <= $CPYL['modules'][1]; $i ++){echo "<option value=\'$i\'>$i</option>";}?> ';
             document.getElementById('TypeCount').disabled = false;
             break;
-          case 'FLOORTIME': 
+          case 'FLOORTIME':
             document.getElementById('TypeCount').innerHTML = '<?php for($i = 1; $i <= $CPYL['floorTimes'][1]; $i++){echo "<option value=\'$i\'>$i</option>";}?> ';
             document.getElementById('TypeCount').disabled = false;
             break;
-          case PROJECT: 
+          case PROJECT:
             document.getElementById('TypeCount').disabled = true;
             break;
         }
-        
+
         ">1
       <input type="radio" name="qual" <?php if (isset($Qual) && $Qual=="2") echo "checked";?> value="2" onclick="
         switch (document.getElementById('TypeName').value) {
-          case 'SPIN': 
+          case 'SPIN':
             document.getElementById('TypeCount').innerHTML = '<?php for($i = 1; $i <= $CPYL['spins'][2]; $i++){echo "<option value=\'$i\'>$i</option>";}?> ';
             document.getElementById('TypeCount').disabled = false;
             break;
-          case 'MODULE': 
+          case 'MODULE':
             document.getElementById('TypeCount').innerHTML = '<?php for($i = 1; $i <= $CPYL['modules'][2]; $i++){echo "<option value=\'$i\'>$i</option>";}?> ';
             document.getElementById('TypeCount').disabled = false;
             break;
-          case 'FLOORTIME': 
+          case 'FLOORTIME':
             document.getElementById('TypeCount').innerHTML = '<?php for($i = 1; $i <= $CPYL['floorTimes'][2]; $i++){echo "<option value=\'$i\'>$i</option>";}?> ';
             document.getElementById('TypeCount').disabled = false;
             break;
-          case 'PROJECT': 
+          case 'PROJECT':
             document.getElementById('TypeCount').disabled = true;
             break;
         }
-        
+
         ">2
       <input type="radio" name="qual" <?php if (isset($Qual) && $Qual=="3") echo "checked";?> value="3" onclick="
         switch (document.getElementById('TypeName').value) {
@@ -280,19 +277,19 @@ include "HTMLSnippets/classesConstants.php";
             document.getElementById('TypeCount').innerHTML = '<?php for($i = 1; $i <= $CPYL['spins'][3]; $i++){echo "<option value=\'$i\'>$i</option>";}?> ';
             document.getElementById('TypeCount').disabled = false;
           break;
-          case 'MODULE': 
+          case 'MODULE':
             document.getElementById('TypeCount').innerHTML = '<?php for($i = 1; $i <= $CPYL['modules'][3]; $i++){echo "<option value=\'$i\'>$i</option>";}?> ';
             document.getElementById('TypeCount').disabled = false;
           break;
-          case 'FLOORTIME': 
+          case 'FLOORTIME':
             document.getElementById('TypeCount').innerHTML = '<?php for($i = 1; $i <= $CPYL['floorTimes'][3]; $i++){echo "<option value=\'$i\'>$i</option>";}?> ';
             document.getElementById('TypeCount').disabled = false;
           break;
-          case 'PROJECT': 
+          case 'PROJECT':
             document.getElementById('TypeCount').disabled = true;
             break;
         }
-        
+
         ">3
       -->
       <span class="error">* <?php echo $QualErr;?></span>
@@ -312,24 +309,24 @@ include "HTMLSnippets/classesConstants.php";
         var sub2Value, teacher2Value;
         var responsiveSub2 = function() {
           typeName = document.getElementById("TypeName").value;
-          sub2 = document.getElementById('sub2'); 
+          sub2 = document.getElementById('sub2');
           if (typeName == "SPIN") {
             document.getElementById('sub2').disabled = true;
             document.getElementById('teacher2').disabled = true;
             document.getElementById('hideTeacherText').style.display = "none";
-            
+
             teacher2Value = typeof document.getElementById('teacher2').value === "undefined" ? "" : document.getElementById('teacher2').value;
             document.getElementById('teacher2').setAttribute("value", "")
 
             sub2Value = document.getElementById('sub2').value;
             document.getElementById('sub2').setAttribute("value", "");
-          }   
+          }
           else {
             if (sub2.disabled == true) {
               document.getElementById('sub2').disabled = false;
               document.getElementById('teacher2').disabled = false;
               document.getElementById('hideTeacherText').style.display = "block";
-              
+
               document.getElementById('teacher2').setAttribute("value", teacher2Value);
               document.getElementById('sub2').setAttribute("value", sub2Value);
             }
@@ -350,9 +347,9 @@ include "HTMLSnippets/classesConstants.php";
         <option value="5">5</option>
       </select>
       <br><br>
-        
 
-      Teacher 1: <br> 
+
+      Teacher 1: <br>
       <input id="teacher1" type="text" class="ClassandTeachers" name="teacher1" value="<?php echo $Teacher1;?>">
       <span class="ClassandTeachers"><?php echo $Teacher1Err;?></span>
 
@@ -367,7 +364,7 @@ include "HTMLSnippets/classesConstants.php";
       Subject1:
       <br>
       <select name="sub1" width="50%">
-        <?php 
+        <?php
           foreach($curriculum as $key => $displayed){
             echo "<option value='$key'>$displayed</option>";
           }
@@ -378,7 +375,7 @@ include "HTMLSnippets/classesConstants.php";
       Subject2:
       <br>
       <select id="sub2" name="sub2" width="50%">
-      <?php 
+      <?php
           foreach($curriculum as $key => $displayed){
             echo "<option value='$key'>$displayed</option>";
           }
@@ -386,7 +383,7 @@ include "HTMLSnippets/classesConstants.php";
       </select>
       <br><br>
 
-      Description: 
+      Description:
       <br>
       <textarea class="TextAreas" type="text" name="description" placeholder="Write description.." value="<?php echo $Description;?>"></textarea>
       <br><br>
@@ -396,7 +393,7 @@ include "HTMLSnippets/classesConstants.php";
 
     </form>
 
-    <?php
+    <!-- <?php
       echo "<h2>Your Inputs:</h2>";
       echo $ClassName;
       echo "<br>";
@@ -416,11 +413,11 @@ include "HTMLSnippets/classesConstants.php";
       echo "<br>";
       echo $Sub2;
       echo "<br>";
-    ?>
+    ?> -->
 
     <?php
       //$query = mysql_query("INSERT INTO user_data () VALUES ('{$ClassName}')");
     ?>
-
+    </div>
   </body>
 </html>
