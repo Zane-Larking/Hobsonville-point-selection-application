@@ -1,0 +1,63 @@
+#mainGrid {
+	grid-gap: 1em;
+	grid-template: auto 10em 20em/30% 3fr 3fr 3fr;
+    grid-template-areas: 
+    "profile head head head"
+    "profile main main pannel"
+    "profile main main classes";
+}
+
+#head {
+	grid-area: head;
+	background-color:White; 
+	height:auto; 
+	border:1px solid black;
+	padding:15px;
+
+	
+	align-content: center;
+
+	display: grid;
+	grid-template-columns: min-content auto;
+
+}
+#head > div{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#profile {
+	grid-area: profile;
+	background-color:White; 
+	height:auto; 
+	border:1px solid black;
+	padding:15px;
+}
+#pannel {
+	grid-area: pannel;
+	background-color:White; 
+	height:auto; 
+	border:1px solid black;
+	padding:15px;
+	text-align: center;
+}
+#content {
+	grid-area: main;
+	background-color:White; 
+	height:auto; 
+	border:1px solid black;
+	padding:15px;
+}
+#content > #grid-container {
+  	display: grid;
+  	grid-template-columns: auto auto auto;
+  	background-color: #2196F3;
+  	padding: 10px;
+}
+.grid-item {
+  	background-color: rgba(255, 255, 255, 0.8);
+  	border: 1px solid rgba(0, 0, 0, 0.8);
+  	padding: 20px;
+  	font-size: 30px;
+  	text-align: center;
+}

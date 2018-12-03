@@ -32,7 +32,7 @@ header #grid-container {
     background-color: rgb(255, 255, 255);
 
 }
-#Profile {
+#ProfileDropdown {
     border-radius: 5rem;
     margin: 5rem;
     padding: 5rem;
@@ -43,11 +43,11 @@ header #grid-container {
     display: grid;
     grid-template-columns: auto 2fr auto 1fr;
 }
-#Profile:hover {
+#ProfileDropdown:hover {
     box-shadow: 0 0 20rem 5rem rgba(67, 216, 223, 0.407);
 
 }
-#Profile img {
+#ProfileDropdown img {
     object-fit: cover;
     border-radius: 50%;
 

@@ -70,6 +70,13 @@ var Select = function(element){
     let CurriculumClone_CDDBtn = CurriculumClone.getElementsByClassName("ClassDropdownButton")[0];
     CurriculumClone_CDDBtn.addEventListener("click", ClassDDBtnFunct);
 
+    //adds "select dropdown" functionality
+    CurriculumClone.addEventListener("mouseenter", SelectMouseEnter);
+    CurriculumClone.addEventListener("mouseleave", SelectMouseLeave);
+
+    //hides the selectDropdownContent panel
+    CurriculumClone.getElementsByClassName("selectDropdownContent")[0].style.display = "none";
+
 
     //creates a 'SelectedClassesClone'
     //adds this course to 'SelectedClasses' in the appropiate period (i.e 'Module1')
@@ -83,6 +90,13 @@ var Select = function(element){
     //adds "class dropdown button" functionality
     let SelectedClassesClone_CDDBtn = SelectedClassesClone.getElementsByClassName("ClassDropdownButton")[0];
     SelectedClassesClone_CDDBtn.addEventListener("click", ClassDDBtnFunct);
+
+    //adds "select dropdown" functionality
+    SelectedClassesClone.addEventListener("mouseenter", SelectMouseEnter);
+    SelectedClassesClone.addEventListener("mouseleave", SelectMouseLeave);
+    
+    //hides the selectDropdownContent panel
+    SelectedClassesClone.getElementsByClassName("selectDropdownContent")[0].style.display = "none";
 }
 
 var Deselect = function(element){
@@ -161,6 +175,11 @@ var DeselectViaCurriculumClone = function(element){
     UpdateTally();
 }
 
+
+
+
+
+
 let classesSubjects
 var ToggleCourseSelected = function(e){
     console.log(e);
@@ -168,7 +187,7 @@ var ToggleCourseSelected = function(e){
     if (e.target.className != "ClassSelectButton") {
         return
     }
-    let course = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
+    let course = e.target.parentElement.parentElement.parentElement;
     
     //sets a toggle attribute on course if it was not defined
     console.log(course.getAttribute("toggle"));
@@ -230,22 +249,53 @@ var mainGridEl = document.getElementById("mainGrid");
 mainGridEl.addEventListener("click", ToggleCourseSelected);
 
 
-// var SelectMouseEnter = function(e) {
-//     console.log("testing 123");
-//     console.log(e);
-//     e.target.parentElement.parentElement.style.gridTemplate = "25rem 25rem 80rem/20% 3fr 5fr";
-// }
 
-// var SelectMouseExit = function(e) {
-//     console.log("testing 123");
-//     console.log(e);
-//     e.target.parentElement.parentElement.style.gridTemplate = "25rem 25rem max-content/20% 3fr 5fr";
-// }
 
-// var SelectDropdownBtn = document.getElementsByClassName("selectDropdown");
-// console.log(SelectDropdownBtn);
-// for (var i = 0; i < SelectDropdownBtn.length; i ++) {
-//     SelectDropdownBtn[i].addEventListener("mouseenter", SelectMouseEnter);
-//     SelectDropdownBtn[i].addEventListener("mouseleave", SelectMouseExit);
+
+
+
+
+var SelectMouseEnter = function(e) {
+    console.log("testing mouse enter");
+    console.log(e);
+
+    e.target.parentElement.parentElement.nextElementSibling.firstElementChild.style.display = "grid";
     
-// }
+}
+
+var SelectMouseLeave = function(e) {
+    console.log("testing mouse leave");
+    console.log(e);
+    if (e.toElement.parentElement.className != "selectDropdownContent" && e.toElement.parentElement.className != "selectDropdown" ){
+        console.log("gone outside");
+        if (e.target.className == "selectDropdownContent") {
+            console.log("test");
+            e.target.style.display = "none";
+        }
+        else if (e.target.className == "selectDropdown") {
+            console.log("test");
+            e.target.parentElement.parentElement.nextElementSibling.firstElementChild.style.display = "none";
+            
+        }
+    }
+}
+// mainGridEl.addEventListener("mouseenter", SelectMouseEnter)
+// mainGridEl.addEventListener("mouseleave", SelectMouseLeave)
+
+var SelectDropdownBtn = document.getElementsByClassName("selectDropdown");
+console.log(SelectDropdownBtn);
+for (var i = 0; i < SelectDropdownBtn.length; i ++) {
+    SelectDropdownBtn[i].addEventListener("mouseenter", SelectMouseEnter);
+    SelectDropdownBtn[i].addEventListener("mouseleave", SelectMouseLeave);
+    
+}
+var SelectDropdownContent = document.getElementsByClassName("selectDropdownContent");
+console.log(SelectDropdownContent);
+for (var i = 0; i < SelectDropdownContent.length; i ++) {
+    document.getElementsByClassName("selectDropdownContent")[0].style.top = "-3px";
+    
+    SelectDropdownContent[i].addEventListener("mouseenter", SelectMouseEnter);
+    SelectDropdownContent[i].addEventListener("mouseleave", SelectMouseLeave);
+    
+}
+

@@ -1,4 +1,4 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html class="no-js" lang="en">
   <head>
     <title>Teacher Student Class Check</title>
@@ -19,29 +19,31 @@ include "HtmlSnippets/classesConstants.php";
 
 
 <?php
-  //defines variables and set them to empty strings
+  //defines variables and set them to empty strings, so information is initialised and not spammed/duplicated from last time etc
   $ClassNameErr = $CodeErr = $QualErr = $Teacher1Err = $Teacher2Err = $TypeErr = $Sub1Err = $Sub2Err = "";
   $ClassName = $Code = $Qual = $Description = $Teacher1 = $Teacher2 = $Type = $Sub2 = $Sub1 = "";
 
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  if ($_SERVER["REQUEST_METHOD"] == "POST") { #form handling. Using a post method to eventually send information to database
 
-    //Name
-    if (empty($_POST["name"])) {
-      $ClassNameErr = "Name is required";
+    //class name
+    if (empty($_POST["name"])) { #if nothing is entered
+      $ClassNameErr = "Name is required"; 
     } else {
-      $ClassName = test_input($_POST["name"]);
+      $ClassName = test_input($_POST["name"]); #the first of many variables is defined as the users input. 
       // check if name only contains letters and whitespace
-      if (!preg_match("/^[a-zA-Z1234567890 ]*$/",$ClassName)) {
-        $ClassNameErr = "Only letters and white space allowed";
+      if (!preg_match("/^[a-zA-Z1234567890 ]*$/",$ClassName)) {#the characters used must be
+        $ClassNameErr = "Only letters and white space allowed"; #if the user enters some random i.e chinese $%^&* characters etc
       }
     }
 
-    //Code
+    #this technique is replicated for all of the inputs required for a class submission.
+
+    //Class code
     if (empty($_POST["code"])) {
       $NameErr = "Code is required";
     } else {
       $Code = test_input($_POST["code"]);
-      // check if e-mail address is well-formed
+      // check if class code is 'well-formed'
       if (!filter_var($Code, FILTER_VALIDATE_EMAIL)) {
         $CodeErr = "";
       }
@@ -52,7 +54,6 @@ include "HtmlSnippets/classesConstants.php";
       $Teacher1 = "";
     } else {
       $Teacher1 = test_input($_POST["teacher1"]);
-      // check if URL address syntax is valid (this regular expression also allows dashes in the URL)
       if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$Teacher1)) {
         $Teacher1Err = "";
       }
@@ -63,8 +64,7 @@ include "HtmlSnippets/classesConstants.php";
       $Teacher2 = "";
     } else {
       $Teacher2 = test_input($_POST["teacher2"]);
-      // check if URL address syntax is valid (this regular expression also allows dashes in the URL)
-      if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$Teacher2)) {
+      if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$Teacher2)) { #'\' escaping a load of keys, '|' = or
         $Teacher2Err = "";
       }
     }
@@ -105,11 +105,11 @@ include "HtmlSnippets/classesConstants.php";
   }
 
   $sql = "insert into classes (`CODE`, `NAME`, `QUAL`, `TYPE`, `SUBJECT1`, `SUBJECT2`, `TEACHER1`, `TEACHER2`, `DESCRIPTION`) VALUES
-  ('$Code', '$ClassName', $Qual, '$Type', '$Sub1', '$Sub2', '$Teacher1', '$Teacher2', '$Description');";
+  ('$Code', '$ClassName', $Qual, '$Type', '$Sub1', '$Sub2', '$Teacher1', '$Teacher2', '$Description');"; # this is the sql code, '$sql' is a php variable/string thats equal to the line of code that sql will use to insert data into the database. php variables ($xxx) will be substituted in 'VALUES' for their php values (uers input data)
 
-  $query = "select code from classes where code = '". $Code . "'";
+  $query = "select code from classes where code = '". $Code . "'"; #sql line of code once again as a query variabvle in php. This will later ensure that the same class is not entered twice; by checking to database for classes code equal to the users input variable '$Code'. If nothing is returned, its a new class, and will proceed. In the case of a duplicate, or something exists in the database with the users input $Code in the class code, the class will be returned, furthermore shall prevent the addition of a duplicate class being submitted to database
   //echo $query;
-  $result = mysqli_query($dbconnect, $query);
+  $result = mysqli_query($dbconnect, $query); #mysqli_query is a predefined function. with the parameters of our db connect, to connect to the database, and query
   $row = mysqli_fetch_array($result);
   //debugging
 
@@ -125,13 +125,13 @@ include "HtmlSnippets/classesConstants.php";
   // echo "<br> mysqli_fetch_array(\$result): " . json_encode(mysqli_fetch_array($result));
 
   if (!empty($_POST)){
-    if (is_NULL($row['code'])){
-      if (mysqli_query($dbconnect, $sql)) {
+    if (is_NULL($row['code'])){ #ensuring the same class cannot be entered twice, this is by checking the class code with the 'code' in the database
+      if (mysqli_query($dbconnect, $sql)) { #if the database is connected to and sql code and everything works fine
         echo "<script> alert('Class Submission Succesful!'); </script>";
       } else {
-        echo "<script> alert('Class Submission failed!'); </script>";
+        echo "<script> alert('Class Submission failed!'); </script>"; #the case that it doesnt work for whatever reason
       }
-    }else {
+    }else { # cloding the if statement above the submission successful/failed. This is if something is returned from the database with the same class code as the inputted one, hence a duplicate of ckasses. We dont was 2 of the exact same classes being added under any scenario, therefor this ode prevents it
         echo "<script> alert('Class Code already in use'); </script>";
     }
   }
@@ -389,7 +389,7 @@ include "HtmlSnippets/classesConstants.php";
       <br><br>
 
       <!--Submit-->
-      <input class="button" type="submit" name="submit" value="Submit" onclick="bigFatFunction();">
+      <input class="button" type="submit" name="submit" value="Submit">
 
     </form>
 

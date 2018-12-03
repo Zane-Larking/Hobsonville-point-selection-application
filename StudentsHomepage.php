@@ -13,6 +13,7 @@
 		include ('HtmlSnippets/headerBar.html');	
 		?>
 
+		<font face = "Verdana">
 		<div id ="main">
 			<div id="mainGrid">
 				<div id = "head">
@@ -35,12 +36,33 @@
 					</div>
 				</div>
 				<div id="profile">
+						name<br>
+						year level<br>
 
 				</div>
 				<div id="content">
-					
+
+					Chosen classes<br><br>
+					Modules:<br><br>
+					Spins:<br><br>
+					Floortimes:<br><br>
+					Projects:<br><br>
+
+
+					<div id="grid-container">
+					  	<div class="grid-item">1</div>
+					  	<div class="grid-item">2</div>
+					  	<div class="grid-item">3</div>
+					  	<div class="grid-item">4</div>
+					  	<div class="grid-item">5</div>
+					  	<div class="grid-item">6</div>
+					  	<div class="grid-item">7</div>
+					  	<div class="grid-item">8</div>
+					  	<div class="grid-item">9</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</body>
+
 </html>

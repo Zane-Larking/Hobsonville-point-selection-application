@@ -15,7 +15,7 @@
         <div id ="YearLevel">
                 Q1
         </div>
-        <div id ="Profile">
+        <div id ="ProfileDropdown">
                 <img src="Images/Portrait_Placeholder.png" height="25rem" >
                 <div></div>
                 <div id ="dropdownArrow1"></div>
