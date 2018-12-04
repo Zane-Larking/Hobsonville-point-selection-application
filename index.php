@@ -7,16 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" type="text/css" media="screen" href="Styles/buttons.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="Styles/index.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="Styles/index_test_1.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="Styles/nav.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="Styles/main.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="Styles/main_test.css" />
 
     <script src="Scripts/main.js"></script>
 
 </head>
 <body>
 	<?php
-        include ('HtmlSnippets/headerBar.html');
+        include ('HtmlSnippets/headerBar.php');
         include ('DataBase/Databaseconnect.php');
         include ('HtmlSnippets/classesConstants.php');
         $Qual = 1;
@@ -380,9 +380,11 @@
                                     <div id='Name'>$row[NAME]</div>
                                     <div id='Teachers'>$row[TEACHER1] $row[TEACHER2]</div>
                                     <div id='Inputs'>
-                                        <button class='ClassSelectButton'>Select</button>
-                                        <button class='ClassDismissButton'>Dismiss</button>
+                                        <div class='selectDropdown'>
+                                            <button class='dropbtn'>Select</button>
                                         </div>
+                                        <button class='ClassDismissButton'>Dismiss</button>
+                                    </div>
                                     <div id='NCEA'>
                                         Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
                                     </div>
@@ -390,7 +392,15 @@
                                         $row[DESCRIPTION]
                                     </div>
                                 </div>
+                                <div class ='selectAbsolute'>
+                                    <div class='selectDropdownContent'>
+                                        <button class='ClassSelectButton'>First</button>
+                                        <button class='ClassSelectButton'>Second</button>
+                                        <button class='ClassSelectButton'>Third</button>
+                                    </div>
+                                </div>
                             </div>";
+                            
                     }
                     echo"
                         </div>
@@ -454,14 +464,23 @@
                                     <div id='Name'>$row[name]</div>
                                     <div id='Teachers'>$row[TEACHER1]</div>
                                     <div id='Inputs'>
-                                    <button class='ClassSelectButton'>Select</button>
-                                    <button class='ClassDismissButton'>Dismiss</button>
+                                        <div class='selectDropdown'>
+                                            <button class='dropbtn'>Select</button>
+                                        </div>
+                                        <button class='ClassDismissButton'>Dismiss</button>
                                     </div>
                                     <div id='NCEA'>
                                         Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
                                     </div>
                                     <div id='Description'>
                                         $row[DESCRIPTION]
+                                    </div>
+                                </div>
+                                <div class ='selectAbsolute'>
+                                    <div class='selectDropdownContent'>
+                                        <button class='ClassSelectButton'>First</button>
+                                        <button class='ClassSelectButton'>Second</button>
+                                        <button class='ClassSelectButton'>Third</button>
                                     </div>
                                 </div>
                             </div>";
@@ -487,7 +506,7 @@
     <!--Scripts-->
     <script src="Scripts/CurriculumCoverage.js"></script>
     <script src="Scripts/DropDownBtn.js"></script>
-    <script src="Scripts/Select.js"></script>
+    <script src="Scripts/Select_test.js"></script>
     <script src="Scripts/Dismiss.js"></script>
 
 </body>
