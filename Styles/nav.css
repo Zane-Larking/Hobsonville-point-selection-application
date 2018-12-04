@@ -52,7 +52,7 @@ header #grid-container {
     border-radius: 50%;
 
 }
-#YearLevel {
+#YearLevel{
     width: 2em;
     height: auto;
 
@@ -61,6 +61,12 @@ header #grid-container {
     align-items: center;
 
     cursor: pointer;
+
+    background-color: rgb(0,0,0,0);
+    border: none;
+    -webkit-appearance: none;
+    text-align: center;
+
 
 }
 

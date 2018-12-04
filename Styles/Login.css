@@ -29,7 +29,7 @@ body {background-image: url(https://78.media.tumblr.com/64a88a6fd3da7f67a5282c0c
     /*background-repeat: no-repeat;*/
      background-attachment: center;
      background-position: 75.5% 40%; 
-    background-position: ; 
+    background-position: top; 
     }
 
 .inputboxes[type=text], select, textarea {

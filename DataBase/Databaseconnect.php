@@ -12,7 +12,4 @@ $dbconnect = mysqli_connect("$HOST", "$USER", "$PSWD", "$NAME"); #function stori
 if (!$dbconnect) { #if connection doesnt work
     die('fail');
 }
-
-
-
 ?>

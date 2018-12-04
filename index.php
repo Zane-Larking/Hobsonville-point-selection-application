@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" type="text/css" media="screen" href="Styles/buttons.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="Styles/index_test_1.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="Styles/index.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="Styles/nav.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="Styles/main_test.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="Styles/main.css" />
 
     <script src="Scripts/main.js"></script>
 
@@ -19,9 +19,10 @@
         include ('HtmlSnippets/headerBar.php');
         include ('DataBase/Databaseconnect.php');
         include ('HtmlSnippets/classesConstants.php');
-        $Qual = 1;
+        $Qual = isset($_GET["Qual"]) ? $_GET["Qual"]: 0;
         $moduleCount = 	$CPYL['modules'][$Qual];
         $spinCount =    $CPYL['spins'][$Qual];
+        echo "console.log('$Qual')";
 
 	?>
 
@@ -384,10 +385,13 @@
                                             <button class='dropbtn'>Select</button>
                                         </div>
                                         <button class='ClassDismissButton'>Dismiss</button>
-                                    </div>
+                                    </div>";
+                                    if ($Qual > 0) {
+                                        echo "
                                     <div id='NCEA'>
                                         Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
-                                    </div>
+                                    </div>";}
+                                    echo"
                                     <div id='Description'>
                                         $row[DESCRIPTION]
                                     </div>
@@ -468,10 +472,13 @@
                                             <button class='dropbtn'>Select</button>
                                         </div>
                                         <button class='ClassDismissButton'>Dismiss</button>
-                                    </div>
+                                    </div>";
+                                    if ($Qual > 0) {
+                                        echo "
                                     <div id='NCEA'>
                                         Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
-                                    </div>
+                                    </div>";}
+                                    echo"
                                     <div id='Description'>
                                         $row[DESCRIPTION]
                                     </div>
@@ -506,7 +513,7 @@
     <!--Scripts-->
     <script src="Scripts/CurriculumCoverage.js"></script>
     <script src="Scripts/DropDownBtn.js"></script>
-    <script src="Scripts/Select_test.js"></script>
+    <script src="Scripts/Select.js"></script>
     <script src="Scripts/Dismiss.js"></script>
 
 </body>
