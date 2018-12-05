@@ -10,8 +10,8 @@
     <script src="Scripts/main.js"></script>
 </head>
 <body>
-    <?php 
-		include ('HtmlSnippets/headerBar.html');		
+    <?php
+		include ('HtmlSnippets/headerBar.php');		
 	?>
 </body>
 </html>

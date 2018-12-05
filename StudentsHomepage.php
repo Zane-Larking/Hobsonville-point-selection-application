@@ -10,7 +10,7 @@
 	</head>
 	<body>
 		<?php
-		include ('HtmlSnippets/headerBar.html');	
+		include ('HtmlSnippets/headerBar.php');
 		?>
 
 		<font face = "Verdana">
@@ -38,7 +38,7 @@
 				<div id="profile">
 						name<br>
 						year level<br>
-
+						<img src= <?php echo $_SESSION['picture']; ?> height="25rem" >
 				</div>
 				<div id="content">
 

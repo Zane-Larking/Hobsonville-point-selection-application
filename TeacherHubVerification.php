@@ -9,7 +9,7 @@
 
   	<body>
   		<?php
-		include ('HtmlSnippets/headerBar.html');	
+		include ('HtmlSnippets/headerBar.php');	
 		?>
 
 	    <font face = "Verdana">
@@ -43,7 +43,7 @@
 
 					</div>
 					<div id="selections">
-						
+
 					</div>
 					<footer id="textBox">
 					</footer>

@@ -1,3 +1,19 @@
+<?php
+
+    require_once "config.php";
+
+    if (isset($_SESSION['access_token'])) {
+      header('Location: StudentsHomepage.php');
+      exit();
+    }
+
+    $loginURL = $gClient->createAuthUrl();
+
+
+ ?>
+
+
+
 <!DOCTYPE html>
 <html class="no-js" lang="en">
   <head>
@@ -20,7 +36,7 @@
   </script>
 
   </head>
-  
+
   <body>
     <font face = "Verdana">
       <div style="background-color:White;width:60%;height:auto; margin-left:20%; border:1px solid black;padding:15px;">
@@ -32,11 +48,12 @@
             <input class="inputboxes" type="text" name="Username"value="<?php echo $name ?>" ><br><br>
             Password:<br><br>
             <input class="inputboxes" type="text" name="Password"value="<?php echo $password ?>"><br><br>
-        
+
             <button id="SubmitLogin" class="button" onclick="if(event.preventDefault) event.preventDefault(); checkpassword();" >Login</button>
-        
+
+            <input type="button" onclick="window.location = '<?php echo $loginURL ?>';" value="LOG IN WIth GOoGLE" class="btn btn-danger">
             <!--<button type="button" onclick="alert('Class Submitted')">Submit</button></p>      *don't need this anymore but pls don't remove* -->
-        
+
           </center>
         </form>
       </div>

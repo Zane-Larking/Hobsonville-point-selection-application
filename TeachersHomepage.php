@@ -10,7 +10,7 @@
 
   	<body>
   		<?php
-		include ('HtmlSnippets/headerBar.html');	
+		include ('HtmlSnippets/headerBar.php');	
 		?>
 
 	    <font face = "Verdana">

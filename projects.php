@@ -11,8 +11,8 @@
 	<script src="Scripts/HtmlInclude.js"></script>
 </head>
 <body>
-	<?php 
-		include ('HtmlSnippets/headerBar.html');	
+	<?php
+		include ('HtmlSnippets/headerBar.php');	
 	?>
 </body>
 </html>
