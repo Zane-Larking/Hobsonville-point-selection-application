@@ -287,6 +287,12 @@ button {
         border-left-width: 0;
 
     }
+    .ClassDropdownDescription #Description > div {
+        grid-area: Description;
+        border-left-width: 0;
+        
+        overflow-y: scroll;
+    }
     .ClassDropdownDescription #NCEA {
         grid-area: NCEA;
         border-left-width: 0;

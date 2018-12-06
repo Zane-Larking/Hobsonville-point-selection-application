@@ -3,8 +3,8 @@
     require_once "config.php";
 
     if (isset($_SESSION['access_token'])) {
-      header('Location: StudentsHomepage.php');
-      exit();
+    	header('Location: StudentsHomepage.php');
+    	exit();
     }
 
     $loginURL = $gClient->createAuthUrl();
@@ -45,13 +45,13 @@
           <h1><font face ="Verdana">*PlaceHolderName*</h1></font>
           <center>
             Username:<br><br>
-            <input class="inputboxes" type="text" name="Username"value="<?php echo $name ?>" ><br><br>
+            <input class="inputboxes" type="text" name="Username"value="<?php echo $name ?>" disabled><br><br>
             Password:<br><br>
-            <input class="inputboxes" type="text" name="Password"value="<?php echo $password ?>"><br><br>
+            <input class="inputboxes" type="text" name="Password"value="<?php echo $password ?>" disabled><br><br>
 
-            <button id="SubmitLogin" class="button" onclick="if(event.preventDefault) event.preventDefault(); checkpassword();" >Login</button>
+            <button id="SubmitLogin" class="button" onclick="if(event.preventDefault) event.preventDefault(); checkpassword();" disabled>Login</button>
 
-            <input type="button" onclick="window.location = '<?php echo $loginURL ?>';" value="LOG IN WIth GOoGLE" class="btn btn-danger">
+            <input id="g-login" type="button" onclick="window.location = '<?php echo $loginURL ?>';" value="Login with Google" >
             <!--<button type="button" onclick="alert('Class Submitted')">Submit</button></p>      *don't need this anymore but pls don't remove* -->
 
           </center>

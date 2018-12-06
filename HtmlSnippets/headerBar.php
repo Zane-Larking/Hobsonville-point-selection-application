@@ -37,7 +37,7 @@
             <img src="Images/ZealussLogo.png" height="25rem">
         </div>
         <nav>
-            <a href="index.php">Modules & Spins</a>
+            <a href="StudentClassSelect.php">Modules & Spins</a>
             <a href="floortimes.php">FloorTimes</a>
             <a href="projects.php">Projects</a>
             <a href="StudentsHomepage.php">Home</a>
