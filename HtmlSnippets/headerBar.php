@@ -2,7 +2,7 @@
   session_start();
 
   if (!isset($_SESSION['access_token'])) {
-    header('Location: ../login.php');
+    header('Location: Login.php');
     exit();
   }
     if ($_SERVER["REQUEST_METHOD"] == "GET") {

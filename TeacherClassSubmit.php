@@ -4,13 +4,25 @@
     <title>Teacher Student Class Check</title>
     <link rel="stylesheet" type="text/css" href="Styles/main.css">
   <link rel="stylesheet" type="text/css" href="Styles/CreateClassesStyle.css">
+  <link rel="stylesheet" type="text/css" href="Styles/nav.css">
+  
 <?php
 include "DataBase/Databaseconnect.php";
 include "HtmlSnippets/classesConstants.php";
+
 ?>
 
   </head>
   <body>
+    <?php
+    
+    include 'HtmlSnippets/headerBar.php';
+    ?>
+  
+  <br>
+  <br>
+  <br>
+  
     <div id = "main">
     <font face = "Verdana">
     <div style="background-color:White;width:60%;height:auto; margin-left:20%; border:1px solid black;padding:15px;">

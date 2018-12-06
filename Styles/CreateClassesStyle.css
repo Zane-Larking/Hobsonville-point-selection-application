@@ -72,7 +72,3 @@ select {
     resize: vertical;
     border-color: black;
 }
-
-#main {
-    top: 0px !important;
-}
