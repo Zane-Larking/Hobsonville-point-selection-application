@@ -48,12 +48,25 @@
             <option value="2" <?php if (isset($_GET["Qual"]) && $_GET["Qual"]==2){echo "selected";}?>>Q2</option>
             <option value="3" <?php if (isset($_GET["Qual"]) && $_GET["Qual"]==3){echo "selected";}?>>Q3</option>
         </select>
+        <script>
+        function drop() {
+            document.getElementById("dropdown").classList.toggle("show");
+        }
+
+
+
+        </script>
         <div id ="ProfileDropdown">
           <!--"Images/Portrait_Placeholder.png"-->
-                <img src= <?php echo $_SESSION['picture'] ?> height="25rem" >
-                <div></div>
-                <div id ="dropdownArrow1"></div>
-                <div></div>
+            <img src= <?php echo $_SESSION['picture'] ?> height="25rem" >
+            <a href="logout.php"><div>Logout</div></a>
+            <div id ="dropdownArrow1"></div>
+            <div></div>
+        </div>
+        <div class ='profileDropdownAbsolute'>
+            <div class='dropdown-content'>
+                <!-- links to go here -->
+            </div>
         </div>
     </div>
 </header>
