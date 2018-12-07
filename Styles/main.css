@@ -5,14 +5,7 @@ html {
 body {
     font-size: 16em;
     border-collapse: collapse;
-}
-
-/*Main body*/
-#main {
-    position: absolute;
-    width: 100%;
-    min-height: 100%;
-
+    
     /*background*/
     background-color: #0284B0;
     background-image: url(../Images/TeacherClassSubmit_BG_terrain.png);
@@ -21,8 +14,16 @@ body {
     background-repeat: repeat; /* Do not repeat the image */
     background-size: auto; /* Resize the background image to cover the entire container */
     
+}
 
-    top: 50rem;
+/*Main body*/
+#main {
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
+
+
+    padding-top: 50rem;
     left: 0;
     margin: 0;
 

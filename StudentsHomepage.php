@@ -60,9 +60,6 @@
 					  	<div class="grid-item">8</div>
 					  	<div class="grid-item">9</div>
 					</div>
-
-					<a href="logout.php">Logout</a>
-
 				</div>
 			</div>
 		</div>
