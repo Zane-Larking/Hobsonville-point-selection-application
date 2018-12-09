@@ -1,0 +1,61 @@
+#mainGrid {
+	grid-gap: 1em;
+	grid-template: auto 2em 10em 20em 15em/30% 3fr 3fr 3fr;
+    grid-template-areas: 
+    "head head head head"
+    "none none none none"
+    "profile selections selections coverage"
+    "profile selections selections coverage"
+    "NONE textBox textBox textBox";
+}
+
+#head {
+	grid-area: head;
+	background-color:White; 
+	height:auto; 
+	border:1px solid black;
+	padding:15px;
+
+	
+	align-content: center;
+
+	display: grid;
+	grid-template-columns: min-content auto;
+
+}
+#head > div{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#profile {
+	grid-area: profile;
+	background-color:White; 
+	height:auto; 
+	border:1px solid black;
+	padding:15px;
+}
+#coverage {
+	grid-area: coverage;
+	background-color:White; 
+	height:auto; 
+	border:1px solid black;
+	padding:15px;
+	text-align: center;
+}
+#selections {
+	grid-area: selections;
+	background-color:White; 
+	height:auto; 
+	border:1px solid black;
+	padding:15px;
+}
+#textBox {
+	grid-area: textBox;
+
+	background-color:White; 
+	height:auto; 
+	border:1px solid black;
+	padding:15px;
+	text-align: center;
+}
