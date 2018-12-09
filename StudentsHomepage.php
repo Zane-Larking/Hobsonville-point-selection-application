@@ -36,9 +36,12 @@
 					</div>
 				</div>
 				<div id="profile">
-						name<br>
-						year level<br>
-						<img src= <?php echo $_SESSION['picture']; ?> height="25rem" >
+					<div id = "grid-container">
+						<img src= <?php echo $_SESSION['picture']; ?> height="75rem" style= "grid-area: image">
+						<div style= "grid-area: YL">Year <?php echo $_SESSION['yearLevel']; ?></div>
+						<div style= "grid-area: name"><?php echo $_SESSION['name']; ?></div>
+						<div style= "grid-area: email"><?php echo $_SESSION['email']; ?></div>
+					</div>
 				</div>
 				<div id="content">
 

@@ -33,6 +33,16 @@
 	border:1px solid black;
 	padding:15px;
 }
+#profile > #grid-container {
+	border: 1px solid black;
+
+	display: grid;
+	grid-template: repeat(3, 1fr)/auto 1fr;
+	grid-template-areas:
+	"image YL"
+	"image name" 
+	"image email";
+}
 #pannel {
 	grid-area: pannel;
 	background-color:White; 

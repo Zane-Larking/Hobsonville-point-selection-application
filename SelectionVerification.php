@@ -18,7 +18,7 @@
 				    <div id = "head">
 						<img src="Images/HPSSLogo.png" alt="HPSS Logo" style="height: 5em">
 						<div>
-							<h1><font face ="Verdana">"Students name's" Selections</font></h1>
+							<h1><font face ="Verdana"><?php echo str_replace("-", " ", $_GET['student'])?>'s Selections</font></h1>
 						</div>
 					</div>
 					<div id ="coverage">

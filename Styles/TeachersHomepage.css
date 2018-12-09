@@ -1,6 +1,6 @@
 #mainGrid {
 	grid-gap: 1em;
-	grid-template: auto 10em 20em/30% 3fr 3fr 3fr;
+	grid-template: 7.5em 10em auto/30% 3fr 3fr 3fr;
     grid-template-areas: 
     "profile head head head"
     "profile main main pannel"
@@ -32,6 +32,24 @@
 	height:auto; 
 	border:1px solid black;
 	padding:15px;
+}
+#user-grid-container {
+	border: 1px solid black;
+	padding: 2rem;
+
+	font-size: .75em;
+
+	display: grid;
+	grid-template: repeat(3, 1fr)/auto 1fr;
+	grid-template-areas:
+	"image none options"
+	"image name options" 
+	"image email email";
+	column-gap: 5rem;
+}
+#hublings {
+	overflow-y: scroll;
+    height: 550rem;
 }
 #pannel {
 	grid-area: pannel;

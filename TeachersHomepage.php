@@ -5,7 +5,7 @@
 		<link rel="stylesheet" type="text/css" href="Styles/CreateClassesStyle.css">
 		<link rel="stylesheet" type="text/css" href="Styles/main.css">
 		<link rel="stylesheet" type="text/css" media="screen" href="Styles/nav.css" />
-		<link rel="stylesheet" type="text/css" media="screen" href="Styles/TeachersHomepage.css" />
+		<link rel="stylesheet" type="text/css" media="screen" href="Styles/TeachersHomepage.css" />	
 	</head>
 
   	<body>
@@ -36,8 +36,39 @@
 						</div>
 					</div>
 					<div id="profile">
-						Name<br>
-						Hub students and their classes<br>
+						<div id = "user-grid-container">
+							<img src= <?php echo $_SESSION['picture']; ?> height="75rem" style= "grid-area: image">
+							<div style= "grid-area: name"><?php echo $_SESSION['name']; ?></div>
+							<div style= "grid-area: email"><?php echo $_SESSION['email']; ?></div>
+						</div>
+						<!--Hub students and their classes-->
+						<div id = "hublings">
+							<?php
+							/*
+								foreach ($_SESSION['hublings'].split as $studentId) {
+									$studentId
+								};
+								*/
+								include "DataBase/Databaseconnect.php";
+								foreach ($_SESSION['hublings'] as $id) {
+									
+								}
+								$query = "SELECT ID, CONCAT(FIRST_NAME, ' ', LAST_NAME) AS NAME, EMAIL, YEAR_LEVEL, HPSS_NUM FROM students WHERE ID = " . join(" OR ID = ", $_SESSION['hublings']);
+								//echo $query;
+								$result = mysqli_query($dbconnect, $query);
+								while($row = $result->fetch_assoc()) {
+									echo "
+									<div id = 'user-grid-container'>
+										<img src= 'Images/Portrait_Placeholder.png' height='50rem' style= 'grid-area: image;'>
+										<div style= 'grid-area: name'>".$row['NAME']."</div>
+										<div style= 'grid-area: email'>".$row['EMAIL']."</div>
+										<div style= 'grid-area: options'><a href = 'SelectionVerification.php?student=".str_replace(" ", "-", $row['NAME'])."'>View Selections</a></div>
+
+									</div>";
+								}
+							?>
+						</div>
+						
 
 					</div>
 					<div id="content">

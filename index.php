@@ -4,7 +4,36 @@
     if (isset($_SESSION['access_token'])) {
         include ('DataBase/Databaseconnect.php');
         
-        $query = "SELECT CONCAT('FIRST_NAME', 'LAST_NAME') AS name FROM students WHERE EMAIL = '" . $_SESSION['email'] . "'";
+        
+        //Checks if the user is a part of the the tearchers table
+        $query = "SELECT ID, CONCAT(FIRST_NAME, ' ', LAST_NAME) AS NAME FROM teachers WHERE EMAIL = '" . $_SESSION['email'] . "'";
+        $result = mysqli_query($dbconnect, $query);
+        $row = mysqli_fetch_array($result);
+
+        echo "<br>Is Teacher:<br>";
+        var_dump($row['NAME']);
+        if (!is_NULL($row['NAME'])) {
+            
+            //Stores info about the teacher
+            $_SESSION['id'] = $row['ID'];
+            $_SESSION['name'] = $row['NAME'];
+
+            //Stores info about who their Hublings are
+            $query = "SELECT ID, CONCAT(FIRST_NAME, LAST_NAME) AS NAME FROM students WHERE COACH = '" . $_SESSION['name'] . "'";
+            $result = mysqli_query($dbconnect, $query);
+            $_SESSION['hublings'] = [];
+            while($row = $result->fetch_assoc()) {
+                $_SESSION['hublings'][str_replace(" ", "-", $row['NAME'])] = $row['ID'];
+            }
+
+
+            header('Location: TeachersHomepage.php');
+            exit();
+        }
+
+        
+        //Checks if the user is a part of the the students table 
+        $query = "SELECT CONCAT(FIRST_NAME, ' ', LAST_NAME) AS name, YEAR_LEVEL FROM students WHERE EMAIL = '" . $_SESSION['email'] . "'";
         $result = mysqli_query($dbconnect, $query);
         var_dump($result);
         $row = mysqli_fetch_array($result);
@@ -12,20 +41,9 @@
         echo "<br>Is Student:<br>";
         var_dump($row['name']);
         if (!is_NULL($row['name'])) {
+            $_SESSION['yearLevel'] = $row['YEAR_LEVEL'];
             $_SESSION['name'] = $row['name'];
             header('Location: StudentsHomepage.php');
-            exit();
-        }
-
-        $query = "SELECT CONCAT('FIRST_NAME', 'LAST_NAME') AS name FROM teachers WHERE EMAIL = '" . $_SESSION['email'] . "'";
-        $result = mysqli_query($dbconnect, $query);
-        $row = mysqli_fetch_array($result);
-
-        echo "<br>Is Teacher:<br>";
-        var_dump($row['name']);
-        if (!is_NULL($row['name'])) {
-            $_SESSION['name'] = $row['name'];
-            header('Location: TeachersHomepage.php');
             exit();
         }
 
