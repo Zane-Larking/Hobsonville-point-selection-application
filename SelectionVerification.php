@@ -9,7 +9,7 @@
 
   	<body>
   		<?php
-		include ('HtmlSnippets/headerBar.php');	
+		include ('PhpSnippets/headerBar.php');	
 		?>
 
 	    <font face = "Verdana">

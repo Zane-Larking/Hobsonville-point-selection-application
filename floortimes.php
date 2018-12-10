@@ -11,7 +11,7 @@
 </head>
 <body>
     <?php
-		include ('HtmlSnippets/headerBar.php');		
+		include ('PhpSnippets/headerBar.php');		
 	?>
 </body>
 </html>

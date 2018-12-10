@@ -8,7 +8,7 @@
   
 <?php
 include "DataBase/Databaseconnect.php";
-include "HtmlSnippets/classesConstants.php";
+include "PhpSnippets/classesConstants.php";
 
 ?>
 
@@ -16,7 +16,7 @@ include "HtmlSnippets/classesConstants.php";
   <body>
     <?php
     
-    include 'HtmlSnippets/headerBar.php';
+    include 'PhpSnippets/headerBar.php';
     ?>
   
   <br>

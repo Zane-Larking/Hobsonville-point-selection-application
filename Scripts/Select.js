@@ -247,6 +247,12 @@ var ToggleCourseSelected = function(e){
         Select(course);
     }
     UpdateTally();
+    if (document.getElementById("CurriculumCoverage").getElementsByClassName("ClassCode").length == (CPYL.modules[qual] *3) + (CPYL.spins[qual] *3)) {
+        document.getElementById("submitSelections").disabled = false;
+    }
+    else {
+        document.getElementById("submitSelections").disabled = true;
+    }
 }
 
 var mainGridEl = document.getElementById("mainGrid");

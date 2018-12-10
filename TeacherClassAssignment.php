@@ -9,7 +9,7 @@
 
   	<body>
   		<?php
-		include ('HtmlSnippets/headerBar.php');	
+		include ('PhpSnippets/headerBar.php');	
 		?>
 
 	    <font face = "Verdana">
@@ -46,7 +46,7 @@
 
 					</div>
 					<footer id="textBox">
-                        <a href="download.php?file=test1.csv">Click here to download the EXCEL CSV file</a><br>
+                        <a href="Downloads/downloadFromDB.php?data=classes">Click here to download the EXCEL CSV file</a><br>
 					</footer>
 				</div>
 			</div>

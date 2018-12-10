@@ -3,19 +3,6 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
-</head>
-<body>
-    
-</body>
-</html>>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>HPSS Class Selections</title> 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -25,17 +12,21 @@
     <link rel="stylesheet" type="text/css" media="screen" href="Styles/main.css" />
 
     <script src="Scripts/main.js"></script>
+    <script src="Scripts/SubmitSelections.js"></script>
 
 </head>
 <body>
 	<?php
-        include ('HtmlSnippets/headerBar.php');
+        include ('PhpSnippets/headerBar.php');
         include ('DataBase/Databaseconnect.php');
-        include ('HtmlSnippets/classesConstants.php');
+        include ('PhpSnippets/classesConstants.php');
         $Qual = isset($_GET["Qual"]) ? $_GET["Qual"]: 0;
         $moduleCount = 	$CPYL['modules'][$Qual];
         $spinCount =    $CPYL['spins'][$Qual];
-        echo "console.log('$Qual')";
+        echo "<script> 
+        var qual = $Qual;
+        console.log('$Qual');</script>
+        ";
 
 	?>
 
@@ -45,6 +36,7 @@
                 <h1>How to use this page<h1>
                 <h4>
                 <p>
+                    <!-- The school server has an updated text prompt -->
                     - Click the dropdown boxes to open and close page content<br>
                     - Select The classes you like the look of, You shall be required to pick your 1,2,3 Choice for each Class<br>
                     - Any Classes that dont appeal to you? Dismiss them!<br>
@@ -522,7 +514,8 @@
                 <textarea>
 
                 </textarea>
-                <input type="submit" disabled>
+                <input id="submitSelections" type="submit" onclick="submitSelections('M&S');" disabled>
+                <a href="Downloads/downloadFromDB.php?data=classes">Click here to download the EXCEL CSV file</a><br>
             </div>
         </div>
     </article>

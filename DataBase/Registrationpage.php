@@ -1,6 +1,6 @@
 <?php
 
-include 'connect.php';
+include 'Databaseconnect.php';
 
 if ($_POST['register'])
 {
@@ -17,7 +17,7 @@ if ($_POST['register'])
     $password = md5($password);
 
     //check if username already taken
-    $check = mysql_query("SELECT * FROM users WHERE username='$username'");
+    $resukt = mysql_query("SELECT * FROM users WHERE username='$username'");
     if (mysql_num_rows($check)>=1)
        echo "Username already taken";
     else
@@ -26,12 +26,11 @@ if ($_POST['register'])
        $code = rand(11111111,99999999);
 
        //send activation email
-       $to = $email;
        $subject = "Activate your account";
-       $headers = "From: alex@phpacademy.info";
+       $headers = "From: Admin@hobsonvillepoint.school.nz";
        $body = "Hello $username,\n\nYou registered and need to activate your account. Click the link below or paste it into the URL bar of your browser\n\nhttp://phpacademy.info/tutorials/emailactivation/activate.php?code=$code\n\nThanks!";
 
-       if (!mail($to,$subject,$body,$headers))
+       if (!mail($email,$subject,$body,$headers))
            echo "We couldn't sign you up at this time. Please try again later.";
        else
        {
