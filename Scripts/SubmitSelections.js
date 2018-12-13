@@ -5,7 +5,7 @@ var submitSelections = function(classType) {
         codes.push(codeEls[i].innerText);
     }
     console.log(codes);
-    selections = "\\'"+codes.join("\\', \\'")+"\\'";
+    selections = codes.join(", ");
     console.log(selections);
 
     //creates a form and submits it

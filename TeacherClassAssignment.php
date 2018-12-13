@@ -46,7 +46,7 @@
 
 					</div>
 					<footer id="textBox">
-                        <a href="Downloads/downloadFromDB.php?data=classes">Click here to download the EXCEL CSV file</a><br>
+                        <a href="Downloads/downloadFromDB.php?data=students">Click here to download the EXCEL CSV file</a><br>
 					</footer>
 				</div>
 			</div>

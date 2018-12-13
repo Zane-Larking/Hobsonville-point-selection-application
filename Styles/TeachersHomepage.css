@@ -40,7 +40,7 @@
 	font-size: .75em;
 
 	display: grid;
-	grid-template: repeat(3, 1fr)/auto 1fr;
+	grid-template: repeat(3, auto)/auto 1fr;
 	grid-template-areas:
 	"image none options"
 	"image name options" 
@@ -78,4 +78,8 @@
   	padding: 20px;
   	font-size: 30px;
   	text-align: center;
+}
+
+#user-grid-container img{
+	margin: auto;
 }

@@ -40,7 +40,7 @@
             <a href="ModulesAndSpins.php">Modules & Spins</a>
             <a href="floortimes.php">FloorTimes</a>
             <a href="projects.php">Projects</a>
-            <a href="StudentsHomepage.php">Home</a>
+            <a href="index.php">Home</a>
         </nav>
         <select id="YearLevel" name="Qual" onchange="changeEventHandler();">
             <option value="0" <?php if (isset($_GET["Qual"]) && $_GET["Qual"]==0){echo "selected";}?>>FF</option>

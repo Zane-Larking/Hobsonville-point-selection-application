@@ -514,8 +514,8 @@
                 <textarea>
 
                 </textarea>
-                <input id="submitSelections" type="submit" onclick="submitSelections('M&S');" disabled>
-                <a href="Downloads/downloadFromDB.php?data=classes">Click here to download the EXCEL CSV file</a><br>
+                <input id="submitSelections" type="submit" onclick="if(event.preventDefault) event.preventDefault(); submitSelections('M/S');" disabled>
+                <a href="DataBase/SubmitSelections.php?data=classes">Click here to download the EXCEL CSV file</a><br>
             </div>
         </div>
     </article>

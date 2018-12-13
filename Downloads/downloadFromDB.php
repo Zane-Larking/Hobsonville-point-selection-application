@@ -13,7 +13,7 @@
         if(headers_sent())
             return false;
     
-        header('Content-disposition: attachment; filename=' . $filename);
+        header('Content-disposition: attachment; filename=' . $filename.'.csv');
         return true;
     }
 
@@ -31,7 +31,7 @@
     
         $nrows = 0;
         while($row = mysqli_fetch_row($result)) {
-            fputcsv($file, $row, "", '');
+            fputcsv($file, $row); //doesn't format properly for older versions of excel
             $nrows++;
         }
     
@@ -55,5 +55,5 @@
 
 
     $result = mysqli_query($dbconnect, "SELECT * FROM ".$_GET['data']);
-    downloadCsvFromResult($result, $_GET['data'].'.csv', true);
+    downloadCsvFromResult($result, $_GET['data'], true);
 ?>

@@ -10,8 +10,8 @@
         $result = mysqli_query($dbconnect, $query);
         $row = mysqli_fetch_array($result);
 
-        echo "<br>Is Teacher:<br>";
-        var_dump($row['NAME']);
+        // echo "<br>Is Teacher:<br>";
+        // var_dump($row['NAME']);
         if (!is_NULL($row['NAME'])) {
             
             //Stores info about the teacher
@@ -33,16 +33,19 @@
 
         
         //Checks if the user is a part of the the students table 
-        $query = "SELECT CONCAT(FIRST_NAME, ' ', LAST_NAME) AS name, YEAR_LEVEL FROM students WHERE EMAIL = '" . $_SESSION['email'] . "'";
+        $query = "SELECT ID, CONCAT(FIRST_NAME, ' ', LAST_NAME) AS name, YEAR_LEVEL FROM students WHERE EMAIL = '" . $_SESSION['email'] . "'";
         $result = mysqli_query($dbconnect, $query);
-        var_dump($result);
         $row = mysqli_fetch_array($result);
 
-        echo "<br>Is Student:<br>";
-        var_dump($row['name']);
+        // echo "<br>Is Student:<br>";
+        // var_dump($row['NAME']);
         if (!is_NULL($row['name'])) {
+
+            //Stores info about the student
             $_SESSION['yearLevel'] = $row['YEAR_LEVEL'];
-            $_SESSION['name'] = $row['name'];
+            $_SESSION['name'] = $row['NAME'];
+            $_SESSION['id'] = $row['ID'];
+
             header('Location: StudentsHomepage.php');
             exit();
         }

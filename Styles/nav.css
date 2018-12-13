@@ -48,6 +48,7 @@ header #grid-container {
 
 }
 #ProfileDropdown img {
+    margin: auto;
     object-fit: cover;
     border-radius: 50%;
 
@@ -76,9 +77,10 @@ nav {
     justify-content: space-around;
     grid-template-columns:  1fr 1fr 1fr;
 }
-nav a {
-    padding: 8rem, 0rem;
-    text-decoration-style: none;
+nav a, #ProfileDropdown > a {
+    padding: 8rem 0rem;
+    text-align: center;
+    margin: auto;
     text-decoration-line: none;
     color: rgb(0,0,0);
 }
