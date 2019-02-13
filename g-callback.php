@@ -14,7 +14,6 @@
       $oAuth = new Google_Service_Oauth2($gClient);
       $userData = $oAuth->userinfo_v2_me->get();
 
-      echo "<pre>";
       var_dump($userData);
 
       $_SESSION['email'] = $userData['email'];

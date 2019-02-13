@@ -5,4 +5,10 @@
     session_destroy();
     header('Location: Login.php');
     exit();
+
+    //Use to test if out of internet coverage
+    // unset($_SESSION[access_token]);
+    // session_destroy();
+    // header('Location: Login.php');
+    // exit();
     ?>

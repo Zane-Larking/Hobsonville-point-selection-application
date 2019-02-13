@@ -1,6 +1,11 @@
 <?php
     require_once "config.php";
     
+    //Use to test if out of internet coverage.
+    /*
+    $_SESSION['access_token'] = 0;
+    $_SESSION['email'] = "No.Internet@gmail.com";
+    */
     if (isset($_SESSION['access_token'])) {
         include ('DataBase/Databaseconnect.php');
         

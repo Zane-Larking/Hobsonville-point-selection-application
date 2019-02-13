@@ -13,7 +13,7 @@
     */
     $query = "UPDATE students SET `SELECTIONS_".$_GET['classType']."` = '" . $_GET["selections"] . "' WHERE ID = " . $_SESSION['id'];
     if (mysqli_query($dbconnect, $query) === TRUE) {
-        header("locaton: ../SubmissionSuccessful.php) 
+        header("locaton: ../SubmissionSuccessful.php");
         
         
     } else {
