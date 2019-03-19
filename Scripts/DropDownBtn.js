@@ -48,7 +48,19 @@ function expandSection(element) {
 function isCollapsed(element) {
     return element.getAttribute('data-collapsed') === 'true';
 }
+function findAncestor(el, selector) {
+    current = el.parentElement;
+    if (current == selector) {
+        return current;
+    }
+    else {
+        findAncestor(current, selector);
+    }
+}
+
 function CreateSelectorFromMouseEvent(e, end, siblingOfEnd) {
+    console.log(e);
+    //console.log(findAncestor(e.targert, ));
     //format information from the 'MouseEvent' object (stored as 'e') to use as a CSS selector 
     mappedE = e.path.reverse().slice(3,-1).map((x) => {
         let output = [x.localName];
@@ -81,6 +93,11 @@ function CreateSelectorFromMouseEvent(e, end, siblingOfEnd) {
     .join(" ");
 }
 var PriorityDDBtnFunct = function (e) {
+    /* ===== OLD CODE FIXED UP ===== */
+    var temp = e.target;
+    if (e.target.childElementCount = 0) {
+        temp = e.target.firstChild;
+    }
     /* ===== OLD CODE ===== */
     //console.log("Priority test");
     //console.log(e);
@@ -107,11 +124,13 @@ var PriorityDDBtnFunct = function (e) {
         //     expandSection(Classes[i]);
         // }
         expandSection(pannel)
+        temp.style.transform = "scaleY(1)";
     } else {
         // for (let i = 0; i < Classes.length; i ++) {
         //     collapseSection(Classes[i]);
         // }
         collapseSection(pannel)
+        temp.style.transform = "scaleY(-1)";
         
     }
     console.log(pannel.getAttribute('data-collapsed'));
@@ -122,12 +141,25 @@ var PeriodDDBtnFunct = function (e) {
     //console.log(mappedE);
     //console.log(mappedE.slice(0, mappedE.indexOf("div.ClassBar.HeaderBar")).concat(["div.ClassDropdownDescription"]).join(" "));
 
+    /* ===== OLD CODE FIXED UP ===== */
+    var temp = e.target;
+    if (e.target.childElementCount = 0) {
+        temp = e.target.firstChild;
+    }
+    // console.log("Period test");
+    // console.log(e);
+    // console.log(temp.parentElement.parentElement.nextElementSibling.nextElementSibling.atributes);
+    // let pannel = temp.parentElement.parentElement.nextElementSibling.nextElementSibling;
+    
     /* ===== OLD CODE ===== */
-    //console.log("Period test");
-    //console.log(e);
-    //console.log(e.target.parentElement.parentElement.nextElementSibling.nextElementSibling.atributes);
-    //let pannel = e.target.parentElement.parentElement.nextElementSibling.nextElementSibling;
+    // console.log("Period test");
+    // console.log(e);
+    // console.log(e.target.parentElement.parentElement.nextElementSibling.nextElementSibling.atributes);
+    // let pannel = e.target.parentElement.parentElement.nextElementSibling.nextElementSibling;
+    
+    /* ===== Logically Flawed Code ===== */
     let pannel = document.querySelector(CreateSelectorFromMouseEvent(e, "div.PeriodBar.HeaderBar", "div.DropdownClasses"));
+    
     console.log("data collapsed attribute: "+ pannel.getAttribute('data-collapsed'));
     if (pannel.getAttribute('data-collapsed') == null) {
         pannel.setAttribute('data-collapsed', 'false')
@@ -147,12 +179,13 @@ var PeriodDDBtnFunct = function (e) {
         //     expandSection(Classes[i]);
         // }
         expandSection(pannel)
+        temp.style.transform = "scaleY(1)";
     } else {
         // for (let i = 0; i < Classes.length; i ++) {
         //     collapseSection(Classes[i]);
         // }
         collapseSection(pannel)
-        
+        temp.style.transform = "scaleY(-1)";
     }
     console.log(pannel.getAttribute('data-collapsed'));
 }
@@ -161,13 +194,26 @@ var ClassDDBtnFunct = function (e) {
     //console.log(mappedE);
     //console.log(mappedE.slice(0, mappedE.indexOf("div.ClassBar.HeaderBar")).concat(["div.ClassDropdownDescription"]).join(" "));
 
+    /* ===== OLD CODE FIXED UP ===== */
+    var temp = e.target;
+    if (e.target.childElementCount > 0) {
+        temp = e.target.firstChild;
+    }
+    console.log("Class test");
+    console.log(e);
+    console.log(temp);
+    console.log(temp.parentElement.parentElement.parentElement.nextElementSibling);
+    console.log(temp.parentElement.parentElement.parentElement.nextElementSibling.atributes);
+    let pannel = temp.parentElement.parentElement.parentElement.nextElementSibling;
+
     /* ===== OLD CODE ===== */
     //console.log("Class test");
     //console.log(e);
     //console.log(e.target.parentElement.parentElement.nextElementSibling.nextElementSibling.atributes);
     //let pannel = e.target.parentElement.parentElement.nextElementSibling;
 
-    let pannel = document.querySelector(CreateSelectorFromMouseEvent(e, "div.ClassBar.HeaderBar", "div.ClassDropdownDescription"));
+    /* ===== Logically Flawed Code ===== */
+    //let pannel = document.querySelector(CreateSelectorFromMouseEvent(e, "div.ClassBar.HeaderBar", "div.ClassDropdownDescription"));
     console.log("data collapsed attribute: "+ pannel.getAttribute('data-collapsed'));
     if (pannel.getAttribute('data-collapsed') == null) {
         pannel.setAttribute('data-collapsed', 'false')
@@ -177,8 +223,10 @@ var ClassDDBtnFunct = function (e) {
     console.log("Was Collapsed: " + isCollapsed(pannel));
     if (isCollapsed(pannel)){
         expandSection(pannel)
+        temp.style.transform = "scaleY(1)";
     } else {
         collapseSection(pannel)
+        temp.style.transform = "scaleY(-1)";
     }
 }
 

@@ -8,15 +8,15 @@ var UpdateTally = function(){
         // tallyBarEls.push(document.getElementById(NthChoices).getElementsByClassName("TallySubject"));
         // document.getElementById(NthChoices).getElementsByClassName("TallySubject");
         //logs the tally chart elements
-        console.log(document.getElementById(NthChoices).getElementsByClassName("TallySubjects")[0]);
+        // console.log(document.getElementById(NthChoices).getElementsByClassName("TallySubjects")[0]);
         //logs the currently selected subjects for the current set of choices
-        console.log(SelectedSubjects[NthChoices]);
+        // console.log(SelectedSubjects[NthChoices]);
         subjects = ["MATH", "ENGLISH", "SCIENCE", "SOCSCIENCE", "TECH", "HPE", "ART", "LANGUAGE"];
         
         //clear tally chart
         //columns is an array that stores all the div (tally for each subject) in the tally chart
         let columns = document.getElementById(NthChoices).getElementsByClassName("TallySubjects")[0].querySelectorAll("div");
-        console.log(columns);
+        // console.log(columns);
         //set each div's innerHTML to 0
         for (let j = 0; j < columns.length; j ++){
             columns[j].innerHTML = "0";

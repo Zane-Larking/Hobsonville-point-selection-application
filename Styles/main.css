@@ -3,90 +3,121 @@ html {
     font-size: 1px;
 }
 body {
-    font-size: 16px;
+    font-size: 16rem;
     border-collapse: collapse;
+    margin: 0;
+    
+    /*background*/
+    background-color: #0284B0;
+    background-image: url(../Images/TeacherClassSubmit_BG_terrain.png);
+    /*background-repeat: no-repeat;*/
+    background-position: top; /* Center the image */
+    background-repeat: repeat; /* Do not repeat the image */
+    background-size: auto; /* Resize the background image to cover the entire container */
+    
 }
 
 /*Main body*/
 #main {
     position: absolute;
-    width: 100%;
-    min-height: 100%;
-    background-color: rgb(125, 125, 125);
-    top: 50rem;
+    width: 90vw;
+    padding-top: 50rem;
     left: 0;
-    margin: 0;
-
-    
+    margin: 0 5vw;
+    height: 100vh;
 }
 #mainGrid {
-    background-color: rgb(80, 80, 80);
-    margin: 5%;
-    width: 90%;
+    background-color: rgb(117, 174, 195);
+    padding: 30rem 20rem 20rem 20rem;
+    margin: 40rem;
+    width: calc(100% - 120rem);
     min-width: fit-content;
     display: grid;
-    grid-gap: 25rem;
+    grid-gap: 50rem;
 
 }
 #mainGrid > div {
     height: auto;
-    width: 90%;
-    align-content: center;
-    margin: 0 5% 0 5%;
+    width: auto;
+    
 
 }
 
+.roundedContainer {
+    display: grid;
+    grid-template-rows: fit-content(1px);
+    background-color: #FFFFFF;
+    border: 1px solid #4D4D4D;
+    border-radius: 10rem;
+    padding: 2rem;
+}
+.roundedHeader {
+    border-bottom: 1px solid #4D4D4D;
+    border-radius: 10rem 10rem 0 0;
+    margin: -3rem -3rem 0 -3rem;
+    padding: 5rem;
+
+}
+.roundedContent {
+    padding: 5rem;
+    border: 1px;
+    margin: -3rem;
+    border-radius: 10rem;
+}
+.bissectedContainer {
+    display: flex;
+    justify-content: space-between;
+    margin: -3rem;
+    padding: 2rem;
+
+}
+.bissectedContainer > div:nth-child(1) {
+    border-right: 1px solid #4D4D4D;
+    margin: -2rem;
+    padding: 5rem;
+    flex-grow: 1;
+
+}
 
 
 @media only screen and (max-width: 1000px) {
-    body{
-        font-size: 12px;
-    }
-    #mainGrid {
-        margin: 3.5%;
-        width: 91.5%;
-        grid-gap: 20rem;
-    
-    }
-    .DropdownButton {
-        width: 20rem;
-        height: 20rem;
-    }
-}
-@media only screen and (max-width: 750px) {
-    body{
-        font-size: 8px;
-    }
-    #mainGrid {
-        margin: 2%;
-        width: 93%;
-        grid-gap: 10rem;
-    
-    }
-    .DropdownButton {
-        width: 15rem;
-        height: 15rem;
+    html{
+        font-size: .875px;
     }
     
 
 }
-@media only screen and (max-width: 500px) {
-    body{
-        font-size: 6px;
+
+@media only screen and (max-width: 850px) {
+    html{
+        font-size: .75px;
     }
-    #mainGrid {
-        margin: 1%;
-        width: 94%;
-        grid-gap: 5rem;
+    /* #mainGrid {
+        margin: 3.5%;
+        width: 86.5%;
+        grid-gap: 20rem;
     
+    } */
+}
+@media only screen and (max-width: 700px) {
+    html{
+        font-size: .625px;
     }
-    .DropdownButton {
-        width: 10rem;
-        height: 10rem;
+    
+
+}
+@media only screen and (max-width: 550px) {
+    html{
+        font-size: .5px;
     }
-    button {
-        width: 100%;
-        padding: 1px 2px;
+    
+
+}
+
+
+@media only screen and (max-width: 400px) {
+    html{
+        font-size: .375px;
     }
 
 }

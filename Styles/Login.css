@@ -29,7 +29,7 @@ body {background-image: url(https://78.media.tumblr.com/64a88a6fd3da7f67a5282c0c
     /*background-repeat: no-repeat;*/
      background-attachment: center;
      background-position: 75.5% 40%; 
-    background-position: ; 
+    background-position: top; 
     }
 
 .inputboxes[type=text], select, textarea {
@@ -41,3 +41,13 @@ body {background-image: url(https://78.media.tumblr.com/64a88a6fd3da7f67a5282c0c
     resize: vertical;
     border-color: black;
     }
+#g-login > image{
+    background-image: "Images/GoogleButton.png";
+    background-repeat: no-repeat; 
+    background-position: top;
+    background-repeat: repeat;
+    background-size: auto;
+}
+#g-login > image:active {
+    background-image: "Images/GoogleButtonPresses.png";
+}
