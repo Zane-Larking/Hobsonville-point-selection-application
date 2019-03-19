@@ -9,6 +9,10 @@
 
     }
 ?>
+<head>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
 <script>
     function changeEventHandler(event) {
 
@@ -60,7 +64,8 @@
           <!--"Images/Portrait_Placeholder.png"-->
             <img src= <?php echo $_SESSION['picture'] ?> height="25rem" >
             <a href="logout.php"><div>Logout</div></a>
-            <div id ="dropdownArrow1"></div>
+            <!--<div id ="dropdownArrow1"></div>-->
+            <div id ="dropdownArrow1" class="material-icons prefix">arrow_drop_down</div>
             <div></div>
         </div>
         <div class ='profileDropdownAbsolute'>

@@ -3,8 +3,9 @@ html {
     font-size: 1px;
 }
 body {
-    font-size: 16em;
+    font-size: 16rem;
     border-collapse: collapse;
+    margin: 0;
     
     /*background*/
     background-color: #0284B0;
@@ -19,15 +20,11 @@ body {
 /*Main body*/
 #main {
     position: absolute;
-    width: 80%;
-    min-height: 100%;
-
-
+    width: 90vw;
     padding-top: 50rem;
     left: 0;
-    margin: 0 10%;
-
-    
+    margin: 0 5vw;
+    height: 100vh;
 }
 #mainGrid {
     background-color: rgb(117, 174, 195);
@@ -42,8 +39,43 @@ body {
 #mainGrid > div {
     height: auto;
     width: auto;
-    align-content: center;
     
+
+}
+
+.roundedContainer {
+    display: grid;
+    grid-template-rows: fit-content(1px);
+    background-color: #FFFFFF;
+    border: 1px solid #4D4D4D;
+    border-radius: 10rem;
+    padding: 2rem;
+}
+.roundedHeader {
+    border-bottom: 1px solid #4D4D4D;
+    border-radius: 10rem 10rem 0 0;
+    margin: -3rem -3rem 0 -3rem;
+    padding: 5rem;
+
+}
+.roundedContent {
+    padding: 5rem;
+    border: 1px;
+    margin: -3rem;
+    border-radius: 10rem;
+}
+.bissectedContainer {
+    display: flex;
+    justify-content: space-between;
+    margin: -3rem;
+    padding: 2rem;
+
+}
+.bissectedContainer > div:nth-child(1) {
+    border-right: 1px solid #4D4D4D;
+    margin: -2rem;
+    padding: 5rem;
+    flex-grow: 1;
 
 }
 

@@ -13,6 +13,8 @@
 
     <script src="Scripts/main.js"></script>
     <script src="Scripts/SubmitSelections.js"></script>
+    <script src="Scripts/datetime.js"></script>
+
 
 </head>
 <body>
@@ -325,6 +327,13 @@
 
 
             <?php
+                function echoSubjects ($subjects) {
+                    $a = "";
+                    foreach($subjects as $subject) {
+                        $a = $a." ".$subject;
+                    }
+                    return $a;
+                }
                 //if I wanted tp use radio inputs instead of my custom made select and dismiss buttons.
                 //<input type='radio' name='selectModule$i' value='$row[CODE]'> test
 
@@ -362,7 +371,7 @@
                     while ($row = mysqli_fetch_array($result)){
                         $subjects = [$row['SUBJECT1'],$row['SUBJECT2']];
                         echo"
-                            <div class='Course'>
+                            <div class='Course".echoSubjects($subjects)."'>
                                 <div class='ClassBar HeaderBar'>
                                     <div class='HeaderBarTitle'>
                                         <div class='ClassDropdownButton'><div class='DropdownButton'></div></div>
@@ -508,15 +517,15 @@
 
             ?>
             <div id="Application">
-                <div>
-                    If a class required a application please fill out on here.
-                </div>
-                <textarea>
-
-                </textarea>
+                <textarea placeholder = "Optional: You can write an application describing why you should recieve your selected classes."></textarea>
                 <input id="submitSelections" type="submit" onclick="if(event.preventDefault) event.preventDefault(); submitSelections('M/S');" disabled>
-                <a href="DataBase/SubmitSelections.php?data=classes">Click here to download the EXCEL CSV file</a><br>
+                <a href="DataBase/SubmitSelections.php?data=classes">Click here to download the EXCEL CSV file of your class selections</a><br>
             </div>
+            <?php
+                //date_default_timezone_set('Pacific/Auckland');
+                
+                
+            ?>
         </div>
     </article>
 

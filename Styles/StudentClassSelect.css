@@ -381,7 +381,11 @@ button {
 
 }
     #Application textarea{
-        height: -webkit-fill-available;
-        width: calc(100% - 4px);
+        height: 60rem;
         width: -webkit-fill-available;
+        resize: none;
+    }
+    #Application button {
+        cursor: pointer;
+        font-family: Arial, Helvetica, sans-serif;
     }

@@ -1,0 +1,56 @@
+
+.searchPannel {
+    display: grid;
+    grid-area: pannel;
+    border: 1px solid #4D4D4D;
+    width: 10em;
+    background-color: #FFFFFF;
+
+    margin-top: -1rem;
+    grid-template-areas: none;
+    grid-template-rows: fit-content(10em) auto; 
+
+}
+.sectionHeader {
+    padding: 5px 10px 5px 5px;
+    align-items: center;
+    background-color: #F8F8F8;
+    border-bottom: 1px solid #4D4D4D;
+    
+}
+.TSTHeader {
+    display: grid;
+    grid-template: 
+    "title    settings" auto 
+    "textArea textArea" auto / 60% 40%;
+    grid-gap: 5px;
+}
+.TSTHeader > p {
+    margin: 0;
+}
+
+.searchIcon {
+    width: 1em;
+    height: 1em;
+    background-color: #4D4D4D;
+}
+.searchBar {
+    display: grid;
+    align-items: center;
+    width: auto;
+    border: 1px solid #4D4D4D;
+    border-radius: 2.5em;
+    grid-template-areas: none;
+    grid-template-columns: 1.5em auto;
+    padding: 2px;
+    background-color: #FFFFFF;
+}
+.search {
+    font-size: 0.8em;
+    border: none;
+    resize: none;
+    background-color: transparent;
+    width: 100%;
+    overflow:hidden;
+    overflow-wrap: normal;
+}

@@ -1,5 +1,5 @@
 <?php 
-    $CPYL = ['modules' => [3,2,1,0], 'spins' => [3,2,3,5], 'floorTimes' => [3,2,1,1]];
+    $CPYL = ['modules' => [3,2,1,0], 'spins' => [3,2,3,5], 'floorTimes' => [3,2,2,1]];
     //echo json_encode($CPYL);
 
     /*
@@ -30,6 +30,25 @@
         "Arts",
         "Languages"
     ];
+    $yearGroups = ["FF", "Q1", "Q2", "Q3"];
+    $qual = [];
+    $qual["FF"] = 0;
+    $qual["Q1"] = 1;
+    $qual["Q2"] = 2;
+    $qual["Q3"] = 3;
+
+    $yearLevel = [];
+    $yearLevel["FF"] = "9 OR YEAR_LEVEL = 10";
+    $yearLevel["Q1"] = 11;
+    $yearLevel["Q2"] = 12;
+    $yearLevel["Q3"] = 13;
+
+    $yearToQual = [];
+    $yearToQual[9] = 0;
+    $yearToQual[10] = 0;
+    $yearToQual[11] = 1;
+    $yearToQual[12] = 2;
+    $yearToQual[13] = 3;
     //parses $CPYL to "var CPYL = {modules: [3, 2, 1, 0], spins: [3, 2, 3, 5], floorTimes: [3, 2, 1, 1])}"
     echo "<script type='text/javascript'>
         var CPYL = {";

@@ -13,7 +13,7 @@
     } 
     */
 
-    header('Refresh: 3; url=' ."ModulesAndSpins.php"); 
+    header('Refresh: 3; url=' ."index.php"); 
 ?>
 <!DOCTYPE html>
 <html>
