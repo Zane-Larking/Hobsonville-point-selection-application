@@ -148,7 +148,11 @@
                                         echo '
                                         </div>
                                     </div>
-                                    <div class="students">
+                                    <div class="students drag-item-container">
+                                        <!-- temporary placeholder draggable items-->
+                                        <div class ="student drag-item"> 
+
+                                        </div>
                                     </div>
                                 </div>
                                 ';
@@ -660,11 +664,27 @@
                 width: 10rem;
                 height: 10rem;
             }
-
+            div.drag-item {
+                z-index: 10;
+                width: 90%;
+                height: 1.25em;
+                cursor: pointer; 
+            }
+            div.drag-location {
+                width: 90%;
+                height: 1.25em;
+                margin: 10rem 0;
+            }
+            div.drag-location-over {
+                background-color: #0000;
+                border: 2rem solid #F44336;
+                border-radius: 50rem;
+            }
 
 
             </style>
     </div>
+    <script src="Scripts/DragAndDrop.js"></script>
     <script>
 
 
