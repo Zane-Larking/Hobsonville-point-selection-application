@@ -33,6 +33,11 @@
 	border:1px solid black;
 	padding:15px;
 }
+.ellipsis {
+	
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
 #user-grid-container {
 	border: 1px solid black;
 	padding: 2rem;

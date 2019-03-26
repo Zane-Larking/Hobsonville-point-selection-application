@@ -1,10 +1,13 @@
 let itemContainers = document.getElementsByClassName("drag-item-container");
 let items = document.getElementsByClassName("drag-item");
 
+
 let mouseOffset = {x: 0, y: 0};
 
 let isMouseDown = false;
 let currentItem = null;
+let foundDragOver = false;
+let draggedOver = false;
 
 function LightenDarkenColor(col, amt) {
   
@@ -57,37 +60,75 @@ doELsCollide = function(el1, el2) {
 }
 
 //create drag locations
-for (let j = 0; j < itemContainers.length; j++) {
-    let container = itemContainers[j];
-    for (let i = 0; i < 6; i++) {
-        let dragLocation = document.createElement("div");
-        dragLocation.className = "drag-location";
-        container.appendChild(dragLocation);
+// for (let j = 0; j < itemContainers.length; j++) {
+//     let container = itemContainers[j];
+//     for (let i = 0; i < 1; i++) {
+//         let dragLocation = document.createElement("div");
+//         dragLocation.className = "drag-location";
+//         container.appendChild(dragLocation);
         
-    }    
-}
+//     }    
+// }
 
 function dropDraggable(item, container) {
-    container.appendChild(item);
+    container.className = container.className.replace(" drag-item-container-over", "")
+    if (draggedOver) {
+        container.appendChild(item);
+    }
+    item.style.left = "";
+    item.style.top = "";
+    item.style.position = "relative";
+    mouseOffset = {x: 0, y:0};
+    currentItem = null;
 }
+
+// setInterval(() => {
+//     if (currentItem != null) {
+//         let dragLocations = document.getElementsByClassName("drag-location");
+//         foundDragOver = false;
+//         for (let i = 0; i < dragLocations.length; i++) {
+//             let dragLocation = dragLocations[i];
+//             dragLocation.className = dragLocation.className.replace(" drag-location-over", "")
+//             if (doELsCollide(currentItem, dragLocation)) {
+//                 console.log("test 1");
+//                 dragLocation.className += " drag-location-over";
+//                 foundDragOver = true;
+//                 if (!isMouseDown) {
+//                     console.log("test 2");
+//                     dropDraggable(currentItem, dragLocation);
+//                 }
+//             }            
+//         }        
+//         draggedOver = foundDragOver ? true : false;
+//     }
+// }, 100)
 
 setInterval(() => {
     if (currentItem != null) {
-        let dragLocations = document.getElementsByClassName("drag-location");
-        for (let i = 0; i < dragLocations.length; i++) {
-            let dragLocation = dragLocations[i];
-            dragLocation.className = dragLocation.className.replace(" drag-location-over", "")
-            if (doELsCollide(currentItem, dragLocation)) {
-                dragLocation.className += " drag-location-over";
+        foundDragOver = false;
+        for (let i = 0; i < itemContainers.length; i++) {
+            let itemContainer = itemContainers[i];
+            itemContainer.className = itemContainer.className.replace(" drag-item-Container-over", "")
+            if (doELsCollide(currentItem, itemContainer)) {
+                console.log(itemContainer);
+                console.log(itemContainer.offsetHeight)
+                console.log("test 1");
+                itemContainers.className += " drag-item-container-over";
+                foundDragOver = true;
                 if (!isMouseDown) {
-                    dropDraggable(currentItem, dragLocation);
-                    currentItem = null;
+                    console.log("test 2");
+                    dropDraggable(currentItem, itemContainer);
+                    break;
                 }
-            }
-            
-        }
+            }            
+        }        
+        draggedOver = foundDragOver ? true : false;
     }
 }, 100)
+
+function testListener(e) {
+    console.log("testing listener");
+}
 
 function getContentWidth (element) {
     var styles = getComputedStyle(element)
@@ -97,39 +138,46 @@ function getContentWidth (element) {
       - parseFloat(styles.paddingRight)+"px"
   }
 
-function onMouseMove(e, item) {
-    console.log("test");
+function onMouseMove(e) {
     e.preventDefault();
     if (isMouseDown) {
-        item.style.left = e.clientX + mouseOffset.x +"px";
-        item.style.top = e.clientY + mouseOffset.y + "px"; 
+        currentItem.style.left = e.clientX + mouseOffset.x +"px";
+        currentItem.style.top = e.clientY + mouseOffset.y + "px"; 
     }
 }
 
-function onMouseDown(e, item) {
+function onMouseDown(e) {
+    item = e.target;
     isMouseDown = true;
     currentItem = item;
     mouseOffset = {x: item.offsetLeft - e.clientX, y: item.offsetTop - e.clientY}
+    console.log(getComputedStyle(item).backgroundColor);
+    console.log(LightenDarkenColor("#"+getComputedStyle(item).backgroundColor, -16));
+    item.style.backgroundColor = LightenDarkenColor("#"+getComputedStyle(item).backgroundColor, -16);
 
-    item.style.backgroundColor = LightenDarkenColor(item.style.backgroundColor, -64);
     item.style.width = getContentWidth(item);
     item.style.position = "absolute";
     
 
     //Add a an event listener to the bounding container when the user clicks an element.
     //All movement while saving processing power and solves a glitch.
-    ancester = findAncestor(item, "classes");
-    ancester.addEventListener("mousemove", (e) => {
-        onMouseMove(e, item);
-    });
-    console.log(ancester);
+    ancestor = findAncestor(item, "classes");
+    ancestor.addEventListener("mousemove", onMouseMove);
+    // console.log(ancestor);
 }
 
 function onMouseUp(e, item) {
-    item.style.left = "";
-    item.style.top = "";
-    //item.style.position = "relative";
-    mouseOffset = {x: 0, y:0};
+    item = e.target;
+    console.log("test 3");
+    console.log(draggedOver);
+    if (draggedOver == false) {
+        
+        console.log("test 4");
+        item.style.left = "";
+        item.style.top = "";
+        item.style.position = "relative";
+        mouseOffset = {x: 0, y:0};
+    }
 
     isMouseDown = false;
     item.style.backgroundColor = "#FFFFFF";
@@ -138,20 +186,24 @@ function onMouseUp(e, item) {
     
     //Add a an event listener to the bounding container when the user clicks an element.
     //All movement while saving processing power and solves a glitch.
-    ancester = findAncestor(item, "classes");
-    ancester.removeEventListener("mousemove", onMouseMove);
+    ancestor = findAncestor(item, "classes");
+    // console.log(ancestor);
+    ancestor.removeEventListener("mousemove", onMouseMove);
 }
 
 for (let i = 0; i < items.length; i++) {
     let item  = items[i];
     
-    item.addEventListener("mousedown", (e) => {
-        onMouseDown(e, item);
-    });
+    item.addEventListener("mousedown", onMouseDown);
 
-    item.addEventListener("mouseup", (e) => {
-        onMouseUp(e, item);
-    });
+    item.addEventListener("mouseup", onMouseUp);
 
     
 }
+
+for (let i = 0; i < itemContainers; i ++) {
+    console.log(container);
+    let container = itemContainers[i];
+    container.addEventListener("mouseup", testListener);
+}
+

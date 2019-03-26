@@ -79,7 +79,7 @@
                     $result = mysqli_query($dbconnect, $query);
                     while ($row = mysqli_fetch_array($result)){
                         echo '
-                        <div class="'.$row['FIRST_NAME'].'-'.$row['LAST_NAME'].'">
+                        <div class="student '.$row['FIRST_NAME'].'-'.$row['LAST_NAME'].'">
                             <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                             <p>'.$row['FIRST_NAME'].' '.$row['LAST_NAME'].'</p>
                             <div class="coverageCheck">
@@ -670,7 +670,7 @@
                 height: 1.25em;
                 cursor: pointer; 
             }
-            div.drag-location {
+            /* div.drag-location {
                 width: 90%;
                 height: 1.25em;
                 margin: 10rem 0;
@@ -679,6 +679,12 @@
                 background-color: #0000;
                 border: 2rem solid #F44336;
                 border-radius: 50rem;
+            } */
+            div.drag-item-container {
+            }
+            div.drag-item-container-over {
+                background-color: #303030;
+                
             }
 
 

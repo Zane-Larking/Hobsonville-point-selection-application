@@ -38,8 +38,8 @@
 					<div id="profile">
 						<div id = "user-grid-container">
 							<img src= <?php echo $_SESSION['picture']; ?> height="75rem" style= "grid-area: image">
-							<div style= "grid-area: name"><?php echo $_SESSION['name']; ?></div>
-							<div style= "grid-area: email"><?php echo $_SESSION['email']; ?></div>
+							<div class = "ellipsis" style= "grid-area: name"><?php echo $_SESSION['name']; ?></div>
+							<div class = "ellipsis" style= "grid-area: email"><?php echo $_SESSION['email']; ?></div>
 						</div>
 						<!--Hub students and their classes-->
 						<div id = "hublings">
@@ -60,9 +60,9 @@
 									echo "
 									<div id = 'user-grid-container'>
 										<img src= "; if (isset($row['PICTURE'])) echo $row['PICTURE'];  else echo"'Images/Portrait_Placeholder.png' height='50rem' style= 'grid-area: image;'>
-										<div style= 'grid-area: name'>".$row['NAME']."</div>
-										<div style= 'grid-area: email'>".$row['EMAIL']."</div>
-										<div style= 'grid-area: options'><a href = 'SelectionVerification.php?student=".str_replace(" ", "-", $row['NAME'])."'>View Selections</a></div>
+										<div class = 'ellipsis' style= 'grid-area: name'>".$row['NAME']."</div>
+										<div class = 'ellipsis' style= 'grid-area: email'>".$row['EMAIL']."</div>
+										<div class = 'ellipsis' style= 'grid-area: options'><a href = 'SelectionVerification.php?student=".str_replace(" ", "-", $row['NAME'])."'>View Selections</a></div>
 									</div>";
 										
 								}
