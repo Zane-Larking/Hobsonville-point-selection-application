@@ -1,6 +1,9 @@
 #mainGrid {
+	margin: 2.5vh 2.5vw;
+	padding: 2.5vh 2.5vw;
+	height: 90vh;
 	grid-gap: 1em;
-	grid-template: auto 10em 20em/30% 3fr 3fr 3fr;
+	grid-template: 150rem auto 20em/30% 3fr 3fr 3fr;
     grid-template-areas: 
     "profile head head head"
     "profile main main pannel"

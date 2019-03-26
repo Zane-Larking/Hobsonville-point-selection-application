@@ -33,7 +33,7 @@
     font-size: 0.75em;
     flex-grow: 0.8;
 }
-.students > div {
+div.student {
     margin: 2px 0;
     display: flex;
     align-items: center;
