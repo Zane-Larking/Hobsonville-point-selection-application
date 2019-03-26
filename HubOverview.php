@@ -47,7 +47,7 @@
                         $result = mysqli_query($dbconnect, $query);
                         while ($row = mysqli_fetch_array($result)){
                             echo '
-                            <div class="'.$row['FIRST_NAME'].'-'.$row['LAST_NAME'].'" onclick = "toggleTabs(event, '."'".'currentStudentSelections'."', '".$row['FIRST_NAME'].'-'.$row['LAST_NAME']."'".')">
+                            <div class="student '.$row['FIRST_NAME'].'-'.$row['LAST_NAME'].'" onclick = "toggleTabs(event, '."'".'currentStudentSelections'."', '".$row['FIRST_NAME'].'-'.$row['LAST_NAME']."'".')">
                                 <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                 <p>'.$row['FIRST_NAME'].' '.$row['LAST_NAME'].'</p>
                                 <div class="coverageCheck">
