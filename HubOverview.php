@@ -52,10 +52,11 @@
                                 <p>'.$row['FIRST_NAME'].' '.$row['LAST_NAME'].'</p>
                                 <div class="coverageCheck">
                                     <div class="material-icons">check</div>
+
                                 </div>
                             </div>
                             ';
-                        }
+                        }   
                     ?>
                 </div>
             </div>
@@ -84,7 +85,7 @@
                         <div class="toggleChoice choice3'.'" onclick = "toggleTabs(event, '."'".'currentChoiceSelections'."', '".' choice3'."'".')">3rd</div>
                     </div>
                 </div>
-                <div>
+                <div style="display:  grid; grid-template-columns: 78% 20%; grid-gap: 2%; margin: 2%; margin-bottom: 0;">
                     <div class = "selections">
                     ';
                     $selections = explode(" ", $row["SELECTIONS_M&S"]);
@@ -161,6 +162,11 @@
                     }
                     echo '
                     </div>
+                    <div style="background-color: #EEEEEE; border: 1px solid #707070;">
+                        
+                    </div>
+
+
                 </div>
                 <div class = "application">
                 ';
@@ -224,9 +230,6 @@
             border: 1px solid #707070;
             background-color: #EEEEEE;
             display: grid;
-            margin: 2%;
-            height: 96%;
-            width: 96%;
             font-size: 12rem;
         }
         .currentStudentSelections {
@@ -335,6 +338,44 @@
             }
         }
     }
+    </script>
+    <script>
+        els = document.getElementsByClassName("coverageCheck");
+            for(let i=0; i<els.length; i++){
+                var bigFatVariable = i
+                if(bigFatVariable % 3 == 0){
+                    //<div class="material-icons">check</div>
+                        el = els[i];
+                        div = el.getElementsByClassName("material-icons")[0];
+                        div.innerHTML = "check";
+                        div.style = "margin-left:-10%;"
+                        console.log(div);
+
+
+                }else if(bigFatVariable % 3 == 1){
+                    //<div class="material-icons">clear</div>
+                        el = els[i];
+                        el.style = "background-color: #e03a2a;";
+                        div = el.getElementsByClassName("material-icons")[0];
+                        div.style = "margin-left:-5%; margin-top:-5%;"
+                        div.innerHTML = "clear";
+                        console.log(div);
+                }else{
+                        el = els[i];
+                        el.style = "background-color: #ffa500;";
+                        div = el.getElementsByClassName("material-icons")[0];
+                        div.style = "color: #ffffff; margin-left:30%; margin-top:-25%;";
+
+                        div.innerHTML = "!";
+                        console.log(div);
+
+                }
+
+
+            }
+
+        
+
     </script>
 
 </body>
