@@ -22,13 +22,15 @@
 				list & Admin name -->
 					<div id="teacherList" >
 						<header>
+							<img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 50px;justify-self: center;border-radius: 50%;">
 							<hgroup>
 							<h1> Admin Name </h1>
-							<h2> Profile </h2>
+							<!-- <h2> Profile </h2> -->
 							</hgroup>
 						</header>
 
-						<div id="searchBar">
+						<div class="searchBar">
+							<div class="material-icons prefix">search</div>
 							<input value="" class="search" type="text" placeholder="Search Teachers" margin=0px 10px>
 						</div>
 
@@ -87,6 +89,7 @@
 					<div id="Content">
 						<div id="topBar">
 							<header>
+								<img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 50px; border-radius: 50%;">
 								<h1> Teacher Name </h1>
 								<h2> Subject </h2>
 								<h2> Years </h2>
@@ -108,7 +111,7 @@
 								</div>
 								<div class="suggestion">
 									<h4> Suggestion </h4>
-									<input value="" class="search" type="text" placeholder="Comment blah blah" padding=20rem>
+									<input value="" class="suggest" type="text" placeholder="Comment blah blah" padding=20rem>
 								</div>
 							</div>
 							<div class="block">
