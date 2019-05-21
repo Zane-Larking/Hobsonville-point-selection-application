@@ -22,19 +22,17 @@
 							<h1><font face ="Verdana">Teacher Homepage</font></h1>
 						</div>
 					</div>
-					<div id ="pannel">
-						<div>
-							<a href="">Module and Spin Selection</a>
-						</div>
-						<br>
-						<div>
-							<a href="">Project Selection</a>
-						</div>
-						<br>
-						<div>
-							<a href="">Floortime Selection</a>
-						</div>
-					</div>
+					<nav id ="pannel">
+						<a href="ModulesAndSpins.php">Module and Spin Selections</a>
+						<a href="Projects.php">Project Selections</a>
+						<a href="Floortimes.php">Floortime Selections</a>
+						<a href="HubOverview.php">Hub Overview</a>
+						<a href="SortSelections.php">Sort Selection</a>
+						<a href="SelectionVerification.php">Verify Selections</a>
+						<a href="AdminTools.php">Admin Tools</a>
+						<a href="TeacherClassSubmit.php">Submit Classes</a>
+						<a href="ManageClasses.php">Manage Classes</a>
+					</nav>
 					<div id="profile">
 						<div id = "user-grid-container">
 							<img src= <?php echo $_SESSION['picture']; ?> height="75rem" style= "grid-area: image">

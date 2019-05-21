@@ -12,7 +12,8 @@
     <!--<link rel="stylesheet" type="text/css" href="Styles/CreateClassesStyle.css">-->
     <link rel="stylesheet" type="text/css" href="Styles/nav.css">
     <link rel="stylesheet" type="text/css" href="Styles/searchPannel.css">
-    <link rel="stylesheet" type="text/css" href="Styles/studentElements.css">
+    <link rel="stylesheet" type="text/css" href="Styles/scrollPannel.css">
+    <link rel="stylesheet" type="text/css" href="Styles/subjectsKey.css">
   
     <?php
         include "DataBase/Databaseconnect.php";
@@ -39,7 +40,7 @@
                     Q3
                 </button>
             </div>
-            <div id="subjects" style="grid-area: sub;">
+            <div id="subjects">
                 <div class="TECH">Tech</div>
                 <div class="LANGUAGE">Language</div>
                 <div class="SOCSCIENCE">SS</div>
@@ -73,7 +74,7 @@
                             <!--<textarea name="searchArea" class="search" rows="1"></textarea>-->
                         </div>
                     </div>
-                    <div class="students">
+                    <div class="scrollPannel">
                     ';
                     $query = "select FIRST_NAME, LAST_NAME from students where YEAR_LEVEL = ".$yearLevel[$yearGroup].";";
                     $result = mysqli_query($dbconnect, $query);
@@ -108,7 +109,8 @@
                         -->
                     </div>
                 </div>
-                <div id="hidePannel" onclick="hideSearchPannel(event)" style="grid-area: hidePannel;">
+                <div class="hidePannel" onclick="hideSearchPannel(event)" style="grid-area: hidePannel;">
+                    <p><<</p>
                 </div>
                     
                 <div class="sortingSection" style="grid-area: sort;"> 
@@ -516,46 +518,8 @@
                 grid-template: 
                 "pannel hidePannel sort" 100% / fit-content(10em) 1.25em auto;
             }
-            #subjects{
-                font-size: 0.6em;
-                display: flex;
-                width: 320rem;
-            }
-            #subjects > div{
-                border: 1px solid #4D4D4D;
-                text-align: center;
-                height: 2em;
-
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                flex-grow: 1;
-                flex-basis: 40rem;
-
-            }
-            .TECH {
-                background-color: #333333;
-            }
-            .LANGUAGE {
-                background-color: #D643A5;
-            }
-            .SOCSCIENCE {
-                background-color: #00A5CB;
-            }
-            .ENGLISH {
-                background-color: #5E5D9A;
-            }
-            .MATH {
-                background-color: #C22126;
-            }
-            .SCIENCE {
-                background-color: #E27A25;
-            }
-            .ART {
-                background-color: #FBD703;
-            }
-            .HPE {
-                background-color: #62A444;
+            .yearGroupTab > div {
+                box-sizing: border-box;
             }
             div#topborder {
                 display: grid;
@@ -578,6 +542,26 @@
             }
             .material-icons {
                 font-size: 1.5em;
+            }
+            div.student {
+                margin: 2px 0;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 90%;
+                height: 1.25em;
+                border-radius: 1em;    
+                padding: 0 2.5px;
+                background-color: #FFFFFF;
+                border: 1px solid #4D4D4D;     
+            }
+            .coverageCheck {
+                color: #FFFFFF;
+                width: 16rem;
+                height: 16rem;
+                border-radius: 50%;
+                background-color: #40F364;  
+                font-size: 0.75em;  
             }
             .classes > div {
                 
@@ -699,7 +683,7 @@
         // Declare all variables
         var i, tabcontent, tablinks;
 
-        // Get all elements with class="tabcontent" and hide them
+        // Get all elements with class="yearGroupTab" and hide them
         tabcontent = document.getElementsByClassName("yearGroupTab");
         for (i = 0; i < tabcontent.length; i++) {
             tabcontent[i].style.display = "none";
@@ -716,19 +700,23 @@
         e.currentTarget.className += " selected";
     }
     function hideSearchPannel(e) {
+
         //hides pannel
         var pannels = document.getElementsByClassName("searchPannel");
-        
+
         for (x in pannels) {
             if (x != 'length' & x != 'item' & x != "namedItem") {
                 if (pannels[x].style.display == "") {
                     pannels[x].style.display = "none";
+                    e.target.firstElementChild.innerHTML = ">>";
                 }
                 else if (pannels[x].style.display == "grid") {
                     pannels[x].style.display = "none";
+                    e.target.firstElementChild.innerHTML = ">>";
                 }
                 else if (pannels[x].style.display == "none") {
                     pannels[x].style.display = "grid";
+                    e.target.firstElementChild.innerHTML = "<<";
                 }
             }
         }

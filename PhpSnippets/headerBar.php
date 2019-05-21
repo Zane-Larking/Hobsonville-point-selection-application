@@ -40,7 +40,7 @@
         <div id ="ZealussLogo" class = "Logo">
             <img src="Images/ZealussLogo.png" height="25rem">
         </div>
-        <nav>
+        <nav id="hNav">
             <a href="ModulesAndSpins.php">Modules & Spins</a>
             <a href="floortimes.php">FloorTimes</a>
             <a href="projects.php">Projects</a>

@@ -58,39 +58,19 @@ function findAncestor(el, selector) {
     }
 }
 
-function CreateSelectorFromMouseEvent(e, end, siblingOfEnd) {
+function getElFromCommonAncesterChild(e, ancSibClass /*Ancester's sibling (has same parent)*/, directAncName) {
     console.log(e);
     //console.log(findAncestor(e.targert, ));
     //format information from the 'MouseEvent' object (stored as 'e') to use as a CSS selector 
-    mappedE = e.path.reverse().slice(3,-1).map((x) => {
-        let output = [x.localName];
-        let idName = [];
-        if (x.id != "") {
-            idName = x.id.split(" ");
-        }
-        idName.forEach(e => {
-            output.push("#" + e);
-        });
-        let className = [];
-        if (x.className != "") {
-            className = x.className.split(" ");
-        }
-        className.forEach(e => {
-            output.push("." + e);
-        });
-        
-        return output.join("");
-    });
+    console.log(e.path);
     
-    /* ===== debugging ===== */
-    console.log(mappedE);
-    console.log(mappedE.slice(0, mappedE.indexOf(end)).concat([siblingOfEnd]).join(" "));
+    // ================
+    ancSib = e.path.find((x) => x.className == ancSibClass);
+    console.log(ancSib);
+    directAnc = ancSib.nextElementSibling;
+    console.log(directAnc);
 
-    //output
-    return mappedE
-    .slice(0, mappedE.indexOf(end))
-    .concat([siblingOfEnd])
-    .join(" ");
+    return directAnc;
 }
 var PriorityDDBtnFunct = function (e) {
     /* ===== OLD CODE FIXED UP ===== */
@@ -103,7 +83,7 @@ var PriorityDDBtnFunct = function (e) {
     //console.log(e);
     //console.log(e.target.parentElement.parentElement.nextElementSibling.nextElementSibling.atributes);
     //let pannel = e.target.parentElement.parentElement.nextElementSibling;
-    let pannel = document.querySelector(CreateSelectorFromMouseEvent(e, "div.TallyBar", "div.DropdownClasses"));
+    let pannel = getElFromCommonAncesterChild(e, "TallyBar", "div#FirstChoicesDropdownClasses");
     console.log(pannel);
     console.log("data collapsed attribute: "+ pannel.getAttribute('data-collapsed'));
     if (pannel.getAttribute('data-collapsed') == null) {
@@ -137,28 +117,11 @@ var PriorityDDBtnFunct = function (e) {
 }
 
 var PeriodDDBtnFunct = function (e) {
-    /* ===== debugging ===== */
-    //console.log(mappedE);
-    //console.log(mappedE.slice(0, mappedE.indexOf("div.ClassBar.HeaderBar")).concat(["div.ClassDropdownDescription"]).join(" "));
-
-    /* ===== OLD CODE FIXED UP ===== */
     var temp = e.target;
     if (e.target.childElementCount = 0) {
         temp = e.target.firstChild;
     }
-    // console.log("Period test");
-    // console.log(e);
-    // console.log(temp.parentElement.parentElement.nextElementSibling.nextElementSibling.atributes);
-    // let pannel = temp.parentElement.parentElement.nextElementSibling.nextElementSibling;
-    
-    /* ===== OLD CODE ===== */
-    // console.log("Period test");
-    // console.log(e);
-    // console.log(e.target.parentElement.parentElement.nextElementSibling.nextElementSibling.atributes);
-    // let pannel = e.target.parentElement.parentElement.nextElementSibling.nextElementSibling;
-    
-    /* ===== Logically Flawed Code ===== */
-    let pannel = document.querySelector(CreateSelectorFromMouseEvent(e, "div.PeriodBar.HeaderBar", "div.DropdownClasses"));
+    let pannel = getElFromCommonAncesterChild(e, "PeriodBar HeaderBar", "div.DropdownClasses");
     
     console.log("data collapsed attribute: "+ pannel.getAttribute('data-collapsed'));
     if (pannel.getAttribute('data-collapsed') == null) {

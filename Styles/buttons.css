@@ -55,6 +55,7 @@
     align-self: center;
 
     position: inherit;
+    margin: -1rem;
     width: 25rem;
     min-height: 25rem;
     background-color: rgb(80, 80, 80);
@@ -62,7 +63,6 @@
     -webkit-clip-path: polygon(65% 30%, 75% 40%, 50% 70%, 25% 40%, 35% 30%, 50% 47.5%);
 }
 .ClassDropdownButton {
-    padding-left: 0.25em;
     display: flex;
     justify-content: center;
 }

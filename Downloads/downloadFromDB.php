@@ -9,11 +9,11 @@
         return true;
     }
     
-    function setDownloadAsHeader($filename) {
+    function setDownloadAsHeader($fileName) {
         if(headers_sent())
             return false;
     
-        header('Content-disposition: attachment; filename=' . $filename.'.csv');
+        header('Content-disposition: attachment; filename=' . $fileName.'.csv');
         return true;
     }
 
@@ -39,7 +39,7 @@
     }
 
 
-    function csvFileFromResult($stream, $result, $showColumnHeaders = true) {
+    function csvFileFromResult($stream, $result, $showColumnHeaders) {
         $fp = fopen($stream, 'w');
         $rc = csvFromResult($fp, $result, $showColumnHeaders);
         fclose($fp);
@@ -47,9 +47,9 @@
     }
 
 
-    function downloadCsvFromResult($result, $Filename = 'data.csv', $showColumnHeaders = true) {
+    function downloadCsvFromResult($result, $fileName = 'data', $showColumnHeaders = true) {
         setExcelContentType();
-        setDownloadAsHeader($Filename);
+        setDownloadAsHeader($fileName);
         return csvFileFromResult('php://output', $result, $showColumnHeaders);
     }
 
