@@ -1,0 +1,45 @@
+.scrollPannel {
+    display: block;
+    align-items: center;
+
+    overflow-y: scroll;
+    height: auto;
+    padding: 2rem 2rem 2rem 10rem;
+}
+/* width */
+.scrollPannel::-webkit-scrollbar, .classes::-webkit-scrollbar {
+    width: 0.5em;
+    height: 0.5em;
+}
+
+/* Track */
+.scrollPannel::-webkit-scrollbar-track, .classes::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    padding: 0 5px;
+    border-radius: 0.5em;
+}
+
+/* Handle */
+.scrollPannel::-webkit-scrollbar-thumb, .classes::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 0.5em;
+}
+
+/* Handle on hover */
+.scrollPannel::-webkit-scrollbar-thumb:hover, .classes::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+.scrollPannel p {
+    font-size: 0.75em;
+    flex-grow: 0.8;
+}
+
+/* Button to hide pannel */
+.hidePannel {
+    display: flex;
+    border: 1px solid #4D4D4D;
+    margin: -1rem;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+} 

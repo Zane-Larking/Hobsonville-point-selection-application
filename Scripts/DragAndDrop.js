@@ -157,6 +157,7 @@ function onMouseDown(e) {
 
     item.style.width = getContentWidth(item);
     item.style.position = "absolute";
+    item.zIndex ="100000";
     
 
     //Add a an event listener to the bounding container when the user clicks an element.
@@ -182,6 +183,7 @@ function onMouseUp(e, item) {
     isMouseDown = false;
     item.style.backgroundColor = "#FFFFFF";
     item.style.width = "";
+    item.zIndex ="10";
 
     
     //Add a an event listener to the bounding container when the user clicks an element.
