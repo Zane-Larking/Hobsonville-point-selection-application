@@ -11,18 +11,18 @@
     <link rel="stylesheet" type="text/css" href="Styles/main.css">
     <!--<link rel="stylesheet" type="text/css" href="Styles/CreateClassesStyle.css">-->
     <link rel="stylesheet" type="text/css" href="Styles/nav.css">
-    <link rel="stylesheet" type="text/css" href="Styles/searchPannel.css">
-    <link rel="stylesheet" type="text/css" href="Styles/scrollPannel.css">
-    <link rel="stylesheet" type="text/css" href="Styles/subjectsKey.css">
+    <link rel="stylesheet" type="text/css" href="Styles/search-pannel.css">
+    <link rel="stylesheet" type="text/css" href="Styles/scroll-pannel.css">
+    <link rel="stylesheet" type="text/css" href="Styles/subjects-key.css">
   
     <?php
-        include "DataBase/Databaseconnect.php";
-        include "PhpSnippets/classesConstants.php";
+        include "DataBase/database-connect.php";
+        include "PhpSnippets/classes-constants.php";
     ?>
 </head>
 <body>
     <?php
-        include ('PhpSnippets/headerBar.php');	
+        include ('PhpSnippets/header-bar.php');	
     ?>
     <div id="main">
         <div id ="mainGrid">
@@ -81,7 +81,7 @@
                     while ($row = mysqli_fetch_array($result)){
                         echo '
                         <div class="student '.$row['FIRST_NAME'].'-'.$row['LAST_NAME'].'">
-                            <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                            <img src="Images/portrait_placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                             <p>'.$row['FIRST_NAME'].' '.$row['LAST_NAME'].'</p>
                             <div class="coverageCheck">
                                 <div class="material-icons">check</div>
@@ -93,14 +93,14 @@
                                 
                         <!--
                         <div class="student 1">
-                            <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                            <img src="Images/portrait_placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                             <p>Student 1</p>
                             <div class="coverageCheck">
                                 <div class="material-icons">check</div>
                             </div>
                         </div>
                         <div class="student 1">
-                            <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                            <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                             <p>Student 1</p>
                             <div class="coverageCheck">
                                 <div class="material-icons">check</div>

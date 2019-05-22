@@ -4,19 +4,19 @@
 		<title>"Students name's" Selections</title>
 		<link rel="stylesheet" type="text/css" href="Styles/main.css">
 		<link rel="stylesheet" type="text/css" media="screen" href="Styles/nav.css" />
-		<link rel="stylesheet" type="text/css" media="screen" href="Styles/TeacherHubVerification.css" />
+		<link rel="stylesheet" type="text/css" media="screen" href="Styles/teacher-hub-verification.css" />
 	</head>
 
   	<body>
   		<?php
-		include ('PhpSnippets/headerBar.php');	
+		include ('PhpSnippets/header-bar.php');	
 		?>
 
 	    <font face = "Verdana">
 		    <div id="main">
 			    <div id ="mainGrid">
 				    <div id = "head">
-						<img src="Images/HPSSLogo.png" alt="HPSS Logo" style="height: 5em">
+						<img src="Images/hpss-logo.png" alt="HPSS Logo" style="height: 5em">
 						<div>
 							<h1><font face ="Verdana"><?php echo str_replace("-", " ", $_GET['student'])?>'s Selections</font></h1>
 						</div>

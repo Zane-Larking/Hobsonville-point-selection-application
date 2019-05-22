@@ -7,21 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" type="text/css" media="screen" href="Styles/buttons.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="Styles/StudentClassSelect.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="Styles/student-class-select.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="Styles/nav.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="Styles/main.css" />
 
     <script src="Scripts/main.js"></script>
-    <script src="Scripts/SubmitSelections.js"></script>
-    <script src="Scripts/datetime.js"></script>
+    <script src="Scripts/submit-selections.js"></script>
+    <script src="Scripts/date-time.js"></script>
 
 
 </head>
 <body>
 	<?php
-        include ('PhpSnippets/headerBar.php');
-        include ('DataBase/Databaseconnect.php');
-        include ('PhpSnippets/classesConstants.php');
+        include ('PhpSnippets/header-bar.php');
+        include ('DataBase/database-connect.php');
+        include ('PhpSnippets/classes-constants.php');
         $Qual = isset($_GET["Qual"]) ? $_GET["Qual"]: 0;
         $moduleCount = 	$CPYL['modules'][$Qual];
         $spinCount =    $CPYL['spins'][$Qual];
@@ -530,10 +530,10 @@
     </article>
 
     <!--Scripts-->
-    <script src="Scripts/CurriculumCoverage.js"></script>
-    <script src="Scripts/DropDownBtn.js"></script>
-    <script src="Scripts/Select.js"></script>
-    <script src="Scripts/Dismiss.js"></script>
+    <script src="Scripts/curriculum-coverage.js"></script>
+    <script src="Scripts/drop-down-btn.js"></script>
+    <script src="Scripts/select.js"></script>
+    <script src="Scripts/dismiss.js"></script>
 
 </body>
 </html>
