@@ -3,12 +3,12 @@
   <head>
     <title>Teacher Student Class Check</title>
     <link rel="stylesheet" type="text/css" href="Styles/main.css">
-  <link rel="stylesheet" type="text/css" href="Styles/CreateClassesStyle.css">
+  <link rel="stylesheet" type="text/css" href="Styles/create-classes-style.css">
   <link rel="stylesheet" type="text/css" href="Styles/nav.css">
   
 <?php
-include "DataBase/Databaseconnect.php";
-include "PhpSnippets/classesConstants.php";
+include "DataBase/database-connect.php";
+include "PhpSnippets/classes-constants.php";
 
 ?>
 
@@ -16,7 +16,7 @@ include "PhpSnippets/classesConstants.php";
   <body>
     <?php
     
-    include 'PhpSnippets/headerBar.php';
+    include 'PhpSnippets/header-bar.php';
     ?>
   
   <br>
@@ -26,7 +26,7 @@ include "PhpSnippets/classesConstants.php";
     <div id = "main">
     <font face = "Verdana">
     <div style="background-color:White;width:60%;height:auto; margin-left:20%; border:1px solid black;padding:15px;">
-    <img src="Images/HPSSLogo.png" alt="HPSS Logo" style="height: 100px">
+    <img src="Images/hpss-logo.png" alt="HPSS Logo" style="height: 100px">
     <h1><font face ="Verdana">Class Submissions</font></h1>
 
 

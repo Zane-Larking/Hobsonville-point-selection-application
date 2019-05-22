@@ -2,22 +2,22 @@
 <html lang="en">
 	<head>
 		<title>Student Homepage</title>
-		<link rel="stylesheet" type="text/css" href="Styles/CreateClassesStyle.css">
+		<link rel="stylesheet" type="text/css" href="Styles/create-classes-style.css">
 		<link rel="stylesheet" type="text/css" href="Styles/main.css">
 		<link rel="stylesheet" type="text/css" media="screen" href="Styles/nav.css" />
-		<link rel="stylesheet" type="text/css" media="screen" href="Styles/StudentsHomepage.css" />
+		<link rel="stylesheet" type="text/css" media="screen" href="Styles/students-homepage.css" />
 
 	</head>
 	<body>
 		<?php
-		include ('PhpSnippets/headerBar.php');
+		include ('PhpSnippets/header-bar.php');
 		?>
 
 		<font face = "Verdana">
 		<div id ="main">
 			<div id="mainGrid">
 				<div id = "head">
-					<img src="Images/HPSSLogo.png" alt="HPSS Logo" style="height: 5em">
+					<img src="Images/hpss-logo.png" alt="HPSS Logo" style="height: 5em">
 					<div>
 						<h1><font face ="Verdana">Student Homepage</font></h1>
 					</div>
