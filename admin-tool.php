@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8"/>
     <title>Admin Tools</title>
-	<link rel="stylesheet" type="text/css" href="Styles/admin_tool.css">
+	<link rel="stylesheet" type="text/css" href="Styles/admin-tool.css">
 	<link rel="stylesheet" type="text/css" href="Styles/nav.css">
 	<link rel="stylesheet" type="text/css" href="Styles/main.css">
 	
@@ -13,7 +13,7 @@
 
 <body>
 	<?php
-        include ('PhpSnippets/headerBar.php');
+        include ('PhpSnippets/header-bar.php');
 	?>
 	<div id ="main">
 		<div id= "mainGrid">
@@ -22,7 +22,7 @@
 				list & Admin name -->
 					<div id="teacherList" >
 						<header>
-							<img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 50px;justify-self: center;border-radius: 50%;">
+							<img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 50px;justify-self: center;border-radius: 50%;">
 							<hgroup>
 							<h1> Admin Name </h1>
 							<!-- <h2> Profile </h2> -->
@@ -40,35 +40,35 @@
 							-->
 				
 							<div>
-								<img src="Images/studentPic.png" width=20px height=20px>
+								<img src="Images/student-pic.png" width=20px height=20px>
 								<h4>Teacher 1</h4> 
-								<img src="Images/redDot.png" alt="gears" width=5px height=5px>
+								<img src="Images/red-dot.png" alt="gears" width=5px height=5px>
 							</div>
 
 							<div>
-								<img src="Images/studentPic.png" width=20px height=20px>
+								<img src="Images/student-pic.png" width=20px height=20px>
 								<h4>Teacher 2</h4> 
-								<img src="Images/redDot.png" alt="gears" width=5px height=5px>
+								<img src="Images/red-dot.png" alt="gears" width=5px height=5px>
 							</div>
 							<div>
-								<img src="Images/studentPic.png" width=20px height=20px>
+								<img src="Images/student-pic.png" width=20px height=20px>
 								<h4>Teacher 3</h4> 
-								<img src="Images/redDot.png" alt="gears" width=5px height=5px>
+								<img src="Images/red-dot.png" alt="gears" width=5px height=5px>
 							</div>
 							<div>
-								<img src="Images/studentPic.png" width=20px height=20px>
+								<img src="Images/student-pic.png" width=20px height=20px>
 								<h4>Teacher 4</h4> 
-								<img src="Images/redDot.png" alt="gears" width=5px height=5px>
+								<img src="Images/red-dot.png" alt="gears" width=5px height=5px>
 							</div>
 							<div>
-								<img src="Images/studentPic.png" width=20px height=20px>
+								<img src="Images/student-pic.png" width=20px height=20px>
 								<h4>Teacher 5</h4> 
-								<img src="Images/redDot.png" alt="gears" width=5px height=5px>
+								<img src="Images/red-dot.png" alt="gears" width=5px height=5px>
 							</div>
 							<div>
-								<img src="Images/studentPic.png" width=20px height=20px>
+								<img src="Images/student-pic.png" width=20px height=20px>
 								<h4>Teacher 6</h4> 
-								<img src="Images/redDot.png" alt="gears" width=5px height=5px>
+								<img src="Images/red-dot.png" alt="gears" width=5px height=5px>
 							</div>
 				
 						</div>
@@ -89,7 +89,7 @@
 					<div id="Content">
 						<div id="topBar">
 							<header>
-								<img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 50px; border-radius: 50%;">
+								<img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 50px; border-radius: 50%;">
 								<h1> Teacher Name </h1>
 								<h2> Subject </h2>
 								<h2> Years </h2>

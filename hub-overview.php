@@ -10,20 +10,20 @@
 
     <link rel="stylesheet" type="text/css" href="Styles/main.css">
     <link rel="stylesheet" type="text/css" href="Styles/nav.css">
-    <link rel="stylesheet" type="text/css" href="Styles/searchPannel.css">
-    <link rel="stylesheet" type="text/css" href="Styles/studentElements.css">
+    <link rel="stylesheet" type="text/css" href="Styles/search-pannel.css">
+    <link rel="stylesheet" type="text/css" href="Styles/student-elements.css">
   
     <?php
         //Run other php files
-        include "DataBase/Databaseconnect.php";
-        include "PhpSnippets/classesConstants.php";
-        include "PhpSnippets/applicationHandling.php";
+        include "DataBase/database-connect.php";
+        include "PhpSnippets/classes-constants.php";
+        include "PhpSnippets/application-handling.php";
 
     ?>
 </head>
 <body>
     <?php
-        include ('PhpSnippets/headerBar.php');
+        include ('PhpSnippets/header-bar.php');
         $name = "Zane Larking";
     ?>
     <div id="main">
@@ -32,7 +32,7 @@
             <div class = "searchPannel roundedContainer">
                 <div class ="sectionHeader roundedHeader">
                     <div id="profile">
-                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 2em; border-radius: 50%;">
+                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 2em; border-radius: 50%;">
                         <div class="name"><?php echo $name; ?></div>
                     </div>
                     <div class="searchBar">
@@ -48,7 +48,7 @@
                         while ($row = mysqli_fetch_array($result)){
                             echo '
                             <div class="student '.$row['FIRST_NAME'].'-'.$row['LAST_NAME'].'" onclick = "toggleTabs(event, '."'".'currentStudentSelections'."', '".$row['FIRST_NAME'].'-'.$row['LAST_NAME']."'".')">
-                                <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                 <p>'.$row['FIRST_NAME'].' '.$row['LAST_NAME'].'</p>
                                 <div class="coverageCheck">
                                     <div class="material-icons">check</div>
@@ -73,7 +73,7 @@
             <div class = "'.$row['FIRST_NAME'].'-'.$row['LAST_NAME'].' studentSelections roundedContainer">
                 <div class = "selectionsHeader sectionHeader roundedHeader">
                     <div style = "align-items: center; display: flex;  grid-area: info;">
-                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 40rem; border-radius: 50%;">
+                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 40rem; border-radius: 50%;">
                         <h3>'.$row['FIRST_NAME'].' '.$row['LAST_NAME'].' | Year '.$row['YEAR_LEVEL'].'</h3>         
                     </div>
                     ';
