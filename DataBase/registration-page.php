@@ -1,6 +1,6 @@
 <?php
 
-include 'Databaseconnect.php';
+include 'database-connect.php';
 
 if ($_POST['register'])
 {

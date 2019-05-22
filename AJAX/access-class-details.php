@@ -1,5 +1,5 @@
 <?php
-    include "../DataBase/Databaseconnect.php";
+    include "../DataBase/database-connect.php";
     $q = $_REQUEST['q'];
 
     if ($q !== "") {

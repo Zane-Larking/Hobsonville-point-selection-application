@@ -43,7 +43,7 @@ var submitSelections = function(classType) {
     //creates a form and submits it
     var form = document.createElement("form");
     form.setAttribute("method", "POST");
-    form.setAttribute("action", "DataBase/SubmitSelections.php")
+    form.setAttribute("action", "DataBase/submit-selections.php")
 
     //create a hidden input field
     var makeInputField = function(name, value) {

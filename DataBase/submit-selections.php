@@ -1,5 +1,5 @@
 <?php
-    include ('Databaseconnect.php');
+    include ('database-connect.php');
 
 
     // function alert($msg) {
@@ -32,7 +32,7 @@
                 die ("Submission successful. But application couldn't be submitted!");
             }
         }
-        header("location: ../SubmissionSuccessful.php");
+        header("location: ../submission-successful.php");
         
         
     } else {

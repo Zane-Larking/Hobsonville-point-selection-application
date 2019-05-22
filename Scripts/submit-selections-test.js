@@ -9,7 +9,7 @@ var submitSelections = function(classType) {
     console.log(selections);
 
     var link = document.createElement("a");
-    link.setAttribute("href", "DataBase/SubmitSelections.php?selections=" + encodeURI(selections) + "&classType=" + encodeURI(classType));
+    link.setAttribute("href", "DataBase/submit-selections.php?selections=" + encodeURI(selections) + "&classType=" + encodeURI(classType));
     link.click();
     //creates a link and clicks it
 }

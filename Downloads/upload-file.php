@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
 
                 //move file
                 move_uploaded_file($fileTmpName, $fileDestination);
-                header("location: ../ManageClasses.php?uploadsuccessful");
+                header("location: ../manage-classes.php?uploadsuccessful");
             } else {
                 echo "File size too large. Please contact developer at zane.larking@hobsonvillepoint.school.nz";
             }

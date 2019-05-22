@@ -2,7 +2,7 @@
   session_start();
 
   if (!isset($_SESSION['access_token'])) {
-    header('Location: Login.php');
+    header('Location: login.php');
     exit();
   }
     if ($_SERVER["REQUEST_METHOD"] == "GET") {
@@ -35,13 +35,13 @@
 <header>
     <div id="grid-container">
         <div id ="SchoolLogo" class = "Logo">
-            <img src="Images/HPSSLogo.png" height="25rem">
+            <img src="Images/hpss-logo.png" height="25rem">
         </div>
         <div id ="ZealussLogo" class = "Logo">
-            <img src="Images/ZealussLogo.png" height="25rem">
+            <img src="Images/zealuss-logo.png" height="25rem">
         </div>
         <nav id="hNav">
-            <a href="ModulesAndSpins.php">Modules & Spins</a>
+            <a href="modules-and-spins.php">Modules & Spins</a>
             <a href="floortimes.php">FloorTimes</a>
             <a href="projects.php">Projects</a>
             <a href="index.php">Home</a>

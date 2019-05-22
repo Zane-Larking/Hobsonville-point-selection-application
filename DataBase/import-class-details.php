@@ -1,5 +1,5 @@
 <?php
-include "../DataBase/Databaseconnect.php";
+include "../DataBase/database-connect.php";
 if (isset($_POST['submit'])) {
     //Convient view for debugging 
     // header('content-type: text/plain');
@@ -107,7 +107,7 @@ if (isset($_POST['submit'])) {
                 }
 
                 fclose($f);
-                header("location: ../ManageClasses.php?uploadsuccessful");
+                header("location: ../manage-classes.php?uploadsuccessful");
             } else {
                 echo "File size too large. Please contact developer at zane.larking@hobsonvillepoint.school.nz";
             }

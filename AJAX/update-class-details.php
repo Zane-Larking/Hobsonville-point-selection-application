@@ -1,5 +1,5 @@
 <?php
-    include "../DataBase/Databaseconnect.php";
+    include "../DataBase/database-connect.php";
     $id = str_replace ("'" , "''" , $_REQUEST['id']);
     $code = str_replace ("'" , "''" , $_REQUEST['code']);
     $name = str_replace ("'" , "''" , $_REQUEST['name']);
