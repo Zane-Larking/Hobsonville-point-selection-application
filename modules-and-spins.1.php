@@ -9,19 +9,19 @@
     <link rel="stylesheet" type="text/css" media="screen" href="Styles/main.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="Styles/buttons.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="Styles/nav.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="Styles/StudentClassSelect.1.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="Styles/student-classSelect.1.css" />
 
     <script src="Scripts/main.js"></script>
-    <script src="Scripts/SubmitSelections.js"></script>
+    <script src="Scripts/submit-selections.js"></script>
     <script src="Scripts/datetime.js"></script>
 
 
 </head>
 <body>
 	<?php
-        include ('PhpSnippets/headerBar.php');
-        include ('DataBase/Databaseconnect.php');
-        include ('PhpSnippets/classesConstants.php');
+        include ('PhpSnippets/header-bar.php');
+        include ('DataBase/database-connect.php');
+        include ('PhpSnippets/classes-constants.php');
         $Qual = isset($_GET["Qual"]) ? $_GET["Qual"]: 0;
         $moduleCount = 	$CPYL['modules'][$Qual];
         $spinCount =    $CPYL['spins'][$Qual];
@@ -367,7 +367,7 @@
             <div id="Application">
                 <textarea placeholder = "Optional: You can write an application describing why you should recieve your selected classes."></textarea>
                 <input id="submitSelections" type="submit" onclick="if(event.preventDefault) event.preventDefault(); submitSelections('M/S');" disabled>
-                <a href="DataBase/SubmitSelections.php?data=classes">Click here to download the EXCEL CSV file of your class selections</a><br>
+                <a href="DataBase/submit-selections.php?data=classes">Click here to download the EXCEL CSV file of your class selections</a><br>
             </div>
             <?php
                 //date_default_timezone_set('Pacific/Auckland');
@@ -378,10 +378,10 @@
     </article>
 
     <!--Scripts-->
-    <script src="Scripts/CurriculumCoverage.js"></script>
-    <script src="Scripts/DropDownBtn.1.js"></script>
-    <script src="Scripts/Select.1.js"></script>
-    <script src="Scripts/Dismiss.js"></script>
+    <script src="Scripts/curriculum-coverage.js"></script>
+    <script src="Scripts/dropdown-btn.1.js"></script>
+    <script src="Scripts/select.1.js"></script>
+    <script src="Scripts/dismiss.js"></script>
 
 </body>
 </html>
