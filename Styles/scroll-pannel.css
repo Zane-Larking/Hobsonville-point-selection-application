@@ -43,3 +43,15 @@
     display: flex;
     align-items: center;
 } 
+.scrollItem {
+    margin: 2px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    height: 1.25em;
+    border-radius: 1em;    
+    padding: 0 2.5px;
+    background-color: #FFFFFF;
+    border: 1px solid #4D4D4D;     
+}

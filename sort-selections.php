@@ -80,8 +80,8 @@
                     $result = mysqli_query($dbconnect, $query);
                     while ($row = mysqli_fetch_array($result)){
                         echo '
-                        <div class="student '.$row['FIRST_NAME'].'-'.$row['LAST_NAME'].'">
-                            <img src="Images/portrait_placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                        <div class="scrollItem student '.$row['FIRST_NAME'].'-'.$row['LAST_NAME'].'">
+                            <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                             <p>'.$row['FIRST_NAME'].' '.$row['LAST_NAME'].'</p>
                             <div class="coverageCheck">
                                 <div class="material-icons">check</div>
@@ -93,7 +93,7 @@
                                 
                         <!--
                         <div class="student 1">
-                            <img src="Images/portrait_placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                            <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                             <p>Student 1</p>
                             <div class="coverageCheck">
                                 <div class="material-icons">check</div>
@@ -189,59 +189,59 @@
                                 </div>
                                 <div class="students">
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                 </div>
@@ -261,59 +261,59 @@
                                 </div>
                                 <div class="students">
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                 </div>
@@ -327,23 +327,23 @@
                                 </div>
                                 <div class="students">
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                 </div>
@@ -354,59 +354,59 @@
                                 </div>
                                 <div class="students">
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                     <div class="student 1">
-                                        <img src="Images/Portrait_Placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                        <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                         <p>Student 1</p>
                                     </div>
                                 </div>
@@ -543,18 +543,6 @@
             .material-icons {
                 font-size: 1.5em;
             }
-            div.student {
-                margin: 2px 0;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                width: 90%;
-                height: 1.25em;
-                border-radius: 1em;    
-                padding: 0 2.5px;
-                background-color: #FFFFFF;
-                border: 1px solid #4D4D4D;     
-            }
             .coverageCheck {
                 color: #FFFFFF;
                 width: 16rem;
@@ -674,7 +662,7 @@
 
             </style>
     </div>
-    <script src="Scripts/DragAndDrop.js"></script>
+    <script src="Scripts/drag-and-drop.js"></script>
     <script>
 
 
