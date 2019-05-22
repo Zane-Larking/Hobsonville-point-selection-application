@@ -519,7 +519,7 @@
             <div id="Application">
                 <textarea placeholder = "Optional: You can write an application describing why you should recieve your selected classes."></textarea>
                 <input id="submitSelections" type="submit" onclick="if(event.preventDefault) event.preventDefault(); submitSelections('M/S');" disabled>
-                <a href="DataBase/SubmitSelections.php?data=classes">Click here to download the EXCEL CSV file of your class selections</a><br>
+                <a href="DataBase/submit-selections.php?data=classes">Click here to download the EXCEL CSV file of your class selections</a><br>
             </div>
             <?php
                 //date_default_timezone_set('Pacific/Auckland');
