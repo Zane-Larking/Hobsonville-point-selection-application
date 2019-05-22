@@ -8,26 +8,26 @@
     <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="Styles/main.css">
     <link rel="stylesheet" type="text/css" media="screen" href="Styles/nav.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="Styles/ClassManagement.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="Styles/searchPannel.css" />
-    <link rel="stylesheet" type="text/css" href="Styles/subjectsKey.css">
-    <link rel="stylesheet" type="text/css" href="Styles/scrollPannel.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="Styles/class-management.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="Styles/search-pannel.css" />
+    <link rel="stylesheet" type="text/css" href="Styles/subjects-key.css">
+    <link rel="stylesheet" type="text/css" href="Styles/scroll-pannel.css">
     
     
 
     <?php
-        include "DataBase/Databaseconnect.php";
-        include "PhpSnippets/classesConstants.php";
+        include "DataBase/database-connect.php";
+        include "PhpSnippets/classes-constants.php";
     ?>
 </head>
 <body>
     <?php
-    include ('PhpSnippets/headerBar.php');	
+    include ('PhpSnippets/header-bar.php');	
     ?>
 
     <div id="main">
         <div id="modalImport" class="modal">
-            <form class="modalContent" action="DataBase/importClassDetails.php" method="post" enctype="multipart/form-data">
+            <form class="modalContent" action="DataBase/import-class-details.php" method="post" enctype="multipart/form-data">
                 <span class="close">&times;</span>
                 <p>Make sure that the file you import is a csv file with the following column headers:<br>
                 CODE, NAME, QUAL, TYPE, SUBJECT1, SUBJECT2, TEACHER1, TEACHER2 and DESCRIPTION.<br>
@@ -74,7 +74,7 @@
                 </button>
                 <button id="exportBtn" class="roundedContainer tooltip">
                     <div class="tooltipText">Export Classes</div>
-                    <a href="Downloads/downloadFromDB.php/?data=classes"><i class="fas fa-upload"></i></a>
+                    <a href="Downloads/download-from-db.php/?data=classes"><i class="fas fa-upload"></i></a>
                 </button>
                 <button id="importBtn" class="roundedContainer tooltip" onclick="importClasses()">
                     <div class="tooltipText">Import Classes</div>
@@ -254,7 +254,7 @@
                 }
             }
             console.log(data);
-            postDoc("AJAX/updateClassDetails.php", data, updateClassDetails);
+            postDoc("AJAX/update-class-details.php", data, updateClassDetails);
         }
     }
     
@@ -361,7 +361,7 @@
             if (unsavedChanges) {
                 unsavedChanges = false;
             }
-            getDoc("AJAX/accessClassDetails.php/?q="+search, loadClassDetails);
+            getDoc("AJAX/access-class-details.php/?q="+search, loadClassDetails);
 
 
             // Get all elements with class="class" and remove the class "active"
