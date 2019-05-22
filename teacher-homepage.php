@@ -5,7 +5,7 @@
 		<link rel="stylesheet" type="text/css" href="Styles/create-classes-style.css">
 		<link rel="stylesheet" type="text/css" href="Styles/main.css">
 		<link rel="stylesheet" type="text/css" media="screen" href="Styles/nav.css" />
-		<link rel="stylesheet" type="text/css" media="screen" href="Styles/teachers-homepage.css" />	
+		<link rel="stylesheet" type="text/css" media="screen" href="Styles/teacher-homepage.css" />	
 	</head>
 
   	<body>
