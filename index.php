@@ -32,7 +32,7 @@
             }
 
 
-            header('Location: teachers-homepage.php');
+            header('Location: teacher-homepage.php');
             exit();
         }
 
@@ -51,7 +51,7 @@
             $_SESSION['name'] = $row['NAME'];
             $_SESSION['id'] = $row['ID'];
 
-            header('Location: students-homepage.php');
+            header('Location: student-homepage.php');
             exit();
         }
 

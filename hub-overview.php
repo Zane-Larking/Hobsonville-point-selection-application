@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="Styles/main.css">
     <link rel="stylesheet" type="text/css" href="Styles/nav.css">
     <link rel="stylesheet" type="text/css" href="Styles/search-pannel.css">
-    <link rel="stylesheet" type="text/css" href="Styles/student-elements.css">
+    <link rel="stylesheet" type="text/css" href="Styles/scroll-pannel.css">
   
     <?php
         //Run other php files
@@ -41,13 +41,13 @@
                     </div>
                 </div>
                 <!-- List students in the search pannel -->
-                <div class="students">
+                <div class="scrollPannel students">
                     <?php
                         $query = "select FIRST_NAME, LAST_NAME, YEAR_LEVEL, 'SELECTIONS_M&S' from students where COACH = '".$name."';";
                         $result = mysqli_query($dbconnect, $query);
                         while ($row = mysqli_fetch_array($result)){
                             echo '
-                            <div class="student '.$row['FIRST_NAME'].'-'.$row['LAST_NAME'].'" onclick = "toggleTabs(event, '."'".'currentStudentSelections'."', '".$row['FIRST_NAME'].'-'.$row['LAST_NAME']."'".')">
+                            <div class="scrollItem student  '.$row['FIRST_NAME'].'-'.$row['LAST_NAME'].'" onclick = "toggleTabs(event, '."'".'currentStudentSelections'."', '".$row['FIRST_NAME'].'-'.$row['LAST_NAME']."'".')">
                                 <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                 <p>'.$row['FIRST_NAME'].' '.$row['LAST_NAME'].'</p>
                                 <div class="coverageCheck">
