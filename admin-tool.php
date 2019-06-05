@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -38,39 +38,33 @@
 						<div id="teachers"> <!-- Id for Teacher name list -->
 							<!--
 							Teacher Names
-							-->
-				
-							<div>
+							--> 
+							
+								<!--
+							<div class="KAMARCODE">
 								<img src="Images/student-pic.png" width=20px height=20px>
-								<h4>Teacher 1</h4> 
+								<h4>Name of Teacher</h4> 
 								<img src="Images/red-dot.png" alt="gears" width=5px height=5px>
-							</div>
+							</div> -->
 
-							<div>
+							<?php
+								include_once "DataBase/database-connect.php";
+								$query = "select * from teachers";
+								$result = mysqli_query($dbconnect, $query);
+								while($rows=mysqli_fetch_assoc($result))
+								{
+							?>
+							<?php
+								
+							?>
+							<div class=<?php echo "'".$rows['ID']."'"; ?>>
 								<img src="Images/student-pic.png" width=20px height=20px>
-								<h4>Teacher 2</h4> 
+								<h4><?php echo $rows['FIRST_NAME']; ?></h4> 
 								<img src="Images/red-dot.png" alt="gears" width=5px height=5px>
 							</div>
-							<div>
-								<img src="Images/student-pic.png" width=20px height=20px>
-								<h4>Teacher 3</h4> 
-								<img src="Images/red-dot.png" alt="gears" width=5px height=5px>
-							</div>
-							<div>
-								<img src="Images/student-pic.png" width=20px height=20px>
-								<h4>Teacher 4</h4> 
-								<img src="Images/red-dot.png" alt="gears" width=5px height=5px>
-							</div>
-							<div>
-								<img src="Images/student-pic.png" width=20px height=20px>
-								<h4>Teacher 5</h4> 
-								<img src="Images/red-dot.png" alt="gears" width=5px height=5px>
-							</div>
-							<div>
-								<img src="Images/student-pic.png" width=20px height=20px>
-								<h4>Teacher 6</h4> 
-								<img src="Images/red-dot.png" alt="gears" width=5px height=5px>
-							</div>
+							<?php
+								}
+							?>
 				
 						</div>
 
