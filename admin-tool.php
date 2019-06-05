@@ -107,11 +107,14 @@
 							<div class="block">
 								<h4> Class 1</h4>
 								<div> 
-									<p> Class Description- blah blah blah</p> 
+									<p> Class Description- blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah</p> 
 								</div>
 								<div class="suggestion">
 									<h4> Suggestion </h4>
 									<input value="" class="suggest" type="text" placeholder="Comment blah blah" padding=20rem>
+								</div>
+								<div class="send">
+									<h4>send</h4>
 								</div>
 							</div>
 							<div class="block">
@@ -119,11 +122,25 @@
 								<div> 
 									<p> Class Description- blah blah blah</p> 
 								</div>
+								<div class="suggestion">
+									<h4> Suggestion </h4>
+									<input value="" class="suggest" type="text" placeholder="Comment blah blah" padding=20rem>
+								</div>
+								<div class="send">
+									<h4>send</h4>
+								</div>
 							</div>
 							<div class="block">
 								<h4> Class 3</h4>
 								<div> 
 									<p> Class Description- blah blah blah</p> 
+								</div>
+								<div class="suggestion">
+									<h4> Suggestion </h4>
+									<input value="" class="suggest" type="text" placeholder="Comment blah blah" padding=20rem>
+								</div>
+								<div class="send">
+									<h4>send</h4>
 								</div>
 							</div>
 						</div>
