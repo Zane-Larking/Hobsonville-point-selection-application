@@ -72,7 +72,7 @@
 						<div id="functions">
 							<div id="add_teacher"> <!-- just a container, there are 3 in total -->
 								<!-- Button for Add Teacher Modal --> 
-								<button id="add_teacher_button"> Add Teacher </button>
+								<button id="add_teacher_button" onclick="openModal('add_teacher_modal')"> Add Teacher </button>
 								<div id="add_teacher_modal" class="modal">
 									<!-- Modal Content container -->
 									<div class="modal-content">
@@ -132,7 +132,61 @@
 
 
 							<div id="removeTeacher">
-								<h4> Remove Teacher </h4>
+								<button id="remove_teacher_button" onclick="openModal('remove_teacher_modal')"> Remove Teacher </button>
+								<div id="remove_teacher_modal" class="modal">
+									<!-- Modal Content container -->
+									<div class="modal-content">
+
+										<span class="close">&times;</span>
+										<h1> Remove Teacher </h1>
+										<p> The format of the text is... </p>
+										<!-- Insert form here -->
+										<form method="post" action="AJAX/add-teacher.php">
+										  First name:<br>
+										  <input type="text" name="firstname" placeholder="First name Eg: Zane">
+										  <br>
+										  Last name:<br>
+										  <input type="text" name="lastname" placeholder="Last name Eg: Larking">
+										  <br>
+										  Kamar Code:<br>
+										  <input type="text" name="kamar_code" placeholder="Kamar Code Eg: 456789">
+										  <br>
+										  Gmail:<br>
+										  <input type="text" name="gmail" placeholder="Google Email Eg: zane.larking@hobsonvillepoint.school.nz">
+										  <br>
+										  Have Hub:<br>
+										  <input type="radio" name="have_hub" value="Yes" checked> Yes
+										  <br>
+										  <input type="radio" name="have_hub" value="No"> No
+										  <br>
+										  Privilege Level <br>
+										  <select>
+											<option value="teacher"> Teacher </option>
+											<option value="moderator"> Moderator </option>
+											<option value="administrator"> Administrator </option>
+										  </select>
+										  <br>
+											
+											
+											
+											
+
+
+
+
+										  
+										  
+										  <br>
+										  <!--Work on getting these inputs: 
+										  kamar code, 
+										  gmail, 
+										  boolean of whether has hub/not, 
+										  privilege level choice: Teacher,Moderator, Administrator,   -->
+										  <input type="submit" value="Submit">
+										</form> 
+									</div>
+								</div>
+								
 							</div>
 							<div id="Export">
 								<img src="Images/export.png" width=40px height=40px>
@@ -205,7 +259,9 @@
 		</div>
 	</div>
 	
+	<script src="Scripts/modal.js"></script>
 	<script> 
+	/*
 	// Get the modal
 	var modal = document.getElementById("add_teacher_modal");
 
@@ -218,19 +274,19 @@
 	// When the user clicks the button, open the modal 
 	btn.onclick = function() {
 	  modal.style.display = "block";
+	  modal.setAttribute("open", "");
 	}
 
 	// When the user clicks on <span> (x), close the modal
 	span.onclick = function() {
 	  modal.style.display = "none";
+	  modal.
 	}
+	*/
 
 	// When the user clicks anywhere outside of the modal, close it
-	window.onclick = function(event) {
-	  if (event.target == modal) {
-		modal.style.display = "none";
-	  }
-	}
+	
 	</script>
+
 </body>
 </html>
