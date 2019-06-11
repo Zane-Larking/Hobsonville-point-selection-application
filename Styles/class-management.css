@@ -147,7 +147,8 @@
     border: 1px solid #4D4D4D;
     padding: 25rem;
     grid-template: 
-    "Name Name Code Type" 40rem
+    "Name Name Name Name" 40rem
+    "Code Code Type Type" 40rem
     "Teacher1 Teacher1 Teacher2 Teacher2" 40rem
     "Subject1 Subject1 Subject2 Subject2" 40rem
     "Description Description Description Description" 1fr
@@ -157,15 +158,48 @@
 
 }
 
-.details > textarea {
+/*
+
+.details > .text-wrapper {
+    align-content: center; 
+}
+.details > .text-wrapper > textarea, .details > select {
     font-size: 1em;
     border: 1px solid #4D4D4D;
     padding: 5rem;
     resize: none;
     background-color: #f3fbfd;
 }
-.details > textarea[readonly] {
+.details > .text-wrapper > textarea {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 5rem calc(2px + 5rem);
+    font-size: 1.15em;
+}
+
+.details .description {
+    align-content: unset;
+}
+.details > .text-wrapper > textarea[readonly], .details > select[disabled] {
     background-color: #e1e7e8;
+    color: greytext;
+}
+*/
+.details > textarea, .details > select {
+    font-size: 1em;
+    border: 1px solid #4D4D4D;
+    padding: 5rem;
+    resize: none;
+    background-color: #f3fbfd;
+}
+.details > textarea {
+    padding: 5rem calc(2px + 5rem);
+    font-size: 1.15em;
+}
+.details > textarea[readonly], .details > select[disabled] {
+    background-color: #e1e7e8;
+    color: greytext;
 }
 
 .details .buttons {

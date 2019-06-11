@@ -6,30 +6,49 @@
     The array below sorts an editable (won't update the database) list of class subjects.
     There are two associated values (the key and the item) the latter is what will be the value displayed for the user to see
     while I'm considering using the former as id's and variable names. 
-    Your not allowed to create variables or ids with spaces, so I would have been able to use the latter for this. 
+    Your not allowed to create variables or ids with spaces, so I would have to use the latter for this. 
     I can use foreach($curriculum as $key => $displayed) to access all the values.
     */  
     $curriculum = [
         //"key" => "displayed value"
-        "MATH" => "Mathematics",
+        "MATH" => "Maths",
         "ENGLISH" =>  "English", 
         "SCIENCE" => "Science", 
         "SOCSCIENCE" => "Social Science", 
-        "TECH" => "Technology and DVC", 
-        "HPE" => "Health and PE", 
-        "ART" => "Performing and Visual Arts", 
+        "TECH" => "Technology", 
+        "HPE" => "HPE", 
+        "ART" => "Art", 
         "LANGUAGE" => "Language"
     ];
-    $curriculum2 = [
-        "Maths",
-        "English",
-        "Science",
-        "Social Science",
-        "Technology",
-        "HPE",
-        "Arts",
-        "Languages"
-    ];
+    function subjectOfDomain($domain) {
+        if (in_array($domain, ["TECH", "Technology", "Design and Visual Communication", "Food Technology", "Hard Technology", "Soft Technology", "Digital Technology"])) {
+            return "Technology";
+        }
+        elseif (in_array($domain, ["SCIENCE", "Science", "Physics", "Chemistry", "Biology", "Earth and Space", "Agriculture and Horticulture", "Education for sustainablity (Science)"])) {
+            return "Science";
+        }
+        elseif (in_array($domain, ["MATH", "Maths", "Calculus", "Statistics"])) {
+            return "Maths";
+        }
+        elseif (in_array($domain, ["ENGLISH", "English", "Media Studies"])) {
+            return "English";
+        }
+        elseif (in_array($domain, ["SOCSCIENCE", "Social Science", "History", "Classics", "Education for Sustainablity (Social Science)"])) {
+            return "Social Science";
+        }
+        elseif (in_array($domain, ["ART", "Art", "Visual Art", "Music", "Dance", "Drama"])) {
+            return "Art";
+        }
+        elseif (in_array($domain, ["HPE", "Health and Physical Education", "Health", "Physical Education"])) {
+            return "HPE";
+        }
+        elseif (in_array($domain, ["LANGUAGE", "Language", "ESOL", "SYM"])) {
+            return "Language";
+        }
+        else {
+            return false;
+        }
+    }
     $yearGroups = ["FF", "Q1", "Q2", "Q3"];
     $qual = [];
     $qual["FF"] = 0;
