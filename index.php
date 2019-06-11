@@ -7,7 +7,7 @@
     // $_SESSION['email'] = "No.Internet@gmail.com";
     
     if (isset($_SESSION['access_token'])) {
-        include ('DataBase/Databaseconnect.php');
+        include ('DataBase/database-connect.php');
         
         
         //Checks if the user is a part of the the tearchers table
@@ -32,7 +32,7 @@
             }
 
 
-            header('Location: TeachersHomepage.php');
+            header('Location: teacher-homepage.php');
             exit();
         }
 
@@ -51,11 +51,11 @@
             $_SESSION['name'] = $row['NAME'];
             $_SESSION['id'] = $row['ID'];
 
-            header('Location: StudentsHomepage.php');
+            header('Location: student-homepage.php');
             exit();
         }
 
-        header('Location: ErrorHomepage.php');
+        header('Location: error-homepage.php');
 
 
     } else if (!isset($_SESSION['access_token'])) {
