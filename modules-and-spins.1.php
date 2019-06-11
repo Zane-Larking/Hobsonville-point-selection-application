@@ -9,11 +9,13 @@
     <link rel="stylesheet" type="text/css" media="screen" href="Styles/main.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="Styles/buttons.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="Styles/nav.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="Styles/student-classSelect.1.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="Styles/student-class-select.1.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="Styles/subjects-key.css" />
 
     <script src="Scripts/main.js"></script>
     <script src="Scripts/submit-selections.js"></script>
     <script src="Scripts/datetime.js"></script>
+    <script src="Scripts/handle-subjects.js"></script>
 
 
 </head>
@@ -182,7 +184,7 @@
                     }
                     return $a;
                 }
-                //if I wanted tp use radio inputs instead of my custom made select and dismiss buttons.
+                //if I wanted to use radio inputs instead of my custom made select and dismiss buttons.
                 //<input type='radio' name='selectModule$i' value='$row[CODE]'> test
 
                 //--Modules--
@@ -217,9 +219,9 @@
                     ";
                     //echo mysqli_query($dbconnect,"SELECT * FROM classes");
                     while ($row = mysqli_fetch_array($result)){
-                        $subjects = [$row['SUBJECT1'],$row['SUBJECT2']];
+                        $subjectDomains = [$row['SUBJECT1'],$row['SUBJECT2']];
                         echo"
-                            <div class='Course".echoSubjects($subjects)."'>
+                            <div class='Course".echoSubjects($subjectDomains)."'>
                                 <div class='ClassBar HeaderBar'>
                                     <div class='HeaderBarTitle'>
                                         <div class='ClassDropdownButton'><div class='DropdownButton'></div></div>
@@ -228,13 +230,24 @@
                                         </div>
                                     </div>
                                     <div class='ClassSubjects Subjects'>";
-                                        foreach($curriculum as $subject => $blah) {
-                                            if (in_array($subject, $subjects)){
-                                                echo "<div class = 'SubjectOfClass'>$subject</div>";
+                                        foreach($curriculum as $key => $subject) {
+                                            $found = false;
+                                            foreach ($subjectDomains as $domain) {
+                                                if (subjectOfDomain($domain) == $subject) {
+                                                    echo "<div class = 'SubjectOfClass ".$key."'>$domain</div>";
+                                                    $found = true;
+                                                    break;
+                                                }
                                             }
-                                            else {
-                                                echo "<div>$subject</div>";
+                                            if (!$found) {
+                                                echo "<div>".$subject."</div>";
                                             }
+                                            // if (in_array($subject, subjectFromDomain($subjects))){
+                                            //     echo "<div class = 'SubjectOfClass'>$subject</div>";
+                                            // }
+                                            // else {
+                                            //     echo "<div>$subject</div>";
+                                            // }
                                         }
                                         echo "
                                     </div>
@@ -306,9 +319,9 @@
                     ";
                     //echo mysqli_query($dbconnect,"SELECT * FROM classes");
                     while ($row = mysqli_fetch_array($result)){
-                        $subjects = [$row['SUBJECT1']];
+                        $subjectDomains = [$row['SUBJECT1']];
                         echo"
-                            <div class='Course'>
+                            <div class='Course".echoSubjects($subjectDomains)."'>
                                 <div class='ClassBar HeaderBar'>
                                     <div class='HeaderBarTitle'>
                                         <div class='ClassDropdownButton'><div class='DropdownButton'></div></div>
@@ -317,13 +330,25 @@
                                         </div>
                                     </div>
                                     <div class='ClassSubjects Subjects'>";
-                                        foreach($curriculum as $subject => $blah) {
-                                            if (in_array($subject, $subjects)){
-                                                echo "<div class = 'SubjectOfClass'>$subject</div>";
+                                        foreach($curriculum as $key => $subject) {
+                                            $found = false;
+                                            foreach ($subjectDomains as $domain) {
+                                                if (subjectOfDomain($domain) == $subject) {
+                                                    echo "<div class = 'SubjectOfClass ".$key."'>$domain</div>";
+                                                    $found = true;
+                                                    break;
+                                                }
                                             }
-                                            else {
-                                                echo "<div>$subject</div>";
+                                            if (!$found) {
+                                                echo "<div>".$subject."</div>";
                                             }
+
+                                            // if (in_array($subject, array_map("subjectOfDomain", $subjectDomains))){
+                                            //     echo "<div class = 'SubjectOfClass'>$subject</div>";
+                                            // }
+                                            // else {
+                                            //     echo "<div>$subject</div>";
+                                            // }
                                         }
                                         echo "
                                     </div>
@@ -379,7 +404,7 @@
 
     <!--Scripts-->
     <script src="Scripts/curriculum-coverage.js"></script>
-    <script src="Scripts/dropdown-btn.1.js"></script>
+    <script src="Scripts/drop-down-btn.1.js"></script>
     <script src="Scripts/select.1.js"></script>
     <script src="Scripts/dismiss.js"></script>
 

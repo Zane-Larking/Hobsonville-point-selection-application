@@ -19,6 +19,7 @@ function collapseSection(element) {
             element.style.height = 0 + 'px';
         });
     });
+    // window.setTimeout(()=>element.style.display = "none", 1000);
     
     // mark the section as "currently collapsed"
     element.setAttribute('data-collapsed', 'true');
@@ -26,6 +27,7 @@ function collapseSection(element) {
 
 function expandSection(element) {
     console.log("test expand");
+    // element.style.display = "grid";
     // get the height of the element's inner content, regardless of its actual size
     var sectionHeight = element.scrollHeight;
     console.log(sectionHeight);

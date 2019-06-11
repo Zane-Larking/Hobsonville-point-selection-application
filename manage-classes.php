@@ -14,7 +14,9 @@
     <link rel="stylesheet" type="text/css" href="Styles/scroll-pannel.css">
     
     
-
+    
+    <script src="Scripts/handle-subjects.js"></script>
+    
     <?php
         include "DataBase/database-connect.php";
         include "PhpSnippets/classes-constants.php";
@@ -115,19 +117,27 @@
                             <p>'.$row['CODE'].'</p>
                             <div class="subjects">
                         ';
-                        foreach (explode(" ",strtoupper($row["SUBJECT1"])) as $subject ) {
-                            if ($subject != "") {
-                                echo '
-                                <div class="subject '.$subject.'"></div>
-                                ';
-                            }
+                        // foreach (explode(" ",strtoupper($row["SUBJECT1"])) as $subject ) {
+                        //     if ($subject != "") {
+                        //         echo '
+                        //         <div class="subject '.$subject.'"></div>
+                        //         ';
+                        //     }
+                        // }
+                        // foreach (explode(" ",strtoupper($row["SUBJECT2"])) as $subject ) {
+                        //     if ($subject != "") {
+                        //         echo '
+                        //         <div class="subject '.$subject.'"></div>
+                        //         ';
+                        //     }
+                        // }
+                        $subject = subjectOfDomain($row["SUBJECT1"]);
+                        if ($subject) {
+                            echo '<div class="subject '.array_search($subject, $curriculum).'"></div>';
                         }
-                        foreach (explode(" ",strtoupper($row["SUBJECT2"])) as $subject ) {
-                            if ($subject != "") {
-                                echo '
-                                <div class="subject '.$subject.'"></div>
-                                ';
-                            }
+                        $subject = subjectOfDomain($row["SUBJECT2"]);
+                        if ($subject) {
+                            echo '<div class="subject '.array_search($subject, $curriculum).'"></div>';
                         }
 
                         echo'
@@ -145,15 +155,135 @@
                     <textarea class="id" name="id" style="display:none;"></textarea>
                     <textarea class="code" name="code" placeholder="Kamar Code" onchange="onDetailChange()" style="grid-area: Code"; readonly></textarea>
                     <textarea class="name" name="name" placeholder="Class Name" onchange="onDetailChange()" style="grid-area: Name"; readonly></textarea>
+                    
+
+                    <select class="type" name="type" onchange="onDetailChange()" style="grid-area: Type"; disabled>
+                        <option value="none">Class Type</option>
+                    ';
+                    foreach ($CPYL as $type => $arr) {
+                        for ($i = 0; $i < $arr[$qual[$yearGroup]]; $i++) {
+                            $type = preg_replace('/s$/', "", $type);
+                            echo '<option value="'.strtoupper($type).$i.'">'.ucwords($type)." ".$i.'</option>';
+                        }
+                    }
+                    echo '
+                    </select>
+
+                    <select class="teacher1" name="teacher1" onchange="onDetailChange()" style="grid-area: Teacher1"; disabled>
+                        <option value="none">Teacher 1</option>
+
+                        ';
+                        $query = "select * from teachers";
+                        $result = mysqli_query($dbconnect, $query);
+                        while ($row = mysqli_fetch_array($result)) {
+                            echo '<option value="'.$row["FIRST_NAME"].'">'.$row["FIRST_NAME"].'</option>';
+                        }
+                        echo '
+                        <option value="Jess">Jess</option>
+                        <option value="Danielle">Danielle</option>
+                    </select>
+
+                    <select class="teacher2" name="teacher2" onchange="onDetailChange()" style="grid-area: Teacher2"; disabled>
+                        <option value="none">Teacher 2</option>
+                        
+                        ';
+                        $query = "select * from teachers";
+                        $result = mysqli_query($dbconnect, $query);
+                        while ($row = mysqli_fetch_array($result)) {
+                            echo '<option value="'.$row["FIRST_NAME"].'">'.$row["FIRST_NAME"].'</option>';
+                        }
+                        echo '
+                        <option value="Jess">Jess</option>
+                        <option value="Danielle">Danielle</option>
+                    </select>
+
+                    <select class="subject1" name="subject1" onchange="onDetailChange()" style="grid-area: Subject1"; disabled>
+                        <option value="none">Subject 1</option>
+                        <option value="HPE">Health and Phyiscal Education</option>
+                        <option value="Health">Health</option>
+                        <option value="Physical Education">Physical Education</option>
+                        <option value="Science">Science</option>
+                        <option value="Physics">Physics</option>
+                        <option value="Chemistry">Chemistry</option>
+                        <option value="Biology">Biology</option>
+                        <option value="Earth and Space">Earth and Space</option>
+                        <option value="Agriculture & Horticulture">Agriculture & Horticulture</option>
+                        <option value="Education for Sustainablity (Science)">Education for Sustainablity (Science)</option>
+                        <option value="Art">Art</option>
+                        <option value="Visual Art">Visual Arts</option>
+                        <option value="Dance">Dance</option>
+                        <option value="Music">Music</option>
+                        <option value="Drama">Drama</option>
+                        <option value="Maths">Mathematics</option>
+                        <option value="Statistics">Statistics</option>
+                        <option value="Calculus">Calculus</option>
+                        <option value="English">English</option>
+                        <option value="Media">Media Studies</option>
+                        <option value="Social Science">Social Science</option>
+                        <option value="History">History</option>
+                        <option value="Classics">Classics</option>
+                        <option value="Sustainablity (Social Studies)">Sustainablity (Social Studies)</option>
+                        <option value="Techology">Technology</option>
+                        <option value="Hard Techology">Hard Techology</option>
+                        <option value="Food Techology">Food Techology</option>
+                        <option value="Soft Techology">Soft Materials</option>
+                        <option value="Digital Techology">Digital Techology</option>
+                        <option value="Language">Language</option>
+                        <option value="ESOL">ESOL</option>
+                        <option value="SYMTEXT">SYMTEXT</option>
+                    </select>
+
+                        
+                    <select class="subject2" name="subject2" onchange="onDetailChange()" style="grid-area: Subject2"; disabled>
+                        <option value="none">Subject 1</option>
+                        <option value="Health and Physical Education">Health and Phyiscal Education</option>
+                        <option value="Health">Health</option>
+                        <option value="Physical Education">Physical Education</option>
+                        <option value="Science">Science</option>
+                        <option value="Physics">Physics</option>
+                        <option value="Chemistry">Chemistry</option>
+                        <option value="Biology">Biology</option>
+                        <option value="Earth and Space">Earth and Space</option>
+                        <option value="Agriculture and Horticulture">Agriculture & Horticulture</option>
+                        <option value="Education for Sustainablity (Science)">Education for Sustainablity (Science)</option>
+                        <option value="Art">Art</option>
+                        <option value="Visual Art">Visual Arts</option>
+                        <option value="Dance">Dance</option>
+                        <option value="Music">Music</option>
+                        <option value="Drama">Drama</option>
+                        <option value="Maths">Mathematics</option>
+                        <option value="Statistics">Statistics</option>
+                        <option value="Calculus">Calculus</option>
+                        <option value="English">English</option>
+                        <option value="Media Studies">Media Studies</option>
+                        <option value="Social Science">Social Science</option>
+                        <option value="History">History</option>
+                        <option value="Classics">Classics</option>
+                        <option value="Sustainablity (Social Studies)">Sustainablity (Social Studies)</option>
+                        <option value="Techology">Technology</option>
+                        <option value="Design and Visual Communication">Design and Visual Communication</option>
+                        <option value="Hard Techology">Hard Techology</option>
+                        <option value="Food Techology">Food Techology</option>
+                        <option value="Soft Techology">Soft Materials</option>
+                        <option value="Digital Techology">Digital Techology</option>
+                        <option value="Language">Language</option>
+                        <option value="ESOL">ESOL</option>
+                        <option value="SYMTEXT">SYMTEXT</option>
+                    </select>
+                    
+                    <!--
                     <textarea class="type" name="type" placeholder="Class Type" onchange="onDetailChange()" style="grid-area: Type"; readonly></textarea>
-                    <textarea class="subject1" name="subject1" placeholder="Subject 1" onchange="onDetailChange()" style="grid-area: Subject1"; readonly></textarea>
-                    <textarea class="subject2" name="subject2" placeholder="Subject 2" onchange="onDetailChange()" style="grid-area: Subject2"; readonly></textarea>
                     <textarea class="teacher1" name="teacher1" placeholder="Teacher 1" onchange="onDetailChange()" style="grid-area: Teacher1"; readonly></textarea>
                     <textarea class="teacher2" name="teacher2" placeholder="Teacher 2" onchange="onDetailChange()" style="grid-area: Teacher2"; readonly></textarea>
+                    <textarea class="subject1" name="subject1" placeholder="Subject 1" onchange="onDetailChange()" style="grid-area: Subject1"; readonly></textarea>
+                    <textarea class="subject2" name="subject2" placeholder="Subject 2" onchange="onDetailChange()" style="grid-area: Subject2"; readonly></textarea>
+                    -->
+
                     <textarea class="description" name="description" placeholder="Description"  onchange="onDetailChange()" style="grid-area: Description"; readonly></textarea>
                     
                     <div class="buttons" style="grid-area: Buttons";>
                         <input type="button" name="save" value="save" onclick="save()" style="display: none;">
+                        <input type="button" name="revert" value="revert" onclick="revert() disabled">
                         <input type="button" name="edit" value="edit" onclick="edit()">
                         <div class="tooltip">
                             <div class="tooltipText">Export This Class (Feature Not Yet Implemented)</div>
@@ -228,16 +358,22 @@
     function onDetailChange() {
         unsavedChanges = true;
         console.log("details changed");
+        console.log(event.srcElement.value)
     }
 
     function save() {
         let detailsEl = document.querySelector("#"+currentYearLevel+" .details");
         console.log(detailsEl);
-        let fields = ['id', 'code', 'name', 'type', 'subject1', 'subject2', 'teacher1', 'teacher2', 'description'];
+        let fields = ['id', 'code', 'name', 'description', 'type', 'teacher1', 'teacher2', 'subject1', 'subject2'];
         let details = [];
-        fields.forEach(field => {
-            detailsEl.querySelector("textarea[name='"+field+"']").setAttribute("readonly", "");
-            details.push(detailsEl.querySelector("textarea[name='"+field+"']").value);
+
+        detailsEl.querySelectorAll("textarea").forEach(field => {
+            field.setAttribute("readonly", "");
+            details.push(field.value);
+        });
+        detailsEl.querySelectorAll("select").forEach(field => {
+            field.setAttribute("disabled", "");
+            details.push(field.value);
         });
         
         document.querySelector("#"+currentYearLevel+" .details .buttons input[value='edit']").style.display = "block";
@@ -261,9 +397,12 @@
     function edit() {
         let detailsEl = document.querySelector("#"+currentYearLevel+" .details");
         console.log(detailsEl);
-        let fields = ['code', 'name', 'type', 'subject1', 'subject2', 'teacher1', 'teacher2', 'description'];
-        fields.forEach(field => {
-            detailsEl.querySelector("textarea[name='"+field+"']").removeAttribute("readonly");
+        let fields = ['id', 'code', 'name', 'description', 'type', 'subject1', 'subject2', 'teacher1', 'teacher2'];
+        detailsEl.querySelectorAll("textarea").forEach(field => {
+            field.removeAttribute("readonly");
+        });
+        detailsEl.querySelectorAll("select").forEach(field => {
+            field.removeAttribute("disabled");
         });
         editing = true;
 
@@ -307,8 +446,8 @@
             x = document.querySelector("#"+currentYearLevel+" ."+fields[i]);
             console.log("#"+currentYearLevel+" ."+fields[i]);  
             x.value = cDetails[i];
-            currentClass[currentYearLevel] = document.querySelector("#"+currentYearLevel+" .details textarea[name='code']").value;
         }
+        currentClass[currentYearLevel] = document.querySelector("#"+currentYearLevel+" .details textarea[name='code']").value;
 
     }
 
@@ -327,8 +466,11 @@
 
             //Updates the subject being displayed
             let subjects = temp.querySelectorAll(".subject");
-            subjects[0].className = "subject " + document.querySelector("#"+currentYearLevel+" .details textarea[name='subject1']").value;
-            subjects[1].className = "subject " + document.querySelector("#"+currentYearLevel+" .details textarea[name='subject2']").value;
+            let domain;
+            domain = document.querySelector("#"+currentYearLevel+" .details .subject1").value;
+            subjects[0].className = "subject " + subjectFromDomain(domain);
+            domain = document.querySelector("#"+currentYearLevel+" .details .subject2").value;
+            subjects[1].className = "subject " + subjectFromDomain(domain);
 
             //Updates the Code being displayed.
             temp.outerHTML = temp.outerHTML.replace(new RegExp(oldCode, 'gi'), newCode);
@@ -350,9 +492,11 @@
                 editing = false;
 
                 let detailsEl = document.querySelector("#"+currentYearLevel+" .details");
-                let fields = ['code', 'name', 'type', 'subject1', 'subject2', 'teacher1', 'teacher2', 'description'];
-                fields.forEach(field => {
-                    detailsEl.querySelector("textarea[name='"+field+"']").setAttribute("readonly", "");
+                detailsEl.querySelectorAll("textarea").forEach(field => {
+                    field.setAttribute("readonly", "");
+                });
+                detailsEl.querySelectorAll("select").forEach(field => {
+                    field.setAttribute("disabled", "");
                 });
 
                 document.querySelector("#"+currentYearLevel+" .details .buttons input[value='edit']").style.display = "block";

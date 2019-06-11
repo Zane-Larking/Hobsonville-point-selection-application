@@ -45,7 +45,7 @@ if (isset($_POST['submit'])) {
                 //Debugging information
                 // print_r($classesArr);
 
-                //splits the values of each row into an array.
+                //splits the values of each CSV row into an array.
                 foreach ($classesArr as $i => $classArr) {
                     $detailsArr[$i] = preg_split("/,(?!\s)/", $classArr);
                     $colcount = sizeof($detailsArr[0]);
