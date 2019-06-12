@@ -33,12 +33,26 @@ background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 40%;
+}
+
+.modal-content-style {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+
+}
+
+.modal-content-input {
+	background-color:#f3fbfd; 
+	border: 1px solid #4D4D4D; 
 }
 
 /* End of all the stylings */
 
  /* Individual Styling for the different buttons */
+#add_teacher {
+	justify-self: center;
+} 
 
 #add_teacher_button {
 	background-color: #3cfd46;
@@ -46,7 +60,3 @@ background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 	padding: 5px;
 }
 
-#removeTeacher {
-	background-color: red;
-	border: 1px solid #000;
-}

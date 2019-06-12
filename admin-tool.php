@@ -79,49 +79,47 @@
 
 										<span class="close">&times;</span>
 										<h1> Add Teacher </h1>
-										<p> The format of the text is... </p>
+										<p> The format of the text is... ZANE helpppp... What do you want here </p>
 										<!-- Insert form here -->
 										<form method="post" action="AJAX/add-teacher.php">
-										  First name:<br>
-										  <input type="text" name="firstname" placeholder="First name Eg: Zane">
-										  <br>
-										  Last name:<br>
-										  <input type="text" name="lastname" placeholder="Last name Eg: Larking">
-										  <br>
-										  Kamar Code:<br>
-										  <input type="text" name="kamar_code" placeholder="Kamar Code Eg: 456789">
-										  <br>
-										  Gmail:<br>
-										  <input type="text" name="gmail" placeholder="Google Email Eg: zane.larking@hobsonvillepoint.school.nz">
-										  <br>
-										  Have Hub:<br>
+											<div class="modal-content-style">  
+												<h4> First name: </h4>
+												<input class="modal-content-input" type="text" name="firstname" placeholder="First name Eg: Zane">
+											</div>
+											<br>
+										  	<div class="modal-content-style">
+										  		<h4> Last name: </h4>
+										  		<input class="modal-content-input" type="text" name="lastname" placeholder="Last name Eg: Larking">
+											</div>
+											<br>
+										  	<div class="modal-content-style">
+												<h4> Kamar Code:</h4>
+												<input class="modal-content-input" type="text" name="kamar_code" placeholder="Kamar Code Eg: 456789">
+											</div>
+											<br>
+											<div class="modal-content-style">
+												<h4> Gmail:</h4>
+												<input class="modal-content-input" type="text" name="gmail" placeholder="Google Email Eg: zane.larking@hobsonvillepoint.school.nz">
+											</div>
+
+
+										  
+										  Is a hub coach:<br>
 										  <input type="radio" name="have_hub" value="Yes" checked> Yes
 										  <br>
 										  <input type="radio" name="have_hub" value="No"> No
 										  <br>
-										  Privilege Level <br>
-										  <select>
-											<option value="teacher"> Teacher </option>
-											<option value="moderator"> Moderator </option>
-											<option value="administrator"> Administrator </option>
-										  </select>
-										  <br>
-											
-											
-											
-											
+										  	<div class="modal-content-style">
+												<h4> Privilege Level:</h4>
+												<select class="modal-content-input">
+													<option value="teacher"> Teacher </option>
+													<option value="moderator"> Moderator </option>
+													<option value="administrator"> Administrator </option>
+												</select>
+											</div>
+											<br>
 
-
-
-
-										  
-										  
-										  <br>
-										  <!--Work on getting these inputs: 
-										  kamar code, 
-										  gmail, 
-										  boolean of whether has hub/not, 
-										  privilege level choice: Teacher,Moderator, Administrator,   -->
+										  	<br>
 										  <input type="submit" value="Submit">
 										</form> 
 									</div>
@@ -129,66 +127,7 @@
 							</div>
 								 
 
-
-
-							<div id="removeTeacher">
-								<button id="remove_teacher_button" onclick="openModal('remove_teacher_modal')"> Remove Teacher </button>
-								<div id="remove_teacher_modal" class="modal">
-									<!-- Modal Content container -->
-									<div class="modal-content">
-
-										<span class="close">&times;</span>
-										<h1> Remove Teacher </h1>
-										<p> The format of the text is... </p>
-										<!-- Insert form here -->
-										<form method="post" action="AJAX/add-teacher.php">
-										  First name:<br>
-										  <input type="text" name="firstname" placeholder="First name Eg: Zane">
-										  <br>
-										  Last name:<br>
-										  <input type="text" name="lastname" placeholder="Last name Eg: Larking">
-										  <br>
-										  Kamar Code:<br>
-										  <input type="text" name="kamar_code" placeholder="Kamar Code Eg: 456789">
-										  <br>
-										  Gmail:<br>
-										  <input type="text" name="gmail" placeholder="Google Email Eg: zane.larking@hobsonvillepoint.school.nz">
-										  <br>
-										  Have Hub:<br>
-										  <input type="radio" name="have_hub" value="Yes" checked> Yes
-										  <br>
-										  <input type="radio" name="have_hub" value="No"> No
-										  <br>
-										  Privilege Level <br>
-										  <select>
-											<option value="teacher"> Teacher </option>
-											<option value="moderator"> Moderator </option>
-											<option value="administrator"> Administrator </option>
-										  </select>
-										  <br>
-											
-											
-											
-											
-
-
-
-
-										  
-										  
-										  <br>
-										  <!--Work on getting these inputs: 
-										  kamar code, 
-										  gmail, 
-										  boolean of whether has hub/not, 
-										  privilege level choice: Teacher,Moderator, Administrator,   -->
-										  <input type="submit" value="Submit">
-										</form> 
-									</div>
-								</div>
-								
-							</div>
-							<div id="Export">
+							<div id="Export" >
 								<img src="Images/export.png" width=40px height=40px>
 							</div>
 						</div>
