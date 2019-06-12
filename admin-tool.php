@@ -95,12 +95,10 @@
 										  <input type="text" name="gmail" placeholder="Google Email Eg: zane.larking@hobsonvillepoint.school.nz">
 										  <br>
 										  Have Hub:<br>
-										  <input type="radio" name="have_hub" value="Yes" checked> Yes
-										  <br>
-										  <input type="radio" name="have_hub" value="No"> No
+										  <input type="checkbox" name="has_hub" value="TRUE" checked>
 										  <br>
 										  Privilege Level <br>
-										  <select>
+										  <select name="privileges">
 											<option value="teacher"> Teacher </option>
 											<option value="moderator"> Moderator </option>
 											<option value="administrator"> Administrator </option>
