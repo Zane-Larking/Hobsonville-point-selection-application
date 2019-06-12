@@ -101,14 +101,6 @@
 												<h4> Gmail:</h4>
 												<input class="modal-content-input" type="text" name="gmail" placeholder="Google Email Eg: zane.larking@hobsonvillepoint.school.nz">
 											</div>
-
-
-										  
-										  Is a hub coach:<br>
-										  <input type="radio" name="have_hub" value="Yes" checked> Yes
-										  <br>
-										  <input type="radio" name="have_hub" value="No"> No
-										  <br>
 										  	<div class="modal-content-style">
 												<h4> Privilege Level:</h4>
 												<select class="modal-content-input">
