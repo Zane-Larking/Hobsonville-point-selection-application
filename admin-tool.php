@@ -101,6 +101,12 @@
 												<h4> Gmail:</h4>
 												<input class="modal-content-input" type="text" name="gmail" placeholder="Google Email Eg: zane.larking@hobsonvillepoint.school.nz">
 											</div>
+											<br>
+											<div class="modal-content-style">
+												<H4> Has a Hub:</h4>
+												<input type="checkbox" name="has_hub" value="TRUE">
+											</div>
+											<br>
 										  	<div class="modal-content-style">
 												<h4> Privilege Level:</h4>
 												<select class="modal-content-input">
