@@ -1,0 +1,43 @@
+
+#subjects{
+    font-size: 0.6em;
+    display: flex;
+    width: 320rem;
+    grid-area: sub;
+}
+#subjects > div{
+    border: 1px solid #4D4D4D;
+    text-align: center;
+    height: 2em;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+    flex-basis: 40rem;
+
+}
+.TECH {
+    background-color: #333333 !important;
+}
+.LANGUAGE {
+    background-color: #D643A5 !important;
+}
+.SOCSCIENCE {
+    background-color: #00A5CB !important;
+}
+.ENGLISH {
+    background-color: #5E5D9A !important;
+}
+.MATH {
+    background-color: #C22126 !important;
+}
+.SCIENCE {
+    background-color: #E27A25 !important;
+}
+.ART {
+    background-color: #FBD703 !important;
+}
+.HPE {
+    background-color: #62A444 !important;
+}
