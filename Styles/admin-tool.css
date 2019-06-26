@@ -14,7 +14,6 @@
 	width:auto ;
 	align-content : center;
 	height: auto;
-	padding: 10px 0;
 	background-color: #F8F8F8;
 }
 .search_bar {
@@ -53,6 +52,7 @@ input.search {
 
 #teacherList header{
 	display:grid;
+	height:100px;
 	grid-template-columns:1fr 1fr;
 	align-items: center;
 	border-bottom: 1px solid #000;
@@ -86,15 +86,9 @@ h4 {
 	background-color: white;
 }
 
-#topBar {
-	display: grid;
-    align-items: end;
-    margin: 0 5px;
-	grid-template-columns: auto max-content;
-}
 #classes {
 	display: grid;
-	grid-template-columns: repeat(2, max-content);
+	/* grid-template-columns: repeat(2, max-content); */
     height: max-content;
 }
 #classes > div {
@@ -109,8 +103,11 @@ h4 {
 #Content header{
 	display: grid;
 	align-items: center;
-	grid-template-columns: repeat(3,max-content) 2fr;
+	height:100px;
+	padding: 0 5px;
+	grid-template-columns: repeat(4,max-content) 2fr 1fr;
 	gap: 5rem;
+	border-bottom:1px solid black;
 }
 		
 #Content hgroup{
@@ -146,11 +143,13 @@ h4 {
 	
 }		
 
-#wrapper input {
+#wrapper textarea {
+	height:60%;
 	width:100%;
 	box-sizing:border-box;
 	align-items:center;
 	justify-content:center;
+	border-radius: 5rem;
 
 }
 
@@ -165,7 +164,7 @@ h4 {
 	width: 100%;
 	box-sizing:border-box;
 	grid-template-columns: 100%;
-	grid-template-rows: 1fr 3fr 3fr;
+	grid-template-rows: 1fr 3fr 3fr 0.5fr;
 }
 
 .suggestion {
@@ -176,9 +175,10 @@ h4 {
 .send {
 	background-color: green;
     width: 20%;
-    height: 25px;
+    height: auto;
     border: 1px solid black;
-    margin: 0px 0 0 70%;
+	margin: 0px 0 0 70%;
+	border-radius: 2rem;
 }
 
 

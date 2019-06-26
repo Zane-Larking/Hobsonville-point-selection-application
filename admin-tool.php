@@ -7,8 +7,29 @@
 	<link rel="stylesheet" type="text/css" href="Styles/admin-tool.css">
 	<link rel="stylesheet" type="text/css" href="Styles/nav.css">
 	<link rel="stylesheet" type="text/css" href="Styles/main.css">
-	<link rel="stylesheet" type="text/css" href="Styles/admin-tool-modal.css"
-	
+	<link rel="stylesheet" type="text/css" href="Styles/admin-tool-modal.css">
+	<style>
+		.toggle-tabs .tab {
+			display: none;
+		}
+
+		.toggle-tabs .tab[open] {
+			display: block;
+		}
+
+		.tabs-button{
+			display:grid;
+			grid-template-columns:1fr 1fr;
+			align-self:end;`
+		}
+
+		.tabs-button button {
+			background-color:grey;
+			border:1px solid black;
+			height:80px;
+			
+		}
+	</style>
 </head>
 
 
@@ -152,61 +173,74 @@
 					</div>
 
 
-					<div id="Content">
-						<div id="topBar">
-							<header>
-								<img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 50px; border-radius: 50%;">
-								<h1> Teacher Name </h1>
-								<h2> Subject </h2>
-								<h2> Years </h2>
-							</header>
-							<div id="classes">
-								<div>
-									<h2> Classes </h2>
-								</div>
-								<div>
-									<h2> Profile </h2>
+					<div id="Content" class="toggle-tabs">
+						<header>
+							<img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 50px; border-radius: 50%;">
+							<h1> Teacher Name </h1>
+							<h2> Subject </h2>
+							<h2> Years </h2>
+							<div> </div> <!-- spacer -->
+							<div class="toggle-btns tabs-button">
+								<button> Classes </button>
+								<button> Profile </button>
+							</div>
+						</header>
+						<div class="tabs">
+							<div class="tab" open> <!-- content --> 
+								<div id="wrapper">
+									<div class="block">
+										<h4> Class 1</h4>
+										<div> 
+											<p> Class Description- blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah</p> 
+										</div>
+										<div class="suggestion">
+											<h4> Suggestion </h4>
+											<textarea class ="suggest"> blah blah blah blah blah blah blah blah blah blah blah blah blah blah </textarea>
+										</div>
+										<div class="send">
+											<h4>send</h4>
+										</div>
+									</div>
+									<div class="block">
+										<h4> Class 2</h4>
+										<div> 
+											<p> Class Description- blah blah blah</p> 
+										</div>
+										<div class="suggestion">
+											<h4> Suggestion </h4>
+											<textarea class ="suggest"> blah blah blah blah blah blah blah blah blah blah blah blah blah blah </textarea>
+										</div>
+										<div class="send">
+											<h4>send</h4>
+										</div>
+									</div>
+									<div class="block">
+										<h4> Class 3</h4>
+										<div> 
+											<p> Class Description- blah blah blah</p> 
+										</div>
+										<div class="suggestion">
+											<h4> Suggestion </h4>
+											<textarea class ="suggest"> blah blah blah blah blah blah blah blah blah blah blah blah blah blah </textarea>
+										</div>
+										<div class="send">
+											<h4>send</h4>
+										</div>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div id="wrapper">
-							<div class="block">
-								<h4> Class 1</h4>
-								<div> 
-									<p> Class Description- blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah</p> 
-								</div>
-								<div class="suggestion">
-									<h4> Suggestion </h4>
-									<input value="" class="suggest" type="text" placeholder="Comment blah blah" padding=20rem>
-								</div>
-								<div class="send">
-									<h4>send</h4>
-								</div>
-							</div>
-							<div class="block">
-								<h4> Class 2</h4>
-								<div> 
-									<p> Class Description- blah blah blah</p> 
-								</div>
-								<div class="suggestion">
-									<h4> Suggestion </h4>
-									<input value="" class="suggest" type="text" placeholder="Comment blah blah" padding=20rem>
-								</div>
-								<div class="send">
-									<h4>send</h4>
-								</div>
-							</div>
-							<div class="block">
-								<h4> Class 3</h4>
-								<div> 
-									<p> Class Description- blah blah blah</p> 
-								</div>
-								<div class="suggestion">
-									<h4> Suggestion </h4>
-									<input value="" class="suggest" type="text" placeholder="Comment blah blah" padding=20rem>
-								</div>
-								<div class="send">
-									<h4>send</h4>
+
+							<div class="tab"> 
+								<div id="profile"> 
+									<div id="teacher_name">
+										<input class="teacher_name" type="text" name="name" placeholder="Teacher Name">
+										<img > <!-- edit name image-->									
+									</div>
+									<div id="kamar_code">
+										<h1>
+											
+									
+									<!-- Everything on add teacher modal, remove teacher, edit button, save --> 
 								</div>
 							</div>
 						</div>
@@ -217,6 +251,7 @@
 	</div>
 	
 	<script src="Scripts/modal.js"></script>
+	<script src="Scripts/tabs.js"></script>
 	<script> 
 	/*
 	// Get the modal

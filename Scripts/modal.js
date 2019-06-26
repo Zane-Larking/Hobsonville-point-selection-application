@@ -1,5 +1,5 @@
 window.onclick = function(event) {
-	if (event.target.classList.includes("modal")) {
+	if (event.target.classList.contains("modal")) {
 	let modal = document.querySelector(".modal[open]");
 	modal.style.display = "none";
 	}
