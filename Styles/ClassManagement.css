@@ -1,0 +1,218 @@
+#mainGrid {
+    grid-gap: 0;
+    grid-column-gap: 1em;
+    grid-template: 
+    "years . sub" 50rem
+    "bar bar bar" 50rem 
+    "sort sort sort" auto /minmax(min-content, 200rem) auto  336px;
+    
+    margin: 2.5vh 2.5vw;
+    padding: 2.5vh 2.5vw;
+    height: 90vh;
+}
+.yearGroupTab {
+    display: none;
+    background-color: #FFFFFF;
+    grid-area: sort;
+    overflow-y: hidden;
+    grid-template: 
+    "pannel hidePannel details" 100% / fit-content(10em) 1.25em auto;
+}
+#yearGroups > button {
+    font-size: 1em;
+    font-family: inherit;
+    flex-grow: 1;
+    background-color: #EEEEEE;
+    border: 1px solid #4D4D4D;
+    text-align: -webkit-center;
+    height: calc(50rem + 1px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    outline: none;
+    cursor: pointer;
+    transition: 0.6s background-color;
+    z-index: 1;
+}
+
+#yearGroups > button.selected{
+    height: calc(50rem + 1px);
+    border-bottom-width: 0;
+    background-color: #FFFFFF;
+}
+
+.yearGroups > div {
+    box-sizing: border-box;
+}
+#toolBar {
+    display: flex;
+    font-size: 1.5em;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #FFFFFF;
+    border: 1px solid #4D4D4D;
+}
+#toolBar button.roundedContainer {
+    padding: 5rem;
+    border-radius: 50%;
+    width: 36rem;
+    height: 36rem;
+    align-items: unset;
+    text-align: -webkit-center;
+    font-size: 1em;
+    color: #4144bf;
+}
+
+#toolBar button.roundedContainer:disabled {
+    color: graytext;
+}
+
+#toolBar a {
+    color: inherit;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+  
+/* Tooltip text */
+.tooltip .tooltipText {
+    visibility: hidden;
+    width: 120px;
+    background-color: rgba(0,0,0,0.6);
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 10;
+
+    
+    /* Position the Tooltip */
+    font-size: 0.66em;
+    width: 160rem;
+    bottom: 110%;
+    left: 50%; 
+    margin-left: -120rem; /* Use half of the width (120/2 = 60), to center the tooltip */
+}
+
+.tooltip .tooltipText::after {
+    content: " ";
+    position: absolute;
+    top: 100%; /* At the bottom of the tooltip */
+    left: 50%;
+    margin-left: 35rem;
+    border-width: 5px;
+    border-style: solid;
+    border-color: rgba(0,0,0,0.6) transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltipText {
+    visibility: visible;
+}
+
+
+.class {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(100% + 5px);
+    border-top: rgb(0,0,0) solid 1px;
+    left: 0;
+    margin: 0 -5px;
+}
+.class:hover {
+    background-color: rgba(0,0,0,0.2);
+}
+
+.class.selected {
+    background-color: rgba(0,0,0,0.3);
+}
+.class .subjects {
+    display: flex;
+    align-content: center;
+    justify-content: space-evenly;
+    width: 25rem;
+}
+.class .subject {
+    border-radius: 10rem;
+    width: 10rem;
+    height: 10rem;
+}
+
+.details {
+    display: grid;
+    border: 1px solid #4D4D4D;
+    padding: 25rem;
+    grid-template: 
+    "Name Name Code Type" 40rem
+    "Teacher1 Teacher1 Teacher2 Teacher2" 40rem
+    "Subject1 Subject1 Subject2 Subject2" 40rem
+    "Description Description Description Description" 1fr
+    "Buttons Buttons Buttons Buttons" 30rem/ 1fr 1fr 1fr 1fr;
+    grid-gap: 10rem;
+
+
+}
+
+.details > textarea {
+    font-size: 1em;
+    border: 1px solid #4D4D4D;
+    padding: 5rem;
+    resize: none;
+    background-color: #f3fbfd;
+}
+.details > textarea[readonly] {
+    background-color: #e1e7e8;
+}
+
+.details .buttons {
+    display: grid;
+    grid-template-columns: repeat(4, min-content);
+    justify-self: right;
+    gap: 5rem;
+}
+.details .buttons input {
+    height: 100%;
+}
+
+/* Modal
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modalContent {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }

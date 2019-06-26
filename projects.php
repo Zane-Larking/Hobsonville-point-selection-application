@@ -8,11 +8,11 @@
 	<link rel="stylesheet" type="text/css" media="screen" href="Styles/main.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="Styles/nav.css" />
 	<script src="Scripts/main.js"></script>
-	<script src="Scripts/html-include.js"></script>
+	<script src="Scripts/HtmlInclude.js"></script>
 </head>
 <body>
 	<?php
-		include ('PhpSnippets/header-bar.php');	
+		include ('PhpSnippets/headerBar.php');	
 	?>
 </body>
 </html>
