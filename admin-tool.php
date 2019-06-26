@@ -147,7 +147,27 @@
 								 
 
 							<div id="Export" >
-								<img src="Images/export.png" width=40px height=40px>
+								<img src="Images/export.png" width=40px height=40px  onclick="openModal('import_teachers_modal')">
+								<div id="import_teachers_modal" class="modal">
+									<!-- Modal Content container -->
+									<div class="modal-content">
+
+										<span class="close">&times;</span>
+										<h1> Add Teacher </h1>
+										<p> The format of the text is... ZANE helpppp... What do you want here </p>
+										<!-- Insert form here -->
+										<form method="post" action="DataBase/import-details.php" enctype="multipart/form-data">
+											<div class="modal-content-style">  
+												<input type="hidden" name="src" value="admin-tool" />
+												<input type="hidden" name="table" value="teachers" />
+												<h4> Select file: </h4>
+												<input class="modal-content-input" type="file" name="file" accept="application/vnd.ms-excel, Microsoft Excel Comma Separated Values File (.csv),.csv">
+											</div>
+											<br>
+										  <input type="submit" name="submit" value="submit">
+										</form> 
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
