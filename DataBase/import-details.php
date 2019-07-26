@@ -46,7 +46,7 @@ if (isset($_POST['submit']) & isset($_POST['src']) & isset($_POST['src'])) {
                 // var_dump($detailsArr);
 
                 //The deletion query
-                $delete = "DELETE FROM `.$table.` WHERE 1";
+                $delete = "DELETE FROM `".$table."` WHERE 1";
 
                 //Debugging information
                 // echo "\n";
