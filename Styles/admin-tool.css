@@ -1,21 +1,47 @@
+#mainGrid {
+	height:600px;
+	grid-template-rows:100%;
+}
+
+#background_toggles {
+	background-color:grey;
+	padding: 20px;
+}
+
+/* main "grid"; Styling of both Teacher List and Teacher Profile */
 #teacherManage {
 	display: grid;
-	grid-template-columns: 200px auto;
+	grid-template-columns: 230px auto;
 	grid-gap: 20px;
-	grid-template-rows:min-content;
+	grid-template-rows:100%;
+	height:100%;
 	}
 
 
+/* Teacher List Styling, Left Object */
 #teacherManage > #teacherList{
 	display:grid;
-	grid-template-rows:min-content 1fr;
+	/* grid-template-rows: min-content min-content calc((100% - 170px) - 16rem) min-content; */
+	grid-gap: 10px;
+	width:auto;
+	align-content : center;
+	align-items:center;
 	border: 2px double #000000;
 	border-radius: 20px;
-	width:auto ;
-	align-content : center;
-	height: auto;
 	background-color: #F8F8F8;
 }
+
+/* Teacher list Header */
+
+#teacherList header{
+	display:grid;
+	height:100px;
+	grid-template-columns:1fr 1fr;
+	align-items: center;
+	border-bottom: 1px solid #000;
+}
+
+/* Teacher List Searchbar */
 .search_bar {
     display: grid;
     align-items: center;
@@ -31,49 +57,18 @@
 
 input.search {
 	border:none;
-
-
-}
-#teacherManage > #Content{
-	display:grid;
-	grid-template-rows:min-content 1fr;
-	border: 2px double #000000;
-	border-radius: 20px;
-	width:auto ;
-	align-content : center;
-	height: auto;
-	background-color: #F8F8F8;
-}
-#teacherList {
-	display: block;
-	align-items: center;
-	
 }
 
-#teacherList header{
-	display:grid;
-	height:100px;
-	grid-template-columns:1fr 1fr;
-	align-items: center;
-	border-bottom: 1px solid #000;
-}
-h4 {
-	margin: 0;
-}
-
-#functions {
-	display:grid;
-	grid-template-columns: 2fr 1fr;
-	align-items: center;
-	justify-content: space-between;
-	width: 100%;
-}
-
+/*List of Teacher Names */
 #teachers {
+	height:100%;
 	justify-content: center;
 	display : grid;
+	overflow-y: scroll;
 
 }
+
+/* Styling for Individual Teacher boxes */
 #teachers > div{
 	display: flex;
 	align-items: center;
@@ -86,10 +81,52 @@ h4 {
 	background-color: white;
 }
 
-#classes {
+/* Functions in Teacher List- Modal & Export */
+
+#functions {
+	display:grid;
+	grid-template-columns: 2fr 1fr;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+}
+
+
+/* Right Grid, Teacher Profile */
+#teacherManage > #Content{
+	display:grid;
+	grid-template-rows:min-content 1fr;
+	border: 2px double #000000;
+	border-radius: 20px;
+	width:auto ;
+	align-content : center;
+	height: auto;
+	background-color: #F8F8F8;
+}
+
+
+h4 {
+	margin: 0;
+}
+
+
+
+/* Header of Teacher Profile */
+#Content header{
+	display: grid;
+	align-items: center;
+	height:100px;
+	padding: 0 5px;
+	grid-template-columns: repeat(4,max-content) 2fr 1fr;
+	gap: 5rem;
+	border-bottom:1px solid black;
+}
+
+/* Styling of Old Buttons */
+/* #classes {
 	display: grid;
 	/* grid-template-columns: repeat(2, max-content); */
-    height: max-content;
+/*    height: max-content;
 }
 #classes > div {
 	border: 1px solid #000000;
@@ -100,39 +137,14 @@ h4 {
 #classes > div > h2 {
 	font-weight: normal;
 }
-#Content header{
-	display: grid;
-	align-items: center;
-	height:100px;
-	padding: 0 5px;
-	grid-template-columns: repeat(4,max-content) 2fr 1fr;
-	gap: 5rem;
-	border-bottom:1px solid black;
-}
-		
-#Content hgroup{
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	color:red;
+*/
 
-}
-
-.block h4 {
-	text-align: center;
-	font-weight: normal;
-    margin: 10px 0;
-}
-.block p{
-	padding: 0px 5px 0 5px;
-    text-align: center;
-	font-size: x-small;
-}
+/*Styling for Wrapper */
 #wrapper {
 	display:grid;
 	grid-template-columns:1fr 1fr 1fr;
 	align-items:center;
-	height:auto;
+	height:100%;
 	justify-content:space-between;
 	border: 1px dotted #000000;
     background-color: grey;
@@ -140,18 +152,11 @@ h4 {
 	padding-bottom: 10px;
 	padding: 5px;
 	gap:5px;
+	box-sizing:border-box;
 	
 }		
 
-#wrapper textarea {
-	height:60%;
-	width:100%;
-	box-sizing:border-box;
-	align-items:center;
-	justify-content:center;
-	border-radius: 5rem;
-
-}
+/* Individual Classes Box */
 
 .block {
 	border: 1px solid #000000;
@@ -165,6 +170,29 @@ h4 {
 	box-sizing:border-box;
 	grid-template-columns: 100%;
 	grid-template-rows: 1fr 3fr 3fr 0.5fr;
+}
+
+/* Text Styling inside of Boxes for Classes */
+.block h4 {
+	text-align: center;
+	font-weight: normal;
+    margin: 10px 0;
+}
+.block p{
+	padding: 0px 5px 0 5px;
+    text-align: center;
+	font-size: x-small;
+}
+
+#wrapper textarea {
+	resize: none;
+	height:60%;
+	width:100%;
+	box-sizing:border-box;
+	align-items:center;
+	justify-content:center;
+	border-radius: 5rem;
+
 }
 
 .suggestion {
@@ -182,7 +210,74 @@ h4 {
 }
 
 
-#background_toggles {
-	background-color:grey;
-	padding: 20px;
+.first_name {
+	grid-area: teacher_first_name;
+}
+
+.last_name {
+	grid-area: teacher_last_name;
+}
+
+.kamar_code {
+	grid-area: kamar_code;
+}
+
+.privilege {
+	grid-area : privilege;
+}
+
+.gmail {
+	grid-area : gmail;
+}
+
+.has_hub {
+	grid-area:has_hub;
+}
+
+.profile {
+	display:grid;
+	grid-template: 
+	'teacher_first_name teacher_first_name teacher_last_name teacher_last_name' 
+	'kamar_code kamar_code privilege privilege' 
+	'gmail gmail gmail has_hub' 
+	'. . remove_teacher edit_description'
+	;
+	height:100%;
+	border: 1px dotted #000000;
+    background-color: grey;
+	border-radius: 0 0 20px 20px;
+	padding-bottom: 10px;
+	padding: 5px;
+	grid-gap: 20px;
+	box-sizing:border-box;
+	
+}	
+
+.profile input[disabled] {
+	width: 100%;
+	height:30px;
+	font-size: 20px;
+	border: 1px solid black;
+	background-color: rgb(235, 235, 228);
+
+}
+
+.profile input {
+	width: 100%;
+	height:30px;
+	font-size: 20px;
+	border: 1px solid black;
+	background-color: white;
+
+}
+
+
+
+.profile select {
+	width: 100%;
+	height:30px;
+	font-size: 20px;
+	border: 1px solid black;
+	background-color: white;
+
 }

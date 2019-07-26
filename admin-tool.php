@@ -15,6 +15,7 @@
 
 		.toggle-tabs .tab[open] {
 			display: block;
+			height: 100%;
 		}
 
 		.tabs-button{
@@ -231,17 +232,36 @@
 							</div>
 
 							<div class="tab"> 
-								<div id="profile"> 
-									<div id="teacher_name">
-										<input class="teacher_name" type="text" name="name" placeholder="Teacher Name">
-										<img > <!-- edit name image-->									
+								<div class="profile"> 
+									<div class="first_name">
+										<input type="text" name="first_name" placeholder="Teacher First Name" disabled>								
 									</div>
-									<div id="kamar_code">
-										<h1>
+									<div class="last_name">
+										<input type="text" name="last_name" placeholder="Teacher Last Name" disabled>								
+									</div>
+									<div class="kamar_code">
+										<input type="text" name="name" placeholder="Teacher Kamar Code" disabled>
+									</div>
+									<div class="privilege">
+										<select disabled>
+											<option value="teacher"> Teacher </option>
+											<option value="moderator"> Moderator </option>
+											<option value="administrator"> Administrator </option>
+										</select>
+									</div>
+									<div class="gmail">
+										<input type="text" name="gmail" placeholder="Teacher Google Email Adress" disabled>
+									</div>
+									<div class="has_hub">
+										<input type="checkbox" name="has_hub" disabled>
+									</div>
+									
+
 											
 									
 									<!-- Everything on add teacher modal, remove teacher, edit button, save --> 
 								</div>
+							
 							</div>
 						</div>
 					</div>
