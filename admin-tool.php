@@ -30,6 +30,8 @@
 			height:80px;
 			
 		}
+
+		
 	</style>
 </head>
 
@@ -233,33 +235,53 @@
 
 							<div class="tab"> 
 								<div class="profile"> 
-									<div class="first_name">
-										<input type="text" name="first_name" placeholder="Teacher First Name" disabled>								
+									<div class="t_input">
+										<div class="first_name">
+											<input type="text" name="first_name" placeholder="Teacher First Name" disabled>								
+										</div>
+										<div class="last_name">
+											<input type="text" name="last_name" placeholder="Teacher Last Name" disabled>								
+										</div>
+										<div class="kamar_code">
+											<input type="text" name="name" placeholder="Teacher Kamar Code" disabled>
+										</div>
+										<div class="gmail">
+											<input type="text" name="gmail" placeholder="Teacher Google Email Adress" disabled>
+										</div>
 									</div>
-									<div class="last_name">
-										<input type="text" name="last_name" placeholder="Teacher Last Name" disabled>								
-									</div>
-									<div class="kamar_code">
-										<input type="text" name="name" placeholder="Teacher Kamar Code" disabled>
-									</div>
-									<div class="privilege">
-										<select disabled>
-											<option value="teacher"> Teacher </option>
-											<option value="moderator"> Moderator </option>
-											<option value="administrator"> Administrator </option>
-										</select>
-									</div>
-									<div class="gmail">
-										<input type="text" name="gmail" placeholder="Teacher Google Email Adress" disabled>
-									</div>
-									<div class="has_hub">
-										<input type="checkbox" name="has_hub" disabled>
-									</div>
+								
 									
-
+									<div class="c_input">
+										<div class="privilege">
+											<h4> Privilege: </h4> <br>
+											<div>
+												<input type="checkbox" name="teacher" disabled>Teacher<br>
+											</div>
+											<div><input type="checkbox" name="moderator" disabled>Moderator<br></div>
 											
-									
-									<!-- Everything on add teacher modal, remove teacher, edit button, save --> 
+											<div><input type="checkbox" name="administrator" disabled>Administrator<br></div><br>							
+										</div>
+										
+										<div class="has_hub">
+											<h4> Has hub: </h4>
+											<input type="checkbox" name="has_hub" disabled> Yes<br>
+											<input type="checkbox" name="has_hub" disabled> No<br>
+										</div>
+									</div>
+									<div class="others">
+										<div class="remove_teacher other">
+											<h3>Remove Teacher</h3>
+										</div>
+										
+										<div class="edit_description other">
+											<h3>Edit</h3>
+										</div>
+										<div class="save_description other">
+											<h3>Save</h3>
+
+										</div>
+										<!-- Everything on add teacher modal, remove teacher, edit button, save --> 
+									</div>
 								</div>
 							
 							</div>
