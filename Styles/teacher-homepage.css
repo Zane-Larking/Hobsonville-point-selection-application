@@ -16,12 +16,7 @@
 	text-align: center;
 }
 
-#content {
-	background-color:White; 
-	height:auto; 
-	border:1px solid black;
-	padding:15px;
-}
+
 
 #head {
 	display: grid;
@@ -39,7 +34,7 @@
 
 }
 
-
+/*
 #content {
 	grid-column-start: 1;
 	grid-area: unset;
@@ -54,6 +49,17 @@
 	height:auto; 
 	border:1px solid black;
 	padding:15px;
+	margin-bottom:10px;
+}
+*/
+
+.content {
+	grid-column-start: 1;
+	background-color:White; 
+	height:auto; 
+	border:1px solid black;
+	padding:15px;
+	margin-bottom:10px;
 }
 
 #head > div{

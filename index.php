@@ -11,7 +11,7 @@
         
         
         //Checks if the user is a part of the the tearchers table
-        $query = "SELECT ID, CONCAT(FIRST_NAME, ' ', LAST_NAME) AS NAME FROM teachers WHERE EMAIL = '" . $_SESSION['email'] . "'";
+        $query = "SELECT ID, CONCAT(FIRST_NAME, ' ', LAST_NAME) AS NAME, PRIVILEGES, HAS_HUB  FROM teachers WHERE EMAIL = '" . $_SESSION['email'] . "'";
         $result = mysqli_query($dbconnect, $query);
         $row = mysqli_fetch_array($result);
 
@@ -22,6 +22,8 @@
             //Stores info about the teacher
             $_SESSION['id'] = $row['ID'];
             $_SESSION['name'] = $row['NAME'];
+            $_SESSION['hashub'] = $row['HAS_HUB'];
+            $_SESSION['privilege'] = $row['PRIVILEGES'];
 
             //Stores info about who their Hublings are
             $query = "SELECT ID, CONCAT(FIRST_NAME, LAST_NAME) AS NAME FROM students WHERE COACH = '" . $_SESSION['name'] . "'";

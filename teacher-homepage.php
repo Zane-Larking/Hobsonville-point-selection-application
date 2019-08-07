@@ -34,15 +34,21 @@
 						<a href="manage-classes.php">Manage Classes</a>
 					</nav>
 					<div>
-						<div id="content1">
+						
+
+						<?php
+							if($_SESSION['hashub'] == 1){
+								echo '
+						<div class="content">
 							<div id = "user-grid-container">
-								<img src= <?php echo $_SESSION['picture']; ?> height="75rem" style= "grid-area: image">
-								<div class = "ellipsis" style= "grid-area: name"><?php echo $_SESSION['name']; ?></div>
-								<div class = "ellipsis" style= "grid-area: email"><?php echo $_SESSION['email']; ?></div>
+								<img src= "'; echo $_SESSION["picture"]; echo '" height="75rem" style= "grid-area: image">
+								<div class = "ellipsis" style= "grid-area: name">';echo $_SESSION["name"]; echo '</div>
+								<div class = "ellipsis" style= "grid-area: email">';echo $_SESSION["email"]; echo '</div>
 							</div>
 							<!--Hub students and their classes-->
 							<div id = "hublings">
-								<?php
+							';
+						
 								/*
 									foreach ($_SESSION['hublings'].split as $studentId) {
 										$studentId
@@ -65,30 +71,41 @@
 										</div>";
 											
 									}
-								?>
-							</div>
-							
-
-						</div>
-						<div id="content">
-							Class they are teaching<br><br>
-							Modules:<br><br>
-							Spins:<br><br>
-							Floortimes:<br><br>
-							Projects:<br><br>
-
-							<div id="grid-container">
-							  	<div class="grid-item">1</div>
-							  	<div class="grid-item">2</div>
-							  	<div class="grid-item">3</div>
-							  	<div class="grid-item">4</div>
-							  	<div class="grid-item">5</div>
-							  	<div class="grid-item">6</div>
-							  	<div class="grid-item">7</div>
-							  	<div class="grid-item">8</div>
-							  	<div class="grid-item">9</div>
+								echo '
 							</div>
 						</div>
+								';
+							}
+							if($_SESSION['privilege'] >= 0){
+								echo'
+								<div class="content">
+									Teacher Aid Placeholder
+								</div>
+								';
+							}
+							if($_SESSION['privilege'] >= 1){
+								echo'
+								<div class="content">
+									Teacher Placeholder
+								</div>
+								';
+							}
+							if($_SESSION['privilege'] >= 2){
+								echo'
+								<div class="content">
+									Moderator Placeholder
+								</div>
+								';
+							}
+							if($_SESSION['privilege'] >= 3){
+								echo'
+								<div class="content">
+									Admin Placeholder
+								</div>
+								';
+							}
+						?> hiiiiiii             cherry was HERE HOW DOING  4049 I LOVE SUSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSHI YUM YUM IN MY TUM TUM :p
+						
 					</div>
 					
 					
