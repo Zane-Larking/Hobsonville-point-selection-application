@@ -55,3 +55,23 @@
     background-color: #FFFFFF;
     border: 1px solid #4D4D4D;     
 }
+
+.coverageCheck {
+    color: #FFFFFF;
+    width: 16rem;
+    height: 16rem;
+    border-radius: 50%;
+    font-size: 0.75em;  
+}
+
+.approved {
+    background-color: #40F364; 
+}
+
+.warning {
+    background-color: rgb(255, 165, 0);
+}
+
+.denied {
+    background-color: rgb(224, 58, 42);
+}

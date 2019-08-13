@@ -83,7 +83,7 @@
                         <div class="scrollItem student '.$row['FIRST_NAME'].'-'.$row['LAST_NAME'].'">
                             <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                             <p>'.$row['FIRST_NAME'].' '.$row['LAST_NAME'].'</p>
-                            <div class="coverageCheck">
+                            <div class="coverageCheck approved">
                                 <div class="material-icons">check</div>
                             </div>
                         </div>
@@ -95,14 +95,14 @@
                         <div class="student 1">
                             <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                             <p>Student 1</p>
-                            <div class="coverageCheck">
+                            <div class="coverageCheck approved">
                                 <div class="material-icons">check</div>
                             </div>
                         </div>
                         <div class="student 1">
                             <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                             <p>Student 1</p>
-                            <div class="coverageCheck">
+                            <div class="coverageCheck approved">
                                 <div class="material-icons">check</div>
                             </div>
                         </div>
@@ -542,14 +542,6 @@
             }
             .material-icons {
                 font-size: 1.5em;
-            }
-            .coverageCheck {
-                color: #FFFFFF;
-                width: 16rem;
-                height: 16rem;
-                border-radius: 50%;
-                background-color: #40F364;  
-                font-size: 0.75em;  
             }
             .classes > div {
                 

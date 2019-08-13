@@ -50,7 +50,7 @@
                             <div class="scrollItem student  '.$row['FIRST_NAME'].'-'.$row['LAST_NAME'].'" onclick = "toggleTabs(event, '."'".'currentStudentSelections'."', '".$row['FIRST_NAME'].'-'.$row['LAST_NAME']."'".')">
                                 <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                 <p>'.$row['FIRST_NAME'].' '.$row['LAST_NAME'].'</p>
-                                <div class="coverageCheck">
+                                <div class="coverageCheck approved">
                                     <div class="material-icons">check</div>
 
                                 </div>
@@ -232,7 +232,7 @@
             display: grid;
             font-size: 12rem;
         }
-        .currentStudentSelections {
+        .studentSelections.currentStudentSelections {
             display: grid;
         }
         .selections > .choices {
