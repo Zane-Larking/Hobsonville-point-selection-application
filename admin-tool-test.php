@@ -53,7 +53,7 @@
 
             <div class="tabs">
                 
-                <div class="background tab">
+                <div class="background tab" open>
                     <div class="peopleManage"> <!-- Box/Container for the Content in the Teacher name 
                     list & Admin name -->
                         <div class="peopleList" >
@@ -93,9 +93,9 @@
                                     
                                 ?>
                                 <div class=<?php echo "'".$rows['ID']."'"; ?>>
-                                    <img src="Images/student-pic.png" width=20px height=20px>
-                                    <h4><?php echo $rows['FIRST_NAME']; ?></h4> 
-                                    <img src="Images/red-dot.png" alt="gears" width=5px height=5px>
+                                    <img src="Images/student-pic.png" width=12px height=12px>
+                                    <p class="people_text"><?php echo $rows['FIRST_NAME']; ?></p> 
+                                    <div></div>
                                 </div>
                                 <?php
                                     }
@@ -281,17 +281,9 @@
                                             </div>
                                         </div>
                                         <div class="others">
-                                            <div class="remove_teacher other">
-                                                <h3>Remove Teacher</h3>
-                                            </div>
-                                            
-                                            <div class="edit_description other">
-                                                <h3>Edit</h3>
-                                            </div>
-                                            <div class="save_description other">
-                                                <h3>Save</h3>
-
-                                            </div>
+                                            <input class="other" style="background:cyan;" type="button" name="save" value="save">
+                                            <input class="other" style="background:cyan;" type="button" name="edit" value="edit">
+                                            <input class="other" style="background:red;" type="button" name="remove" value="remove">
                                             <!-- Everything on add teacher modal, remove teacher, edit button, save --> 
                                         </div>
                                     </div>
@@ -341,8 +333,8 @@
                                     
                                 ?>
                                 <div class=<?php echo "'".$rows['ID']."'"; ?>>
-                                    <img src="Images/student-pic.png" width=20px height=20px>
-                                    <h4><?php echo $rows['FIRST_NAME']; ?></h4> 
+                                    <img src="Images/student-pic.png" width=12px height=12px>
+                                    <p class="people_text"><?php echo $rows['FIRST_NAME']; ?></p> 
                                     <img src="Images/red-dot.png" alt="gears" width=5px height=5px>
                                 </div>
                                 <?php
@@ -355,7 +347,7 @@
                             <div class="functions">
                                 <div id="add_student"> <!-- just a container, there are 3 in total -->
                                     <!-- Button for Add student Modal --> 
-                                    <button id="add_student_button" onclick="openModal('add_student_modal')"> Add Teacher </button>
+                                    <button id="add_student_button" onclick="openModal('add_student_modal')"> Add Student </button>
                                     <div id="add_student_modal" class="modal">
                                         <!-- Modal Content container -->
                                         <div class="modal-content">
@@ -415,7 +407,7 @@
                                 </div>
                                     
 
-                                <div id="Export" >  <!-- Zane help here too, I changed -->
+                                <div id="Export" >  <!-- Zane help here too, I changed everything that has "student" -->
                                     <img src="Images/export.png" width=40px height=40px  onclick="openModal('import_students_modal')">
                                     <div id="import_students_modal" class="modal">
                                         <!-- Modal Content container -->
@@ -449,70 +441,39 @@
                                 <h2> Last Name </h2>
                                 <h2> Years </h2>
                                 <div> </div> <!-- spacer -->
-                                <div class="toggle-btns tabs-button">
-                                    <button> Classes </button>
-                                    <button> Profile </button>
-                                </div>
-                            </header>
-                            <div class="tabs">
-                                <div class="tab" open> <!-- content --> 
-                                    <div class="wrapper">
-                                        
-                                    </div>
-                                </div>
-
-                                <div class="tab"> 
-                                    <div class="profile"> 
-                                        <div class="t_input">
-                                            <div class="first_name">
-                                                <input type="text" name="first_name" placeholder="Teacher First Name" disabled>								
-                                            </div>
-                                            <div class="last_name">
-                                                <input type="text" name="last_name" placeholder="Teacher Last Name" disabled>								
-                                            </div>
-                                            <div class="kamar_code">
-                                                <input type="text" name="name" placeholder="Teacher Kamar Code" disabled>
-                                            </div>
-                                            <div class="gmail">
-                                                <input type="text" name="gmail" placeholder="Teacher Google Email Adress" disabled>
-                                            </div>
-                                        </div>
-                                    
-                                        
-                                        <div class="c_input">
-                                            <div class="privilege">
-                                                <h4> Privilege: </h4> <br>
-                                                <div>
-                                                    <input type="checkbox" name="teacher" disabled>Teacher<br>
-                                                </div>
-                                                <div><input type="checkbox" name="moderator" disabled>Moderator<br></div>
-                                                
-                                                <div><input type="checkbox" name="administrator" disabled>Administrator<br></div><br>							
-                                            </div>
-                                            
-                                            <div class="has_hub">
-                                                <h4> Has hub: </h4>
-                                                <input type="checkbox" name="has_hub" disabled> Yes<br>
-                                                <input type="checkbox" name="has_hub" disabled> No<br>
-                                            </div>
-                                        </div>
-                                        <div class="others">
-                                            <div class="remove_teacher other">
-                                                <h3>Remove Teacher</h3>
-                                            </div>
-                                            
-                                            <div class="edit_description other">
-                                                <h3>Edit</h3>
-                                            </div>
-                                            <div class="save_description other">
-                                                <h3>Save</h3>
-
-                                            </div>
-                                            <!-- Everything on add teacher modal, remove teacher, edit button, save --> 
-                                        </div>
-                                    </div>
                                 
+                            </header>
+                            <!-- content --> 
+                            <div class="student_profile">
+                                <textarea class="student_first_name" name="first_name" placeholder="First Name" disabled></textarea>
+                                <textarea class="student_last_name" name="last_name" placeholder="Last Name" disabled></textarea>
+                                <textarea class="k_code" name="k_code" placeholder="Kamar Code" disabled></textarea>
+                                <textarea class="student_gmail" name="student_gmail" placeholder="Gmail" disabled></textarea>
+                                <select class="coach" name="hub_coach" disabled> <!-- Need Php for list of all teacher names -->
+                                    <option value="Kalani"> Kalani </option>
+                                    <option value="Gerard"> Gerard </option>
+                                    <option value="Cairan"> Cairan </option>
+                                    <option value="Jessica"> Jessica </option>
+                                    <option value="Rebecca"> Rebecca </option>
+                                </select>
+                                <select class="year_level" name="year_level" disabled>
+                                    <option value="9"> 9 </option>
+                                    <option value="10"> 10 </option>
+                                    <option value="11"> 11 </option>
+                                    <option value="12"> 12 </option>
+                                    <option value="13"> 13 </option>
+                                </select>
+                                <div class="student_others">
+                                    <input class="other" style="background:cyan;" type="button" name="save" value="save">
+                                    <input class="other" style="background:cyan;" type="button" name="edit" value="edit">
+                                    <input class="other" style="background:red;" type="button" name="remove" value="remove">
+                                    
+                                    <!-- Everything on add teacher modal, remove teacher, edit button, save --> 
                                 </div>
+                                        
+                                 
+
+                                
                             </div>
                         </div>
                     </div>
