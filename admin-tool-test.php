@@ -43,10 +43,10 @@
 	<div id ="main">
 		<div id= "mainGrid" class="toggle-tabs">
             <div class="toggle-btns tabs-button-people">
-                <button> 
+                <button class="toggle-btn"> 
                     <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 30px;justify-self: center;border-radius: 50%;">
                     Teacher </button>
-                <button> 
+                <button class="toggle-btn"> 
                     <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 30px;justify-self: center;border-radius: 50%;">
                     Student </button>
             </div>
@@ -89,10 +89,7 @@
                                     while($rows=mysqli_fetch_assoc($result))
                                     {
                                 ?>
-                                <?php
-                                    
-                                ?>
-                                <div class=<?php echo "'".$rows['ID']."'"; ?>>
+                                <div class=<?php echo "'".$rows['ID']."'".'"'.' onclick = "displayTabs(event, currentStudentSelections('."'".$rows['ID']."'".');"';?>>
                                     <img src="Images/student-pic.png" width=20px height=20px>
                                     <h4><?php echo $rows['FIRST_NAME']; ?></h4> 
                                     <img src="Images/red-dot.png" alt="gears" width=5px height=5px>
@@ -173,7 +170,7 @@
                                             <!-- Insert form here -->
                                             <form method="post" action="DataBase/import-details.php" enctype="multipart/form-data">
                                                 <div class="modal-content-style">  
-                                                    <input type="hidden" name="src" value="admin-tool" />
+                                                    <input type="hidden" name="src" value="admin-tool-test" />
                                                     <input type="hidden" name="table" value="teachers" />
                                                     <h4> Select file: </h4>
                                                     <input class="modal-content-input" type="file" name="file" accept="application/vnd.ms-excel, Microsoft Excel Comma Separated Values File (.csv),.csv">
@@ -196,8 +193,8 @@
                                 <h2> Years </h2>
                                 <div> </div> <!-- spacer -->
                                 <div class="toggle-btns tabs-button">
-                                    <button> Classes </button>
-                                    <button> Profile </button>
+                                    <button class="toggle-btn"> Classes </button>
+                                    <button class="toggle-btn"> Profile </button>
                                 </div>
                             </header>
                             <div class="tabs">
@@ -427,7 +424,7 @@
                                             <!-- Insert form here -->
                                             <form method="post" action="DataBase/import-details.php" enctype="multipart/form-data">
                                                 <div class="modal-content-style">  
-                                                    <input type="hidden" name="src" value="admin-tool" />
+                                                    <input type="hidden" name="src" value="admin-tool-test.php" />
                                                     <input type="hidden" name="table" value="students" />
                                                     <h4> Select file: </h4>
                                                     <input class="modal-content-input" type="file" name="file" accept="application/vnd.ms-excel, Microsoft Excel Comma Separated Values File (.csv),.csv">
@@ -450,7 +447,7 @@
                                 <h2> Years </h2>
                                 <div> </div> <!-- spacer -->
                                 <div class="toggle-btns tabs-button">
-                                    <button> Classes </button>
+                                    <button class="toggle-btn"> Classes </button>
                                     <button> Profile </button>
                                 </div>
                             </header>
@@ -553,7 +550,90 @@
 
 	// When the user clicks anywhere outside of the modal, close it
 	
-	</script>
+    </script>
+    <script>
+        //event callbacks 
+        function changeDisplayedStudent(e, search) {
+            //request confirmation from user if there are unsaved changes
+            if (!editing || !unsavedChanges || confirm("Unsaved changes will be lost if you switch to another class. Are you sure you want to disgard changes and change class?")) {
+                
+                console.log(e);
+
+                //updates editing state and disables editablitiy of inputs 
+                if (editing) {
+                    editing = false;
+
+                    let detailsEl = document.querySelector("#"+currentYearLevel+" .details");
+                    detailsEl.querySelectorAll("textarea").forEach(field => {
+                        field.setAttribute("readonly", "");
+                    });
+                    detailsEl.querySelectorAll("select").forEach(field => {
+                        field.setAttribute("disabled", "");
+                    });
+
+                    document.querySelector("#"+currentYearLevel+" .details .buttons input[value='edit']").style.display = "block";
+                    document.querySelector("#"+currentYearLevel+" .details .buttons input[value='save']").style.display = "none";
+                }
+                //updates state
+                if (unsavedChanges) {
+                    unsavedChanges = false;
+                }
+                //fires a AJAX get request
+                getDoc("AJAX/access-class-details.php/?q="+search, loadDetails);
+
+
+                // Get all elements with class="class" and remove the class "active"
+                let classEls = document.querySelectorAll("#"+currentYearLevel+" .class");
+                for (i = 0; i < classEls.length; i++) {
+                    classEls[i].className = classEls[i].className.replace(" selected", "");
+                }
+
+            // Add an "active" class to the link that opened the class details
+            e.currentTarget.className += " selected";
+            }
+        }
+        
+        //event callbacks 
+        function changeDisplayedTeacher(e, search) {
+            //request confirmation from user if there are unsaved changes
+            if (!editing || !unsavedChanges || confirm("Unsaved changes will be lost if you switch to another class. Are you sure you want to disgard changes and change class?")) {
+                
+                console.log(e);
+
+                //updates editing state and disables editablitiy of inputs 
+                if (editing) {
+                    editing = false;
+
+                    let detailsEl = document.querySelector("#"+currentYearLevel+" .details");
+                    detailsEl.querySelectorAll("textarea").forEach(field => {
+                        field.setAttribute("readonly", "");
+                    });
+                    detailsEl.querySelectorAll("select").forEach(field => {
+                        field.setAttribute("disabled", "");
+                    });
+
+                    document.querySelector("#"+currentYearLevel+" .details .buttons input[value='edit']").style.display = "block";
+                    document.querySelector("#"+currentYearLevel+" .details .buttons input[value='save']").style.display = "none";
+                }
+                //updates state
+                if (unsavedChanges) {
+                    unsavedChanges = false;
+                }
+                //fires a AJAX get request
+                getDoc("AJAX/access-class-details.php/?q="+search, loadDetails);
+
+
+                // Get all elements with class="class" and remove the class "active"
+                let classEls = document.querySelectorAll("#"+currentYearLevel+" .class");
+                for (i = 0; i < classEls.length; i++) {
+                    classEls[i].className = classEls[i].className.replace(" selected", "");
+                }
+
+            // Add an "active" class to the link that opened the class details
+            e.currentTarget.className += " selected";
+            }
+        }
+    </script>
 
 </body>
 </html>

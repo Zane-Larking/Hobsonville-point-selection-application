@@ -79,9 +79,8 @@
 								{
 							?>
 							<?php
-								
 							?>
-							<div class=<?php echo "'".$rows['ID']."'"; ?>>
+							<div class=<?php echo "'".$rows['ID']."'".'"'.' onclick = "displayTabs(event, currentStudentSelections('."'".$rows['ID']."'".');"';?>>
 								<img src="Images/student-pic.png" width=20px height=20px>
 								<h4><?php echo $rows['FIRST_NAME']; ?></h4> 
 								<img src="Images/red-dot.png" alt="gears" width=5px height=5px>
@@ -161,7 +160,7 @@
 										<!-- Insert form here -->
 										<form method="post" action="DataBase/import-details.php" enctype="multipart/form-data">
 											<div class="modal-content-style">  
-												<input type="hidden" name="src" value="admin-tool" />
+												<input typeame="src" value="admin-tool" />
 												<input type="hidden" name="table" value="teachers" />
 												<h4> Select file: </h4>
 												<input class="modal-content-input" type="file" name="file" accept="application/vnd.ms-excel, Microsoft Excel Comma Separated Values File (.csv),.csv">
@@ -184,8 +183,8 @@
 							<h2> Years </h2>
 							<div> </div> <!-- spacer -->
 							<div class="toggle-btns tabs-button">
-								<button> Classes </button>
-								<button> Profile </button>
+								<button class="toggle-btn"> Classes </button>
+								<button class="toggle-btn"> Profile </button>
 							</div>
 						</header>
 						<div class="tabs">

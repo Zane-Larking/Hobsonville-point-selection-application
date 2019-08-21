@@ -24,7 +24,7 @@
         echo "</classDetails>";
         */
 
-        //comma separated values
+        //delimiter separated values
         echo $cDetails['ID']."<BREAK>".
         $cDetails['CODE']."<BREAK>".
         $cDetails['NAME']."<BREAK>".
