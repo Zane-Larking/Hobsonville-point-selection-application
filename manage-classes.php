@@ -302,13 +302,18 @@
             ?>
         </div>
     </div>
+    <script src="Scripts/update-database.js"></script>
 <script>
+    // Set page state
     document.getElementById("FF").style.display = "grid";
     var currentYearLevel = "FF";
     var currentClass = {FF: "", Q1: "", Q2: "", Q3: ""};
     var unsavedChanges = false;
     var editing = false;
+    
+    //button event callbacks
     function changeYearLevel(e, yearLevel) {
+        /* Changes what students are displayed */
         // Declare all variables
         var i, tabcontent, tablinks;
 
@@ -333,161 +338,38 @@
     }
     
     function hideSearchPannel(e) {
-
+        /* hides all panels across all tabs */
         //hides pannel
         var pannels = document.getElementsByClassName("searchPannel");
 
+        //toggles display and inner html
         for (x in pannels) {
             if (x != 'length' & x != 'item' & x != "namedItem") {
-                if (pannels[x].style.display == "") {
+                if (pannels[x].style.display == "grid" || pannels[x].style.display == "") {
                     pannels[x].style.display = "none";
-                    e.target.firstElementChild.innerHTML = ">>";
-                }
-                else if (pannels[x].style.display == "grid") {
-                    pannels[x].style.display = "none";
-                    e.target.firstElementChild.innerHTML = ">>";
+                    e.target.innerHTML = ">>";
                 }
                 else if (pannels[x].style.display == "none") {
                     pannels[x].style.display = "grid";
-                    e.target.firstElementChild.innerHTML = "<<";
+                    e.target.innerHTML = "<<";
                 }
             }
         }
     }
 
-    function onDetailChange() {
-        unsavedChanges = true;
-        console.log("details changed");
-        console.log(event.srcElement.value)
-    }
 
-    function save() {
-        let detailsEl = document.querySelector("#"+currentYearLevel+" .details");
-        console.log(detailsEl);
-        let fields = ['id', 'code', 'name', 'description', 'type', 'teacher1', 'teacher2', 'subject1', 'subject2'];
-        let details = [];
-
-        detailsEl.querySelectorAll("textarea").forEach(field => {
-            field.setAttribute("readonly", "");
-            details.push(field.value);
-        });
-        detailsEl.querySelectorAll("select").forEach(field => {
-            field.setAttribute("disabled", "");
-            details.push(field.value);
-        });
-        
-        document.querySelector("#"+currentYearLevel+" .details .buttons input[value='edit']").style.display = "block";
-        document.querySelector("#"+currentYearLevel+" .details .buttons input[value='save']").style.display = "none";
-        
-        console.log(details);
-
-        if (unsavedChanges) {
-            data = "";
-            for (let i = 0; i < fields.length; i++) {
-                data += fields[i] + "=" + details[i];
-                if (i != fields.length - 1) {
-                    data += "&";
-                }
-            }
-            console.log(data);
-            postDoc("AJAX/update-class-details.php", data, updateClassDetails);
-        }
-    }
-    
-    function edit() {
-        let detailsEl = document.querySelector("#"+currentYearLevel+" .details");
-        console.log(detailsEl);
-        let fields = ['id', 'code', 'name', 'description', 'type', 'subject1', 'subject2', 'teacher1', 'teacher2'];
-        detailsEl.querySelectorAll("textarea").forEach(field => {
-            field.removeAttribute("readonly");
-        });
-        detailsEl.querySelectorAll("select").forEach(field => {
-            field.removeAttribute("disabled");
-        });
-        editing = true;
-
-        document.querySelector("#"+currentYearLevel+" .details .buttons input[value='edit']").style.display = "none";
-        document.querySelector("#"+currentYearLevel+" .details .buttons input[value='save']").style.display = "block";
-
-        
-    }
-
-    function getDoc(url, func) {
-        let xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                func(this);
-            }
-        };
-        xhttp.open("GET", url, true);
-        xhttp.send();
-    }
-
-    function postDoc(url, data, func) {
-        let xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                func(this);
-            }
-        };
-        xhttp.open("POST", url, true);
-        xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhttp.send(data);
-    }
-
-    function loadClassDetails(xhttp) {
-        //saved as [CODE, NAME, TYPE, SUBJECT1, SUBJECT2, TEACHER1, TEACHER2, DESCRIPTION]
-        let cDetails = xhttp.response.split("<BREAK>");
-        console.log(cDetails);
-
-        let fields = ['id', 'code', 'name', 'type', 'subject1', 'subject2', 'teacher1', 'teacher2', 'description'];
-        let x;
-        for (let i = 0; i< fields.length; i++) {
-            x = document.querySelector("#"+currentYearLevel+" ."+fields[i]);
-            console.log("#"+currentYearLevel+" ."+fields[i]);  
-            x.value = cDetails[i];
-        }
-        currentClass[currentYearLevel] = document.querySelector("#"+currentYearLevel+" .details textarea[name='code']").value;
-
-    }
-
-    function updateClassDetails(http) {
-        console.log(http.response);
-        if (http.response == "true") {
-            alert("Changes saved");
-
-            //
-            unsavedChanges = false;
-
-            //If the class's code was changed then this makes sure the scroll pannel updates so that the class can still be edited 
-            let oldCode = currentClass[currentYearLevel];
-            let newCode = document.querySelector("#"+currentYearLevel+" .details textarea[name='code']").value; 
-            let temp = document.querySelector("#"+currentYearLevel + " " + "." + oldCode);
-
-            //Updates the subject being displayed
-            let subjects = temp.querySelectorAll(".subject");
-            let domain;
-            domain = document.querySelector("#"+currentYearLevel+" .details .subject1").value;
-            subjects[0].className = "subject " + subjectFromDomain(domain);
-            domain = document.querySelector("#"+currentYearLevel+" .details .subject2").value;
-            subjects[1].className = "subject " + subjectFromDomain(domain);
-
-            //Updates the Code being displayed.
-            temp.outerHTML = temp.outerHTML.replace(new RegExp(oldCode, 'gi'), newCode);
+    //--------------
 
 
-        }else {
-            alert("Error!")
-        }
 
-    }
-
-
+    //event callbacks 
     function changeDisplayedClass(e, search) {
+        //request confirmation from user if there are unsaved changes
         if (!editing || !unsavedChanges || confirm("Unsaved changes will be lost if you switch to another class. Are you sure you want to disgard changes and change class?")) {
             
-            
             console.log(e);
+
+            //updates editing state and disables editablitiy of inputs 
             if (editing) {
                 editing = false;
 
@@ -502,10 +384,12 @@
                 document.querySelector("#"+currentYearLevel+" .details .buttons input[value='edit']").style.display = "block";
                 document.querySelector("#"+currentYearLevel+" .details .buttons input[value='save']").style.display = "none";
             }
+            //updates state
             if (unsavedChanges) {
                 unsavedChanges = false;
             }
-            getDoc("AJAX/access-class-details.php/?q="+search, loadClassDetails);
+            //fires a AJAX get request
+            getDoc("AJAX/access-class-details.php/?q="+search, loadDetails);
 
 
             // Get all elements with class="class" and remove the class "active"
@@ -518,11 +402,20 @@
         e.currentTarget.className += " selected";
         }
     }
+    
+    //called by select and textarea tags
+    function onDetailChange() {
+        unsavedChanges = true;
+        console.log("details changed");
+        console.log(event.srcElement.value)
+    }
 
-
+    //WORK IN PROGRESS
     function importClasses() {
         if (confirm("WARNING! The classes you import will over-write all classes, as shown on this page, on the database. Are you sure you want to import a file? (it is recomended that you export the current information just in case)")) {
             modal.style.display = "block";
+            //WORK IN PROGRESS
+            //replace data on database with data in imported file
         }
     }
 
