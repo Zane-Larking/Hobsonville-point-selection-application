@@ -72,10 +72,21 @@
     margin-right: auto;
 }
 
+#hub-coach-name {
+	border-style:solid;
+	border-width:1px;
+	padding:1px;
+	display:grid;
+	grid-template: repeat(2, auto)/auto 1fr;
+	grid-template-areas:
+	"image name link link" 
+	"image email email email";
+	vertical-align:middle;
+}
 
 #user-grid-container {
 	border: 1px solid black;
-	padding: 2rem;
+	padding: 3rem;
 	
 
 	overflow: hidden;
@@ -85,8 +96,8 @@
 	display: grid;
 	grid-template: repeat(3, auto)/auto 1fr;
 	grid-template-areas:
-	"image options options"
-	"image name ." 
+	"image name options"
+	"image year-level ." 
 	"image email .";
 	column-gap: 5rem;
 }

@@ -17,9 +17,26 @@
 		    <div id="main">
 			    <div id ="mainGrid">
 				    <div id = "head">
-						<img src="Images/hpss-logo.png" alt="HPSS Logo" style="height: 5em">
+						<img src="Images/hpss-logo.png" alt="HPSS Logo" style="height: 5em; margin: 17px 0px;">
 						<div> 
 							<h1><font face ="Verdana">Teacher Homepage</font></h1>
+							<h5> Signed in as:
+								<?php 
+									if($_SESSION['privilege'] == 3){
+										echo 'Admin';
+									}else if($_SESSION['privilege'] == 2){
+										echo 'Moderator';
+									}else if($_SESSION['privilege'] == 1){
+										echo 'Teacher';
+									}else if($_SESSION['privilege'] == 0){
+										echo 'Teacher Aid';
+									}
+									if($_SESSION['hashub'] == 1){
+										echo ' & Hub Coach';
+									}
+								?>
+
+							</h5>
 						</div>
 					</div>
 					<nav id ="pannel">
@@ -40,10 +57,11 @@
 							if($_SESSION['hashub'] == 1){
 								echo '
 						<div class="content">
-							<div id = "user-grid-container">
+							<div id = "hub-coach-name">
 								<img src= "'; echo $_SESSION["picture"]; echo '" height="75rem" style= "grid-area: image">
-								<div class = "ellipsis" style= "grid-area: name">';echo $_SESSION["name"]; echo '</div>
-								<div class = "ellipsis" style= "grid-area: email">';echo $_SESSION["email"]; echo '</div>
+								<div class = "ellipsis" style= "grid-area: name; padding: 10px;">';echo $_SESSION["name"]; echo '</div>
+								<div class = "ellipsis" style= "grid-area: email; padding: 10px;">';echo $_SESSION["email"]; echo '</div>
+								<div class = "ellipsis" style= "grid-area: link; padding: 10px;"><a href="hub-overview.php">Hub Coach Homepage</a></div>
 							</div>
 							<!--Hub students and their classes-->
 							<div id = "hublings">
@@ -66,6 +84,7 @@
 										<div id = 'user-grid-container'>
 											<img src= "; if (isset($row['PICTURE'])) echo $row['PICTURE'];  else echo"'Images/portrait-placeholder.png' height='50rem' style= 'grid-area: image;'>
 											<div class = 'ellipsis' style= 'grid-area: name'>".$row['NAME']."</div>
+											<div class = 'ellipsis' style= 'grid-area: year-level'>Year ".$row['YEAR_LEVEL']."</div>
 											<div class = 'ellipsis' style= 'grid-area: email'>".$row['EMAIL']."</div>
 											
 											<div class = 'ellipsis' style= 'grid-area: options; padding-right:3px; display: grid; align-items: center; justify-content: end; grid-auto-flow: column; grid-gap: 5px; grid-auto-columns: max-content;'>
