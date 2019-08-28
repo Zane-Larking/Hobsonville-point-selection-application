@@ -16,7 +16,12 @@
 	text-align: center;
 }
 
-
+#hublings {
+	border-style:solid;
+	border-width:1px;
+	border-color:black;
+	margin-top:10px;
+}
 
 #head {
 	display: grid;
@@ -71,6 +76,7 @@
 #user-grid-container {
 	border: 1px solid black;
 	padding: 2rem;
+	
 
 	overflow: hidden;
 	
@@ -79,15 +85,17 @@
 	display: grid;
 	grid-template: repeat(3, auto)/auto 1fr;
 	grid-template-areas:
-	"image none options"
-	"image name options" 
-	"image email email";
+	"image options options"
+	"image name ." 
+	"image email .";
 	column-gap: 5rem;
 }
 
 #hublings {
-	overflow-y: scroll;
-    height: 550rem;
+	overflow-y: auto;
+	overflow-x: hidden;
+    height: auto;
+    max-height: 250px;
 }
 
 #content > #grid-container {
@@ -106,6 +114,7 @@
 
 #user-grid-container img{
 	margin: auto;
+	padding-right: 10px;
 }
 
 .admin {
@@ -113,4 +122,12 @@
 	background-color: white;
 	height:50px;
 	width:500px;
+}
+
+#hublings > #user-grid-container {
+
+
+
+	margin:-1px;
+
 }
