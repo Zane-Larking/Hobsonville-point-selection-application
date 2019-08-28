@@ -1,9 +1,10 @@
 <?php
 
-//Code to import teachers
+//Uploads data from file into the database. 
+//Takes a file and table identifier as inputs
 include "../DataBase/database-connect.php";
 // echo "test 1";
-if (isset($_POST['submit']) & isset($_POST['src']) & isset($_POST['src'])) {
+if (isset($_POST['submit']) & isset($_POST['src'])) {
     // echo "test 2";
     //Convient view for debugging 
     // header('content-type: text/plain');
@@ -77,7 +78,7 @@ if (isset($_POST['submit']) & isset($_POST['src']) & isset($_POST['src'])) {
 
                 }      
                 fclose($f);
-                header("location: ../".$src.".php?uploadsuccessful");
+                header("location: ../".$src."?uploadsuccessful");
             } else {
                 echo "File size too large. Please contact developer at zane.larking@hobsonvillepoint.school.nz";
             }
