@@ -1,22 +1,64 @@
-#teacherManage {
+#mainGrid {
+	height:600px;
+	grid-template: "buttons tabs-content" 100% / min-content 1fr;
+	grid-gap:0 !important;
+}
+
+.background {
+	background-color:grey;
+	padding: 20px;
+	grid-area:tabs-content;
+	box-sizing:border-box;
+	
+}
+
+.tabs-button-people {
+	grid-area:buttons;
+
+}
+
+.tabs-button-people button{
+	border:none;
+	background-color:grey;
+	padding:5px;
+	box-sizing:border-box;
+
+}
+
+/* main "grid"; Styling of both Teacher List and Teacher Profile */
+.peopleManage {
 	display: grid;
-	grid-template-columns: 200px auto;
+	grid-template-columns: 230px auto;
 	grid-gap: 20px;
-	grid-template-rows:min-content;
-	}
+	grid-template-rows:100%;
+	height:100%;
+}
 
 
-#teacherManage > #teacherList{
+/* Teacher List Styling, Left Object */
+.peopleManage > .peopleList{
 	display:grid;
-	grid-template-rows:min-content 1fr;
+	/* grid-template-rows: min-content min-content calc((100% - 170px) - 16rem) min-content; */
+	grid-gap: 10px;
+	width:auto;
+	align-content : center;
+	align-items:center;
 	border: 2px double #000000;
 	border-radius: 20px;
-	width:auto ;
-	align-content : center;
-	height: auto;
-	padding: 10px 0;
 	background-color: #F8F8F8;
 }
+
+/* Teacher list Header */
+
+.peopleList header{
+	display:grid;
+	height:100px;
+	grid-template-columns:1fr 1fr;
+	align-items: center;
+	border-bottom: 1px solid #000;
+}
+
+/* Teacher List Searchbar */
 .search_bar {
     display: grid;
     align-items: center;
@@ -32,55 +74,24 @@
 
 input.search {
 	border:none;
-
-
-}
-#teacherManage > #Content{
-	display:grid;
-	grid-template-rows:min-content 1fr;
-	border: 2px double #000000;
-	border-radius: 20px;
-	width:auto ;
-	align-content : center;
-	height: auto;
-	background-color: #F8F8F8;
-}
-#teacherList {
-	display: block;
-	align-items: center;
-	
 }
 
-#teacherList header{
-	display:grid;
-	grid-template-columns:1fr 1fr;
-	align-items: center;
-	border-bottom: 1px solid #000;
-}
-h4 {
-	margin: 0;
-}
-
-#functions {
-	display:grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-gap:5%;
-	align-items: center;
-	margin: 0 5%;
-	justify-content: space-between;
-	width: 100%;
-}
-
-#teachers {
+/*List of Teacher Names */
+.people {
+	height:100%;
 	justify-content: center;
 	display : grid;
+	overflow-y: scroll;
 
 }
-#teachers > div{
+
+/* Styling for Individual Teacher boxes */
+.people > div{
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	width: 170px;
+	height:12px;
 	border: 1px solid #000000;
 	border-radius: 50px;
 	padding: 5px;
@@ -88,56 +99,73 @@ h4 {
 	background-color: white;
 }
 
-#topBar {
-	display: grid;
-    align-items: end;
-    margin: 0 5px;
-	grid-template-columns: auto max-content;
+/* Functions in Teacher List- Modal & Export */
+
+.functions {
+	display:grid;
+	grid-template-columns: 2fr 1fr;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
 }
-#classes {
+
+
+/* Right Grid, Teacher Profile */
+.peopleManage > .Content{
+	display:grid;
+	grid-template-rows:min-content 1fr;
+	border: 2px double #000000;
+	border-radius: 20px;
+	width:auto ;
+	/*align-content : center;*/
+	height: auto;
+	background-color: #F8F8F8;
+}
+
+
+h4 {
+	margin: 0;
+}
+
+.people_text {
+	margin: 0;
+}
+
+
+/* Header of Teacher Profile */
+.Content header{
 	display: grid;
-	grid-template-columns: repeat(2, max-content);
-    height: max-content;
+	align-items: center;
+	height:100px;
+	padding: 0 5px;
+	grid-template-columns: repeat(4,max-content) 2fr 1fr;
+	gap: 5rem;
+	border-bottom:1px solid black;
+}
+
+/* Styling of Old Buttons */
+/* #classes {
+	display: grid;
+	/* grid-template-columns: repeat(2, max-content); */
+/*    height: max-content;
 }
 #classes > div {
 	border: 1px solid #000000;
-	box-shadow-bottom: 15px;
+	
 	background-color:#EEEEEE;
 	padding: 0 15px;
 }
 #classes > div > h2 {
 	font-weight: normal;
 }
-#Content header{
-	display: grid;
-	align-items: center;
-	grid-template-columns: repeat(3,max-content) 2fr;
-	gap: 5rem;
-}
-		
-#Content hgroup{
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	color:red;
+*/
 
-}
-
-.block h4 {
-	text-align: center;
-	font-weight: normal;
-    margin: 10px 0;
-}
-.block p{
-	padding: 0px 5px 0 5px;
-    text-align: center;
-	font-size: x-small;
-}
-#wrapper {
+/*Styling for Wrapper */
+.wrapper {
 	display:grid;
 	grid-template-columns:1fr 1fr 1fr;
 	align-items:center;
-	height:auto;
+	height:100%;
 	justify-content:space-between;
 	border: 1px dotted #000000;
     background-color: grey;
@@ -145,16 +173,11 @@ h4 {
 	padding-bottom: 10px;
 	padding: 5px;
 	gap:5px;
+	box-sizing:border-box;
 	
 }		
 
-#wrapper input {
-	width:100%;
-	box-sizing:border-box;
-	align-items:center;
-	justify-content:center;
-
-}
+/* Individual Classes Box */
 
 .block {
 	border: 1px solid #000000;
@@ -167,7 +190,30 @@ h4 {
 	width: 100%;
 	box-sizing:border-box;
 	grid-template-columns: 100%;
-	grid-template-rows: 1fr 3fr 3fr;
+	grid-template-rows: 1fr 3fr 3fr 0.5fr;
+}
+
+/* Text Styling inside of Boxes for Classes */
+.block h4 {
+	text-align: center;
+	font-weight: normal;
+    margin: 10px 0;
+}
+.block p{
+	padding: 0px 5px 0 5px;
+    text-align: center;
+	font-size: x-small;
+}
+
+.wrapper textarea {
+	resize: none;
+	height:60%;
+	width:100%;
+	box-sizing:border-box;
+	align-items:center;
+	justify-content:center;
+	border-radius: 5rem;
+
 }
 
 .suggestion {
@@ -178,13 +224,188 @@ h4 {
 .send {
 	background-color: green;
     width: 20%;
-    height: 25px;
+    height: auto;
     border: 1px solid black;
-    margin: 0px 0 0 70%;
+	margin: 0px 0 0 70%;
+	border-radius: 2rem;
+}
+.t_input {
+	grid-area: text_input;
+    display: grid;
+    align-items: center;
+}
+.c_input{
+	grid-area:checkbox;
+	display:grid;
+	align-items:center;
+}
+/* 
+.first_name {
+	grid-area: teacher_first_name;
+}
+
+.last_name {
+	grid-area: teacher_last_name;
+}
+
+.kamar_code {
+	grid-area: kamar_code;
+}
+
+.privilege {
+	grid-area : privilege;
+}
+
+.gmail {
+	grid-area : gmail;
+}
+
+.has_hub {
+	grid-area:has_hub;
+}
+*/
+.profile {
+	display:grid;
+	grid-template: 
+	'text_input checkbox' 4fr  
+	'other other' 1fr/ max-content max-content
+	;
+	height:100%;
+	width:min-content;
+    
+	border-radius: 0 0 20px 20px;
+	/* 
+	background-color: grey;
+	border: 1px dotted #000000;
+	padding-bottom: 10px;
+	padding: 5px;
+	grid-gap: 20px; */
+	box-sizing:border-box;
+	margin:0 auto;
+	grid-gap: 20px;
+	font-size:20px;
+	padding:20px;
+	
+}	
+
+.profile input[disabled] {
+	/* width: 100%;
+	height:30px; */
+	font-size: 20px;
+	border: 1px solid black;
+	background-color: rgb(235, 235, 228);
+
+}
+
+.profile input {
+	/* width: 100%;
+	height:30px; */
+	font-size: 20px;
+	border: 1px solid black;
+	background-color: white;
+
+}
+
+/* 
+.has_hub {
+	display:grid;
+	grid-template-columns:2fr 1fr;
+	font-size:20px;
+	
 }
 
 
-#background_toggles {
-	background-color:grey;
-	padding: 20px;
+.has_hub h4{
+	font: 400 20px Arial;
+}
+*/
+
+.others {
+	grid-area: other;
+	display:grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	align-items:center;
+	text-align: center;
+	gap:20px;
+	
+}
+
+.remove_teacher {
+	background:red;
+	
+}
+
+.save_description {
+	background:cyan;
+
+}
+
+.edit_description {
+	background:cyan;
+
+}
+
+.other {
+	border-radius: 5px;
+	border:1px solid black;
+	height:40px;
+	
+}
+
+
+.student_profile {
+
+	display:grid;
+	/* background-color: grey;
+	padding: 0 auto;
+	border: 1px dotted #000000;
+	*/
+	height:100%;
+	width:min-content;
+    
+	border-radius: 0 0 20px 20px;
+	
+	margin:0 auto;
+	grid-gap: 20px;
+	font-size:1rem;
+	align-items:center;
+	justify-content:space-between;
+	
+	box-sizing:border-box;
+}
+
+.student_profile textarea {
+	resize:none;
+	width:400px;
+	height:40px;
+}
+
+.student_others {
+	display:grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	align-items:center;
+	text-align: center;
+	gap:20px;
+	
+}
+
+.hub_manage {
+	display:grid;
+	grid-template: "hubling . students" 90%
+	". button ." 10%/ 3fr 1fr 3fr;
+	margin:0 auto;
+	height:inherit;
+
+}
+
+.hubling {
+	grid-area: hubling;
+	padding: 0 10px;
+	height:350px;
+}
+
+.all_students {
+	grid-area:students;
+	padding: 0 10px;
+	height:350px;
 }

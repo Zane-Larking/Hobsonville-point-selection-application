@@ -47,10 +47,10 @@
                         $result = mysqli_query($dbconnect, $query);
                         while ($row = mysqli_fetch_array($result)){
                             echo '
-                            <div class="scrollItem student  '.$row['FIRST_NAME'].'-'.$row['LAST_NAME'].'" onclick = "toggleTabs(event, '."'".'currentStudentSelections'."', '".$row['FIRST_NAME'].'-'.$row['LAST_NAME']."'".')">
+                            <div class="scrollItem student  '.$row['FIRST_NAME'].'-'.$row['LAST_NAME'].'" onclick = "displayTabs(event, '."'".'currentStudentSelections'."', '".$row['FIRST_NAME'].'-'.$row['LAST_NAME']."'".')">
                                 <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                 <p>'.$row['FIRST_NAME'].' '.$row['LAST_NAME'].'</p>
-                                <div class="coverageCheck">
+                                <div class="coverageCheck approved">
                                     <div class="material-icons">check</div>
 
                                 </div>
@@ -80,9 +80,9 @@
                     //Creates a toggle for each set of choices a student has (Currently unmutable). 
                     echo '
                     <div class = "choiceToggles" style = "grid-area: toggles">
-                        <div class="toggleChoice choice1'.'" onclick = "toggleTabs(event, '."'".'currentChoiceSelections'."', '".' choice1'."'".')">1st</div>
-                        <div class="toggleChoice choice2'.'" onclick = "toggleTabs(event, '."'".'currentChoiceSelections'."', '".' choice2'."'".')">2nd</div>
-                        <div class="toggleChoice choice3'.'" onclick = "toggleTabs(event, '."'".'currentChoiceSelections'."', '".' choice3'."'".')">3rd</div>
+                        <div class="toggleChoice choice1'.'" onclick = "displayTabs(event, '."'".'currentChoiceSelections'."', '".' choice1'."'".')">1st</div>
+                        <div class="toggleChoice choice2'.'" onclick = "displayTabs(event, '."'".'currentChoiceSelections'."', '".' choice2'."'".')">2nd</div>
+                        <div class="toggleChoice choice3'.'" onclick = "displayTabs(event, '."'".'currentChoiceSelections'."', '".' choice3'."'".')">3rd</div>
                     </div>
                 </div>
                 <div style="display:  grid; grid-template-columns: 78% 20%; grid-gap: 2%; margin: 2%; margin-bottom: 0;">
@@ -232,7 +232,7 @@
             display: grid;
             font-size: 12rem;
         }
-        .currentStudentSelections {
+        .studentSelections.currentStudentSelections {
             display: grid;
         }
         .selections > .choices {
@@ -316,7 +316,7 @@
         }
     </style>
     <script>
-    function toggleTabs(e, group, content) {
+    function displayTabs(e, group, content) {
         // console.log("click");
         // console.log(group);
         // console.log(content);

@@ -1,8 +1,17 @@
 <?php
+
+//Uploads data from file into the database. 
+//Takes a file and table identifier as inputs
 include "../DataBase/database-connect.php";
-if (isset($_POST['submit'])) {
+// echo "test 1";
+if (isset($_POST['submit']) & isset($_POST['src'])) {
+    // echo "test 2";
     //Convient view for debugging 
     // header('content-type: text/plain');
+
+    $src = $_POST['src'];
+    $table = $_POST['table'];
+    
     //Extract file info
     $file = $_FILES['file'];
     
@@ -26,88 +35,50 @@ if (isset($_POST['submit'])) {
             if ($fileSize < (2*1028*1028)) {
 
                 $f = fopen($fileTmpName, 'r');
-                $fcontent = fread($f, $fileSize);
-                
-                //Regular expression that groups information the the same 'csv row'
-                $regex = '/(("(.|\n)+?",(?!\s))|([^,\n"]*,)){9}(("(.|\n)+?"(?!.))|([^,\n"]*))/';
-                //older versions
-                // regex v1: \w+(,(("([^"])+")|([^,\n"]+))?){9}
-                // regex v2: \w+(((,"([^"])+")|(,([^,\n"]+)?))){9}
-                // regex v3: \w+((,"(.|\n)*?"(?=\n|,\S))|(,([^,\n"]+)?)){9} /*doesn't support commas in numbers*/
-                //current version
-                // regex v4: (("(.|\n)+?",(?!\s))|([^,\n"]*,)){9}(("(.|\n)+?"(?!.))|([^,\n"]*))
+                $fields = preg_replace('/\n|\r/', "", fgets($f));
+                // var_dump($fields);
 
-                /* returns an array of string called $out from $fcontent that matches the regular expression $regex*/
-                preg_match_all($regex, $fcontent, $out);
-                /* the [0] causes the match to return only a array of strings that matches the entire pattern. (don't worry about it, it's a given)*/
-                $classesArr = $out[0];
-
-                //Debugging information
-                // print_r($classesArr);
-
-                //splits the values of each CSV row into an array.
-                foreach ($classesArr as $i => $classArr) {
-                    $detailsArr[$i] = preg_split("/,(?!\s)/", $classArr);
-                    $colcount = sizeof($detailsArr[0]);
-                    //This relies on the premise that only the description will contain line breaks
-                    while (sizeof($detailsArr[$i]) > $colcount) {
-                        $detailsArr[$i][$colcount-1] .= ",".array_pop($detailsArr[$i]);
-                    }
+                $detailsArr = [];
+                while(($cur = fgetcsv($f, 200, ',', '"')) !== FALSE) {
+                    $cur = preg_replace('/\D+/', '"$0"', $cur);
+                    $cur = implode(",", $cur);
+                    array_push($detailsArr, $cur);
                 }
-                //Debugging information
-                // print_r($detailsArr);
-
-                //removes the field names and puts them into their own array 
-                $head = array_shift($detailsArr);
+                // var_dump($detailsArr);
 
                 //The deletion query
-                $delete = "DELETE FROM `classes` WHERE 1";
+                $delete = "DELETE FROM `".$table."` WHERE 1";
 
                 //Debugging information
                 // echo "\n";
                 // print_r($delete);
-
+        
                 //this deletes data in the database table ready to be filled with the new data.
                 if (mysqli_query($dbconnect, $delete)) {
                     //Debugging information
-                //     echo "\n\nClasses table completely cleared!\n\n";
-                // } else {
-                //     echo "\n\nError deleting table!\n\n";
+                    // echo "\n\nClasses table completely cleared!\n\n";
+                } else {
+                    // echo "\n\nError deleting table!\n\n";
                 }
-
-                //Debugging information
-                // print_r($head);
-                //A string listing all the fields in the database
-                $fields = join(",", $head);
                 
-                //Format row values and insert them into 
-                foreach ($detailsArr as $detailArr) {
-                    //formats stings containing single quotes and double quotes such that they can be interpreted in the mysqli query
-                    foreach ($detailArr as $j => $detail) {
-                        if (!preg_match('/(^".+"$)|^\d+$/', $detail)) {
-                            $detail = '"'.$detail.'"';
-                        }
-                        $temp = preg_replace('/(?<=.)(“|”|")(?=.)/', '""', $detail);
-                        $detailArr[$j] = preg_replace("/‘|’|'/", "''", $temp);
-                    }
-                    //Creates insert query
-                    $values = join(",", $detailArr);
-                    $query = "INSERT INTO `classes` (".$fields.") VALUES (".$values.")";
+                foreach ($detailsArr as $details) {
 
+                    //Creates insert query
+                    $query = "INSERT INTO `".$table."` (".$fields.") VALUES (".$details.")";
+                    
                     //Debugging information
                     // print_r($query);
-
+                    
                     if (mysqli_query($dbconnect, $query)) {
                         //Debugging information
-                    //     echo "\nEntry added!\n";
-                    // } else {
-                    //     echo "\nError adding entry!\n";
+                        // echo "\nEntry added!\n";
+                    } else {
+                        // echo "\nError adding entry!\n";
                     }
-                    // echo "\n";
-                }
 
+                }      
                 fclose($f);
-                header("location: ../manage-classes.php?uploadsuccessful");
+                header("location: ../".$src."?uploadsuccessful");
             } else {
                 echo "File size too large. Please contact developer at zane.larking@hobsonvillepoint.school.nz";
             }
