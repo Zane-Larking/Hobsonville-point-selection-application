@@ -40,10 +40,11 @@
 							if($_SESSION['hashub'] == 1){
 								echo '
 						<div class="content">
-							<div id = "user-grid-container">
-								<img src= "'; echo $_SESSION["picture"]; echo '" height="75rem" style= "grid-area: image">
-								<div class = "ellipsis" style= "grid-area: name">';echo $_SESSION["name"]; echo '</div>
-								<div class = "ellipsis" style= "grid-area: email">';echo $_SESSION["email"]; echo '</div>
+						<!-- removed user-grid-container class -->
+							<div class = "user-grid-container">
+								<img src="'; echo $_SESSION["picture"]; echo '" height="75rem" style= "grid-area: image">
+								<div class="hub-coach-name" >';echo $_SESSION["name"]; echo '<br>'; echo $_SESSION["email"]; echo '</div>
+								
 							</div>
 							<!--Hub students and their classes-->
 							<div id = "hublings">
@@ -63,7 +64,7 @@
 									$result = mysqli_query($dbconnect, $query);
 									while($row = $result->fetch_assoc()) {
 										echo "
-										<div id = 'user-grid-container'>
+										<div class = 'user-grid-container'>
 											<img src= "; if (isset($row['PICTURE'])) echo $row['PICTURE'];  else echo"'Images/portrait-placeholder.png' height='50rem' style= 'grid-area: image;'>
 											<div class = 'ellipsis' style= 'grid-area: name'>".$row['NAME']."</div>
 											<div class = 'ellipsis' style= 'grid-area: email'>".$row['EMAIL']."</div>
