@@ -409,3 +409,31 @@ h4 {
 	padding: 0 10px;
 	height:350px;
 }
+
+.changeMonth {
+	display:flex;
+	margin:5px 0;
+}
+
+.changeMonth > button:hover {
+	border:1px solid #000;
+	border-radius: 5px;
+	width:100%;
+	height:30px;
+	background-color: blue;
+}
+
+.changeMonth > button {
+	border:1px solid #000;
+	border-radius: 5px;
+	width:100%;
+	height:30px;
+	background-color: white;
+}
+
+.calendar > table {
+	width: 100%;
+    margin-bottom: 1rem;
+    border-collapse: collapse;
+    box-sizing: border-box;
+}
