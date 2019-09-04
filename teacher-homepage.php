@@ -17,9 +17,26 @@
 		    <div id="main">
 			    <div id ="mainGrid">
 				    <div id = "head">
-						<img src="Images/hpss-logo.png" alt="HPSS Logo" style="height: 5em">
+						<img src="Images/hpss-logo.png" alt="HPSS Logo" style="height: 5em; margin: 17px 0px;">
 						<div> 
 							<h1><font face ="Verdana">Teacher Homepage</font></h1>
+							<h5> Signed in as:
+								<?php 
+									if($_SESSION['privilege'] == 3){
+										echo 'Admin';
+									}else if($_SESSION['privilege'] == 2){
+										echo 'Moderator';
+									}else if($_SESSION['privilege'] == 1){
+										echo 'Teacher';
+									}else if($_SESSION['privilege'] == 0){
+										echo 'Teacher Aid';
+									}
+									if($_SESSION['hashub'] == 1){
+										echo ' & Hub Coach';
+									}
+								?>
+
+							</h5>
 						</div>
 					</div>
 					<nav id ="pannel">
@@ -33,17 +50,19 @@
 						<a href="teacher-class-submit.php">Submit Classes</a>
 						<a href="manage-classes.php">Manage Classes</a>
 					</nav>
-					<div>
+					<div id="content-grid">
 						
 
 						<?php
 							if($_SESSION['hashub'] == 1){
 								echo '
 						<div class="content">
-							<div id = "user-grid-container">
+
+							<div id = "hub-coach-name" style="max-height:75px">
 								<img src= "'; echo $_SESSION["picture"]; echo '" height="75rem" style= "grid-area: image">
-								<div class = "ellipsis" style= "grid-area: name">';echo $_SESSION["name"]; echo '</div>
-								<div class = "ellipsis" style= "grid-area: email">';echo $_SESSION["email"]; echo '</div>
+								<div class = "ellipsis" style= "grid-area: name; padding: 10px 10px 0px 10px;">';echo $_SESSION["name"]; echo '</div>
+								<div class = "ellipsis" style= "grid-area: email; padding: 5px 10px 5px 10px;  overflow:hidden; text-overflow:ellipsis;"><a href="http://www.gmail.com">';echo $_SESSION["email"]; echo '</a></div>
+								<div class = "ellipsis" style= "grid-area: link; padding: 10px 10px 0px 10px;"><a href="hub-overview.php">Hub Coach Homepage</a></div>
 							</div>
 							<!--Hub students and their classes-->
 							<div id = "hublings">
@@ -58,16 +77,33 @@
 									foreach ($_SESSION['hublings'] as $id) {
 										
 									}
-									$query = "SELECT ID, CONCAT(FIRST_NAME, ' ', LAST_NAME) AS NAME, EMAIL, YEAR_LEVEL, HPSS_NUM FROM students WHERE ID = " . join(" OR ID = ", $_SESSION['hublings']);
+									$query = "SELECT ID, CONCAT(FIRST_NAME, ' ', LAST_NAME) AS NAME, EMAIL, YEAR_LEVEL, HPSS_NUM, `SELECTIONS_M&S` FROM students WHERE ID = " . join(" OR ID = ", $_SESSION['hublings']);
 									//echo $query;
 									$result = mysqli_query($dbconnect, $query);
 									while($row = $result->fetch_assoc()) {
 										echo "
-										<div id = 'user-grid-container'>
+										<div class = 'user-grid-container'>
 											<img src= "; if (isset($row['PICTURE'])) echo $row['PICTURE'];  else echo"'Images/portrait-placeholder.png' height='50rem' style= 'grid-area: image;'>
 											<div class = 'ellipsis' style= 'grid-area: name'>".$row['NAME']."</div>
+											<div class = 'ellipsis' style= 'grid-area: year-level'>Year ".$row['YEAR_LEVEL']."</div>
 											<div class = 'ellipsis' style= 'grid-area: email'>".$row['EMAIL']."</div>
-											<div class = 'ellipsis' style= 'grid-area: options'><a href = 'selection-verification.php?student=".str_replace(" ", "-", $row['NAME'])."'>View Selections</a></div>
+											
+											<div class = 'ellipsis' style= 'grid-area: options; padding-right:3px; display: grid; align-items: center; justify-content: end; grid-auto-flow: column; grid-gap: 5px; grid-auto-columns: max-content;'>
+												<div style='border-style:solid; text-align:right; width:9px; height:9px; border-width:1px; border-radius:25px; background-color:"; 
+
+
+
+													if(mysqli_query($dbconnect, "SELECT CHOICES FROM verified_choices WHERE STUDENT_ID = ".$row['ID'])->num_rows === 1){
+														echo"green";
+													}else if($row['SELECTIONS_M&S'] !== null){
+														echo"orange";
+													}else{
+														echo"red";
+													}
+
+												echo";'></div>
+												<a href = 'selection-verification.php?student=".str_replace(" ", "-", $row['NAME'])."'>View Selections</a>
+											</div>
 										</div>";
 											
 									}
@@ -104,7 +140,7 @@
 								</div>
 								';
 							}
-						?> hiiiiiii             cherry was HERE HOW DOING  4049 I LOVE SUSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSHI YUM YUM IN MY TUM TUM :p
+						?>
 						
 					</div>
 					

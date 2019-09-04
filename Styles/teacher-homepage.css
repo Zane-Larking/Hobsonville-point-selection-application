@@ -16,7 +16,12 @@
 	text-align: center;
 }
 
-
+#hublings {
+	border-style:solid;
+	border-width:1px;
+	border-color:black;
+	margin-top:10px;
+}
 
 #head {
 	display: grid;
@@ -54,12 +59,22 @@
 */
 
 .content {
-	grid-column-start: 1;
+	/*grid-column: 2/2;*/
 	background-color:White; 
 	height:auto; 
 	border:1px solid black;
 	padding:15px;
-	margin-bottom:10px;
+	margin-bottom:0px;
+}
+
+.hub-coach-name {
+	vertical-align:middle;
+}
+
+#content-grid {
+	display:grid;
+	grid-template: auto / 1fr 1fr;
+	grid-gap:10px;
 }
 
 #head > div{
@@ -67,10 +82,22 @@
     margin-right: auto;
 }
 
+#hub-coach-name {
+	border-style:solid;
+	border-width:1px;
+	padding:1px;
+	display:grid;
+	grid-template: repeat(2, auto)/auto 1fr;
+	grid-template-areas:
+	"image name link link" 
+	"image email email email";
+	vertical-align:middle;
+}
 
-#user-grid-container {
+.user-grid-container {
 	border: 1px solid black;
-	padding: 2rem;
+	padding: 3rem;
+	margin:-1px;
 
 	overflow: hidden;
 	
@@ -79,23 +106,20 @@
 	display: grid;
 	grid-template: repeat(3, auto)/auto 1fr;
 	grid-template-areas:
-	"image none options"
-	"image name options" 
-	"image email email";
+	"image name options"
+	"image year-level ." 
+	"image email .";
 	column-gap: 5rem;
 }
 
+
 #hublings {
-	overflow-y: scroll;
-    height: 550rem;
+	overflow-y: auto;
+	overflow-x: hidden;
+    height: auto;
+    max-height: 150px;
 }
 
-#content > #grid-container {
-  	display: grid;
-  	grid-template-columns: auto auto auto;
-  	background-color: #2196F3;
-  	padding: 10px;
-}
 .grid-item {
   	background-color: rgba(255, 255, 255, 0.8);
   	border: 1px solid rgba(0, 0, 0, 0.8);
@@ -106,6 +130,7 @@
 
 #user-grid-container img{
 	margin: auto;
+	padding-right: 10px;
 }
 
 .admin {
@@ -113,4 +138,12 @@
 	background-color: white;
 	height:50px;
 	width:500px;
+}
+
+#hublings > #user-grid-container {
+
+
+
+	margin:0px;
+
 }
