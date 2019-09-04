@@ -57,19 +57,12 @@
 							if($_SESSION['hashub'] == 1){
 								echo '
 						<div class="content">
-<<<<<<< HEAD
-						<!-- removed user-grid-container class -->
-							<div class = "user-grid-container">
-								<img src="'; echo $_SESSION["picture"]; echo '" height="75rem" style= "grid-area: image">
-								<div class="hub-coach-name" >';echo $_SESSION["name"]; echo '<br>'; echo $_SESSION["email"]; echo '</div>
-								
-=======
-							<div id = "hub-coach-name">
+
+							<div id = "hub-coach-name" style="max-height:75px">
 								<img src= "'; echo $_SESSION["picture"]; echo '" height="75rem" style= "grid-area: image">
-								<div class = "ellipsis" style= "grid-area: name; padding: 10px;">';echo $_SESSION["name"]; echo '</div>
-								<div class = "ellipsis" style= "grid-area: email; padding: 10px;">';echo $_SESSION["email"]; echo '</div>
-								<div class = "ellipsis" style= "grid-area: link; padding: 10px;"><a href="hub-overview.php">Hub Coach Homepage</a></div>
->>>>>>> origin/Jack-teacher-homepage
+								<div class = "ellipsis" style= "grid-area: name; padding: 10px 10px 0px 10px;">';echo $_SESSION["name"]; echo '</div>
+								<div class = "ellipsis" style= "grid-area: email; padding: 5px 10px 5px 10px;  overflow:hidden; text-overflow:ellipsis;"><a href="http://www.gmail.com">';echo $_SESSION["email"]; echo '</a></div>
+								<div class = "ellipsis" style= "grid-area: link; padding: 10px 10px 0px 10px;"><a href="hub-overview.php">Hub Coach Homepage</a></div>
 							</div>
 							<!--Hub students and their classes-->
 							<div id = "hublings">
