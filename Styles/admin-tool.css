@@ -437,3 +437,22 @@ h4 {
     border-collapse: collapse;
     box-sizing: border-box;
 }
+
+.currentDay {
+	background-color:red;
+}
+
+table th, table td{
+	width: 14.3%;
+	border: 1px solid black;
+	padding: 1.5%;
+	box-sizing:border-box;
+	text-align-last:center;
+	background-color:rgb(235, 235, 228);
+}
+
+table td:hover {
+	background-color:cyan;
+
+}
+
