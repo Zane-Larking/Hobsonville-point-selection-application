@@ -10,7 +10,8 @@
 
   	<body>
   		<?php
-		include ('PhpSnippets/header-bar.php');	
+		include 'PhpSnippets/header-bar.php';	
+		include 'DataBase/database-connect.php';
 		?>
 
 	    <font face = "Verdana">
@@ -73,10 +74,10 @@
 										$studentId
 									};
 									*/
-									include "DataBase/database-connect.php";
-									foreach ($_SESSION['hublings'] as $id) {
+									
+									//foreach ($_SESSION['hublings'] as $id) {
 										
-									}
+									//}
 									if (count($_SESSION['hublings']) > 0){
 										$query = "SELECT ID, CONCAT(FIRST_NAME, ' ', LAST_NAME) AS NAME, EMAIL, YEAR_LEVEL, HPSS_NUM, `SELECTIONS_M&S` FROM students WHERE ID = " . join(" OR ID = ", $_SESSION['hublings']);
 										//echo $query;
@@ -118,9 +119,33 @@
 							if($_SESSION['privilege'] >= 0){
 								echo'
 								<div class="content">
-									Teacher Aid Placeholder
-								</div>
+									Propose pupil selection advice
+									<br>
+									<div class = "aid-grid-container">
+									
 								';
+									$teacher_query = ("SELECT * FROM teacher_aid WHERE TEACHER_ID = ".$_SESSION['id']);
+									$teacher_result = mysqli_query($dbconnect, $teacher_query);
+									while($row = $teacher_result->fetch_assoc()) {
+										$student_query = ("SELECT * FROM students WHERE ID = ".$row['STUDENT_ID']);
+										$student_result = mysqli_query($dbconnect, $student_query);
+										echo "
+										<div class = 'students-of-teacher-aid'>
+										";
+										while($student_row = $student_result->fetch_assoc()) {
+											echo $student_row['FIRST_NAME'];
+											echo $student_row['LAST_NAME'];
+										}
+										
+									echo "
+									</div>
+								</div>
+									";
+								}
+								//for ($student_with_teacher_aid = 0; $student_with_teacher_aid < ;$student_with_teacher_aid++){
+								//$_SESSION['id']
+								//}
+								echo "</div>" ;
 							}
 							if($_SESSION['privilege'] >= 1){
 								echo'

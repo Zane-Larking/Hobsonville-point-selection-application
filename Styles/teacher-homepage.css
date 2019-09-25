@@ -77,6 +77,14 @@
 	grid-gap:10px;
 }
 
+
+@media only screen and (max-width:1000px){
+	#content-grid {
+		grid-template: auto / 1fr;
+	}
+}
+
+
 #head > div{
     margin-left: auto;
     margin-right: auto;
