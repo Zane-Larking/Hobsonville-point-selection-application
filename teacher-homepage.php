@@ -121,6 +121,7 @@
 								<div class="content">
 									Propose pupil selection advice
 									<br>
+									<br>
 									<div class = "aid-grid-container">
 									
 								';
@@ -133,19 +134,29 @@
 										<div class = 'students-of-teacher-aid'>
 										";
 										while($student_row = $student_result->fetch_assoc()) {
-											echo $student_row['FIRST_NAME'];
-											echo $student_row['LAST_NAME'];
+											echo"
+											<img src= "; if (isset($row['PICTURE'])) echo $row['PICTURE'];  else echo"'Images/portrait-placeholder.png' height='50rem' style= 'grid-area: image;'>
+												<div class = 'ellipsis' style= 'grid-area: name'>".$student_row['FIRST_NAME']." ".$student_row['LAST_NAME']."</div>
+												<div class = 'ellipsis' style= 'grid-area: year-level'>Year ".$student_row['YEAR_LEVEL']."</div>
+												<div class = 'ellipsis' style= 'grid-area: email'>".$student_row['EMAIL']."</div>
+
+
+												<div class = 'ellipsis' style= 'grid-area: options'>
+													<a href = 'propose-pupil-selections.php?student=".str_replace(" ", "-", ($student_row['FIRST_NAME'].' '.$student_row['LAST_NAME']))."'>Add selection recommendation</a>
+												</div>
+
+											";
 										}
 										
 									echo "
-									</div>
-								</div>
-									";
+										</div>";
 								}
+
 								//for ($student_with_teacher_aid = 0; $student_with_teacher_aid < ;$student_with_teacher_aid++){
 								//$_SESSION['id']
 								//}
-								echo "</div>" ;
+								echo "</div>
+								</div>" ;
 							}
 							if($_SESSION['privilege'] >= 1){
 								echo'
