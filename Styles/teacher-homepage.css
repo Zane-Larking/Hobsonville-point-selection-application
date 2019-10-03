@@ -181,3 +181,25 @@
 	column-gap: 5rem;
 }
 
+.classes-content{
+	padding: 3rem;
+	font-size: .75em;
+	border-style:solid;
+	border-width:1px;
+	margin:-1px;
+	display: grid;
+	grid-template: repeat(3, auto)/auto 1fr;
+	grid-template-areas:
+	"image name options"
+	"image year-level ." 
+	"image email .";
+	column-gap: 5rem;
+}
+.teacher-classes-content{
+	border-style:solid;
+
+}
+.content{
+	font-size: .75em;
+
+}

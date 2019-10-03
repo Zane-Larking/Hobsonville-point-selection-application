@@ -58,7 +58,7 @@
 							if($_SESSION['hashub'] == 1){
 								echo '
 						<div class="content">
-
+							<h3><u>Hub Coach Privileges</u></h3>
 							<div id = "hub-coach-name" style="max-height:75px">
 								<img src= "'; echo $_SESSION["picture"]; echo '" height="75rem" style= "grid-area: image">
 								<div class = "ellipsis" style= "grid-area: name; padding: 10px 10px 0px 10px;">';echo $_SESSION["name"]; echo '</div>
@@ -119,8 +119,8 @@
 							if($_SESSION['privilege'] >= 0){
 								echo'
 								<div class="content">
-									Propose pupil selection advice
-									<br>
+									<h3><u>Teacher Aid Privileges</u></h3>
+									<h4><u>Propose pupil selection advice</u></h4>
 									<br>
 									<div class = "aid-grid-container">
 									
@@ -161,21 +161,54 @@
 							if($_SESSION['privilege'] >= 1){
 								echo'
 								<div class="content">
-									Teacher Placeholder
+								<h3><u>Teacher Privileges</u></h3>
+
+									<h4><u>Classes you\'re teaching</u></h4>
+									
+									<div class = "teacher-class-content">';
+									$teacherNameQuery = "SELECT * FROM classes WHERE TEACHER1 = 'Jack Freeth'";
+									$teacherResult = mysqli_query($dbconnect,$teacherNameQuery);
+									while($teacherClasses_row = $teacherResult->fetch_assoc()){
+										echo"<div class = 'classes-content'>";
+										echo "<div style= 'grid-area: name'>".$teacherClasses_row['CODE']."</div>";
+										echo "<div style= 'grid-area: year-level'>".$teacherClasses_row['NAME']."</div>";
+										echo "<div style= 'grid-area: email;'>Qualification ".$teacherClasses_row['QUAL']."</div>";
+										echo "<div style= 'grid-area: options;'> <a href='Recommend-a-student.php?code=".str_replace(" ", "-", ($teacherClasses_row['CODE']))."'>Recommend a qualification ".$teacherClasses_row['QUAL']." student for".$teacherClasses_row{'CODE'}."</a></div>";
+
+										echo"</div>";
+									}
+									echo'
+									</div>
 								</div>
 								';
+								//$teacher_name = (mysqli_query($dbconnect,("SELECT FIRST_NAME FROM teachers WHERE ID = ".$_SESSION['id']))->fetch_assoc())['FIRST_NAME'];
+								//echo $teacher_name;
+								
 							}
 							if($_SESSION['privilege'] >= 2){
-								echo'
+								$studentCountQuery = "SELECT * FROM students";
+								$studentCountResult = mysqli_query($dbconnect,$studentCountQuery);
+								$studentCount = mysqli_num_rows($studentCountResult);
+								$studentCompleteCountQuery = "SELECT * FROM verified_choices";
+								$studentCompleteCountResult = mysqli_query($dbconnect,$studentCompleteCountQuery);
+								$studentCompleteCount = mysqli_num_rows($studentCompleteCountResult);
+								echo '
 								<div class="content">
-									Moderator Placeholder
+								<h3><u>Moderater Privileges</u></h3>
+									<a href=teacher-class-submit.php>Create a Class</a>
+									<br>
+									<br>
+									Students that have completed Selections '.$studentCompleteCount.'/'.$studentCount.'
+									<br>
+									Students that have not completed Selections '.($studentCount-$studentCompleteCount).'/'.$studentCount.'
 								</div>
 								';
 							}
 							if($_SESSION['privilege'] >= 3){
 								echo'
 								<div class="content">
-									Admin Placeholder
+									<h3><u>Admin Privileges</u></h3>
+									<a href="admin-tool.php">Administrative Tools</a>
 								</div>
 								';
 							}
