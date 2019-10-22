@@ -93,13 +93,14 @@
 												<div class = 'ellipsis' style= 'grid-area: options; padding-right:3px; display: grid; align-items: center; justify-content: end; grid-auto-flow: column; grid-gap: 5px; grid-auto-columns: max-content;'>
 													<div style='border-style:solid; text-align:right; width:9px; height:9px; border-width:1px; border-radius:25px; background-color:"; 
 
+														$hub_query = "SELECT CHOICES FROM verified_choices WHERE STUDENT_ID = ".$row['ID'];
+														$hub_result = mysqli_query($dbconnect, $hub_query);
 
-
-														if(mysqli_query($dbconnect, "SELECT CHOICES FROM verified_choices WHERE STUDENT_ID = ".$row['ID'])->num_rows === 1){
+														if($hub_result->num_rows === 1){
 															echo"green";
-														}else if($row['SELECTIONS_M&S'] !== null){
+														} else if ($row['SELECTIONS_M&S'] !== NULL){
 															echo"orange";
-														}else{
+														} else {
 															echo"red";
 														}
 
