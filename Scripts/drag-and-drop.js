@@ -58,6 +58,28 @@ doELsCollide = function(el1, el2) {
     );
 
 }
+overlap = function(el1, el2) {
+    el1.offsetBottom = el1.offsetTop + el1.offsetHeight;
+    el1.offsetRight = el1.offsetLeft + el1.offsetWidth;
+    el2.offsetBottom = el2.offsetTop + el2.offsetHeight;
+    el2.offsetRight = el2.offsetLeft + el2.offsetWidth;
+    el1.area = el1.offsetHeight * el1.offsetWidth;
+
+    // if the bottom of el1 is spacially above the top of el2 then there is 0 overlap
+    // otherwise if the top of el is also spacially below the top of el2 then el1 is inside of el2, therefore overlap is height of el1
+    // otherwise the overlap is the spacial position of the top of el2 minus spacial position of the top of el1
+    overlapY = (el1.offsetBottom < el2.offsetTop) ? 0 : ((el1.offsetTop > el2.offsetTop) ? el1.offsetHeight : (el1.offsetBottom - el2.offsetTop))
+    // I think this would do the same thing as the above
+    // (el1.offsetTop > el2.offsetBottom) ? 0 : ((el1.offsetBottom < el2.offsetBottom) ? el1.offsetHeight : el2.offsetBottom - el1.offsetTop)
+    console.log(overlapY)
+
+    overlapX = (el1.offsetRight < el2.offsetLeft) ? 0 : ((el1.offsetLeft > el2.offsetLeft) ? el1.offsetWidth: (el1.offsetRight - el2.offsetLeft))
+	console.log(overlapX)
+
+    overlapArea = overlapX*overlapY
+    percentOfOverLap = overlapArea/el1.area
+    return percentOfOverLap
+}
 
 //create drag locations
 // for (let j = 0; j < itemContainers.length; j++) {
@@ -72,9 +94,7 @@ doELsCollide = function(el1, el2) {
 
 function dropDraggable(item, container) {
     container.className = container.className.replace(" drag-item-container-over", "")
-    if (draggedOver) {
-        container.appendChild(item);
-    }
+    container.appendChild(item);
     item.style.left = "";
     item.style.top = "";
     item.style.position = "relative";
@@ -103,28 +123,25 @@ function dropDraggable(item, container) {
 //     }
 // }, 100)
 
-setInterval(() => {
-    if (currentItem != null) {
-        foundDragOver = false;
-        for (let i = 0; i < itemContainers.length; i++) {
-            let itemContainer = itemContainers[i];
-            itemContainer.className = itemContainer.className.replace(" drag-item-Container-over", "")
-            if (doELsCollide(currentItem, itemContainer)) {
-                console.log(itemContainer);
-                console.log(itemContainer.offsetHeight)
-                console.log("test 1");
-                itemContainers.className += " drag-item-container-over";
-                foundDragOver = true;
-                if (!isMouseDown) {
-                    console.log("test 2");
-                    dropDraggable(currentItem, itemContainer);
-                    break;
-                }
-            }            
-        }        
-        draggedOver = foundDragOver ? true : false;
-    }
-}, 100)
+// setInterval(() => {
+//     if (currentItem != null) {
+//         foundDragOver = false;
+//         for (let i = 0; i < itemContainers.length; i++) {
+//             let itemContainer = itemContainers[i];
+//             itemContainer.className = itemContainer.className.replace(" drag-item-Container-over", "")
+//             if (doELsCollide(currentItem, itemContainer)) {
+//                 itemContainers.className += " drag-item-container-over";
+//                 foundDragOver = true;
+//                 if (!isMouseDown) {
+//                     console.log("test 2");
+//                     dropDraggable(currentItem, itemContainer);
+//                     break;
+//                 }
+//             }            
+//         }        
+//         draggedOver = foundDragOver ? true : false;
+//     }
+// }, 100)
 
 function testListener(e) {
     console.log("testing listener");
@@ -141,8 +158,29 @@ function getContentWidth (element) {
 function onMouseMove(e) {
     e.preventDefault();
     if (isMouseDown) {
-        currentItem.style.left = e.clientX + mouseOffset.x +"px";
-        currentItem.style.top = e.clientY + mouseOffset.y + "px"; 
+        requestAnimationFrame(() => {
+            
+            //check what is being dragged over
+            foundDragOver = false;
+            for (let i = 0; i < itemContainers.length; i++) {
+                let itemContainer = itemContainers[i];
+                itemContainer.className = itemContainer.className.replace(" drag-item-Container-over", "")
+                if (doELsCollide(currentItem, itemContainer)) {
+                    itemContainers.className += " drag-item-container-over";
+                    foundDragOver = true;
+                    if (!isMouseDown) {
+                        console.log("test 2");
+                        dropDraggable(currentItem, itemContainer);
+                        break;
+                    }
+                }            
+            }        
+            draggedOver = foundDragOver
+
+            //update draggable item
+            currentItem.style.left = e.clientX + mouseOffset.x +"px";
+            currentItem.style.top = e.clientY + mouseOffset.y + "px"; 
+        })
     }
 }
 
@@ -150,7 +188,7 @@ function onMouseDown(e) {
     item = e.target;
     isMouseDown = true;
     currentItem = item;
-    mouseOffset = {x: item.offsetLeft - e.clientX, y: item.offsetTop - e.clientY}
+    mouseOffset = {x: item.offsetLeft - e.clientX, y: item.offsetTop - document.querySelector("#Q1 .sortingSection").scrollTop - e.clientY}
     console.log(getComputedStyle(item).backgroundColor);
     console.log(LightenDarkenColor("#"+getComputedStyle(item).backgroundColor, -16));
     item.style.backgroundColor = LightenDarkenColor("#"+getComputedStyle(item).backgroundColor, -16);
