@@ -120,15 +120,17 @@
 							if($_SESSION['privilege'] >= 0){
 								echo'
 								<div class="content">
-									<h3><u>Teacher Aid Privileges</u></h3>
-									<h4><u>Propose pupil selection advice</u></h4>
-									<br>
-									<div class = "aid-grid-container">
-									
-								';
+									<h3><u>Teacher Aid Privileges</u></h3>';
 									$teacher_query = ("SELECT * FROM teacher_aid WHERE TEACHER_ID = ".$_SESSION['id']);
 									$teacher_result = mysqli_query($dbconnect, $teacher_query);
 									if(mysqli_num_rows($teacher_result) != 0) {
+										echo'<h4><u>Propose pupil selection advice</u></h4>';
+									} else {
+										echo'<h4><u>There are no students found to be associated with you</u></h4>';
+									}
+									echo '<br>';
+									if(mysqli_num_rows($teacher_result) != 0) {
+										echo '<div class = "aid-grid-container">';
 										while($row = $teacher_result->fetch_assoc()) {
 											$student_query = ("SELECT * FROM students WHERE ID = ".$row['STUDENT_ID']);
 											$student_result = mysqli_query($dbconnect, $student_query);
@@ -141,27 +143,20 @@
 													<div class = 'ellipsis' style= 'grid-area: name'>".$student_row['FIRST_NAME']." ".$student_row['LAST_NAME']."</div>
 													<div class = 'ellipsis' style= 'grid-area: year-level'>Year ".$student_row['YEAR_LEVEL']."</div>
 													<div class = 'ellipsis' style= 'grid-area: email'>".$student_row['EMAIL']."</div>
-
-
 													<div class = 'ellipsis' style= 'grid-area: options'>
 														<a href = 'propose-pupil-selections.php?student=".str_replace(" ", "-", ($student_row['FIRST_NAME'].' '.$student_row['LAST_NAME']))."'>Add selection recommendation</a>
 													</div>
-
 												";
 											}
-											
-										echo "
+											echo "
 											</div>";
 										}
-									} else {
-										echo "<div style='padding:10px'>There are no students found to be associated with you</div>";
+										echo "</div>";
 									}
-
 								//for ($student_with_teacher_aid = 0; $student_with_teacher_aid < ;$student_with_teacher_aid++){
 								//$_SESSION['id']
 								//}
-								echo "</div>
-								</div>" ;
+								echo "</div>" ;
 							}
 							if($_SESSION['privilege'] >= 1){
 								echo'
