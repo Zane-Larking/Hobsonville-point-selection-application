@@ -128,7 +128,7 @@
 								';
 									$teacher_query = ("SELECT * FROM teacher_aid WHERE TEACHER_ID = ".$_SESSION['id']);
 									$teacher_result = mysqli_query($dbconnect, $teacher_query);
-									if($teacher_result != NULL) {
+									if(mysqli_num_rows($teacher_result) != 0) {
 										while($row = $teacher_result->fetch_assoc()) {
 											$student_query = ("SELECT * FROM students WHERE ID = ".$row['STUDENT_ID']);
 											$student_result = mysqli_query($dbconnect, $student_query);
