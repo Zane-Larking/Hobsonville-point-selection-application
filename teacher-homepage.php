@@ -128,7 +128,7 @@
 								';
 									$teacher_query = ("SELECT * FROM teacher_aid WHERE TEACHER_ID = ".$_SESSION['id']);
 									$teacher_result = mysqli_query($dbconnect, $teacher_query);
-									//if($teacher_result != NULL) {
+									if($teacher_result != NULL) {
 										while($row = $teacher_result->fetch_assoc()) {
 											$student_query = ("SELECT * FROM students WHERE ID = ".$row['STUDENT_ID']);
 											$student_result = mysqli_query($dbconnect, $student_query);
@@ -153,9 +153,9 @@
 										echo "
 											</div>";
 										}
-									//} else {
-										//echo "<div style='padding:10px'>There are no students found to be associated with you</div>";
-									//}
+									} else {
+										echo "<div style='padding:10px'>There are no students found to be associated with you</div>";
+									}
 
 								//for ($student_with_teacher_aid = 0; $student_with_teacher_aid < ;$student_with_teacher_aid++){
 								//$_SESSION['id']
@@ -203,9 +203,10 @@
 									<a href=teacher-class-submit.php>Create a Class</a>
 									<br>
 									<br>
-									Students that have completed Selections '.$studentCompleteCount.'/'.$studentCount.'
+									Students that have completed Selections : '.$studentCompleteCount.'/'.$studentCount.'
 									<br>
-									Students that have not completed Selections '.($studentCount-$studentCompleteCount).'/'.$studentCount.'
+									<br>
+									Students that have not completed Selections : '.($studentCount-$studentCompleteCount).'/'.$studentCount.'
 								</div>
 								';
 							}
