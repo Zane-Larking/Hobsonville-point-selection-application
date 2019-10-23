@@ -161,13 +161,15 @@
 							if($_SESSION['privilege'] >= 1){
 								echo'
 								<div class="content">
-								<h3><u>Teacher Privileges</u></h3>
+								<h3><u>Teacher Privileges</u></h3>';
 
-									<h4><u>Classes you\'re teaching</u></h4>
-									
-									<div class = "teacher-class-content">';
-									$teacherNameQuery = "SELECT * FROM classes WHERE TEACHER1 = 'Jack Freeth'";
+									$teacherNameQuery = "SELECT * FROM classes WHERE TEACHER1 = '".$_SESSION["name"]."' OR TEACHER2 = '".$_SESSION["name"]."'";
 									$teacherResult = mysqli_query($dbconnect,$teacherNameQuery);
+									//echo $_SESSION["name"];
+									if(mysqli_num_rows($teacherResult) != 0) {
+										echo '<h4><u>Classes you\'re teaching</u></h4>';
+										echo '<div class = "teacher-class-content">';
+									
 									while($teacherClasses_row = $teacherResult->fetch_assoc()){
 										echo"<div class = 'classes-content'>";
 										echo "<div style= 'grid-area: name'>".$teacherClasses_row['CODE']."</div>";
@@ -178,8 +180,13 @@
 										echo"</div>";
 									}
 									echo'
-									</div>
-								</div>
+									</div>';
+									} else {
+										echo '<h4><u>You\'re currently not teaching any classes</u></h4>';
+									}
+									
+									
+								echo '</div>
 								';
 								//$teacher_name = (mysqli_query($dbconnect,("SELECT FIRST_NAME FROM teachers WHERE ID = ".$_SESSION['id']))->fetch_assoc())['FIRST_NAME'];
 								//echo $teacher_name;
