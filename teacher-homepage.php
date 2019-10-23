@@ -126,8 +126,8 @@
 									<div class = "aid-grid-container">
 									
 								';
-									//$teacher_query = ("SELECT * FROM teacher_aid WHERE TEACHER_ID = ".$_SESSION['id']);
-									//$teacher_result = mysqli_query($dbconnect, $teacher_query);
+									$teacher_query = ("SELECT * FROM teacher_aid WHERE TEACHER_ID = ".$_SESSION['id']);
+									$teacher_result = mysqli_query($dbconnect, $teacher_query);
 									//if($teacher_result != NULL) {
 										while($row = $teacher_result->fetch_assoc()) {
 											$student_query = ("SELECT * FROM students WHERE ID = ".$row['STUDENT_ID']);
