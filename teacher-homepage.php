@@ -182,7 +182,7 @@
 									echo'
 									</div>';
 									} else {
-										echo '<h4><u>You\'re currently not teaching any classes</u></h4>';
+										echo '<h4><u>You\'re not currently teaching any classes</u></h4>';
 									}
 									
 									
