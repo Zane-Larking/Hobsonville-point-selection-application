@@ -1,8 +1,13 @@
 let today = new Date();
-let currentMonth = today.getMonth();
-let currentYear = today.getFullYear();
-let selectYear = document.getElementById("year");
+let setValue = "startDate";
+let currentMonth = today.getMonth(); //Get the current Month
+let currentYear = today.getFullYear(); //Get the current Year
+let selectYear = document.getElementById("year"); 
 let selectMonth = document.getElementById("month");
+let calendar = document.getElementById("calendar-body");
+let startDate = false;
+let endDate = false;
+
 
 let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
@@ -67,6 +72,19 @@ function showCalendar(month, year) {
                 if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
                     cell.classList.add("currentDay");
                 } // color today's date
+                if (date === startDate.date && month === startDate.month && year === startDate.year) {
+                    cell.classList.add("startDate");
+                } // color start date
+                let millis = new Date(toString(month) + " " + toString(date) + " " + toString(year));
+                let startMillis = new Date(toString(startDate.month) + " " + toString(startDate.date) + " " + toString(startDate.year));
+                let endMillis = new Date(toString(endDate.month) + " " + toString(endDate.date) + " " + toString(endDate.year));
+                if (startMillis < millis && millis < endMillis) {
+                    cell.classList.add("intermediateDate");
+                } // color dates in between                
+                if (date === endDate.date && month === endDate.month && year === endDate.year) {
+                    cell.classList.add("endDate");
+                } // color end date
+                
                 cell.appendChild(cellText);
                 row.appendChild(cell);
                 date++;
@@ -79,3 +97,29 @@ function showCalendar(month, year) {
     }
 
 }
+
+function setDate(event){
+    clickedDate = event.target;
+    startDate= {date:Number(clickedDate.innerText), month:currentMonth, year:currentYear};
+
+    if (clickedDate.innerText == ""){
+        return
+    }
+
+    //resets old 'Value' date's class name
+    let old = document.querySelector("#calendar ."+ setValue);
+    if (old) {
+        old.classList.remove(setValue);
+    }
+    
+    clickedDate.classList.add(setValue);
+
+    //recreate calendar (lazy method)
+    showCalendar(currentMonth, currentYear);
+}
+
+setTimeout(() => {
+    console.log(calendar);
+    calendar.addEventListener("click", setDate)
+}, 0);
+

@@ -410,6 +410,7 @@ h4 {
 	height:350px;
 }
 
+/* Calendar */
 .changeMonth {
 	display:flex;
 	margin:5px 0;
@@ -440,6 +441,17 @@ h4 {
 
 .currentDay {
 	background-color:red;
+}
+
+.startDate {
+	background-color: rgb(0, 228, 133);
+}
+
+.intermediateDate {
+	background-color: rgb(0, 228, 228);
+}
+.endDate {
+	background-color: rgb(0, 133, 185);
 }
 
 table th, table td{
