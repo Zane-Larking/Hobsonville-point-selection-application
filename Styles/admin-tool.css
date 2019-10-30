@@ -409,3 +409,71 @@ h4 {
 	padding: 0 10px;
 	height:350px;
 }
+
+/* Calendar */
+.changeMonth {
+	display:flex;
+	margin:5px 0;
+}
+
+.changeMonth > button:hover {
+	border:1px solid #000;
+	border-radius: 5px;
+	width:100%;
+	height:30px;
+	background-color: blue;
+}
+
+.changeMonth > button {
+	border:1px solid #000;
+	border-radius: 5px;
+	width:100%;
+	height:30px;
+	background-color: white;
+}
+
+.calendar > table {
+	width: 100%;
+    margin-bottom: 1rem;
+    border-collapse: collapse;
+    box-sizing: border-box;
+}
+
+.currentDay {
+	background-color:red;
+}
+
+.startDate {
+	background-color: rgb(0, 228, 133);
+}
+
+.intermediateDate {
+	background-color: rgb(0, 228, 228);
+}
+.endDate {
+	background-color: rgb(0, 133, 185);
+}
+
+#calendarButton {
+	background-color: #F8F8F8;
+	width: 100%;
+	padding:20px;
+	border:2px solid black;
+
+	
+}
+
+table th, table td{
+	width: 14.3%;
+	border: 1px solid black;
+	padding: 1.5%;
+	box-sizing:border-box;
+	text-align-last:center;
+	background-color:rgb(235, 235, 228);
+}
+
+table td:hover {
+	background-color:cyan;
+
+}
+

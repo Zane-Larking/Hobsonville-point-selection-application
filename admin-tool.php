@@ -45,14 +45,19 @@
 	<?php
         include ('PhpSnippets/header-bar.php');
         $name = "Zane Larking";
-	?>
+    ?>
+    <div id="inProgress" style="border: 5px solid red;width:80%;height: auto;margin-top: 100px;margin-right: auto;margin-left: auto;background: white;text-align: center;">
+        <h1 style="color:red;">Coming Soon</h1>
+        <h2 style="color:red;">In Progress....</h2> 
+    </div>
+
 	<div id ="main">
 		<div id= "mainGrid" class="toggle-tabs">
             <div class="toggle-btns tabs-button-people">
-                <button> 
+                <button class="toggle-btn"> 
                     <img src="Images/portrait-placeholder.png" alt="Teacher Manage" style="height: 30px;justify-self: center;border-radius: 50%;">
                     Teacher</button>
-                <button> 
+                <button class="toggle-btn"> 
                     <img src="Images/portrait-placeholder.png" alt="Student Manage" style="height: 30px;justify-self: center;border-radius: 50%;">
                     Student</button>
                 <button class="toggle-btn"> 
@@ -417,7 +422,7 @@
                                 <div class=<?php echo "'".$rows['ID']."'"; ?>>
                                     <img src="Images/student-pic.png" width=12px height=12px>
                                     <p class="people_text"><?php echo $rows['FIRST_NAME']; ?></p> 
-                                    <img src="Images/red-dot.png" alt="gears" width=5px height=5px>
+                                    <div></div>
                                 </div>
                                 <?php
                                     }
@@ -563,85 +568,101 @@
 
                 <div class="background tab">
                     <div class="general_settings"> 
-                        <!-- 
-                        Module/Spin amount 
-                        Selection dates: closing and opening - Time period
-                        Button Publish Choices
+                            <!-- 
+                            Module/Spin amount 
+                            Selection dates: closing and opening - Time period
+                            Button Publish Choices
 
-                        -->
+                            -->
+                            <button onclick="openModal('start_date_modal')" id="calendarButton">Class Selection Date</button>
+                                    <div id="start_date_modal" class="modal">
+                                        <!-- Modal Content container -->
+                                        <div class="modal-content">
+
+                                            <span class="close">&times;</span>
+                                            <h1> Choose Start Date of Selections </h1>
+                                            <p>Press previous for last month, press next for next Month, Press Start Date or End Date to toggle between. </p>
+                                            <!-- Insert form here -->
+                                            <div class="calendar" style="width:80%; margin:auto;">
+                                                <h3 class="calendarHead" id="monthAndYear" style="padding: .75rem 1.25rem; margin-bottom: 0; background-color: white; border-bottom: 1px solid rgba(0,0,0,.125);"></h3>
+
+                                                <table id="calendar">
+                                                    <thead style="box-sizing: border-box;">
+                                                    <tr>
+                                                        <th>Sun</th>
+                                                        <th>Mon</th>
+                                                        <th>Tue</th>
+                                                        <th>Wed</th>
+                                                        <th>Thu</th>
+                                                        <th>Fri</th>
+                                                        <th>Sat</th>
+                                                    </tr>
+                                                    </thead>
+
+                                                    <tbody id="calendar-body">
+
+                                                    </tbody>
+                                                    
+                                                </table>
+
+                                                
+                                                <div class="changeMonth">
+                                                    <button id="previous" onclick="previous()">Previous</button>
+                                                    <button id="next" onclick="next()">Next</button>
+                                                    <button id="toggleSetDate" onclick="toggleSetDate()">End Date</button>
+                                                </div>
+
+                                                <form>
+                                                    <label for="month">Jump To: </label>
+                                                    <select name="month" id="month" onchange="jump()">
+                                                        <option value=0>Jan</option>
+                                                        <option value=1>Feb</option>
+                                                        <option value=2>Mar</option>
+                                                        <option value=3>Apr</option>
+                                                        <option value=4>May</option>
+                                                        <option value=5>Jun</option>
+                                                        <option value=6>Jul</option>
+                                                        <option value=7>Aug</option>
+                                                        <option value=8>Sep</option>
+                                                        <option value=9>Oct</option>
+                                                        <option value=10>Nov</option>
+                                                        <option value=11>Dec</option>
+                                                    </select>
 
 
-                        <div class="calendar">
-                            <h3 class="calendarHead" id="monthAndYear"></h3>
+                                                    <label for="year"></label>
+                                                    <select name="year" id="year" onchange="jump()">
+                                                    
+                                                        <option value=2010>2010</option>
+                                                        <option value=2011>2011</option>
+                                                        <option value=2012>2012</option>
+                                                        <option value=2013>2013</option>
+                                                        <option value=2014>2014</option>
+                                                        <option value=2015>2015</option>
+                                                        <option value=2016>2016</option>
+                                                        <option value=2017>2017</option>
+                                                        <option value=2018>2018</option>
+                                                        <option value=2019>2019</option>
+                                                        <option value=2020>2020</option>
+                                                    
+                                                    </select>
 
-                            <table styles="width:100%; margin-bottom:1rem;border-collapse: collapse; box-sizing:border-box;" id="calendar">
-                                <thead>
-                                <tr>
-                                    <th>Sun</th>
-                                    <th>Mon</th>
-                                    <th>Tue</th>
-                                    <th>Wed</th>
-                                    <th>Thu</th>
-                                    <th>Fri</th>
-                                    <th>Sat</th>
-                                </tr>
-                                </thead>
+                                                    <label for="start_date"> Start Date: </label>
+                                                    
 
-                                <tbody id="calendar-body">
+                                                    <button>Confirm</button>
+                                                    
+                                                </form>
 
-                                </tbody>
-                                
-                            </table>
+                                            </div>
 
+                                        </div>
+                                    </div>
                             
-                            <div class="changeMonth">
-
-                                <button id="previous" onclick="previous()">Previous</button>
-
-                                <button id="next" onclick="next()">Next</button>
-                            </div>
-
-                            <form>
-                                <label for="month">Jump To: </label>
-                                <select name="month" id="month" onchange="jump()">
-                                    <option value=0>Jan</option>
-                                    <option value=1>Feb</option>
-                                    <option value=2>Mar</option>
-                                    <option value=3>Apr</option>
-                                    <option value=4>May</option>
-                                    <option value=5>Jun</option>
-                                    <option value=6>Jul</option>
-                                    <option value=7>Aug</option>
-                                    <option value=8>Sep</option>
-                                    <option value=9>Oct</option>
-                                    <option value=10>Nov</option>
-                                    <option value=11>Dec</option>
-                                </select>
-
-
-                                <label for="year"></label>
-                                <select name="year" id="year" onchange="jump()">
-                                
-                                    <option value=2010>2010</option>
-                                    <option value=2011>2011</option>
-                                    <option value=2012>2012</option>
-                                    <option value=2013>2013</option>
-                                    <option value=2014>2014</option>
-                                    <option value=2015>2015</option>
-                                    <option value=2016>2016</option>
-                                    <option value=2017>2017</option>
-                                    <option value=2018>2018</option>
-                                    <option value=2019>2019</option>
-                                    <option value=2020>2020</option>
-                                
-                                </select>
-                            </form>
-
                         </div>
-
-
-                    </div>
                     
+                
+                    </div>
                 </div>
 
                 
