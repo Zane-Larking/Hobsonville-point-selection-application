@@ -175,7 +175,7 @@
 										echo "<div style= 'grid-area: name'>".$teacherClasses_row['CODE']."</div>";
 										echo "<div style= 'grid-area: year-level'>".$teacherClasses_row['NAME']."</div>";
 										echo "<div style= 'grid-area: email;'>Qualification ".$teacherClasses_row['QUAL']."</div>";
-										echo "<div style= 'grid-area: options;'> <a href='Recommend-a-student.php?code=".str_replace(" ", "-", ($teacherClasses_row['CODE']))."'>Recommend a qualification ".$teacherClasses_row['QUAL']." student for".$teacherClasses_row{'CODE'}."</a></div>";
+										echo "<div style= 'grid-area: options;'> <a href='recommend-a-student.php?code=".str_replace(" ", "-", ($teacherClasses_row['CODE']))."'>Recommend a qualification ".$teacherClasses_row['QUAL']." student for".$teacherClasses_row{'CODE'}."</a></div>";
 
 										echo"</div>";
 									}

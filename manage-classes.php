@@ -28,6 +28,7 @@
     ?>
 
     <div id="main">
+        <!-- Modal -->
         <div id="modalImport" class="modal">
             <form class="modalContent" action="DataBase/import-class-details.php" method="post" enctype="multipart/form-data">
                 <span class="close">&times;</span>
@@ -40,7 +41,9 @@
                 <input type="submit" name="submit" value="Submit">
             </form>
         </div>
+        <!-- Main Grid -->
         <div id="mainGrid">
+            <!-- Top Panel -->
             <div id="yearGroups" style="grid-area: years; display: flex;">
                 <button class="YearGroupTabLinks selected" onclick="changeYearLevel(event, 'FF')">
                     FF
@@ -65,6 +68,7 @@
                 <div class="ART">Arts</div>
                 <div class="HPE">HPE</div>
             </div>
+            <!-- Tool Bar -->
             <div id="toolBar" style="grid-area: bar;">
                 <button id="saveBtn" class="roundedContainer tooltip" disabled>
                     <div class="tooltipText">Save (Feature Not Yet Implemented)</div>
@@ -85,8 +89,9 @@
             </div>
             <?php
                 foreach ($yearGroups as $yearGroup) {
-                    //$yearGroups will output a string while the database as organised numbers from 0 to 3.
+                    //$yearGroup will output a string while the database as organised numbers from 0 to 3.
                     echo '
+            <!-- Year levels -->
             <div id="'.$yearGroup.'" class="yearGroupTab">
                 <div class="searchPannel">
                     <div class="sectionHeader TSTHeader">
@@ -97,8 +102,10 @@
                             <!--<textarea name="searchArea" class="search" rows="1"></textarea>-->
                         </div>
                     </div>
+                    <!-- Scroll Panel -->
                     <div class="scrollPannel">
                     ';
+                    //Filters classes by year level   
                     $query = "select CODE, TYPE, SUBJECT1, SUBJECT2 from classes where QUAL = \"".$qual[$yearGroup]."\" ORDER BY type;";
                     $result = mysqli_query($dbconnect, $query);
                     $temp = "";
@@ -106,7 +113,7 @@
                         if (!($temp == $row['TYPE'])) {
                             $temp = $row['TYPE'];
                             echo '
-                        <div style="background-color: rgba(0,0,0,0.1); margin: 4px -5px ; padding: 5px;">
+                        <div class="classTypeHeader">
                             <p>'.$row['TYPE'].'</p>
                         </div> 
                         ';
@@ -148,9 +155,11 @@
                     echo '
                     </div>
                 </div>
+                <!-- Hide Scroll Panel Button (right side of panel) -->
                 <div class="hidePannel" onclick="hideSearchPannel(event)" style="grid-area: hidePannel;">
                     <p><<</p>
                 </div>
+                <!-- Class Details -->
                 <div class="details" style="grid-area: details;">
                     <textarea class="id" name="id" style="display:none;"></textarea>
                     <textarea class="code" name="code" placeholder="Kamar Code" onchange="onDetailChange()" style="grid-area: Code"; readonly></textarea>
