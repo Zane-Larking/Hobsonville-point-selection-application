@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title><?php echo str_replace("-", " ", $_GET['student'])?>'s Selections</title>
+		<title>Recommending for <?php echo str_replace("-", " ", $_GET['code'])?>s</title>
 		<link rel="stylesheet" type="text/css" href="Styles/main.css">
 		<link rel="stylesheet" type="text/css" media="screen" href="Styles/nav.css" />
 		<link rel="stylesheet" type="text/css" media="screen" href="Styles/teacher-hub-verification.css" />
@@ -18,7 +18,7 @@
 				    <div id = "head">
 						<img src="Images/hpss-logo.png" alt="HPSS Logo" style="height: 5em">
 						<div>
-							<h1><font face ="Verdana"><?php echo str_replace("-", " ", $_GET['student'])?>'s Selections</font></h1>
+							<h1><font face ="Verdana">Recommend for <?php echo str_replace("-", " ", $_GET['code'])?></font></h1>
 						</div>
 					</div>
 					<div id ="coverage">

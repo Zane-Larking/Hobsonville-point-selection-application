@@ -59,24 +59,53 @@
 */
 
 .content {
-	grid-column-start: 1;
+	/*grid-column: 2/2;*/
 	background-color:White; 
 	height:auto; 
 	border:1px solid black;
 	padding:15px;
-	margin-bottom:10px;
+	margin-bottom:0px;
 }
+
+.hub-coach-name {
+	vertical-align:middle;
+}
+
+#content-grid {
+	display:grid;
+	grid-template: auto / 1fr 1fr;
+	grid-gap:10px;
+}
+
+
+@media only screen and (max-width:1000px){
+	#content-grid {
+		grid-template: auto / 1fr;
+	}
+}
+
 
 #head > div{
     margin-left: auto;
     margin-right: auto;
 }
 
+#hub-coach-name {
+	border-style:solid;
+	border-width:1px;
+	padding:1px;
+	display:grid;
+	grid-template: repeat(2, auto)/auto 1fr;
+	grid-template-areas:
+	"image name link link" 
+	"image email email email";
+	vertical-align:middle;
+}
 
-#user-grid-container {
+.user-grid-container {
 	border: 1px solid black;
-	padding: 2rem;
-	
+	padding: 3rem;
+	margin:-1px;
 
 	overflow: hidden;
 	
@@ -85,25 +114,20 @@
 	display: grid;
 	grid-template: repeat(3, auto)/auto 1fr;
 	grid-template-areas:
-	"image options options"
-	"image name ." 
+	"image name options"
+	"image year-level ." 
 	"image email .";
 	column-gap: 5rem;
 }
+
 
 #hublings {
 	overflow-y: auto;
 	overflow-x: hidden;
     height: auto;
-    max-height: 250px;
+    max-height: 150px;
 }
 
-#content > #grid-container {
-  	display: grid;
-  	grid-template-columns: auto auto auto;
-  	background-color: #2196F3;
-  	padding: 10px;
-}
 .grid-item {
   	background-color: rgba(255, 255, 255, 0.8);
   	border: 1px solid rgba(0, 0, 0, 0.8);
@@ -128,6 +152,54 @@
 
 
 
+	margin:0px;
+
+}
+
+.aid-grid-container{
+	overflow-y: auto;
+	overflow-x: hidden;
+    height: auto;
+    max-height: 150px;
+    border-style:solid;
+    border-width:1px;
+}
+
+
+.students-of-teacher-aid{
+	padding: 3rem;
+	font-size: .75em;
+	border-style:solid;
+	border-width:1px;
 	margin:-1px;
+	display: grid;
+	grid-template: repeat(3, auto)/auto 1fr;
+	grid-template-areas:
+	"image name options"
+	"image year-level ." 
+	"image email .";
+	column-gap: 5rem;
+}
+
+.classes-content{
+	padding: 3rem;
+	font-size: .75em;
+	border-style:solid;
+	border-width:1px;
+	margin:-1px;
+	display: grid;
+	grid-template: repeat(3, auto)/auto 1fr;
+	grid-template-areas:
+	"image name options"
+	"image year-level ." 
+	"image email .";
+	column-gap: 5rem;
+}
+.teacher-classes-content{
+	border-style:solid;
+
+}
+.content{
+	font-size: .75em;
 
 }
