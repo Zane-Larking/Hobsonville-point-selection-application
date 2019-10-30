@@ -454,6 +454,15 @@ h4 {
 	background-color: rgb(0, 133, 185);
 }
 
+#calendarButton {
+	background-color: #F8F8F8;
+	width: 100%;
+	padding:20px;
+	border:2px solid black;
+
+	
+}
+
 table th, table td{
 	width: 14.3%;
 	border: 1px solid black;
