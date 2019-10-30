@@ -629,8 +629,11 @@
                 height: 10rem;
             }
             div.drag-item {
+                background-color: rgb(255, 255, 255);
+                border-radius: 10px;
                 z-index: 10;
-                width: 90%;
+                margin: 2px 0;
+                width: 100%;
                 height: 1.25em;
                 cursor: pointer; 
             }

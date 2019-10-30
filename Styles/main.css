@@ -8,13 +8,12 @@ body {
     margin: 0;
     
     /*background*/
-    background-color: #0284B0;
+    background-color: #0284B0AA;
     background-image: url(../Images/teacher-class-submit-bg-terrain.png);
     /*background-repeat: no-repeat;*/
     background-position: top; /* Center the image */
     background-repeat: repeat; /* Do not repeat the image */
     background-size: auto; /* Resize the background image to cover the entire container */
-    
 }
 
 /*Main body*/
@@ -25,6 +24,7 @@ body {
     left: 0;
     margin: 0 5vw;
     height: 100vh;
+    filter: opacity(1);
 }
 #mainGrid {
     background-color: rgb(117, 174, 195);

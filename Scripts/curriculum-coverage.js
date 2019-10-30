@@ -15,7 +15,7 @@ var UpdateTally = function(){
         
         //clear tally chart
         //columns is an array that stores all the div (tally for each subject) in the tally chart
-        let columns = document.getElementById(NthChoices+"TallySubjects").querySelectorAll("div");
+        let columns = document.querySelectorAll("#" + NthChoices + " .TallySubjects div");
         // console.log(columns);
         //set each div's innerHTML to 0
         for (let j = 0; j < columns.length; j ++){
@@ -31,7 +31,7 @@ var UpdateTally = function(){
                 //...check if the current selected is equal to it...
                 if (SelectedSubjects[NthChoices][i] == subjects[j-1]) {
                     //...if so increment the applicable subject
-                    tempEl = document.getElementById(NthChoices+"TallySubjects").querySelector("div:nth-child(" + j +")");
+                    tempEl = document.querySelector("#" + NthChoices+" .TallySubjects div:nth-child(" + j +")");
                     tempEl.innerHTML = parseInt(tempEl.innerHTML) + 1;
                 }
             }
