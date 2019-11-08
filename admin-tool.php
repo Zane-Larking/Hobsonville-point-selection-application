@@ -44,7 +44,7 @@
 <body>
 	<?php
         include ('PhpSnippets/header-bar.php');
-        $name = "Zane Larking";
+        $name = $_SESSION["name"];
     ?>
     <div id="inProgress" style="border: 5px solid red;width:80%;height: auto;margin-top: 100px;margin-right: auto;margin-left: auto;background: white;text-align: center;">
         <h1 style="color:red;">Coming Soon</h1>
@@ -76,7 +76,7 @@
                             <header>
                                 <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 50px;justify-self: center;border-radius: 50%;">
                                 <hgroup>
-                                <h1> Admin Name </h1>
+                                <h1> <?php echo $name;?> </h1>
                                 <!-- <h2> Profile </h2> -->
                                 </hgroup>
                             </header>
@@ -205,7 +205,7 @@
 
 
                         <div class="toggle-tabs Content">
-                            <header>
+                            <header class="detailsHeader">
                                 <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 50px; border-radius: 50%;">
                                 <h1> Teacher Name </h1>
                                 <h2> Subject </h2>
@@ -382,7 +382,7 @@
                 </div>
                 
                 <div class="background tab">
-                    <div class="peopleManage"> <!-- Box/Container for the Content in the Student Name -->
+                    <div class="peopleManage manageStudents"> <!-- Box/Container for the Content in the Student Name -->
                         <div class="peopleList" >
                             <header>
                                 <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 50px;justify-self: center;border-radius: 50%;">
@@ -421,7 +421,7 @@
                                 ?>
                                 <div class=<?php echo "'".$rows['ID']."'"; ?>>
                                     <img src="Images/student-pic.png" width=12px height=12px>
-                                    <p class="people_text"><?php echo $rows['FIRST_NAME']; ?></p> 
+                                    <p class="people_text"><?php echo $rows['FIRST_NAME']." ".$rows['LAST_NAME']; ?></p> 
                                     <div></div>
                                 </div>
                                 <?php
@@ -522,28 +522,39 @@
 
 
                         <div class="toggle-tabs Content">  <!-- Need Immediate Work -->
-                            <header>
+                            <header class="detailsHeader">
                                 <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 50px; border-radius: 50%;">
-                                <h2> First Name </h2>
-                                <h2> Last Name </h2>
-                                <h2> Years </h2>
+                                <h2 class="first-name"> First Name </h2>
+                                <h2 class="last-name"> Last Name </h2>
+                                <h2 class="year"> Years </h2>
                                 <div> </div> <!-- spacer -->
                                 
                             </header>
                             <!-- content --> 
                             <div class="student_profile">
-                                <textarea class="student_first_name" name="first_name" placeholder="First Name" disabled></textarea>
-                                <textarea class="student_last_name" name="last_name" placeholder="Last Name" disabled></textarea>
-                                <textarea class="k_code" name="k_code" placeholder="Kamar Code" disabled></textarea>
-                                <textarea class="student_gmail" name="student_gmail" placeholder="Gmail" disabled></textarea>
-                                <select class="coach" name="hub_coach" disabled> <!-- Need Php for list of all teacher names -->
+                                <textarea class="student_first_name" name="student_first_name" placeholder="First Name" disabled></textarea>
+                                <textarea class="student_last_name" name="student_last_name" placeholder="Last Name" disabled></textarea>
+                                <textarea class="student_hpss_num" name="student_hpss_num" placeholder="Kamar Code" disabled></textarea>
+                                <textarea class="student_email" name="student_email" placeholder="Email" disabled></textarea>
+                                <select class="student_hub_coach" name="student_hub_coach" required disabled> <!-- Need Php for list of all teacher names -->
+                                    <option value="">Please Select a Hub Coach</option>
+                                    <!-- 
                                     <option value="Kalani"> Kalani </option>
                                     <option value="Gerard"> Gerard </option>
                                     <option value="Cairan"> Cairan </option>
                                     <option value="Jessica"> Jessica </option>
-                                    <option value="Rebecca"> Rebecca </option>
+                                    <option value="Rebecca"> Rebecca </option> -->
+                                    <?php 
+                                        $query = "SELECT CONCAT(FIRST_NAME, ' ', LAST_NAME) as NAME FROM teachers WHERE HAS_HUB = 1";
+                                        $result = mysqli_query($dbconnect, $query);
+                                        while($rows=mysqli_fetch_assoc($result)) {
+                                            echo '<option value="'. $rows["NAME"] .'"> ' . $rows["NAME"] . ' </option>';
+
+                                        }
+                                    ?>
                                 </select>
-                                <select class="year_level" name="year_level" disabled>
+                                <select class="student_year_level" name="student_year_level" required disabled>
+                                    <option value="">Please Select a Year Level</option>
                                     <option value="9"> 9 </option>
                                     <option value="10"> 10 </option>
                                     <option value="11"> 11 </option>
@@ -702,6 +713,92 @@
 	// When the user clicks anywhere outside of the modal, close it
 	
 	</script>
+    <script type="text/javascript">
+        
+
+
+        function getStudentInfo(event){
+            //values
+            console.log(event);
+            let el = event.target;
+            let panel = event.currentTarget;
+            let srcBtn;
+
+            //clicked on button checker
+            function targetIsToggleBtn(el) {
+                if (el.parentElement == panel) {
+                    console.log("found the button");
+                    srcBtn = el;
+                    return true;
+                }
+                else if (el == panel) {
+                    return false;
+                }
+                else {
+                    return targetIsToggleBtn(el.parentElement);
+                }
+            }
+
+            if (targetIsToggleBtn(el) == false) {
+                console.log("terminating");
+                return;
+            }
+
+
+            //get id
+            let id = srcBtn.className;
+
+            //create XMLhttp request
+            let url = "AJAX/access-student-details-post.php";
+            let formData = new FormData();
+            formData.set("id", id);
+
+            let xhttp = new XMLHttpRequest();
+
+
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    let studentDetails = xhttp.response.split("<BREAK>");
+                    //console.log(studentDetails);
+
+                    let detailEls = document.querySelector(".student_profile");
+                    detailEls.querySelector(".student_email").value = studentDetails[1];
+                    detailEls.querySelector(".student_year_level").value = studentDetails[2];
+                    detailEls.querySelector(".student_hpss_num").value = studentDetails[3];
+                    detailEls.querySelector(".student_hub_coach").value = studentDetails[4];
+                    detailEls.querySelector(".student_first_name").value = studentDetails[5];
+                    detailEls.querySelector(".student_last_name").value = studentDetails[6];
+
+
+                    /*
+                    $cDetails['ID']."<BREAK>".
+                    $cDetails['EMAIL']."<BREAK>".
+                    $cDetails['YEAR_LEVEL']."<BREAK>".
+                    $cDetails['HPSS_NUM']."<BREAK>".
+                    $cDetails['COACH']."<BREAK>".
+                    $cDetails['FIRST_NAME']."<BREAK>".
+                    $cDetails['LAST_NAME']."<BREAK>";
+
+                    */
+
+                    //change header
+                    let header = document.querySelector(".manageStudents header.detailsHeader");
+                    header.querySelector(".first-name").innerHTML = studentDetails[5];
+                    header.querySelector(".last-name").innerHTML = studentDetails[6];
+                    header.querySelector(".year").innerHTML = studentDetails[2];
+
+                }
+            };
+            xhttp.open("POST", url, true);
+            // xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhttp.send(formData);
+
+            
+
+        }
+        let student= document.getElementsByClassName("people")[1];
+        student.addEventListener("click", getStudentInfo);
+    </script>
 
 </body>
 </html>
