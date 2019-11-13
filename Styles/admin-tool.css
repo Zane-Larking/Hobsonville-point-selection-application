@@ -1,11 +1,13 @@
 #mainGrid {
 	height:600px;
-	grid-template: "buttons tabs-content" 100% / min-content 1fr;
+	grid-template:
+		"buttons" min-content
+		"tabs-content"  / auto;
 	grid-gap:0 !important;
 }
 
 .background {
-	background-color:grey;
+	background-color: white;
 	padding: 20px;
 	grid-area:tabs-content;
 	box-sizing:border-box;
@@ -19,10 +21,9 @@
 
 .tabs-button-people button{
 	border:none;
-	background-color:grey;
+	background-color: #EEEEEE;
 	padding:5px;
 	box-sizing:border-box;
-
 }
 
 /* main "grid"; Styling of both Teacher List and Teacher Profile */
@@ -38,13 +39,14 @@
 /* Teacher List Styling, Left Object */
 .peopleManage > .peopleList{
 	display:grid;
-	/* grid-template-rows: min-content min-content calc((100% - 170px) - 16rem) min-content; */
+	grid-template-rows: auto auto minmax(0, 310px) auto;
+	height: 100%;
 	grid-gap: 10px;
 	width:auto;
 	align-content : center;
 	align-items:center;
-	border: 2px double #000000;
-	border-radius: 20px;
+	border: 1px double #000000;
+	border-radius: 10px;
 	background-color: #F8F8F8;
 }
 
@@ -78,11 +80,11 @@ input.search {
 
 /*List of Teacher Names */
 .people {
-	height:100%;
+	/* height: 310px; */
 	justify-content: center;
 	display : grid;
 	overflow-y: scroll;
-
+	height: 100%;
 }
 
 /* Styling for Individual Teacher boxes */
@@ -114,11 +116,11 @@ input.search {
 .peopleManage > .Content{
 	display:grid;
 	grid-template-rows:min-content 1fr;
-	border: 2px double #000000;
-	border-radius: 20px;
-	width:auto ;
+	border: 1px double #000000;
+	border-radius: 10px;
+	width:auto;
 	/*align-content : center;*/
-	height: auto;
+	height: 100%;
 	background-color: #F8F8F8;
 }
 
@@ -167,14 +169,12 @@ h4 {
 	align-items:center;
 	height:100%;
 	justify-content:space-between;
-	border: 1px dotted #000000;
-    background-color: grey;
-    border-radius: 0 0 20px 20px;
+	background-color: white;
+	border-radius: 0 0 20px 20px;
 	padding-bottom: 10px;
 	padding: 5px;
 	gap:5px;
 	box-sizing:border-box;
-	
 }		
 
 /* Individual Classes Box */

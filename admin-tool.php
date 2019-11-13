@@ -10,34 +10,7 @@
     <link rel="stylesheet" type="text/css" href="Styles/admin-tool-modal.css">
     <link rel="stylesheet" type="text/css" href="Styles/search-pannel.css">
     <link rel="stylesheet" type="text/css" href="Styles/scroll-pannel.css">
-	<style>
-		.toggle-tabs .tab {
-			display: none;
-		}
-
-		.toggle-tabs .tab[open] {
-			display: block;
-			height: 100%;
-		}
-
-		.tabs-button{
-			display:flex;
-			align-self:end;
-		}
-
-		.tabs-button button {
-			background-color:grey;
-			border:1px solid black;
-            height:80px;
-            width:100%;
-			
-		}
-        
-        .searchPannel {
-            width:100%;
-        }
-		
-	</style>
+    <link rel="stylesheet" type="text/css" href="Styles/toggle-tabs.css">
 </head>
 
 
@@ -54,17 +27,9 @@
 	<div id ="main">
 		<div id= "mainGrid" class="toggle-tabs">
             <div class="toggle-btns tabs-button-people">
-                <button class="toggle-btn"> 
-                    <img src="Images/portrait-placeholder.png" alt="Teacher Manage" style="height: 30px;justify-self: center;border-radius: 50%;">
-                    Teacher</button>
-                <button class="toggle-btn"> 
-                    <img src="Images/portrait-placeholder.png" alt="Student Manage" style="height: 30px;justify-self: center;border-radius: 50%;">
-                    Student</button>
-                <button class="toggle-btn"> 
-                    <img src="Images/portrait-placeholder.png" alt="General Settings" style="height: 30px;justify-self: center;border-radius: 50%;">
-                    Settings
-                </button>
-
+                <button class="toggle-btn">Teacher</button>
+                <button class="toggle-btn">Student</button>
+                <button class="toggle-btn">Settings</button>
             </div>
 
             <div class="tabs">

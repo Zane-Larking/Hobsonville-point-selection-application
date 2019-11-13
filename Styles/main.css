@@ -29,19 +29,17 @@ body {
 #mainGrid {
     background-color: rgb(117, 174, 195);
     padding: 30rem 20rem 20rem 20rem;
-    margin: 40rem;
+    margin: 2.5vh 2.5vw;
     width: calc(100% - 120rem);
     min-width: fit-content;
     display: grid;
     grid-gap: 50rem;
-
+    height: 90vh;
 }
 #mainGrid > div {
     height: auto;
     width: auto;
-    border: solid 5px #e4e4e4;
-    
-
+    /* border: solid 5px #e4e4e4; */
 }
 
 .roundedContainer {
