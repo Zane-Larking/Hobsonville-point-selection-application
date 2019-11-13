@@ -1,0 +1,25 @@
+.toggle-tabs .tab {
+    display: none;
+}
+
+.toggle-tabs .tab[open] {
+    display: block;
+    height: 100%;
+}
+
+.tabs-button{
+    display:flex;
+    align-self:end;
+}
+
+.tabs-button button {
+    background-color:#EEEEEE;
+    border:1px solid black;
+    height:80px;
+    width:100%;
+    
+}
+
+.searchPannel {
+    width:100%;
+}
