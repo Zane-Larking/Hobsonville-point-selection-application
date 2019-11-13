@@ -252,9 +252,9 @@
                                             </div>
                                         </div>
                                         <div class="others">
-                                            <input class="other" style="background:cyan;" type="button" name="save" value="save">
-                                            <input class="other" style="background:cyan;" type="button" name="edit" value="edit">
-                                            <input class="other" style="background:red;" type="button" name="remove" value="remove">
+                                            <input class="other" style="background:red;" type="button" name="save" value="save">
+                                            <input class="other" style="background:red;" type="button" name="edit" value="edit">
+                                            <input class="other" style="background:cyan;" type="button" name="remove" value="remove">
                                             <!-- Everything on add teacher modal, remove teacher, edit button, save --> 
                                         </div>
                                     </div>
@@ -515,9 +515,9 @@
                                     <option value="13"> 13 </option>
                                 </select>
                                 <div class="student_others">
-                                    <input class="other" style="background:cyan;" type="button" name="save" value="save">
-                                    <input class="other" style="background:cyan;" type="button" name="edit" value="edit">
-                                    <input class="other" style="background:red;" type="button" name="remove" value="remove">
+                                    <input class="other save_button" style="background:cyan;" type="button" name="save" value="save">
+                                    <input class="other edit_button" style="background:cyan;" type="button" name="edit" value="edit">
+                                    <input class="other remove_button" style="background:red;" type="button" name="remove" value="remove">
                                     
                                     <!-- Everything on add teacher modal, remove teacher, edit button, save --> 
                                 </div>
@@ -747,10 +747,10 @@
 
         }
 
+        var currentStudentID = 0;
 
         function getStudentInfo(event){
             //values
-            console.log(event);
             let el = event.target;
             let panel = event.currentTarget;
             let srcBtn;
@@ -758,7 +758,7 @@
             //clicked on button checker
             function targetIsToggleBtn(el) {
                 if (el.parentElement == panel) {
-                    console.log("found the button");
+                    //console.log("found the button");
                     srcBtn = el;
                     return true;
                 }
@@ -771,19 +771,21 @@
             }
 
             if (targetIsToggleBtn(el) == false) {
-                console.log("terminating");
+                //console.log("terminating");
                 return;
             }
 
 
             //get id
             let id = srcBtn.className;
-
+            currentStudentID = id;
             //create XMLhttp request
             let url = "AJAX/access-student-details-post.php";
             let formData = new FormData();
             formData.set("id", id);
-
+            
+            //currentStudentID = parseInt(formData);
+            //console.log(currentStudentID);
             let xhttp = new XMLHttpRequest();
 
 
@@ -831,6 +833,59 @@
         teacherPanel.addEventListener("click", getTeacherInfo);
         let studentPanel = document.getElementsByClassName("people")[1];
         studentPanel.addEventListener("click", getStudentInfo);
+
+        function editStudentDetails(event){
+            document.getElementsByClassName("student_first_name")[0].removeAttribute("disabled");
+            document.getElementsByClassName("student_last_name")[0].removeAttribute("disabled");
+            document.getElementsByClassName("student_hpss_num")[0].removeAttribute("disabled");
+            document.getElementsByClassName("student_email")[0].removeAttribute("disabled");
+            document.getElementsByClassName("student_hub_coach")[0].removeAttribute("disabled");
+            document.getElementsByClassName("student_year_level")[0].removeAttribute("disabled");
+            document.getElementsByClassName("edit_button")[0].style.backgroundColor = "pink";
+            document.getElementsByClassName("save_button")[0].style.backgroundColor = "red";
+        }
+
+        function saveStudentDetails(event){
+            document.getElementsByClassName("student_first_name")[0].setAttribute("disabled", "");
+            document.getElementsByClassName("student_last_name")[0].setAttribute("disabled", "");
+            document.getElementsByClassName("student_hpss_num")[0].setAttribute("disabled", "");
+            document.getElementsByClassName("student_email")[0].setAttribute("disabled", "");
+            document.getElementsByClassName("student_hub_coach")[0].setAttribute("disabled", "");
+            document.getElementsByClassName("student_year_level")[0].setAttribute("disabled", "");
+            document.getElementsByClassName("edit_button")[0].style.backgroundColor = "red";
+            document.getElementsByClassName("save_button")[0].style.backgroundColor = "pink";
+            //console.log(currentStudentID);
+            console.log()
+            let url = "AJAX/update-student-details.php"
+            let formData = new FormData();
+            let xhttp = new XMLHttpRequest();
+
+            formData.set("id",currentStudentID);
+            formData.set("first_name",document.getElementsByClassName("student_first_name")[0].value);
+            formData.set("last_name",document.getElementsByClassName("student_last_name")[0].value);
+            formData.set("email",document.getElementsByClassName("student_email")[0].value);
+            formData.set("year_level",document.getElementsByClassName("student_year_level")[0].value);
+            formData.set("hpss_num",document.getElementsByClassName("student_hpss_num")[0].value);
+            formData.set("hub_coach",document.getElementsByClassName("student_hub_coach")[0].value);
+
+            xhttp.onreadystatechange = function(){
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log(xhttp.response);
+                }
+
+            }
+            xhttp.open("POST",url, true);
+            xhttp.send(formData);
+        }
+
+
+
+        let edit_button = document.getElementsByClassName("edit_button")[0];
+        edit_button.addEventListener("click", editStudentDetails);
+
+        let save_button = document.getElementsByClassName("save_button")[0];
+        save_button.addEventListener("click", saveStudentDetails);
+
     </script>
 
 </body>
