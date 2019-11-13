@@ -1,20 +1,18 @@
 <?php
     include "../DataBase/database-connect.php";
     $id = str_replace ("'" , "''" , $_REQUEST['id']);
-    $code = str_replace ("'" , "''" , $_REQUEST['code']);
-    $name = str_replace ("'" , "''" , $_REQUEST['name']);
-    $type = str_replace ("'" , "''" , $_REQUEST['type']);
-    $teacher1 = str_replace ("'" , "''" , $_REQUEST['teacher1']);
-    $teacher2 = str_replace ("'" , "''" , $_REQUEST['teacher2']);
-    $subject1 = str_replace ("'" , "''" , $_REQUEST['subject1']);
-    $subject2 = str_replace ("'" , "''" , $_REQUEST['subject2']);
-    $description = str_replace ("'" , "''" , $_REQUEST['description']);
+    $first_name = str_replace ("'" , "''" , $_REQUEST['first_name']);
+    $last_name = str_replace ("'" , "''" , $_REQUEST['last_name']);
+    $email = str_replace ("'" , "''" , $_REQUEST['email']);
+    $year_level = str_replace ("'" , "''" , $_REQUEST['year_level']);
+    $hpss_num = str_replace ("'" , "''" , $_REQUEST['hpss_num']);
+    $hub_coach = str_replace ("'" , "''" , $_REQUEST['hub_coach']);
 
-    $query = "UPDATE `student` SET `CODE`= '$code',`NAME`= '$name',`TYPE`='$type',`SUBJECT1`='$subject1',`SUBJECT2`='$subject2',`TEACHER1`='$teacher1',`TEACHER2`='$teacher2',`DESCRIPTION`='$description' WHERE `id` = $id";
+    $query = "UPDATE `students` SET `FIRST_NAME`= '$first_name',`LAST_NAME`= '$last_name',`EMAIL`='$email',`YEAR_LEVEL`=$year_level,`HPSS_NUM`='hpss_num',`COACH`='$hub_coach' WHERE `id` = $id";
     if (mysqli_query($dbconnect, $query)) {
-        echo "true";
+        echo "true $id";
     } else {
-        echo "false";
+        echo "false UPDATE `students` SET `FIRST_NAME`= '$first_name',`LAST_NAME`= '$last_name',`EMAIL`='$email',`YEAR_LEVEL`=$year_level,`HPSS_NUM`='hpss_num',`COACH`='$hub_coach' WHERE `id` = $id";
     }
     
     mysqli_close($dbconnect);
