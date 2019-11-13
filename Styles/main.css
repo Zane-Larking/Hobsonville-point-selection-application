@@ -39,6 +39,7 @@ body {
 #mainGrid > div {
     height: auto;
     width: auto;
+    border: solid 5px #e4e4e4;
     
 
 }

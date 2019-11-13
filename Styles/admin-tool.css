@@ -138,7 +138,7 @@ h4 {
 	align-items: center;
 	height:100px;
 	padding: 0 5px;
-	grid-template-columns: repeat(4,max-content) 2fr 1fr;
+	grid-template-columns: repeat(3,max-content) 2fr 1fr;
 	gap: 5rem;
 	border-bottom:1px solid black;
 }

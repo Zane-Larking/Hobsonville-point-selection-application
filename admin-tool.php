@@ -70,9 +70,9 @@
             <div class="tabs">
                 
                 <div class="background tab" open>
-                    <div class="peopleManage"> <!-- Box/Container for the Content in the Teacher name 
+                    <div class="peopleManage manageTeachers"> <!-- Box/Container for the Content in the Teacher name 
                     list & Admin name -->
-                        <div class="peopleList" >
+                        <div class="peopleList">
                             <header>
                                 <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 50px;justify-self: center;border-radius: 50%;">
                                 <hgroup>
@@ -86,7 +86,7 @@
                                 <input value="" class="search" type="text" placeholder="Search Teachers" margin=0px 10px>
                             </div>
 
-                            <div class="people"> <!-- Id for Teacher name list -->
+                            <div class="people teachers"> <!-- Id for Teacher name list -->
                                 <!--
                                 Teacher Names
                                 --> 
@@ -104,9 +104,6 @@
                                     $result = mysqli_query($dbconnect, $query);
                                     while($rows=mysqli_fetch_assoc($result))
                                     {
-                                ?>
-                                <?php
-                                    
                                 ?>
                                 <div class=<?php echo "'".$rows['ID']."'"; ?>>
                                     <img src="Images/student-pic.png" width=12px height=12px>
@@ -207,9 +204,8 @@
                         <div class="toggle-tabs Content">
                             <header class="detailsHeader">
                                 <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 50px; border-radius: 50%;">
-                                <h1> Teacher Name </h1>
-                                <h2> Subject </h2>
-                                <h2> Years </h2>
+                                <h1 class="first-name">Teacher</h1>
+                                <h1 class="last-name"> Name</h1>
                                 <div> </div> <!-- spacer -->
                                 <div class="toggle-btns tabs-button">
                                     <button class="toggle-btn"> Classes </button>
@@ -264,35 +260,27 @@
                                 </div>
 
                                 <div class="tab"> 
-                                    <div class="profile"> 
+                                    <div class="profile teacher_profile"> 
                                         <div class="t_input">
-                                            <div class="first_name">
-                                                <input type="text" name="first_name" placeholder="Teacher First Name" disabled>								
-                                            </div>
-                                            <div class="last_name">
-                                                <input type="text" name="last_name" placeholder="Teacher Last Name" disabled>								
-                                            </div>
-                                            <div class="kamar_code">
-                                                <input type="text" name="name" placeholder="Teacher Kamar Code" disabled>
-                                            </div>
-                                            <div class="gmail">
-                                                <input type="text" name="gmail" placeholder="Teacher Google Email Adress" disabled>
-                                            </div>
+                                            <input class="teacher_first_name" type="text" name="first_name" placeholder="Teacher First Name" disabled>								
+                                            <input class="teacher_last_name" type="text" name="last_name" placeholder="Teacher Last Name" disabled>								
+                                            <input class="teacher_hpss_num" type="text" name="name" placeholder="Teacher Kamar Code" disabled>
+                                            <input class="teacher_email" type="text" name="gmail" placeholder="Teacher Google Email Adress" disabled>
                                         </div>
                                     
                                         
                                         <div class="c_input">
-                                            <div class="privilege">
+                                            <div >
                                                 <h4> Privilege: </h4> <br>
-                                                <div>
-                                                    <input type="checkbox" name="teacher" disabled>Teacher<br>
-                                                </div>
-                                                <div><input type="checkbox" name="moderator" disabled>Moderator<br></div>
-                                                
-                                                <div><input type="checkbox" name="administrator" disabled>Administrator<br></div><br>							
+                                                <select class="teacher_privileges" disabled>
+                                                    <option value="0"> Staff </option>	
+                                                    <option value="1"> Teacher </option>
+                                                    <option value="2"> Moderator </option>
+                                                    <option value="3"> Administrator </option>		
+                                                </select>				
                                             </div>
                                             
-                                            <div class="has_hub">
+                                            <div class="teacher_has_hub">
                                                 <h4> Has hub: </h4>
                                                 <input type="checkbox" name="has_hub" disabled> Yes<br>
                                                 <input type="checkbox" name="has_hub" disabled> No<br>
@@ -715,6 +703,84 @@
 	</script>
     <script type="text/javascript">
         
+        function getTeacherInfo(event){
+            //values
+            console.log(event);
+            let el = event.target;
+            let panel = event.currentTarget;
+            let srcBtn;
+
+            //clicked on button checker
+            function targetIsToggleBtn(el) {
+                if (el.parentElement == panel) {
+                    console.log("found the button");
+                    srcBtn = el;
+                    return true;
+                }
+                else if (el == panel) {
+                    return false;
+                }
+                else {
+                    return targetIsToggleBtn(el.parentElement);
+                }
+            }
+
+            if (targetIsToggleBtn(el) == false) {
+                console.log("terminating");
+                return;
+            }
+
+
+            //get id
+            let id = srcBtn.className;
+
+            //create XMLhttp request
+            let url = "AJAX/access-teacher-details.php";
+            let formData = new FormData();
+            formData.set("id", id);
+
+            let xhttp = new XMLHttpRequest();
+
+
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    let teacherDetails = xhttp.response.split("<BREAK>");
+                    //console.log(studentDetails);
+
+                    let detailEls = document.querySelector(".teacher_profile");
+                
+                    detailEls.querySelector(".teacher_first_name").value = teacherDetails[0];
+                    detailEls.querySelector(".teacher_last_name").value = teacherDetails[1];
+                    detailEls.querySelector(".teacher_hpss_num").value = teacherDetails[2];
+                    detailEls.querySelector(".teacher_email").value = teacherDetails[3];
+                    // detailEls.querySelector(".teacher_has_hub").value = teacherDetails[4];
+                    detailEls.querySelector(".teacher_privileges").value = teacherDetails[5];
+
+
+                    /*
+                    $cDetails['FIRST_NAME']."<BREAK>".
+                    $cDetails['LAST_NAME']."<BREAK>".
+                    $cDetails['KAMAR_CODE']."<BREAK>".
+                    $cDetails['EMAIL']."<BREAK>".
+                    $cDetails['HAS_HUB']."<BREAK>".
+                    $cDetails['PRIVILEGES']."<BREAK>";
+
+                    */
+
+                    //change header
+                    let header = document.querySelector(".manageTeachers header.detailsHeader");
+                    header.querySelector(".first-name").innerHTML = teacherDetails[0];
+                    header.querySelector(".last-name").innerHTML = teacherDetails[1];
+
+                }
+            };
+            xhttp.open("POST", url, true);
+            // xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhttp.send(formData);
+
+            
+
+        }
 
 
         function getStudentInfo(event){
@@ -796,8 +862,10 @@
             
 
         }
-        let student= document.getElementsByClassName("people")[1];
-        student.addEventListener("click", getStudentInfo);
+        let teacherPanel = document.getElementsByClassName("people")[0];
+        teacherPanel.addEventListener("click", getTeacherInfo);
+        let studentPanel = document.getElementsByClassName("people")[1];
+        studentPanel.addEventListener("click", getStudentInfo);
     </script>
 
 </body>
