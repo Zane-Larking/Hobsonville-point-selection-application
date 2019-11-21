@@ -250,8 +250,9 @@
                                             </div>
                                         </div>
                                         <div class="others">
-                                            <input class="other" style="background:red;" type="button" name="save" value="save">
+                                            <input class="other" style="background:red; display:none" type="button" name="save" value="save">
                                             <input class="other" style="background:red;" type="button" name="edit" value="edit">
+                                            <input class="other" style="background:red; display:none" type="button" name="revert" value="revert">
                                             <input class="other" style="background:cyan;" type="button" name="remove" value="remove">
                                             <!-- Everything on add teacher modal, remove teacher, edit button, save --> 
                                         </div>
@@ -513,9 +514,10 @@
                                     <option value="13"> 13 </option>
                                 </select>
                                 <div class="student_others">
-                                    <input class="other save_button" style="background:cyan;" type="button" name="save" value="save">
-                                    <input class="other edit_button" style="background:cyan;" type="button" name="edit" value="edit">
-                                    <input class="other remove_button" style="background:red;" type="button" name="remove" value="remove">
+                                    <input class="other save_button" type="button" name="save" value="save" style="display:none">
+                                    <input class="other edit_button" type="button" name="edit" value="edit">
+                                    <input class="other revert_button" type="button" name="revert" value="revert" style="display:none">
+                                    <input class="other remove_button" type="button" name="remove" value="remove">
                                     
                                     <!-- Everything on add teacher modal, remove teacher, edit button, save --> 
                                 </div>
@@ -747,6 +749,8 @@
         }
 
         var currentStudentID = 0;
+        var editing = false;
+        var initialEditState =[];
 
         function getStudentInfo(event){
             //values
@@ -834,16 +838,68 @@
         studentPanel.addEventListener("click", getStudentInfo);
 
         function editStudentDetails(event){
-            document.getElementsByClassName("student_first_name")[0].removeAttribute("disabled");
-            document.getElementsByClassName("student_last_name")[0].removeAttribute("disabled");
-            document.getElementsByClassName("student_hpss_num")[0].removeAttribute("disabled");
-            document.getElementsByClassName("student_email")[0].removeAttribute("disabled");
-            document.getElementsByClassName("student_hub_coach")[0].removeAttribute("disabled");
-            document.getElementsByClassName("student_year_level")[0].removeAttribute("disabled");
-            document.getElementsByClassName("edit_button")[0].style.backgroundColor = "pink";
-            document.getElementsByClassName("save_button")[0].style.backgroundColor = "red";
-        }
+            let fName = document.getElementsByClassName("student_first_name")[0];
+            let lName = document.getElementsByClassName("student_last_name")[0];
+            let hpssNum = document.getElementsByClassName("student_hpss_num")[0];
+            let email = document.getElementsByClassName("student_email")[0];
+            let coach = document.getElementsByClassName("student_hub_coach")[0];
+            let year = document.getElementsByClassName("student_year_level")[0];
+            
+            initialEditState[0] = fName.value;
+            initialEditState[1] = lName.value;
+            initialEditState[2] = hpssNum.value;
+            initialEditState[3] = email.value;
+            initialEditState[4] = coach.value;
+            initialEditState[5] = year.value;
 
+            fName.removeAttribute("disabled");
+            lName.removeAttribute("disabled");
+            hpssNum.removeAttribute("disabled");
+            email.removeAttribute("disabled");
+            coach.removeAttribute("disabled");
+            year.removeAttribute("disabled");
+
+
+            // document.getElementsByClassName("edit_button")[0].style.backgroundColor = "pink";
+            // document.getElementsByClassName("save_button")[0].style.backgroundColor = "red";
+            
+            toggleSaveMode();
+        }
+        function toggleSaveMode(event) {
+            if (editing) {
+                document.getElementsByClassName("edit_button")[0].style.display = "block";
+
+                document.getElementsByClassName("save_button")[0].style.display = "none";
+                document.getElementsByClassName("revert_button")[0].style.display = "none";
+
+                editing = false;
+            }
+            else {
+                document.getElementsByClassName("save_button")[0].style.display = "block";
+                document.getElementsByClassName("revert_button")[0].style.display = "block";
+                
+                document.getElementsByClassName("edit_button")[0].style.display = "none";
+
+                editing = true;
+            }
+        }
+        function revertStudentDetails(){
+            document.getElementsByClassName("student_first_name")[0].setAttribute("disabled", "");
+            document.getElementsByClassName("student_last_name")[0].setAttribute("disabled", "");
+            document.getElementsByClassName("student_hpss_num")[0].setAttribute("disabled", "");
+            document.getElementsByClassName("student_email")[0].setAttribute("disabled", "");
+            document.getElementsByClassName("student_hub_coach")[0].setAttribute("disabled", "");
+            document.getElementsByClassName("student_year_level")[0].setAttribute("disabled", "");
+
+            document.getElementsByClassName("student_first_name")[0].value = initialEditState[0];
+            document.getElementsByClassName("student_last_name")[0].value = initialEditState[1];
+            document.getElementsByClassName("student_hpss_num")[0].value = initialEditState[2];
+            document.getElementsByClassName("student_email")[0].value = initialEditState[3];
+            document.getElementsByClassName("student_hub_coach")[0].value = initialEditState[4];
+            document.getElementsByClassName("student_year_level")[0].value = initialEditState[5];
+
+            toggleSaveMode();
+        }
         function saveStudentDetails(event){
             document.getElementsByClassName("student_first_name")[0].setAttribute("disabled", "");
             document.getElementsByClassName("student_last_name")[0].setAttribute("disabled", "");
@@ -851,8 +907,11 @@
             document.getElementsByClassName("student_email")[0].setAttribute("disabled", "");
             document.getElementsByClassName("student_hub_coach")[0].setAttribute("disabled", "");
             document.getElementsByClassName("student_year_level")[0].setAttribute("disabled", "");
-            document.getElementsByClassName("edit_button")[0].style.backgroundColor = "red";
-            document.getElementsByClassName("save_button")[0].style.backgroundColor = "pink";
+
+            toggleSaveMode();
+
+            // document.getElementsByClassName("edit_button")[0].style.backgroundColor = "red";
+            // document.getElementsByClassName("save_button")[0].style.backgroundColor = "pink";
             //console.log(currentStudentID);
             console.log()
             let url = "AJAX/update-student-details.php"
@@ -884,6 +943,9 @@
 
         let save_button = document.getElementsByClassName("save_button")[0];
         save_button.addEventListener("click", saveStudentDetails);
+
+        let revert_button = document.getElementsByClassName("revert_button")[0];
+        revert_button.addEventListener("click", revertStudentDetails);
 
     </script>
 
