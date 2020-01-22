@@ -167,10 +167,22 @@
 
 
                         <div class="toggle-tabs Content">
-                            <header class="detailsHeader">
+                            <header id="detailsHeaderTeacher" class="detailsHeader" style="display: none;">
                                 <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 50px; border-radius: 50%;">
                                 <h1 class="first-name">Teacher</h1>
                                 <h1 class="last-name"> Name</h1>
+                                <div> </div> <!-- spacer -->
+                                <div class="toggle-btns tabs-button">
+                                    <button class="toggle-btn"> Classes </button>
+                                    <button class="toggle-btn"> Profile </button>
+                                    <!-- PhP or Java, only display this button when "teacher" has hub-->
+                                    <button class="toggle-btn"> Hub </button>
+                                </div>
+                            </header>
+                             <header class="TeacherdetailsHeaderNew">
+                                <p>
+                                    <h3>Select a Teacher, or create a Teacher below.</h3>
+                                </p>
                                 <div> </div> <!-- spacer -->
                                 <div class="toggle-btns tabs-button">
                                     <button class="toggle-btn"> Classes </button>
@@ -373,7 +385,16 @@
                                 ?>
                                 <div class=<?php echo "'".$rows['ID']."'"; ?>>
                                     <img src="Images/student-pic.png" width=12px height=12px>
-                                    <p class="people_text"><?php echo $rows['FIRST_NAME']." ".$rows['LAST_NAME']; ?></p> 
+                                    <p class="people_text">
+                                        <?php 
+                                            $name = $rows['FIRST_NAME']." ".$rows['LAST_NAME'];
+                                            if (strlen($name) > 19){
+                                                echo substr($name, 0, 19)."...";
+                                            } else {
+                                                echo $name; 
+                                            }
+                                        ?>
+                                    </p> 
                                     <div></div>
                                 </div>
                                 <?php
@@ -474,13 +495,20 @@
 
 
                         <div class="toggle-tabs Content">  <!-- Need Immediate Work -->
-                            <header class="detailsHeader">
+                            <header id="detailsHeaderStudent" class="detailsHeader"  style="display: none;">
+
                                 <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 50px; border-radius: 50%;">
+
                                 <h2 class="first-name"> First Name </h2>
                                 <h2 class="last-name"> Last Name </h2>
                                 <h2 class="year"> Years </h2>
                                 <div> </div> <!-- spacer -->
                                 
+                            </header>
+                            <header class="detailsHeaderNew">
+                                <p>
+                                    Select a student, or create a student below.
+                                </p>
                             </header>
                             <!-- content --> 
                             <div class="student_profile">
@@ -517,7 +545,7 @@
                                     <input class="other save_button" type="button" name="save" value="save" style="display:none">
                                     <input class="other edit_button" type="button" name="edit" value="edit">
                                     <input class="other revert_button" type="button" name="revert" value="revert" style="display:none">
-                                    <input class="other remove_button" type="button" name="remove" value="remove">
+                                    <input class="other remove_button" type="button" name="remove" value="remove" style="display:none">
                                     
                                     <!-- Everything on add teacher modal, remove teacher, edit button, save --> 
                                 </div>
@@ -697,6 +725,7 @@
             let el = event.target;
             let panel = event.currentTarget;
             let srcBtn;
+            
 
             //clicked on button checker
             function targetIsToggleBtn(el) {
@@ -730,6 +759,8 @@
 
             let xhttp = new XMLHttpRequest();
 
+            document.querySelector("#detailsHeaderTeacher").style.display = "grid";
+            document.querySelector(".TeacherdetailsHeaderNew").style.display = "none";
 
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
@@ -737,7 +768,9 @@
                     //console.log(studentDetails);
 
                     let detailEls = document.querySelector(".teacher_profile");
-                
+                    teacher_first_name = teacherDetails[0];
+                    teacher_last_name = teacherDetails[1];
+                    
                     detailEls.querySelector(".teacher_first_name").value = teacherDetails[0];
                     detailEls.querySelector(".teacher_last_name").value = teacherDetails[1];
                     detailEls.querySelector(".teacher_kamar_code").value = teacherDetails[2];
@@ -862,7 +895,6 @@
 
         let revert_button0 = document.getElementsByClassName("revert_button")[0];
         revert_button0.addEventListener("click", revertTeacherDetails);
-
         var currentStudentID = 0;
         var editing = false;
         var initialEditStateStudent =[];
@@ -894,8 +926,12 @@
             }
 
 
+            document.querySelector("#detailsHeaderStudent").style.display = "grid";
+            document.querySelector(".detailsHeaderNew").style.display = "none";
+
             //get id
             let id = srcBtn.className;
+            currentStudent = srcBtn; 
             currentStudentID = id;
             //create XMLhttp request
             let url = "AJAX/access-student-details-post.php";
@@ -919,6 +955,8 @@
                     detailEls.querySelector(".student_hub_coach").value = studentDetails[4];
                     detailEls.querySelector(".student_first_name").value = studentDetails[5];
                     detailEls.querySelector(".student_last_name").value = studentDetails[6];
+                    //document.getElementsByClassName("edit_button")[0].style.display = "block";
+                    document.getElementsByClassName("remove_button")[0].style.display = "block";
 
 
                     /*
@@ -984,6 +1022,7 @@
             initialEditStateStudent[3] = email.value;
             initialEditStateStudent[4] = coach.value;
             initialEditStateStudent[5] = year.value;
+
 
             fName.removeAttribute("disabled");
             lName.removeAttribute("disabled");
@@ -1051,6 +1090,74 @@
             xhttp.send(formData);
         }
 
+        function removeStudentDetails(event){
+
+            
+            var to_remove = confirm("Are you sure you wish to remove "+document.getElementsByClassName("student_first_name")[0].value+' '+document.getElementsByClassName("student_last_name")[0].value+"? This action cannot be undone.");
+            if (to_remove == true){
+                let xhttp = new XMLHttpRequest();
+                let url = "AJAX/remove-student.php";
+                let formData = new FormData();
+                //alert(currentStudentID);
+                formData.set("id",currentStudentID);
+                xhttp.onreadystatechange = function(){
+                    if (this.readyState == 4 && this.status == 200) {
+                        console.log(xhttp.response);
+                        currentStudent.remove();
+
+                        document.getElementsByClassName("student_first_name")[0].value = "";
+                        document.getElementsByClassName("student_last_name")[0].value = "";
+                        document.getElementsByClassName("student_hpss_num")[0].value = "";
+                        document.getElementsByClassName("student_email")[0].value = "";
+                        document.getElementsByClassName("student_hub_coach")[0].value = "";
+                        document.getElementsByClassName("student_year_level")[0].value = "";
+
+                        document.querySelector("#detailsHeaderStudent").style.display = "none";
+                        document.querySelector(".detailsHeaderNew").style.display = "grid";
+                        document.getElementsByClassName("remove_button")[0].style.display = "none";  
+
+                        alert("Student Succesfully Deleted");
+
+
+                    }
+
+                }
+                xhttp.open("POST",url, true);
+                xhttp.send(formData);
+
+            }
+            
+        }
+
+        function removeTeacherDetails(event){
+            var to_remove = confirm("Are you sure you wish to remove "+teacher_first_name+' '+teacher_last_name+"? This action cannot be undone.");
+            if (to_remove == true){
+                let xhttp = new XMLHttpRequest();
+                let url = "AJAX/remove-teacher.php";
+                let formData = new FormData();
+
+                formData.set("id",currentTeacherID);
+                xhttp.onreadystatechange = function(){
+                    if (this.readyState == 4 && this.status == 200){
+                        currentTeacher.remove();
+
+                        document.querySelector("#detailsHeaderTeacher").style.display = "none";
+                        document.querySelector(".TeacherdetailsHeaderNew").style.display = "grid";
+
+                        document.getElementsByClassName("teacher_first_name")[0].value = "";
+                        document.getElementsByClassName("teacher_last_name")[0].value = "";
+                        document.getElementsByClassName("teacher_hpss_num")[0].value = "";
+                        document.getElementsByClassName("teacher_email")[0].value = "";
+
+                        alert("Teacher Succesfully Deleted");
+
+                        // MORE VALUES TO BE RETURNED TO BLANK IN THE FUTURE
+                    }
+                }
+                xhttp.open("POST",url, true);
+                xhttp.send(formData);
+            }
+        }
 
         let edit_button1 = document.getElementsByClassName("edit_button")[1];
         edit_button1.addEventListener("click", editStudentDetails);
@@ -1060,6 +1167,12 @@
 
         let revert_button1 = document.getElementsByClassName("revert_button")[1];
         revert_button1.addEventListener("click", revertStudentDetails);
+
+        let remove_button = document.getElementsByClassName("remove_button")[0];
+        remove_button.addEventListener("click", removeStudentDetails);
+
+        let teacher_remove_button = document.getElementsByClassName("teacher_remove_button")[0];
+        teacher_remove_button.addEventListener("click", removeTeacherDetails);
 
     </script>
 
