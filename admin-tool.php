@@ -258,9 +258,7 @@
                                             </div>
                                             
                                             <div class="teacher_has_hub">
-                                                <h4> Has hub: </h4>
-                                                <input type="checkbox" name="has_hub" disabled> Yes<br>
-                                                <input type="checkbox" name="has_hub" disabled> No<br>
+                                                <input type="checkbox" name="has_hub" disabled> Is Hub Coach<br>
                                             </div>
                                         </div>
                                         <div class="others">
@@ -758,7 +756,8 @@
                     detailEls.querySelector(".teacher_last_name").value = teacherDetails[1];
                     detailEls.querySelector(".teacher_hpss_num").value = teacherDetails[2];
                     detailEls.querySelector(".teacher_email").value = teacherDetails[3];
-                    // detailEls.querySelector(".teacher_has_hub").value = teacherDetails[4];
+                    detailEls.querySelector(".teacher_has_hub input").checked = teacherDetails[4];
+
                     detailEls.querySelector(".teacher_privileges").value = teacherDetails[5];
 
 
