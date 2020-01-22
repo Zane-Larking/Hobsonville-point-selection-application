@@ -229,7 +229,7 @@
                                         <div class="t_input">
                                             <input class="teacher_first_name" type="text" name="first_name" placeholder="Teacher First Name" disabled>								
                                             <input class="teacher_last_name" type="text" name="last_name" placeholder="Teacher Last Name" disabled>								
-                                            <input class="teacher_hpss_num" type="text" name="name" placeholder="Teacher Kamar Code" disabled>
+                                            <input class="teacher_kamar_code" type="text" name="name" placeholder="Teacher Kamar Code" disabled>
                                             <input class="teacher_email" type="text" name="gmail" placeholder="Teacher Google Email Adress" disabled>
                                         </div>
                                     
@@ -245,15 +245,15 @@
                                                 </select>				
                                             </div>
                                             
-                                            <div class="teacher_has_hub">
-                                                <input type="checkbox" name="has_hub" disabled> Is Hub Coach<br>
+                                            <div>
+                                                <input class="teacher_has_hub" type="checkbox" name="has_hub" disabled> Is Hub Coach<br>
                                             </div>
                                         </div>
                                         <div class="others">
-                                            <input class="other" style="background:red; display:none" type="button" name="save" value="save">
-                                            <input class="other" style="background:red;" type="button" name="edit" value="edit">
-                                            <input class="other" style="background:red; display:none" type="button" name="revert" value="revert">
-                                            <input class="other" style="background:cyan;" type="button" name="remove" value="remove">
+                                            <input class="other save_button" style="display:none" type="button" name="save" value="save">
+                                            <input class="other edit_button" type="button" name="edit" value="edit">
+                                            <input class="other revert_button" style="display:none" type="button" name="revert" value="revert">
+                                            <input class="other remove_button" type="button" name="remove" value="remove">
                                             <!-- Everything on add teacher modal, remove teacher, edit button, save --> 
                                         </div>
                                     </div>
@@ -668,6 +668,29 @@
 	</script>
     <script type="text/javascript">
         
+        function toggleSaveModeTeacher(event) {
+            if (editing) {
+                document.getElementsByClassName("edit_button")[0].style.display = "block";
+
+                document.getElementsByClassName("save_button")[0].style.display = "none";
+                document.getElementsByClassName("revert_button")[0].style.display = "none";
+
+                editing = false;
+            }
+            else {
+                document.getElementsByClassName("save_button")[0].style.display = "block";
+                document.getElementsByClassName("revert_button")[0].style.display = "block";
+                
+                document.getElementsByClassName("edit_button")[0].style.display = "none";
+
+                editing = true;
+            }
+        }
+        
+        var currentTeacherID = 0;
+        var editing = false;
+        var initialEditStateTeacher =[];
+
         function getTeacherInfo(event){
             //values
             console.log(event);
@@ -698,6 +721,7 @@
 
             //get id
             let id = srcBtn.className;
+            currentTeacherID = id;
 
             //create XMLhttp request
             let url = "AJAX/access-teacher-details.php";
@@ -716,9 +740,9 @@
                 
                     detailEls.querySelector(".teacher_first_name").value = teacherDetails[0];
                     detailEls.querySelector(".teacher_last_name").value = teacherDetails[1];
-                    detailEls.querySelector(".teacher_hpss_num").value = teacherDetails[2];
+                    detailEls.querySelector(".teacher_kamar_code").value = teacherDetails[2];
                     detailEls.querySelector(".teacher_email").value = teacherDetails[3];
-                    detailEls.querySelector(".teacher_has_hub input").checked = teacherDetails[4];
+                    detailEls.querySelector(".teacher_has_hub").checked = teacherDetails[4];
 
                     detailEls.querySelector(".teacher_privileges").value = teacherDetails[5];
 
@@ -747,10 +771,101 @@
             
 
         }
+        
+        function editTeacherDetails(event){
+            let fName = document.getElementsByClassName("teacher_first_name")[0];
+            let lName = document.getElementsByClassName("teacher_last_name")[0];
+            let kamarCode = document.getElementsByClassName("teacher_kamar_code")[0];
+            let email = document.getElementsByClassName("teacher_email")[0];
+            let hasHub = document.getElementsByClassName("teacher_has_hub")[0];
+            let privileges = document.getElementsByClassName("teacher_privileges")[0];
+            
+            initialEditStateTeacher[0] = fName.value;
+            initialEditStateTeacher[1] = lName.value;
+            initialEditStateTeacher[2] = kamarCode.value;
+            initialEditStateTeacher[3] = email.value;
+            initialEditStateTeacher[4] = hasHub.value;
+            initialEditStateTeacher[5] = privileges.value;
+
+            fName.removeAttribute("disabled");
+            lName.removeAttribute("disabled");
+            kamarCode.removeAttribute("disabled");
+            email.removeAttribute("disabled");
+            hasHub.removeAttribute("disabled");
+            privileges.removeAttribute("disabled");
+
+
+            // document.getElementsByClassName("edit_button")[0].style.backgroundColor = "pink";
+            // document.getElementsByClassName("save_button")[0].style.backgroundColor = "red";
+            
+            toggleSaveModeTeacher();
+        }
+        function revertTeacherDetails(){
+            document.getElementsByClassName("teacher_first_name")[0].setAttribute("disabled", "");
+            document.getElementsByClassName("teacher_last_name")[0].setAttribute("disabled", "");
+            document.getElementsByClassName("teacher_kamar_code")[0].setAttribute("disabled", "");
+            document.getElementsByClassName("teacher_email")[0].setAttribute("disabled", "");
+            document.getElementsByClassName("teacher_has_hub")[0].setAttribute("disabled", "");
+            document.getElementsByClassName("teacher_privileges")[0].setAttribute("disabled", "");
+
+            document.getElementsByClassName("teacher_first_name")[0].value = initialEditStateTeacher[0];
+            document.getElementsByClassName("teacher_last_name")[0].value = initialEditStateTeacher[1];
+            document.getElementsByClassName("teacher_kamar_code")[0].value = initialEditStateTeacher[2];
+            document.getElementsByClassName("teacher_email")[0].value = initialEditStateTeacher[3];
+            document.getElementsByClassName("teacher_has_hub")[0].value = initialEditStateTeacher[4];
+            document.getElementsByClassName("teacher_privileges")[0].value = initialEditStateTeacher[5];
+
+            toggleSaveModeTeacher();
+        }
+        function saveTeacherDetails(event){
+            document.getElementsByClassName("teacher_first_name")[0].setAttribute("disabled", "");
+            document.getElementsByClassName("teacher_last_name")[0].setAttribute("disabled", "");
+            document.getElementsByClassName("teacher_kamar_code")[0].setAttribute("disabled", "");
+            document.getElementsByClassName("teacher_email")[0].setAttribute("disabled", "");
+            document.getElementsByClassName("teacher_has_hub")[0].setAttribute("disabled", "");
+            document.getElementsByClassName("teacher_privileges")[0].setAttribute("disabled", "");
+
+            toggleSaveModeTeacher();
+
+            // document.getElementsByClassName("edit_button")[0].style.backgroundColor = "red";
+            // document.getElementsByClassName("save_button")[0].style.backgroundColor = "pink";
+            //console.log(currentStudentID);
+            console.log()
+            let url = "AJAX/update-teacher-details.php"
+            let formData = new FormData();
+            let xhttp = new XMLHttpRequest();
+
+            formData.set("id",currentTeacherID);
+            formData.set("first_name",document.getElementsByClassName("teacher_first_name")[0].value);
+            formData.set("last_name",document.getElementsByClassName("teacher_last_name")[0].value);
+            formData.set("kamar_code",document.getElementsByClassName("teacher_kamar_code")[0].value);
+            formData.set("email",document.getElementsByClassName("teacher_email")[0].value);
+            formData.set("has_hub",document.getElementsByClassName("teacher_has_hub")[0].value);
+            formData.set("privileges",document.getElementsByClassName("teacher_privileges")[0].value);
+
+            xhttp.onreadystatechange = function(){
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log(xhttp.response);
+                }
+
+            }
+            xhttp.open("POST",url, true);
+            xhttp.send(formData);
+        }
+
+        
+        let edit_button0 = document.getElementsByClassName("edit_button")[0];
+        edit_button0.addEventListener("click", editTeacherDetails);
+
+        let save_button0 = document.getElementsByClassName("save_button")[0];
+        save_button0.addEventListener("click", saveTeacherDetails);
+
+        let revert_button0 = document.getElementsByClassName("revert_button")[0];
+        revert_button0.addEventListener("click", revertTeacherDetails);
 
         var currentStudentID = 0;
         var editing = false;
-        var initialEditState =[];
+        var initialEditStateStudent =[];
 
         function getStudentInfo(event){
             //values
@@ -837,6 +952,24 @@
         let studentPanel = document.getElementsByClassName("people")[1];
         studentPanel.addEventListener("click", getStudentInfo);
 
+        function toggleSaveModeStudent(event) {
+            if (editing) {
+                document.getElementsByClassName("edit_button")[1].style.display = "block";
+
+                document.getElementsByClassName("save_button")[1].style.display = "none";
+                document.getElementsByClassName("revert_button")[1].style.display = "none";
+
+                editing = false;
+            }
+            else {
+                document.getElementsByClassName("save_button")[1].style.display = "block";
+                document.getElementsByClassName("revert_button")[1].style.display = "block";
+                
+                document.getElementsByClassName("edit_button")[1].style.display = "none";
+
+                editing = true;
+            }
+        }
         function editStudentDetails(event){
             let fName = document.getElementsByClassName("student_first_name")[0];
             let lName = document.getElementsByClassName("student_last_name")[0];
@@ -845,12 +978,12 @@
             let coach = document.getElementsByClassName("student_hub_coach")[0];
             let year = document.getElementsByClassName("student_year_level")[0];
             
-            initialEditState[0] = fName.value;
-            initialEditState[1] = lName.value;
-            initialEditState[2] = hpssNum.value;
-            initialEditState[3] = email.value;
-            initialEditState[4] = coach.value;
-            initialEditState[5] = year.value;
+            initialEditStateStudent[0] = fName.value;
+            initialEditStateStudent[1] = lName.value;
+            initialEditStateStudent[2] = hpssNum.value;
+            initialEditStateStudent[3] = email.value;
+            initialEditStateStudent[4] = coach.value;
+            initialEditStateStudent[5] = year.value;
 
             fName.removeAttribute("disabled");
             lName.removeAttribute("disabled");
@@ -863,25 +996,7 @@
             // document.getElementsByClassName("edit_button")[0].style.backgroundColor = "pink";
             // document.getElementsByClassName("save_button")[0].style.backgroundColor = "red";
             
-            toggleSaveMode();
-        }
-        function toggleSaveMode(event) {
-            if (editing) {
-                document.getElementsByClassName("edit_button")[0].style.display = "block";
-
-                document.getElementsByClassName("save_button")[0].style.display = "none";
-                document.getElementsByClassName("revert_button")[0].style.display = "none";
-
-                editing = false;
-            }
-            else {
-                document.getElementsByClassName("save_button")[0].style.display = "block";
-                document.getElementsByClassName("revert_button")[0].style.display = "block";
-                
-                document.getElementsByClassName("edit_button")[0].style.display = "none";
-
-                editing = true;
-            }
+            toggleSaveModeStudent();
         }
         function revertStudentDetails(){
             document.getElementsByClassName("student_first_name")[0].setAttribute("disabled", "");
@@ -891,14 +1006,14 @@
             document.getElementsByClassName("student_hub_coach")[0].setAttribute("disabled", "");
             document.getElementsByClassName("student_year_level")[0].setAttribute("disabled", "");
 
-            document.getElementsByClassName("student_first_name")[0].value = initialEditState[0];
-            document.getElementsByClassName("student_last_name")[0].value = initialEditState[1];
-            document.getElementsByClassName("student_hpss_num")[0].value = initialEditState[2];
-            document.getElementsByClassName("student_email")[0].value = initialEditState[3];
-            document.getElementsByClassName("student_hub_coach")[0].value = initialEditState[4];
-            document.getElementsByClassName("student_year_level")[0].value = initialEditState[5];
+            document.getElementsByClassName("student_first_name")[0].value = initialEditStateStudent[0];
+            document.getElementsByClassName("student_last_name")[0].value = initialEditStateStudent[1];
+            document.getElementsByClassName("student_hpss_num")[0].value = initialEditStateStudent[2];
+            document.getElementsByClassName("student_email")[0].value = initialEditStateStudent[3];
+            document.getElementsByClassName("student_hub_coach")[0].value = initialEditStateStudent[4];
+            document.getElementsByClassName("student_year_level")[0].value = initialEditStateStudent[5];
 
-            toggleSaveMode();
+            toggleSaveModeStudent();
         }
         function saveStudentDetails(event){
             document.getElementsByClassName("student_first_name")[0].setAttribute("disabled", "");
@@ -908,7 +1023,7 @@
             document.getElementsByClassName("student_hub_coach")[0].setAttribute("disabled", "");
             document.getElementsByClassName("student_year_level")[0].setAttribute("disabled", "");
 
-            toggleSaveMode();
+            toggleSaveModeStudent();
 
             // document.getElementsByClassName("edit_button")[0].style.backgroundColor = "red";
             // document.getElementsByClassName("save_button")[0].style.backgroundColor = "pink";
@@ -937,15 +1052,14 @@
         }
 
 
+        let edit_button1 = document.getElementsByClassName("edit_button")[1];
+        edit_button1.addEventListener("click", editStudentDetails);
 
-        let edit_button = document.getElementsByClassName("edit_button")[0];
-        edit_button.addEventListener("click", editStudentDetails);
+        let save_button1 = document.getElementsByClassName("save_button")[1];
+        save_button1.addEventListener("click", saveStudentDetails);
 
-        let save_button = document.getElementsByClassName("save_button")[0];
-        save_button.addEventListener("click", saveStudentDetails);
-
-        let revert_button = document.getElementsByClassName("revert_button")[0];
-        revert_button.addEventListener("click", revertStudentDetails);
+        let revert_button1 = document.getElementsByClassName("revert_button")[1];
+        revert_button1.addEventListener("click", revertStudentDetails);
 
     </script>
 
