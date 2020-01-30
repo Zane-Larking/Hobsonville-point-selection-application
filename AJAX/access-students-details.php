@@ -3,17 +3,17 @@
     $q = $_REQUEST['q'];
 
     if ($q !== "") {
-        $query = "SELECT `ID`, CONCAT(`FIRST_NAME`, `LAST_NAME`) AS `NAME`, `EMAIL`, `YEAR_LEVEL`, `HPSS_NUM`, `COACH` FROM students";
+        $query = "SELECT coach_id, CONCAT(`first_name`, `last_name`) AS `name`, `email`, `year_level`, `hpss_num`, `coach_id` FROM students";
         $result = mysqli_query($dbconnect, $query);
         $cDetails = mysqli_fetch_array($result);
 
         //delimiter separated values
-        echo $cDetails['ID']."<BREAK>".
-        $cDetails['EMAIL']."<BREAK>".
-        $cDetails['YEAR_LEVEL']."<BREAK>".
-        $cDetails['HPSS_NUM']."<BREAK>".
-        $cDetails['COACH']."<BREAK>".
-        $cDetails['NAME']."<BREAK>";
+        echo $cDetails['id']."<BREAK>".
+        $cDetails['email']."<BREAK>".
+        $cDetails['year_level']."<BREAK>".
+        $cDetails['hpss_num']."<BREAK>".
+        $cDetails['coach_id']."<BREAK>".
+        $cDetails['name']."<BREAK>";
 
         mysqli_close($dbconnect);
 
