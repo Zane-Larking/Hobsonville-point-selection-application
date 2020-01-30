@@ -1,21 +1,19 @@
 <?php
     include "../DataBase/database-connect.php";
     $id = str_replace ("'" , "''" , $_REQUEST['id']);
-    $code = str_replace ("'" , "''" , $_REQUEST['fname']);
-    $name = str_replace ("'" , "''" , $_REQUEST['lname']);
-    $type = str_replace ("'" , "''" , $_REQUEST['type']);
-    $teacher1 = str_replace ("'" , "''" , $_REQUEST['teacher1']);
-    $teacher2 = str_replace ("'" , "''" , $_REQUEST['teacher2']);
-    $subject1 = str_replace ("'" , "''" , $_REQUEST['subject1']);
-    $subject2 = str_replace ("'" , "''" , $_REQUEST['subject2']);
-    $description = str_replace ("'" , "''" , $_REQUEST['description']);
+    $first_name = str_replace ("'" , "''" , $_REQUEST['first_name']);
+    $last_name = str_replace ("'" , "''" , $_REQUEST['last_name']);
+    $email = str_replace ("'" , "''" , $_REQUEST['email']);
+    $kamar_code = str_replace ("'" , "''" , $_REQUEST['kamar_code']);
+    $privileges = str_replace ("'" , "''" , $_REQUEST['privileges']);
+    $has_hub = str_replace ("'" , "''" , $_REQUEST['has_hub']);
 
-    $query = "UPDATE `classes` SET `FIRST_NAME`= '$fname',`LAST_NAME`= '$lname',`KAMAR_CODE`='$type',`EMAIL`='$subject1',`HAS_HUB`='$subject2',`PRIVILEGES`='$teacher1' WHERE `id` = $id";
+    $query = "UPDATE `teachers` SET `FIRST_NAME`= '$first_name',`LAST_NAME`= '$last_name',`EMAIL`='$email',`PRIVILEGES`=$privileges,`KAMAR_CODE`='$kamar_code',`HAS_HUB`='$has_hub' WHERE `id` = $id";
     if (mysqli_query($dbconnect, $query)) {
-        echo "true";
+        echo "true $id";
     } else {
         echo "false";
     }
-    
+
     mysqli_close($dbconnect);
 ?>
