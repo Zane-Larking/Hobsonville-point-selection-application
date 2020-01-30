@@ -8,7 +8,7 @@
     $privileges = str_replace ("'" , "''" , $_REQUEST['privileges']);
     $has_hub = str_replace ("'" , "''" , $_REQUEST['has_hub']);
 
-    $query = "UPDATE `teachers` SET `FIRST_NAME`= '$first_name',`LAST_NAME`= '$last_name',`EMAIL`='$email',`PRIVILEGES`=$privileges,`KAMAR_CODE`='$kamar_code',`HAS_HUB`='$has_hub' WHERE `id` = $id";
+    $query = "UPDATE `teachers` SET `first_name`= '$first_name',`last_name`= '$last_name',`email`='$email',`privileges`=$privileges,`kamar_code`='$kamar_code',`has_hub`='$has_hub' WHERE `id` = $id";
     if (mysqli_query($dbconnect, $query)) {
         echo "true $id";
     } else {

@@ -1,11 +1,14 @@
 <?php
 include("../DataBase/database-connect.php");
-$id = $_POST['id'];
-$query = "SELECT * FROM `students` WHERE 'COACH' = ".$id;
+$coachId = $_POST['id'];
+$query = "SELECT * FROM `students` WHERE 'coach_id' = ".$coachId;
 $result = mysqli_query($dbconnect, $query);
 
 if ($result == TRUE){
-    echo "true";
+    while ($row = mysqli_fetch_array($result)){
+        //delimiter separated values
+        echo $row['first_name']."<BREAK>";
+    }
 } else {
 
 };
