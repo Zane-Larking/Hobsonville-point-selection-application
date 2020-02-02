@@ -48,7 +48,7 @@
 						<a href="sort-selections.php">Sort Selection</a>
 						<a href="selection-verification.php">Verify Selections</a>
 						<a href="admin-tool.php">Admin Tools</a>
-						<a href="teacher-class-submit.php">Submit Classes</a>
+						<a href="staff-class-submit.php">Submit Classes</a>
 						<a href="manage-classes.php">Manage Classes</a>
 					</nav>
 					<div id="content-grid">
@@ -202,7 +202,7 @@
 								echo '
 								<div class="content">
 								<h3><u>Moderater Privileges</u></h3>
-									<a href=teacher-class-submit.php>Create a Class</a>
+									<a href=staff-class-submit.php>Create a Class</a>
 									<br>
 									<br>
 									Students that have completed Selections : '.$studentCompleteCount.'/'.$studentCount.'
