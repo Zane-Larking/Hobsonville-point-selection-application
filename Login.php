@@ -3,7 +3,7 @@
     require_once "config.php";
 
     if (isset($_SESSION['access_token'])) {
-    	header('Location: students-homepage.php');
+    	header('Location: student-homepage.php');
     	exit();
     }
 

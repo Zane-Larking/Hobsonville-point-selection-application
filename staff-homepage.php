@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Teacher Homepage</title>
+		<title>Staff Homepage</title>
 		<link rel="stylesheet" type="text/css" href="Styles/create-classes-style.css">
 		<link rel="stylesheet" type="text/css" href="Styles/main.css">
 		<link rel="stylesheet" type="text/css" media="screen" href="Styles/nav.css" />
@@ -20,7 +20,7 @@
 				    <div id = "head">
 						<img src="Images/hpss-logo.png" alt="HPSS Logo" style="height: 5em; margin: 17px 0px;">
 						<div> 
-							<h1><font face ="Verdana">Teacher Homepage</font></h1>
+							<h1><font face ="Verdana">Staff Homepage</font></h1>
 							<h5> Signed in as:
 								<?php 
 									if($_SESSION['privilege'] == 3){
@@ -48,7 +48,7 @@
 						<a href="sort-selections.php">Sort Selection</a>
 						<a href="selection-verification.php">Verify Selections</a>
 						<a href="admin-tool.php">Admin Tools</a>
-						<a href="teacher-class-submit.php">Submit Classes</a>
+						<a href="staff-class-submit.php">Submit Classes</a>
 						<a href="manage-classes.php">Manage Classes</a>
 					</nav>
 					<div id="content-grid">
@@ -79,29 +79,33 @@
 										
 									//}
 									if (count($_SESSION['hublings']) > 0){
-										$query = "SELECT ID, CONCAT(FIRST_NAME, ' ', LAST_NAME) AS NAME, EMAIL, YEAR_LEVEL, HPSS_NUM, `SELECTIONS_M&S` FROM students WHERE ID = " . join(" OR ID = ", $_SESSION['hublings']);
+										$query = "SELECT id, CONCAT(first_name, ' ', last_name) AS name, email, year_level, hpss_num FROM students WHERE coach_id = ".$_SESSION['id'];
 										//echo $query;
 										$result = mysqli_query($dbconnect, $query);
 										while($row = $result->fetch_assoc()) {
 											echo "
 											<div class = 'user-grid-container'>
 												<img src= "; if (isset($row['PICTURE'])) echo $row['PICTURE'];  else echo"'Images/portrait-placeholder.png' height='50rem' style= 'grid-area: image;'>
-												<div class = 'ellipsis' style= 'grid-area: name'>".$row['NAME']."</div>
-												<div class = 'ellipsis' style= 'grid-area: year-level'>Year ".$row['YEAR_LEVEL']."</div>
-												<div class = 'ellipsis' style= 'grid-area: email'>".$row['EMAIL']."</div>
+												<div class = 'ellipsis' style= 'grid-area: name'>".$row['name']."</div>
+												<div class = 'ellipsis' style= 'grid-area: year-level'>Year ".$row['year_level']."</div>
+												<div class = 'ellipsis' style= 'grid-area: email'>".$row['email']."</div>
 												
 												<div class = 'ellipsis' style= 'grid-area: options; padding-right:3px; display: grid; align-items: center; justify-content: end; grid-auto-flow: column; grid-gap: 5px; grid-auto-columns: max-content;'>
 													<div style='border-style:solid; text-align:right; width:9px; height:9px; border-width:1px; border-radius:25px; background-color:"; 
 
-														$hub_query = "SELECT CHOICES FROM verified_choices WHERE STUDENT_ID = ".$row['ID'];
-														$hub_result = mysqli_query($dbconnect, $hub_query);
+														$hubling_selection_query = "SELECT COUNT(selections.id) AS count FROM students JOIN selections ON students.id = selections.student_id WHERE students.id = 1 GROUP BY selections.approval_status";
+														$hubling_selection_result = mysqli_query($dbconnect, $hubling_selection_query);
 
-														if($hub_result->num_rows === 1){
-															echo"green";
-														} else if ($row['SELECTIONS_M&S'] !== NULL){
+														$not_selected = $hubling_selection_result->fetch_assoc()["count"];
+														$not_approved = $hubling_selection_result->fetch_assoc()["count"];
+														$approved = $hubling_selection_result->fetch_assoc()["count"];
+
+														if($not_selected > 0){
+															echo"red";
+														} else if ($not_approved > 0){
 															echo"orange";
 														} else {
-															echo"red";
+															echo"green";
 														}
 
 													echo";'></div>
@@ -121,7 +125,7 @@
 								echo'
 								<div class="content">
 									<h3><u>Teacher Aid Privileges</u></h3>';
-									$teacher_query = ("SELECT * FROM teacher_aid WHERE TEACHER_ID = ".$_SESSION['id']);
+									$teacher_query = ("SELECT * FROM teacher_aids WHERE teacher_id = ".$_SESSION['id']);
 									$teacher_result = mysqli_query($dbconnect, $teacher_query);
 									if(mysqli_num_rows($teacher_result) != 0) {
 										echo'<h4><u>Propose pupil selection advice</u></h4>';
@@ -163,8 +167,8 @@
 								<div class="content">
 								<h3><u>Teacher Privileges</u></h3>';
 
-									$teacherNameQuery = "SELECT * FROM classes WHERE TEACHER1 = '".$_SESSION["name"]."' OR TEACHER2 = '".$_SESSION["name"]."'";
-									$teacherResult = mysqli_query($dbconnect,$teacherNameQuery);
+									$teacherClassesQuery = "SELECT classes.id FROM classes INNER JOIN class_teachers ON classes.id = class_teachers.class_id WHERE teacher_id = $_SESSION[id]";
+									$teacherResult = mysqli_query($dbconnect,$teacherClassesQuery);
 									//echo $_SESSION["name"];
 									if(mysqli_num_rows($teacherResult) != 0) {
 										echo '<h4><u>Classes you\'re teaching</u></h4>';
@@ -172,14 +176,14 @@
 									
 									while($teacherClasses_row = $teacherResult->fetch_assoc()){
 										echo"<div class = 'classes-content'>";
-										echo "<div style= 'grid-area: name'>".$teacherClasses_row['CODE']."</div>";
-										echo "<div style= 'grid-area: year-level'>".$teacherClasses_row['NAME']."</div>";
-										echo "<div style= 'grid-area: email;'>Qualification ".$teacherClasses_row['QUAL']."</div>";
-										echo "<div style= 'grid-area: options;'> <a href='Recommend-a-student.php?code=".str_replace(" ", "-", ($teacherClasses_row['CODE']))."'>Recommend a qualification ".$teacherClasses_row['QUAL']." student for".$teacherClasses_row{'CODE'}."</a></div>";
+										echo "<div style= 'grid-area: code'>".$teacherClasses_row['code']."</div>";
+										echo "<div style= 'grid-area: name'>".$teacherClasses_row['name']."</div>";
+										echo "<div style= 'grid-area: type;'>Qualification ".$teacherClasses_row['type']."</div>";
+										echo "<div style= 'grid-area: options;'> <a href='Recommend-a-student.php?code=".str_replace(" ", "-", ($teacherClasses_row['code']))."'>Recommend a year ".$teacherClasses_row['year']." student for".$teacherClasses_row{'code'}."</a></div>";
 
 										echo"</div>";
 									}
-									echo'
+									echo' 
 									</div>';
 									} else {
 										echo '<h4><u>You\'re not currently teaching any classes</u></h4>';
@@ -193,16 +197,16 @@
 								
 							}
 							if($_SESSION['privilege'] >= 2){
-								$studentCountQuery = "SELECT * FROM students";
-								$studentCountResult = mysqli_query($dbconnect,$studentCountQuery);
-								$studentCount = mysqli_num_rows($studentCountResult);
-								$studentCompleteCountQuery = "SELECT * FROM verified_choices";
+								$studentCountQuery = "SELECT COUNT(id) as count FROM students";
+								$studentCount = mysqli_query($dbconnect,$studentCountQuery)->fetch_assoc()['count'];
+
+								$studentCompleteCountQuery = "SELECT CONCAT(students.first_name, ' ', students.last_name) AS name, COUNT(selections.id) AS selections FROM students LEFT JOIN selections ON students.id = selections.student_id  WHERE year_level = 9 AND 'selections' = 0 OR year_level = 10 AND 'selections' = 0 OR year_level = 11 AND 'selections' = 0 OR year_level = 12 AND 'selections' = 0 OR year_level = 13 AND 'selections' = 0 GROUP BY selections.student_id";
 								$studentCompleteCountResult = mysqli_query($dbconnect,$studentCompleteCountQuery);
 								$studentCompleteCount = mysqli_num_rows($studentCompleteCountResult);
 								echo '
 								<div class="content">
 								<h3><u>Moderater Privileges</u></h3>
-									<a href=teacher-class-submit.php>Create a Class</a>
+									<a href=staff-class-submit.php>Create a Class</a>
 									<br>
 									<br>
 									Students that have completed Selections : '.$studentCompleteCount.'/'.$studentCount.'
