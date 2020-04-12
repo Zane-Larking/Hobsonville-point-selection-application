@@ -1,3 +1,57 @@
+:root {
+    
+    --MATH-color: coral;
+    --MATH-txt-color: blue;
+
+    --ENGLISH-color: coral;
+    --ENGLISH-txt-color: blue;
+
+    --SCIENCE-color: coral;
+    --SCIENCE-txt-color: blue;
+
+    --SOCSCIENCE-color: coral;
+    --SOCSCIENCE-txt-color: blue;
+
+    --TECH-color: coral;
+    --TECH-txt-color: blue;
+
+    --HPE-color: coral;
+    --HPE-txt-color: blue;
+
+    --ART-color: coral;
+    --ART-txt-color: blue;
+
+    --LANGUAGE-color: coral;
+    --LANGUAGE-txt-color: blue;
+}
+
+
+
+[color_by = "subjects"] div.TECH {
+    background-color: #333333;
+}
+[color_by = "subjects"] div.LANGUAGE {
+    background-color: #D643A5;
+}
+[color_by = "subjects"] div.SOCSCIENCE {
+    background-color: #00A5CB;
+}
+[color_by = "subjects"] div.ENGLISH {
+    background-color: #5E5D9A;
+}
+[color_by = "subjects"] div.MATH {
+    background-color: #C22126;
+}
+[color_by = "subjects"] div.SCIENCE {
+    background-color: #E27A25;
+}
+[color_by = "subjects"] div.ART {
+    background-color: #FBD703;
+}
+[color_by = "subjects"] div.HPE {
+    background-color: #62A444;
+}
+
 #mainGrid {
     color: #FFFFFF;
 }
@@ -216,19 +270,26 @@ button {
         grid-template-columns: repeat(8,1fr); 
 
     }
+    .PeriodSubjects.Subjects div, .ClassSubjects.Subjects{
+        color: #aaaaaa;
+
+    }
+    .PeriodSubjects.Subjects div.AvailableSubject {
+        color: #000000;
+    }
     .ClassDropdownDescription {
         color: #000000;
     }
-    .SubjectOfClass{
+    .ClassSubjects.Subjects > div.SubjectOfClass {
         color: #000000;
     }
-    .FirstChoice .SubjectOfClass, #FirstChoices .SubjectOfClass {
+    .FirstChoice .Subjects div.SubjectOfClass, #FirstChoices .Subjects div.SubjectOfClass {
         background-color: rgb(97, 143, 212);
     }
-    .SecondChoice .SubjectOfClass, #SecondChoices .SubjectOfClass {
+    .SecondChoice .Subjects div.SubjectOfClass, #SecondChoices .Subjects div.SubjectOfClass {
         background-color: rgb(103, 222, 183);
     }
-    .ThirdChoice .SubjectOfClass, #ThirdChoices .SubjectOfClass {
+    .ThirdChoice .Subjects div.SubjectOfClass, #ThirdChoices .Subjects div.SubjectOfClass {
         background-color: rgb(212, 192, 97);
     }
     
