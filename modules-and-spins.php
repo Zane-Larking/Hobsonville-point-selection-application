@@ -13,7 +13,7 @@
 
     <script src="Scripts/main.js"></script>
     <script src="Scripts/submit-selections.js"></script>
-    <script src="Scripts/date-time.js"></script>
+    <!--<script src="Scripts/date-time.js"></script>-->
 
 
 </head>
@@ -31,43 +31,66 @@
         ";
 
 
-        $CleanClassQueryResults = function($result) {
+        function CleanClassQueryResults($result) {
+            // echo "Testing generator function";
             /*Because the JOIN's in the 'class queries' select multiple rows for a single class 
             the rows need to be consolidated into one.
 
             //queried data
             class_id, code, name, type, year, description, 
-            class_subjects_id, class_subjects_class_id, subject, 
-            class_year_level_id, class_year_level_class_id, year_level, 
+            class_subjects_id*, class_subjects_class_id*, subject, 
+            class_year_level_id*, class_year_level_class_id*, year_level, 
             staff_id, first_name, last_name, kamar_code
+
+            The function take the iterator of the mysqli_result object and pulls out multiple arrays, and packages and yields them as a single array.
+            $result is a iterator that is yielding table row results from the query to the database. 
             */
-            $classes = [];
-            while ($row = mysqli_fetch_array($result)){
-                if (isset($classes)) {
-                    if ($classes[sizeof($classes)-1]["class_id"] == $row["class_id"]){
-                        
-                        if (!in_array($row["class_subjects_id"], $classes[sizeof($classes)-1]["class_subjects_id"])) {
-                            $classes[sizeof($classes)-1][]
-                        }
+            $row = mysqli_fetch_array($result);
+            //grab first value.
+            while(true){
+                $lookAhead = mysqli_fetch_array($result);
+                if (!isset($class) AND $row) {
+                    //creates the class array to be yielded
+                    $class = [];
+                    $class["class_id"] = $row["class_id"];
+                    $class["code"] = $row["code"];
+                    $class["name"] = $row["name"];
+                    $class["type"] = $row["type"];
+                    $class["year"] = $row["year"];
+                    $class["description"] = $row["description"];
 
-                        if (!in_array($row["class_year_level_id"], $classes[sizeof($classes)-1]["class_year_level_id"])) {
+                    $class["subjects"] = [$row["subject"]];
+                    
+                    $class["year_levels"] = [$row["year_level"]];
 
-                        }
-
-                        if (!in_array($row["teacher_id"], $classes[sizeof($classes)-1]["teacher_id"])) {
-
-                        }
+                    $class["teachers"] = [["teacher_id" => $row["teacher_id"], "first_name" => $row["first_name"], "last_name" => $row["last_name"], "kamar_code" => $row["kamar_code"]]];
+                }
+                elseif($row) {
+                    //puts adds differing subjects to subjects property.
+                    if (!in_array($row["subject"],$class["subjects"])) {
+                        array_push($class["subjects"], $row["subject"]);
+                    }
+                    //puts adds differing subjects to year_levels property.
+                    if (!in_array($row["year_level"], $class["year_levels"])) {
+                        array_push($class["year_levels"], $row["year_level"]);
+                    }
+                    //puts adds differing subjects to teachers property.
+                    if (!in_array(["teacher_id" => $row["teacher_id"], "first_name" => $row["first_name"], "last_name" => $row["last_name"], "kamar_code" => $row["kamar_code"]], $class["teachers"])) {
+                        array_push($class["teachers"], ["teacher_id" => $row["teacher_id"], "first_name" => $row["first_name"], "last_name" => $row["last_name"], "kamar_code" => $row["kamar_code"]]);
+                    }
+                    
+                    if ($class["class_id"] != $lookAhead["class_id"]) {
+                        yield $class;
+                        unset($class);                      
                     } 
                     else {
-                        
                     }
-
                 }
-                $classId = $row["class_id"];
-
-
+                else{
+                    return;
+                }
+                $row = $lookAhead;
             }
-            return 
         }
 
 	?>
@@ -367,7 +390,7 @@
 
 
             <?php
-                $_SESSION['year_level'] = 9; //for test purposes
+                $_SESSION['year_level'] = 11; //for test purposes
                 function echoSubjects ($subjects) {
                     $a = "";
                     foreach($subjects as $subject) {
@@ -375,114 +398,137 @@
                     }
                     return $a;
                 }
-                //if I wanted tp use radio inputs instead of my custom made select and dismiss buttons.
+                //if I wanted t0 use radio inputs instead of my custom made select and dismiss buttons.
                 //<input type='radio' name='selectModule$i' value='$row[CODE]'> test
 
-                //--Modules--
-                for ($i = 1; $i <= $moduleCount; $i++) {
+                // //--Modules--
+                // $query = "SELECT `class_type` FROM `class_template` WHERE year_level = 11 AND curriculum = 1 GROUP BY `class_type`";
+                // $result = mysqli_query($dbconnect, $query);
+
+                // while ($classType = mysqli_fetch_array($result)) {
+                    for ($i = 1; $i <= $moduleCount; $i++) {
+                        $query = "SELECT classes.id AS class_id, code, name, type, year, description, 
+                        subject, 
+                        year_level, 
+                        teacher_id, first_name, last_name, kamar_code
+                        FROM classes 
+                        LEFT JOIN class_subjects ON classes.id = class_subjects.class_id 
+                        LEFT JOIN class_year_level ON classes.id = class_year_level.class_id 
+                        LEFT JOIN class_teachers ON classes.id = class_teachers.class_id 
+                        LEFT JOIN staff ON staff.id = class_teachers.teacher_id WHERE year = 2019 AND year_level = ".$_SESSION['year_level']." AND type = 'MODULE$i'";
+                        $result = mysqli_query($dbconnect, $query);
+                        
+                        $classes = CleanClassQueryResults($result);
+                        
+
+                        echo"
+                            <div id ='Module$i'>
+                                <div "/*id='Module$i"."Bar' */. "class='PeriodBar HeaderBar'>
+                                    <div class='HeaderBarTitle'>
+                                        <div class='PeriodDropdownButton'><div class='DropdownButton'></div></div>
+                                        <div class='PeriodName BarTitle'>Module $i</div>
+                                    </div>
+                                    <div class='PeriodSubjects Subjects'>
+                                        <div>Maths</div>
+                                        <div>English</div>
+                                        <div>Science</div>
+                                        <div>Social Science</div>
+                                        <div>Technology</div>
+                                        <div>HPE</div>
+                                        <div>Arts</div>
+                                        <div>Languages</div>
+                                    </div>
+                                </div>
+                                <div class='SelectedClasses'>
+                                    <div class='FirstChoice'><div></div></div>
+                                    <div class='SecondChoice'><div></div></div>
+                                    <div class='ThirdChoice'><div></div></div>
+                                </div>
+                                <div class='DropdownClasses'>
+                        ";
+                        
+                        foreach ($classes as $key => $class) {
+                            // var_dump($class);
+
+
+                            $subjects = $class['subjects'];
+                            echo"
+                                <div class='Course".echoSubjects($subjects)."'>
+                                    <div class='ClassBar HeaderBar'>
+                                        <div class='HeaderBarTitle'>
+                                            <div class='ClassDropdownButton'><div class='DropdownButton'></div></div>
+                                            <div class='ClassCode BarTitle'>
+                                                $class[code]
+                                            </div>
+                                        </div>
+                                        <div class='ClassSubjects Subjects'>";
+                                            foreach($curriculum as $subject => $_) {
+                                                if (in_array($subject, $subjects)){
+                                                    echo "<div class = 'SubjectOfClass'>$subject</div>";
+                                                }
+                                                else {
+                                                    echo "<div>$subject</div>";
+                                                }
+                                            }
+                                            echo "
+                                        </div>
+                                    </div>
+                                    <div class='ClassDropdownDescription'>
+                                        <div id='Name'>$class[name]</div>
+                                        <div id='Teachers'>";
+                                        $cb = function($teacher){
+                                            return $teacher['first_name']." ".$teacher['last_name'];
+                                        };
+                                        echo join(",<br>", array_map($cb, $class['teachers']));
+                                        
+                                        echo"</div>
+                                        <div id='Inputs'>
+                                            <div class='selectDropdown'>
+                                                <button class='dropbtn'>Select</button>
+                                            </div>
+                                            <button class='ClassDismissButton'>Dismiss</button>
+                                        </div>";
+                                        if ($Qual > 0) {
+                                            echo "
+                                        <div id='NCEA'>
+                                            Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
+                                        </div>";}
+                                        echo"
+                                        <div id='Description'>
+                                            <p>
+                                                $class[description]
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class ='selectAbsolute'>
+                                        <div class='selectDropdownContent'>
+                                            <button class='ClassSelectButton'>First</button>
+                                            <button class='ClassSelectButton'>Second</button>
+                                            <button class='ClassSelectButton'>Third</button>
+                                        </div>
+                                    </div>
+                                </div>";
+                                
+                        }
+                        echo"
+                            </div>
+                            </div>";
+                    }
+                // }
+                ///--spins--
+                for ($i = 1; $i <= $spinCount; $i++) {
                     $query = "SELECT classes.id AS class_id, code, name, type, year, description, 
-                    class_subjects.id AS class_subjects_id,  subject, 
-                    class_year_level.id AS class_year_level_id, year_level, 
-                    teacher_id, first_name, last_name, kamar_code, email, has_hub, privileges 
+                    subject, 
+                    year_level, 
+                    teacher_id, first_name, last_name, kamar_code
                     FROM classes 
                     LEFT JOIN class_subjects ON classes.id = class_subjects.class_id 
                     LEFT JOIN class_year_level ON classes.id = class_year_level.class_id 
                     LEFT JOIN class_teachers ON classes.id = class_teachers.class_id 
-                    LEFT JOIN staff ON staff.id = class_teachers.teacher_id WHERE year = 2019 AND year_level = ".$_SESSION['year_level']." AND type = 'MODULE$i'";
+                    LEFT JOIN staff ON staff.id = class_teachers.teacher_id WHERE year = 2019 AND year_level = ".$_SESSION['year_level']." AND type = 'SPIN$i'";
                     $result = mysqli_query($dbconnect, $query);
 
-                    echo"
-                        <div id ='Module$i'>
-                            <div "/*id='Module$i"."Bar' */. "class='PeriodBar HeaderBar'>
-                                <div class='HeaderBarTitle'>
-                                    <div class='PeriodDropdownButton'><div class='DropdownButton'></div></div>
-                                    <div class='PeriodName BarTitle'>Module $i</div>
-                                </div>
-                                <div class='PeriodSubjects Subjects'>
-                                    <div>Maths</div>
-                                    <div>English</div>
-                                    <div>Science</div>
-                                    <div>Social Science</div>
-                                    <div>Technology</div>
-                                    <div>HPE</div>
-                                    <div>Arts</div>
-                                    <div>Languages</div>
-                                </div>
-                            </div>
-                            <div class='SelectedClasses'>
-                                <div class='FirstChoice'><div></div></div>
-                                <div class='SecondChoice'><div></div></div>
-                                <div class='ThirdChoice'><div></div></div>
-                            </div>
-                            <div class='DropdownClasses'>
-                    ";
-                    
-                    foreach ($variable as $key => $value) {
-                        # code...
-                        var_dump($row);
-
-
-                        $subjects = [$row['SUBJECT1'],$row['SUBJECT2']];
-                        echo"
-                            <div class='Course".echoSubjects($subjects)."'>
-                                <div class='ClassBar HeaderBar'>
-                                    <div class='HeaderBarTitle'>
-                                        <div class='ClassDropdownButton'><div class='DropdownButton'></div></div>
-                                        <div class='ClassCode BarTitle'>
-                                            $row[CODE]
-                                        </div>
-                                    </div>
-                                    <div class='ClassSubjects Subjects'>";
-                                        foreach($curriculum as $subject => $blah) {
-                                            if (in_array($subject, $subjects)){
-                                                echo "<div class = 'SubjectOfClass'>$subject</div>";
-                                            }
-                                            else {
-                                                echo "<div>$subject</div>";
-                                            }
-                                        }
-                                        echo "
-                                    </div>
-                                </div>
-                                <div class='ClassDropdownDescription'>
-                                    <div id='Name'>$row[NAME]</div>
-                                    <div id='Teachers'>$row[TEACHER1] $row[TEACHER2]</div>
-                                    <div id='Inputs'>
-                                        <div class='selectDropdown'>
-                                            <button class='dropbtn'>Select</button>
-                                        </div>
-                                        <button class='ClassDismissButton'>Dismiss</button>
-                                    </div>";
-                                    if ($Qual > 0) {
-                                        echo "
-                                    <div id='NCEA'>
-                                        Filler Text: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
-                                    </div>";}
-                                    echo"
-                                    <div id='Description'>
-                                        <div>
-                                            $row[DESCRIPTION]
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class ='selectAbsolute'>
-                                    <div class='selectDropdownContent'>
-                                        <button class='ClassSelectButton'>First</button>
-                                        <button class='ClassSelectButton'>Second</button>
-                                        <button class='ClassSelectButton'>Third</button>
-                                    </div>
-                                </div>
-                            </div>";
-                            
-                    }
-                    echo"
-                        </div>
-                        </div>";
-                }
-                //--spins--
-                for ($i = 1; $i <= $spinCount; $i++) {
-                    $query = "select code, name, type, SUBJECT1, TEACHER1, TEACHER2, DESCRIPTION from classes where qual = $Qual and type = 'SPIN$i'";
-                    $result = mysqli_query($dbconnect, $query);
+                    $classes = CleanClassQueryResults($result);
 
                     echo"
                         <div id ='Spin$i'>
@@ -510,15 +556,15 @@
                             <div class='DropdownClasses'>
                     ";
                     //echo mysqli_query($dbconnect,"SELECT * FROM classes");
-                    while ($row = mysqli_fetch_array($result)){
-                        $subjects = [$row['SUBJECT1']];
+                    foreach ($classes as $key => $class){
+                        $subjects = $class['subjects'];
                         echo"
                             <div class='Course'>
                                 <div class='ClassBar HeaderBar'>
                                     <div class='HeaderBarTitle'>
                                         <div class='ClassDropdownButton'><div class='DropdownButton'></div></div>
                                         <div class='ClassCode BarTitle'>
-                                            $row[code]
+                                            $class[code]
                                         </div>
                                     </div>
                                     <div class='ClassSubjects Subjects'>";
@@ -534,8 +580,14 @@
                                     </div>
                                 </div>
                                 <div class='ClassDropdownDescription'>
-                                    <div id='Name'>$row[name]</div>
-                                    <div id='Teachers'>$row[TEACHER1]</div>
+                                    <div id='Name'>$class[name]</div>
+                                    <div id='Teachers'>";
+                                    $cb = function($teacher){
+                                        return $teacher['first_name']." ".$teacher['last_name'];
+                                    };
+                                    echo join(",<br>", array_map($cb, $class['teachers']));
+                                    
+                                    echo"</div>
                                     <div id='Inputs'>
                                         <div class='selectDropdown'>
                                             <button class='dropbtn'>Select</button>
@@ -549,9 +601,9 @@
                                     </div>";}
                                     echo"
                                     <div id='Description'>
-                                        <div>
-                                            $row[DESCRIPTION]
-                                        </div>
+                                        <p>
+                                            $class[description]
+                                        </p>
                                     </div>
                                 </div>
                                 <div class ='selectAbsolute'>
