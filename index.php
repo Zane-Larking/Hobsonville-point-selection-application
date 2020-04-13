@@ -49,7 +49,7 @@
         if (!is_NULL($row['name'])) {
 
             //Stores info about the student
-            $_SESSION['yearLevel'] = $row['year_level'];
+            $_SESSION['year_level'] = $row['year_level'];
             $_SESSION['name'] = $row['name'];
             $_SESSION['id'] = $row['id'];
 

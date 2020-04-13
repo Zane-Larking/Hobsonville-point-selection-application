@@ -39,16 +39,16 @@
 
   <body>
     <font face = "Verdana">
-      <div style="background-color:White;width:60%;height:auto; margin-left:20%; border:1px solid black;padding:15px;">
+      <div style="background-color:White; width:60%; height:auto; margin-left:20%; border:1px solid black; padding:15px;">
         <img src="Images/hpss-logo.png" alt="HPSS Logo" style="height: 100px">
         <center>
           <form>
-            <h1><font face ="Verdana">*PlaceHolderName*</h1></font>
+            <font face ="Verdana"><h1>HPSS Class Zealections</h1></font>
             
               Username:<br><br>
-              <input class="inputboxes" type="text" name="Username"value="<?php echo $name ?>" disabled><br><br>
+              <input class="inputboxes" type="text" name="Username" value="<?php echo $name ?>" disabled><br><br>
               Password:<br><br>
-              <input class="inputboxes" type="text" name="Password"value="<?php echo $password ?>" disabled><br><br>
+              <input class="inputboxes" type="text" name="Password" value="<?php echo $password ?>" disabled><br><br>
 
               <button id="SubmitLogin" class="button" onclick="if(event.preventDefault) event.preventDefault(); checkpassword();" disabled>Login</button>
 
