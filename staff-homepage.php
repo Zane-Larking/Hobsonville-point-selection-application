@@ -109,7 +109,7 @@
 														}
 
 													echo";'></div>
-													<a href = 'selection-verification.php?student=".str_replace(" ", "-", $row['NAME'])."'>View Selections</a>
+													<a href = 'selection-verification.php?student=".str_replace(" ", "-", $row['name'])."'>View Selections</a>
 												</div>
 											</div>";
 										}		
