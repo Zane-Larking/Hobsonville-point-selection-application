@@ -1,6 +1,5 @@
 <?php
-    require_once "config.php";
-    
+    session_start();
     //Use to test if out of internet coverage.
     
     // $_SESSION['access_token'] = 0;
@@ -61,6 +60,6 @@
 
 
     } else if (!isset($_SESSION['access_token'])) {
-        header('Location: login.php');
+        header('Location: Login/login.php');
     }
 ?>

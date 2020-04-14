@@ -1,9 +1,8 @@
 <?php
 
     require_once "config.php";
-
     if (isset($_SESSION['access_token'])) {
-    	header('Location: student-homepage.php');
+    	header('Location: ../student-homepage.php');
     	exit();
     }
 
@@ -18,11 +17,11 @@
 <html class="no-js" lang="en">
   <head>
   <title>Login</title>
-  <link rel="stylesheet" type="text/css" href="Styles/login.css">
+  <link rel="stylesheet" type="text/css" href="../Styles/login.css">
 
   <?php
     //Run other php files
-    include "DataBase/database-connect.php";
+    include "../DataBase/database-connect.php";
     $name = $password = "";
     //mysqli_query
     $sql = "SELECT * FROM 'Users' WHERE name = $name AND password = $password";
@@ -38,7 +37,7 @@
   <body>
     <font face = "Verdana">
       <div style="background-color:White; width:60%; height:auto; margin-left:20%; border:1px solid black; padding:15px;">
-        <img src="Images/hpss-logo.png" alt="HPSS Logo" style="height: 100px">
+        <img src="../Images/hpss-logo.png" alt="HPSS Logo" style="height: 100px">
         <center>
           <form>
             <font face ="Verdana"><h1>HPSS Class Zealections</h1></font>
@@ -55,7 +54,7 @@
 
             
           </form>
-        <a id="g-login" onclick="window.location = '<?php echo $loginURL ?>';"> <img src = "Images/google-button.png" onmousedown="src='Images/google-button-presses.png'"> </a>
+        <a id="g-login" onclick="window.location = '<?php echo $loginURL ?>';"> <img src = "../Images/google-button.png" onmousedown="src='../Images/google-button-presses.png'"> </a>
         </center>
       </div>
     </font>

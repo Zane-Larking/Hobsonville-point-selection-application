@@ -1,6 +1,7 @@
 <?php
 
-include 'connect.php';
+session_start();
+include 'database-connect.php';
 
 $session_username = $_SESSION['username'];
 
@@ -57,7 +58,7 @@ else
 
   if (isset($session_username))
   {
-   echo "You are logged in, $session_username. <a href='logout.php'>Log out</a>";
+   echo "You are logged in, $session_username. <a href='Login/logout.php'>Log out</a>";
   }
   else
   {

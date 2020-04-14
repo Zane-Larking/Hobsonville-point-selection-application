@@ -20,7 +20,7 @@
       $_SESSION['picture'] = $userData['picture'];
 
 
-        header('Location: index.php');
+        header('Location: ../index.php');
         exit();
 
  ?>
