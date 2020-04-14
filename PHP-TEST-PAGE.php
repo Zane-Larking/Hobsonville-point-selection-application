@@ -1,6 +1,7 @@
 <?php
-
-$array = [0,1,2,3,4,5];
-echo $array[sizeof($array)-1];
+    session_start();
+    echo "THIS IS A TEST PAGE";
+    echo "<br><br><br>";
+    echo json_encode(['year_level' => $_SESSION['year_level'] ? $_SESSION['year_level'] : 11, 'name' => $_SESSION['name'], 'id' => $_SESSION['id']]);
 
 ?>

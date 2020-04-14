@@ -21,13 +21,11 @@
   <link rel="stylesheet" type="text/css" href="Styles/login.css">
 
   <?php
-  include "DataBase/database-connect.php";
-  $name = $password = "";
-  $sql = "SELECT * FROM 'Users' WHERE name = $name AND password = $password";
-
-
-
-  //mysqli_query
+    //Run other php files
+    include "DataBase/database-connect.php";
+    $name = $password = "";
+    //mysqli_query
+    $sql = "SELECT * FROM 'Users' WHERE name = $name AND password = $password";
   ?>
   <script>
     var checkpassword = function(e){

@@ -20,7 +20,9 @@
 
 </head>
 <body>
-	<?php
+<?php
+        //Run other php files
+        include "PhpSnippets/session-start.php";
         include ('PhpSnippets/header-bar.php');
         include ('DataBase/database-connect.php');
         include ('PhpSnippets/classes-constants.php');

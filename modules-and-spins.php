@@ -14,11 +14,44 @@
     <script src="Scripts/main.js"></script>
     <script src="Scripts/submit-selections.js"></script>
     <!--<script src="Scripts/date-time.js"></script>-->
+    <script>
+        //Retrieving session variavbles method 1
+        // let xhttp = new XMLHttpRequest();
+        // xhttp.onreadystatechange = function() {
+        //     if (this.readyState == 4 && this.status == 200) {
+        //         sessionVariables = JSON.parse(this.response);
+        //         console.log(sessionVariables);
+        //         const year_level = sessionVariables.year_level;
+        //     }
+        
+        //method 2
+        //         sessionVariables = JSON.parse(this.response);
+        sessionVariables = JSON.parse(<?php echo json_encode(['year_level' => $_SESSION['year_level'] ? $_SESSION['year_level'] : 11, 'name' => $_SESSION['name'], 'id' => $_SESSION['id']]);?>);
+        console.log(sessionVariables);
+        const year_level = sessionVariables.year_level;
+
+        // };
+        // xhttp.open("POST", "AJAX/get-session-variables.php", true);
+        // xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        // xhttp.send();    
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var selectedClasses = JSON.parse(this.response);
+                console.log(Array(selectedClasses));
+            }
+        };
+        xhttp.open("POST", "AJAX/get-student-ciriculum-class-count.php", true);
+        xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhttp.send("year_level="+year_level);
+    </script>
 
 
 </head>
 <body>
-	<?php
+<?php
+        //Run other php files
+        include "PhpSnippets/session-start.php";
         include ('PhpSnippets/header-bar.php');
         include ('DataBase/database-connect.php');
         include ('PhpSnippets/classes-constants.php');
