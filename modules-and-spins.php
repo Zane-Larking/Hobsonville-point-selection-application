@@ -10,18 +10,70 @@
     <link rel="stylesheet" type="text/css" media="screen" href="Styles/student-class-select.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="Styles/nav.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="Styles/main.css" />
+    <?php
+        //Run other php files
+        include "PhpSnippets/session-start.php";
+        include ('DataBase/database-connect.php');
+        include ('PhpSnippets/classes-constants.php');
+    ?>
+    <?php
+    
+        $year_level =  isset($_SESSION['year_level']) ? $_SESSION['year_level'] : 11; 
+    ?>
 
     <script src="Scripts/main.js"></script>
     <script src="Scripts/submit-selections.js"></script>
     <!--<script src="Scripts/date-time.js"></script>-->
+<<<<<<< Updated upstream
+=======
+    <script>
+        var selectedClasses = [];
+
+        //Retrieving session variavbles method 1
+        // let xhttp = new XMLHttpRequest();
+        // xhttp.onreadystatechange = function() {
+        //     if (this.readyState == 4 && this.status == 200) {
+        //         sessionVariables = JSON.parse(this.response);
+        //         console.log(sessionVariables);
+        //         const year_level = sessionVariables.year_level;
+        //     }
+        
+        //method 2
+        //         sessionVariables = JSON.parse(this.response);
+        sessionVariables = JSON.parse('<?php echo json_encode(['year_level' => $year_level, 'name' => $_SESSION['name'], 'id' => $_SESSION['id']]);?>');
+        console.log(sessionVariables);
+        const year_level = sessionVariables.year_level;
+
+        // };
+        // xhttp.open("POST", "AJAX/get-session-variables.php", true);
+        // xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        // xhttp.send();    
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                let selectionCount = JSON.parse(this.response);
+                selectedClasses = Array(selectionCount);
+            }
+        };
+        xhttp.open("POST", "AJAX/get-student-ciriculum-class-count.php", true);
+        xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhttp.send("year_level="+year_level);
+    </script>
+>>>>>>> Stashed changes
 
 
 </head>
 <body>
+<<<<<<< Updated upstream
 	<?php
+=======
+    <?php
+>>>>>>> Stashed changes
         include ('PhpSnippets/header-bar.php');
-        include ('DataBase/database-connect.php');
-        include ('PhpSnippets/classes-constants.php');
+    ?>
+
+    <?php
+        // $year_level = 11;
         $Qual = isset($_GET["Qual"]) ? $_GET["Qual"]: 1;
         $moduleCount = 	$CPYL['modules'][$Qual];
         $spinCount =    $CPYL['spins'][$Qual];
@@ -31,10 +83,10 @@
         ";
         
         //gets the highest amount of choices a class_type can have
-        $query = "SELECT MAX(choices) as max FROM `class_template` WHERE year_level = 11 AND curriculum = 1";
+        $query = "SELECT MAX(choices) as max FROM `class_template` WHERE year_level = $year_level AND curriculum = 1";
         $maxChoices = mysqli_fetch_array(mysqli_query($dbconnect, $query))['max'];
 
-        $query = "SELECT `class_type`, `count`, `choices` FROM `class_template` WHERE year_level = 11 AND curriculum = 1 GROUP BY `class_type`";
+        $query = "SELECT `class_type`, `count`, `choices` FROM `class_template` WHERE year_level = $year_level AND curriculum = 1 GROUP BY `class_type`";
         $classTypeResult = mysqli_query($dbconnect, $query);
 
 
@@ -202,13 +254,8 @@
 
 
             <?php
-                $_SESSION['year_level'] = 11; //for test purposes
                 function echoSubjects ($subjects) {
-                    $a = "";
-                    foreach($subjects as $subject) {
-                        $a = $a." ".$subject;
-                    }
-                    return $a;
+                    return implode(" ",$subjects);
                 }
                 //if I wanted t0 use radio inputs instead of my custom made select and dismiss buttons.
                 //<input type='radio' name='selectModule$i' value='$row[CODE]'> test
@@ -216,11 +263,15 @@
                 // //--Modules--
                 //Reusing the result '$classTypeResult' so I don't have to redo it's query.
                 mysqli_data_seek($classTypeResult, 0);
+
+                //keeps take of how many classes have been added.
+                $classIndex = 0;
                 
                 //loops over class_type of each aggregate of classes from the database
                 while ($row = mysqli_fetch_array($classTypeResult, MYSQLI_ASSOC)) {                    
                     $classType = $row["class_type"];
                     $classCount = $row["count"];
+
                     //loops over the count of each class_type
                     for ($i = 1; $i <= $classCount; $i++) {
                         $query = "SELECT classes.id AS class_id, code, name, type, year, description, 
@@ -231,7 +282,7 @@
                         LEFT JOIN class_subjects ON classes.id = class_subjects.class_id 
                         LEFT JOIN class_year_level ON classes.id = class_year_level.class_id 
                         LEFT JOIN class_teachers ON classes.id = class_teachers.class_id 
-                        LEFT JOIN staff ON staff.id = class_teachers.teacher_id WHERE year = 2019 AND year_level = ".$_SESSION['year_level']." AND type = '$classType$i'";
+                        LEFT JOIN staff ON staff.id = class_teachers.teacher_id WHERE year = 2019 AND year_level = $year_level AND type = '$classType$i'";
                         $result = mysqli_query($dbconnect, $query);
                         
                         $classes = CleanClassQueryResults($result);
@@ -251,7 +302,7 @@
                                     LEFT JOIN class_year_level ON classes.id = class_year_level.class_id 
                                     LEFT JOIN class_teachers ON classes.id = class_teachers.class_id 
                                     LEFT JOIN staff ON staff.id = class_teachers.teacher_id 
-                                    WHERE year = 2019 AND year_level = ".$_SESSION['year_level']." AND type = '$classType"."$i' GROUP BY subject";
+                                    WHERE year = 2019 AND year_level = $year_level AND type = '$classType"."$i' GROUP BY subject";
 
                                     $availableSubjects = [];
                                     $subjectResult = mysqli_query($dbconnect, $query);
@@ -277,13 +328,14 @@
                                 <div class='DropdownClasses'>
                         ";
                         
-                        foreach ($classes as $key => $class) {
+                        ///////////////////////
+                        foreach ($classes as $class) {
                             // var_dump($class);
 
 
                             $subjects = $class['subjects'];
                             echo"
-                                <div class='Course".echoSubjects($subjects)."'>
+                                <div class='Course' subject='".echoSubjects($subjects)."' classIndex='$classIndex' classType='$classType$i'>
                                     <div class='ClassBar HeaderBar'>
                                         <div class='HeaderBarTitle'>
                                             <div class='ClassDropdownButton'><div class='DropdownButton'></div></div>
@@ -338,7 +390,7 @@
                                         </div>
                                     </div>
                                 </div>";
-                                
+                                $classIndex ++;
                         }
                         echo"
                             </div>

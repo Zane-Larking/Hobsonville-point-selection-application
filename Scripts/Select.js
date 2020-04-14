@@ -1,3 +1,19 @@
+Course = function(el) {
+    this.el = el;
+    this.classType = el.getAttribute("classType");
+    this.subjects = el.getAttribute("subject").split(" ");
+};
+
+courses = [];
+
+classNodes = document.querySelectorAll("div.DropdownClasses > div.Course");
+
+classNodes.forEach(cn => {
+    courses[cn.getAttribute("classindex")] = (new Course(cn));
+});
+
+console.log(courses);
+
 var IsSelected = function(element){
     return element.getAttribute("toggle") == "true";
 
@@ -14,12 +30,13 @@ var optionToIndex = function(option){
             return 2;
     }
 }
-
+// var Select = function(element, selectionIndex){
 var Select = function(element){
     //debugging
     console.log("Selecting");
     console.log("orginial: ");
     console.log(element);
+    // selectedClasses[];
 
     let periodEl = element.parentElement.parentElement;
 
