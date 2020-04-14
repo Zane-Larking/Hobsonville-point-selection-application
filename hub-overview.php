@@ -35,7 +35,7 @@
                 <div class ="sectionHeader roundedHeader">
                     <div id="profile">
                         <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 2em; border-radius: 50%;">
-                        <div class="name"><?php echo $name; ?></div>
+                        <div class="name"><?php echo $_SESSION['name']; ?></div>
                     </div>
                     <div class="searchBar">
                         <div class="material-icons prefix">search</div>
@@ -45,19 +45,24 @@
                 <!-- List students in the search pannel -->
                 <div class="scrollPannel students">
                     <?php
-                        $query = "select FIRST_NAME, LAST_NAME, YEAR_LEVEL, 'SELECTIONS_M&S' from students where COACH = '".$name."';";
+                        $query = "SELECT `first_name`, `last_name`, `year_level` FROM `students` WHERE `coach_id` = ".$_SESSION['id'].";";
                         $result = mysqli_query($dbconnect, $query);
-                        while ($row = mysqli_fetch_array($result)){
-                            echo '
-                            <div class="scrollItem student  '.$row['FIRST_NAME'].'-'.$row['LAST_NAME'].'" onclick = "displayTabs(event, '."'".'currentStudentSelections'."', '".$row['FIRST_NAME'].'-'.$row['LAST_NAME']."'".')">
-                                <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
-                                <p>'.$row['FIRST_NAME'].' '.$row['LAST_NAME'].'</p>
-                                <div class="coverageCheck approved">
-                                    <div class="material-icons">check</div>
+                        if(!mysqli_num_rows($result))
+                        {
+                            echo("No students found");
+                        }else{
+                            while ($row = mysqli_fetch_array($result)){
+                                echo '
+                                <div class="scrollItem student  '.$row['first_name'].'-'.$row['last_name'].'" onclick = "displayTabs(event, '."'".'currentStudentSelections'."', '".$row['first_name'].'-'.$row['last_name']."'".')">
+                                    <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
+                                    <p>'.$row['first_name'].' '.$row['last_name'].'</p>
+                                    <div class="coverageCheck approved">
+                                        <div class="material-icons">check</div>
 
+                                    </div>
                                 </div>
-                            </div>
-                            ';
+                                ';
+                            }
                         }   
                     ?>
                 </div>
@@ -67,16 +72,16 @@
             </div>
             <?php
             //Creates content on each students choices from the database.
-            $query = "select ID, FIRST_NAME, LAST_NAME, YEAR_LEVEL, 'SELECTIONS_M&S' from students where COACH = '".$name."';";
+            $query = "SELECT `id`, `first_name`, `last_name`, `year_level` FROM students WHERE `coach_id` = '".$_SESSION['id']."';";
             $result = mysqli_query($dbconnect, $query);
             while ($row = mysqli_fetch_array($result)){
-                $studentName = $row['FIRST_NAME'].'-'.$row['LAST_NAME'];
+                $studentName = $row['first_name'].'-'.$row['last_name'];
                 echo '
-            <div class = "'.$row['FIRST_NAME'].'-'.$row['LAST_NAME'].' studentSelections roundedContainer">
+            <div class = "'.$row['first_name'].'-'.$row['last_name'].' studentSelections roundedContainer">
                 <div class = "selectionsHeader sectionHeader roundedHeader">
                     <div style = "align-items: center; display: flex;  grid-area: info;">
                         <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 40rem; border-radius: 50%;">
-                        <h3>'.$row['FIRST_NAME'].' '.$row['LAST_NAME'].' | Year '.$row['YEAR_LEVEL'].'</h3>         
+                        <h3>'.$row['first_name'].' '.$row['last_name'].' | Year '.$row['year_level'].'</h3>         
                     </div>
                     ';
                     //Creates a toggle for each set of choices a student has (Currently unmutable). 
@@ -94,7 +99,7 @@
 
                     //Displays choices based off the SELECTIONS_M&S database result.
                     $SelectionsObject = [];
-                    $numOfClasses = $CPYL['modules'][$yearToQual[$row['YEAR_LEVEL']]] + $CPYL['spins'][$yearToQual[$row['YEAR_LEVEL']]];
+                    $numOfClasses = $CPYL['modules'][$yearToQual[$row['year_level']]] + $CPYL['spins'][$yearToQual[$row['year_level']]];
                     $numOfChoices = 3;
 
                     while (sizeof($selections) < $numOfClasses * $numOfChoices){
@@ -105,7 +110,7 @@
                     $currentClass = 0;
                     foreach (['module', 'spin'] as $classType) {
                         for ($rank = 0; $rank < $numOfChoices; $rank++) {
-                            for ($i = 0; $i < $CPYL[$classType.'s'][$yearToQual[$row['YEAR_LEVEL']]]; $i++) {
+                            for ($i = 0; $i < $CPYL[$classType.'s'][$yearToQual[$row['year_level']]]; $i++) {
                                 $SelectionsObject[$rank][$classType][$i] = $selections[$currentClass];
                                 $currentClass++;
                             }
@@ -130,7 +135,7 @@
                             <div class = "'.$classType.'">
                             ';
                             */
-                            for ($i = 0; $i < $CPYL[$classType.'s'][$yearToQual[$row['YEAR_LEVEL']]]; $i++) {
+                            for ($i = 0; $i < $CPYL[$classType.'s'][$yearToQual[$row['year_level']]]; $i++) {
                                 $choice = $SelectionsObject[$rank][$classType][$i];
 
 
