@@ -12,9 +12,11 @@
     <link rel="stylesheet" type="text/css" href="Styles/nav.css">
     <link rel="stylesheet" type="text/css" href="Styles/search-pannel.css">
     <link rel="stylesheet" type="text/css" href="Styles/scroll-pannel.css">
-  
+
+    
     <?php
         //Run other php files
+        include "PhpSnippets/session-start.php";
         include "DataBase/database-connect.php";
         include "PhpSnippets/classes-constants.php";
         include "PhpSnippets/application-handling.php";
