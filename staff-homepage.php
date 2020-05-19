@@ -93,17 +93,43 @@
 												<div class = 'ellipsis' style= 'grid-area: options; padding-right:3px; display: grid; align-items: center; justify-content: end; grid-auto-flow: column; grid-gap: 5px; grid-auto-columns: max-content;'>
 													<div style='border-style:solid; text-align:right; width:9px; height:9px; border-width:1px; border-radius:25px; background-color:"; 
 
-														$hubling_selection_query = "SELECT COUNT(selections.id) AS count FROM students JOIN selections ON students.id = selections.student_id WHERE students.id = 1 GROUP BY selections.approval_status";
-														$hubling_selection_result = mysqli_query($dbconnect, $hubling_selection_query);
+														$hubling_selection_requirement_query = "SELECT SUM(count * choices) AS count FROM students RIGHT JOIN class_template ON students.year_level = class_template.year_level WHERE students.id = ".$row['id'];
+														$hubling_selection_requirement_result = mysqli_query($dbconnect, $hubling_selection_requirement_query);
 
-														$not_selected = $hubling_selection_result->fetch_assoc()["count"];
-														$not_approved = $hubling_selection_result->fetch_assoc()["count"];
-														$approved = $hubling_selection_result->fetch_assoc()["count"];
+														$required = $hubling_selection_requirement_result->fetch_assoc()["count"];
+														$selected = 0;
+														$hub_verified = 0;
+														$TT_verified = 0;
 
-														if($not_selected > 0){
+
+														$hubling_selections_query = "SELECT selections.approval_status AS status, COUNT(selections.id) AS count FROM students JOIN selections ON students.id = selections.student_id WHERE students.id = ".$row['id']." GROUP BY selections.approval_status ORDER BY selections.approval_status";
+														$hubling_selections_result = mysqli_query($dbconnect, $hubling_selections_query);
+
+
+														while ($hubling_selections = $hubling_selections_result->fetch_assoc()) {
+															if ($hubling_selections["status"] == 0) {
+																$selected = $hubling_selections["count"];
+															}
+															if ($hubling_selections["status"] == 1) {
+																$hub_verified = $hubling_selections["count"];
+															}
+															if ($hubling_selections["status"] == 2) {
+																$TT_verified = $hubling_selections["count"];
+															}
+														}
+
+														//echo $required." ".$selected." ".$hub_verified." ".$TT_verified;
+
+
+														// $not_approved = $hubling_selection_result->fetch_assoc()["count"];
+														// $approved = $hubling_selection_result->fetch_assoc()["count"];
+
+														if(($selected+$hub_verified+$TT_verified) < $required){
 															echo"red";
-														} else if ($not_approved > 0){
+														} elseif (($hub_verified+$TT_verified) < $required){
 															echo"orange";
+														} elseif ($TT_verified < $required){
+															echo"#52c7ff";
 														} else {
 															echo"green";
 														}
@@ -129,11 +155,13 @@
 									<div class="content">
 										<h3><u>Teacher Aid Privileges</u></h3>';
 										
-										if(mysqli_num_rows($teacher_result) != 0) {
-											echo'<h4><u>Propose pupil selection advice</u></h4>';
-										} else {
-											echo'<h4><u>There are no students found to be associated with you</u></h4>';
-										}
+
+										echo'<h4><u>Propose pupil selection advice</u></h4>';
+										// if(mysqli_num_rows($teacher_result) != 0) {
+										// 	echo'<h4><u>Propose pupil selection advice</u></h4>';
+										// } else {
+										// 	echo'<h4><u>There are no students found to be associated with you</u></h4>';
+										// }
 										echo '<br>';
 										if(mysqli_num_rows($teacher_result) != 0) {
 											echo '<div class = "aid-grid-container">';
