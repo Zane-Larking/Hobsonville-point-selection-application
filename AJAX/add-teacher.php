@@ -15,7 +15,7 @@ $kamarcode = $_POST['kamar_code'];
 $hashub = $_POST['has_hub'] || FALSE;
 
 
-$query = "INSERT INTO `staff` (`first_name`, `last_name`, `kamar_code`, `email`, `has_hub`, `privileges`) VALUES ('$firstname','$lastname','$kamarcode','$email','$hashub','$privileges')";
+$query = "INSERT INTO `teachers` (`FIRST_NAME`, `LAST_NAME`, `EMAIL`, `PRIVILEGES`, `KAMAR_CODE`, `HAS_HUB`) VALUES ('".$firstname."','".$lastname."','".$email."','".$privileges."','".$kamarcode."','".$hashub."')";
 $result = mysqli_query($dbconnect, $query);
 
 header('Location: ../admin-tool.php');

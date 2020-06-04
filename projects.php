@@ -12,8 +12,6 @@
 </head>
 <body>
 	<?php
-        //Run other php files
-        include "PhpSnippets/session-start.php";
 		include ('PhpSnippets/header-bar.php');	
 	?>
 </body>

@@ -7,12 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="Styles/main.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="Styles/nav.css" />
-
-    <?php
-        //Run other php files
-        include "PhpSnippets/session-start.php";
-    ?>
-
     <script src="Scripts/main.js"></script>
 </head>
 <body>
