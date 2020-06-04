@@ -182,7 +182,8 @@
 												</div>
 											</div>";
 										}		
-									} else {
+									}
+								} else {
 										echo"you have no hublings";
 									}
 								echo '
