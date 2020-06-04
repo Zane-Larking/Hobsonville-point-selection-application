@@ -97,46 +97,21 @@
 											<div class = 'ellipsis' style= 'grid-area: options; padding-right:3px; display: grid; align-items: center; justify-content: end; grid-auto-flow: column; grid-gap: 5px; grid-auto-columns: max-content;'>
 												<div style='border-style:solid; text-align:right; width:9px; height:9px; border-width:1px; border-radius:25px; background-color:"; 
 
-														$hubling_selection_requirement_query = "SELECT SUM(count * choices) AS count FROM students RIGHT JOIN class_template ON students.year_level = class_template.year_level WHERE students.id = ".$row['id'];
-														$hubling_selection_requirement_result = mysqli_query($dbconnect, $hubling_selection_requirement_query);
+													$hubling_selection_query = "SELECT COUNT(selections.id) AS count FROM students JOIN selections ON students.id = selections.student_id WHERE students.id = 1 GROUP BY selections.approval_status";
+													$hubling_selection_result = mysqli_query($dbconnect, $hubling_selection_query);
 
-														$required = $hubling_selection_requirement_result->fetch_assoc()["count"];
-														$selected = 0;
-														$hub_verified = 0;
-														$TT_verified = 0;
+													$not_selected = $hubling_selection_result->fetch_assoc()["count"];
+													$not_approved = $hubling_selection_result->fetch_assoc()["count"];
+													$approved = $hubling_selection_result->fetch_assoc()["count"];
 
+													if($not_selected > 0){
+														echo"red";
+													} else if ($not_approved > 0){
+														echo"orange";
+													} else {
+														echo"green";
+													}
 
-														$hubling_selections_query = "SELECT selections.approval_status AS status, COUNT(selections.id) AS count FROM students JOIN selections ON students.id = selections.student_id WHERE students.id = ".$row['id']." GROUP BY selections.approval_status ORDER BY selections.approval_status";
-														$hubling_selections_result = mysqli_query($dbconnect, $hubling_selections_query);
-
-
-														while ($hubling_selections = $hubling_selections_result->fetch_assoc()) {
-															if ($hubling_selections["status"] == 0) {
-																$selected = $hubling_selections["count"];
-															}
-															if ($hubling_selections["status"] == 1) {
-																$hub_verified = $hubling_selections["count"];
-															}
-															if ($hubling_selections["status"] == 2) {
-																$TT_verified = $hubling_selections["count"];
-															}
-														}
-
-														//echo $required." ".$selected." ".$hub_verified." ".$TT_verified;
-
-
-														// $not_approved = $hubling_selection_result->fetch_assoc()["count"];
-														// $approved = $hubling_selection_result->fetch_assoc()["count"];
-
-														if(($selected+$hub_verified+$TT_verified) < $required){
-															echo"red";
-														} elseif (($hub_verified+$TT_verified) < $required){
-															echo"orange";
-														} elseif ($TT_verified < $required){
-															echo"#52c7ff";
-														} else {
-															echo"green";
-														}
 
                         echo";'></div>
                         <a href = 'selection-verification.php?student=".str_replace(" ", "-", $row['name'])."'>View Selections</a>
@@ -180,66 +155,22 @@
 												<div class = 'ellipsis' style= 'grid-area: options'>
 													<a href = 'propose-pupil-selections.php?student=".str_replace(" ", "-", ($student_row['FIRST_NAME'].' '.$student_row['LAST_NAME']))."'>Add selection recommendation</a>
 												</div>
-											</div>";
-										}		
-									} else {
-										echo"you have no hublings";
-									}
-								echo '
-							</div>
-						</div>
-								';
-							}
-							if($_SESSION['privilege'] >= 0){
-								$teacher_query = ("SELECT * FROM teacher_aids WHERE teacher_id = ".$_SESSION['id']);
-								$teacher_result = mysqli_query($dbconnect, $teacher_query);
-								if(!$teacher_result){	
-									echo'
-									<div class="content">
-										<h3><u>Teacher Aid Privileges</u></h3>';
-										
-
-										echo'<h4><u>Propose pupil selection advice</u></h4>';
-										// if(mysqli_num_rows($teacher_result) != 0) {
-										// 	echo'<h4><u>Propose pupil selection advice</u></h4>';
-										// } else {
-										// 	echo'<h4><u>There are no students found to be associated with you</u></h4>';
-										// }
-										echo '<br>';
-										if(mysqli_num_rows($teacher_result) != 0) {
-											echo '<div class = "aid-grid-container">';
-											while($row = $teacher_result->fetch_assoc()) {
-												$student_query = ("SELECT * FROM students WHERE ID = ".$row['STUDENT_ID']);
-												$student_result = mysqli_query($dbconnect, $student_query);
-												echo "
-												<div class = 'students-of-teacher-aid'>
-												";
-												while($student_row = $student_result->fetch_assoc()) {
-													echo"
-													<img src= "; if (isset($row['PICTURE'])) echo $row['PICTURE'];  else echo"'Images/portrait-placeholder.png' height='50rem' style= 'grid-area: image;'>
-														<div class = 'ellipsis' style= 'grid-area: name'>".$student_row['FIRST_NAME']." ".$student_row['LAST_NAME']."</div>
-														<div class = 'ellipsis' style= 'grid-area: year-level'>Year ".$student_row['YEAR_LEVEL']."</div>
-														<div class = 'ellipsis' style= 'grid-area: email'>".$student_row['EMAIL']."</div>
-														<div class = 'ellipsis' style= 'grid-area: options'>
-															<a href = 'propose-pupil-selections.php?student=".str_replace(" ", "-", ($student_row['FIRST_NAME'].' '.$student_row['LAST_NAME']))."'>Add selection recommendation</a>
-														</div>
-													";
-												}
-												echo "
-												</div>";
-											}
-											echo "</div>";
+											";
 										}
-									//for ($student_with_teacher_aid = 0; $student_with_teacher_aid < ;$student_with_teacher_aid++){
-									//$_SESSION['id']
-									//}
-									echo "</div>" ;
+										echo "
+										</div>";
+									}
+									echo "</div>";
 								}
-							}
-							if($_SESSION['privilege'] >= 1){
-								echo'
-								<div class="content">
-								<h3><u>Teacher Privileges</u></h3>';
+							//for ($student_with_teacher_aid = 0; $student_with_teacher_aid < ;$student_with_teacher_aid++){
+							//$_SESSION['id']
+							//}
+							echo "</div>" ;
+						}
+						if($_SESSION['privilege'] >= 1){
+							echo'
+							<div class="content">
+							<h3><u>Teacher Privileges</u></h3>';
 
 								$teacherClassesQuery = "SELECT classes.id FROM classes INNER JOIN class_teachers ON classes.id = class_teachers.class_id WHERE teacher_id = $_SESSION[id]";
 								$teacherResult = mysqli_query($dbconnect,$teacherClassesQuery);
