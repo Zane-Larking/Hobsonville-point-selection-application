@@ -16,8 +16,6 @@
     <link rel="stylesheet" type="text/css" href="Styles/subjects-key.css">
   
     <?php
-		//Run other php files
-		include "PhpSnippets/session-start.php";
         include "DataBase/database-connect.php";
         include "PhpSnippets/classes-constants.php";
     ?>

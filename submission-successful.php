@@ -1,4 +1,3 @@
-
 <?php
     /* reloads page to update a counter
     if(!isset($_GET['n'])){ 

@@ -18,8 +18,6 @@
     <script src="Scripts/handle-subjects.js"></script>
     
     <?php
-        //Run other php files
-        include "PhpSnippets/session-start.php";
         include "DataBase/database-connect.php";
         include "PhpSnippets/classes-constants.php";
     ?>
