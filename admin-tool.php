@@ -11,6 +11,10 @@
     <link rel="stylesheet" type="text/css" href="Styles/search-pannel.css">
     <link rel="stylesheet" type="text/css" href="Styles/scroll-pannel.css">
     <link rel="stylesheet" type="text/css" href="Styles/toggle-tabs.css">
+    <?php
+        //Run other php files
+        include "PhpSnippets/session-start.php";
+    ?>
 </head>
 
 

@@ -11,47 +11,47 @@
         
         
         //Checks if the user is a part of the the tearchers table
-        $query = "SELECT ID, CONCAT(FIRST_NAME, ' ', LAST_NAME) AS NAME, PRIVILEGES, HAS_HUB  FROM teachers WHERE EMAIL = '" . $_SESSION['email'] . "'";
+        $query = "SELECT id, CONCAT(first_name, ' ', last_name) AS name, privileges, has_hub  FROM staff WHERE email = '" . $_SESSION['email'] . "'";
         $result = mysqli_query($dbconnect, $query);
         $row = mysqli_fetch_array($result);
 
         // echo "<br>Is Teacher:<br>";
-        // var_dump($row['NAME']);
-        if (!is_NULL($row['NAME'])) {
+        // var_dump($row['name']);
+        if (!is_NULL($row['name'])) {
             
             //Stores info about the teacher
-            $_SESSION['id'] = $row['ID'];
-            $_SESSION['name'] = $row['NAME'];
-            $_SESSION['hashub'] = $row['HAS_HUB'];
-            $_SESSION['privilege'] = $row['PRIVILEGES'];
+            $_SESSION['id'] = $row['id'];
+            $_SESSION['name'] = $row['name'];
+            $_SESSION['hashub'] = $row['has_hub'];
+            $_SESSION['privilege'] = $row['privileges'];
 
             //Stores info about who their Hublings are
-            $query = "SELECT ID, CONCAT(FIRST_NAME, LAST_NAME) AS NAME FROM students WHERE COACH = '" . $_SESSION['name'] . "'";
+            $query = "SELECT id, CONCAT(first_name, last_name) AS name FROM students WHERE coach_id = '" . $row['id'] . "'";
             $result = mysqli_query($dbconnect, $query);
             $_SESSION['hublings'] = [];
             while($row = $result->fetch_assoc()) {
-                $_SESSION['hublings'][str_replace(" ", "-", $row['NAME'])] = $row['ID'];
+                $_SESSION['hublings'][str_replace(" ", "-", $row['name'])] = $row['id'];
             }
 
 
-            header('Location: teacher-homepage.php');
+            header('Location: staff-homepage.php');
             exit();
         }
 
         
         //Checks if the user is a part of the the students table 
-        $query = "SELECT ID, CONCAT(FIRST_NAME, ' ', LAST_NAME) AS name, YEAR_LEVEL FROM students WHERE EMAIL = '" . $_SESSION['email'] . "'";
+        $query = "SELECT id, CONCAT(first_name, ' ', last_name) AS name, year_level FROM students WHERE email = '" . $_SESSION['email'] . "'";
         $result = mysqli_query($dbconnect, $query);
         $row = mysqli_fetch_array($result);
 
         // echo "<br>Is Student:<br>";
-        // var_dump($row['NAME']);
+        // var_dump($row['name']);
         if (!is_NULL($row['name'])) {
 
             //Stores info about the student
-            $_SESSION['yearLevel'] = $row['YEAR_LEVEL'];
-            $_SESSION['name'] = $row['NAME'];
-            $_SESSION['id'] = $row['ID'];
+            $_SESSION['year_level'] = $row['year_level'];
+            $_SESSION['name'] = $row['name'];
+            $_SESSION['id'] = $row['id'];
 
             header('Location: student-homepage.php');
             exit();
