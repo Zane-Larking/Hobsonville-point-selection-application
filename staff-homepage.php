@@ -155,7 +155,56 @@
 												<div class = 'ellipsis' style= 'grid-area: options'>
 													<a href = 'propose-pupil-selections.php?student=".str_replace(" ", "-", ($student_row['FIRST_NAME'].' '.$student_row['LAST_NAME']))."'>Add selection recommendation</a>
 												</div>
-											";
+											</div>";
+										}		
+									}
+								} else {
+										echo"you have no hublings";
+									}
+								echo '
+							</div>
+						</div>
+								';
+							}
+							if($_SESSION['privilege'] >= 0){
+								$teacher_query = ("SELECT * FROM teacher_aids WHERE teacher_id = ".$_SESSION['id']);
+								$teacher_result = mysqli_query($dbconnect, $teacher_query);
+								if(!$teacher_result){	
+									echo'
+									<div class="content">
+										<h3><u>Teacher Aid Privileges</u></h3>';
+										
+
+										echo'<h4><u>Propose pupil selection advice</u></h4>';
+										// if(mysqli_num_rows($teacher_result) != 0) {
+										// 	echo'<h4><u>Propose pupil selection advice</u></h4>';
+										// } else {
+										// 	echo'<h4><u>There are no students found to be associated with you</u></h4>';
+										// }
+										echo '<br>';
+										if(mysqli_num_rows($teacher_result) != 0) {
+											echo '<div class = "aid-grid-container">';
+											while($row = $teacher_result->fetch_assoc()) {
+												$student_query = ("SELECT * FROM students WHERE ID = ".$row['STUDENT_ID']);
+												$student_result = mysqli_query($dbconnect, $student_query);
+												echo "
+												<div class = 'students-of-teacher-aid'>
+												";
+												while($student_row = $student_result->fetch_assoc()) {
+													echo"
+													<img src= "; if (isset($row['PICTURE'])) echo $row['PICTURE'];  else echo"'Images/portrait-placeholder.png' height='50rem' style= 'grid-area: image;'>
+														<div class = 'ellipsis' style= 'grid-area: name'>".$student_row['FIRST_NAME']." ".$student_row['LAST_NAME']."</div>
+														<div class = 'ellipsis' style= 'grid-area: year-level'>Year ".$student_row['YEAR_LEVEL']."</div>
+														<div class = 'ellipsis' style= 'grid-area: email'>".$student_row['EMAIL']."</div>
+														<div class = 'ellipsis' style= 'grid-area: options'>
+															<a href = 'propose-pupil-selections.php?student=".str_replace(" ", "-", ($student_row['FIRST_NAME'].' '.$student_row['LAST_NAME']))."'>Add selection recommendation</a>
+														</div>
+													";
+												}
+												echo "
+												</div>";
+											}
+											echo "</div>";
 										}
 										echo "
 										</div>";
