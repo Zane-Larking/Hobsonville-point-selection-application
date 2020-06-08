@@ -2,9 +2,52 @@ Course = function(el) {
     this.el = el;
     this.classType = el.getAttribute("classType");
     this.subjects = el.getAttribute("subject").split(" ");
+    this.clones = undefined;
 };
 
+Course.prototype.select = function() {
+    if (selectedCourses[0][0] != undefined) {
+        selectedCourses[0][0].deselect();
+    }
+    selectedCourses[0][0] = this;
+    ciriculumClone = this.el.cloneNode(true);
+    periodClone = this.el.cloneNode(true);
+
+    periodSection = document.querySelector("#"+this.classType+" .SelectedClasses").children[0];
+    periodSection.appendChild(periodClone);
+
+    ciriculumSection = document.querySelector("#CurriculumCoverage #Choices").children[0].querySelector(".DropdownClasses ."+this.classType);
+    ciriculumSection.appendChild(ciriculumClone);
+    
+    this.clones = [ciriculumClone, periodClone];
+};
+
+Course.prototype.deselect = function() {
+    this.clones.forEach(x => x.parentNode.removeChild(x));
+}
+
 courses = [];
+let classesTemplate = [];
+
+xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        let typeArr = JSON.parse(this.response);
+        typeArr.forEach(x => {
+            for (let i = 0; i < x["count"]; i++) {
+                classesTemplate.append(x["type"]+i);
+            }
+        })
+        selectedClasses = Array(selectionCount);
+    }
+};
+xhttp.open("POST", "AJAX/get-student-ciriculum-class-types.php", true);
+xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+// xhttp.send("year_level="+year_level);
+xhttp.send("year_level=11");
+
+
+selectedCourses = Array(5).fill().map(x=>Array(3));
 
 classNodes = document.querySelectorAll("div.DropdownClasses > div.Course");
 

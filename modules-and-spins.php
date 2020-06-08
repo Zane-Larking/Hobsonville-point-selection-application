@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="Styles/main.css" />
     <?php
         //Run other php files
-        include "PhpSnippets/session-start.php";
+        include ("PhpSnippets/session-start.php");
         include ('DataBase/database-connect.php');
         include ('PhpSnippets/classes-constants.php');
     ?>
@@ -24,8 +24,6 @@
     <script src="Scripts/main.js"></script>
     <script src="Scripts/submit-selections.js"></script>
     <!--<script src="Scripts/date-time.js"></script>-->
-<<<<<<< Updated upstream
-=======
     <script>
         var selectedClasses = [];
 
@@ -59,16 +57,11 @@
         xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhttp.send("year_level="+year_level);
     </script>
->>>>>>> Stashed changes
 
 
 </head>
 <body>
-<<<<<<< Updated upstream
-	<?php
-=======
     <?php
->>>>>>> Stashed changes
         include ('PhpSnippets/header-bar.php');
     ?>
 
@@ -88,6 +81,11 @@
 
         $query = "SELECT `class_type`, `count`, `choices` FROM `class_template` WHERE year_level = $year_level AND curriculum = 1 GROUP BY `class_type`";
         $classTypeResult = mysqli_query($dbconnect, $query);
+
+        mysqli_data_seek($classTypeResult, 0);
+        foreach (mysqli_fetch_array($classTypeResult) as $a) {
+            # code...
+        }
 
 
         function CleanClassQueryResults($result) {
@@ -200,33 +198,36 @@
 
                 <?php
                     //loops over choices (eg: 1st choices, 2nd choices, 3rd choices, etc...)
+                    echo "
+                <div id='Choices'>";
                     for ($choiceIV = 0; $choiceIV < $maxChoices; $choiceIV++) {
                         //Reusing the result '$classTypeResult' so I don't have to redo it's query.
                         mysqli_data_seek($classTypeResult, 0);
                         $choice = ["First", "Second", "Third", "Fourth", "Fifth"][$choiceIV];
                         $ordinal = ["1st", "2nd", "3rd", "4th", "5th"][$choiceIV];
                         echo "
-                        <div id='$choice"."Choices'>
-                            <div class='TallyBar'>
-                                <div class='HeaderBarTitle'>
-                                    <div class='PriorityDropdownButton'><div class='DropdownButton'></div></div>
-                                    <div class= 'Priority BarTitle'>
-                                        $ordinal Choices
-                                    </div>
-                                </div>
-
-                                <div class='TallySubjects Subjects'>
-                                    <div>0</div>
-                                    <div>0</div>
-                                    <div>0</div>
-                                    <div>0</div>
-                                    <div>0</div>
-                                    <div>0</div>
-                                    <div>0</div>
-                                    <div>0</div>
+                    <div id='$choice"."Choices'>
+                        <div class='TallyBar'>
+                            <div class='HeaderBarTitle'>
+                                <div class='PriorityDropdownButton'><div class='DropdownButton'></div></div>
+                                <div class= 'Priority BarTitle'>
+                                    $ordinal Choices
                                 </div>
                             </div>
-                            <div class='DropdownClasses'>";
+
+                            <div class='TallySubjects Subjects'>
+                                <div>0</div>
+                                <div>0</div>
+                                <div>0</div>
+                                <div>0</div>
+                                <div>0</div>
+                                <div>0</div>
+                                <div>0</div>
+                                <div>0</div>
+                            </div>
+                        </div>
+                        <div class='DropdownClasses'>";
+                        mysqli_data_seek($classTypeResult, 0);
                         //loops over class_type of each aggregate of classes from the database
                         while ($row = mysqli_fetch_array($classTypeResult, MYSQLI_ASSOC)) {   
                             //loops over the count of each class_type
@@ -238,15 +239,18 @@
                             if ($classChoices > $choiceIV) {
                                 for ($i = 1; $i <= $classCount; $i++) {
                                     echo "
-                                <div class='$classType$i'>
-                                </div>";
+                            <div class='$classType$i'>
+                            </div>";
                                 }
                             }
                         }
                         echo"
-                            </div>
-                        </div>";
+                        </div>
+                    </div>";
                     }
+                    echo "
+                </div>
+            </div>";
                 ?>
                
 
@@ -321,9 +325,9 @@
                                     </div>
                                 </div>
                                 <div class='SelectedClasses'>
-                                    <div class='FirstChoice'><div></div></div>
-                                    <div class='SecondChoice'><div></div></div>
-                                    <div class='ThirdChoice'><div></div></div>
+                                    <div class='FirstChoice'></div>
+                                    <div class='SecondChoice'></div>
+                                    <div class='ThirdChoice'></div>
                                 </div>
                                 <div class='DropdownClasses'>
                         ";
