@@ -39,6 +39,7 @@
         //method 2
         //         sessionVariables = JSON.parse(this.response);
         sessionVariables = JSON.parse('<?php echo json_encode(['year_level' => $year_level, 'name' => $_SESSION['name'], 'id' => $_SESSION['id']]);?>');
+
         console.log(sessionVariables);
         const year_level = sessionVariables.year_level;
 
@@ -51,6 +52,7 @@
             if (this.readyState == 4 && this.status == 200) {
                 let selectionCount = JSON.parse(this.response);
                 selectedClasses = Array(selectionCount);
+
             }
         };
         xhttp.open("POST", "AJAX/get-student-ciriculum-class-count.php", true);
@@ -62,6 +64,7 @@
 </head>
 <body>
     <?php
+
         include ('PhpSnippets/header-bar.php');
     ?>
 
