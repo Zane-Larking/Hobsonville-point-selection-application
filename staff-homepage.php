@@ -155,7 +155,7 @@
 							if($_SESSION['privilege'] >= 0){
 								$teacher_query = ("SELECT * FROM teacher_aids WHERE teacher_id = ".$_SESSION['id']);
 								$teacher_result = mysqli_query($dbconnect, $teacher_query);
-								if($teacher_result){	
+								if(mysqli_num_rows($teacher_result) != 0){	
 									echo'
 									<div class="content">
 										<h3><u>Teacher Aid Privileges</u></h3>';
@@ -168,30 +168,29 @@
 										// 	echo'<h4><u>There are no students found to be associated with you</u></h4>';
 										// }
 										echo '<br>';
-										if(mysqli_num_rows($teacher_result) != 0) {
-											echo '<div class = "aid-grid-container">';
-											while($row = $teacher_result->fetch_assoc()) {
-												$student_query = ("SELECT * FROM students WHERE ID = ".$row['student_id']);
-												$student_result = mysqli_query($dbconnect, $student_query);
-												echo "
-												<div class = 'students-of-teacher-aid'>
+										echo '<div class = "aid-grid-container">';
+										while($row = $teacher_result->fetch_assoc()) {
+											$student_query = ("SELECT * FROM students WHERE ID = ".$row['student_id']);
+											$student_result = mysqli_query($dbconnect, $student_query);
+											echo "
+											<div class = 'students-of-teacher-aid'>
+											";
+											while($student_row = $student_result->fetch_assoc()) {
+												echo"
+												<img src= "; if (isset($row['PICTURE'])) echo $row['PICTURE'];  else echo"'Images/portrait-placeholder.png' height='50rem' style= 'grid-area: image;'>
+													<div class = 'ellipsis' style= 'grid-area: name'>".$student_row['first_name']." ".$student_row['last_name']."</div>
+													<div class = 'ellipsis' style= 'grid-area: year-level'>Year ".$student_row['year_level']."</div>
+													<div class = 'ellipsis' style= 'grid-area: email'>".$student_row['email']."</div>
+													<div class = 'ellipsis' style= 'grid-area: options'>
+														<a href = 'propose-pupil-selections.php?student=".str_replace(" ", "-", ($student_row['first_name'].' '.$student_row['last_name']))."'>Add selection recommendation</a>
+													</div>
 												";
-												while($student_row = $student_result->fetch_assoc()) {
-													echo"
-													<img src= "; if (isset($row['PICTURE'])) echo $row['PICTURE'];  else echo"'Images/portrait-placeholder.png' height='50rem' style= 'grid-area: image;'>
-														<div class = 'ellipsis' style= 'grid-area: name'>".$student_row['first_name']." ".$student_row['last_name']."</div>
-														<div class = 'ellipsis' style= 'grid-area: year-level'>Year ".$student_row['year_level']."</div>
-														<div class = 'ellipsis' style= 'grid-area: email'>".$student_row['email']."</div>
-														<div class = 'ellipsis' style= 'grid-area: options'>
-															<a href = 'propose-pupil-selections.php?student=".str_replace(" ", "-", ($student_row['first_name'].' '.$student_row['last_name']))."'>Add selection recommendation</a>
-														</div>
-													";
-												}
-												echo "
-												</div>";
 											}
-											echo "</div>";
+											echo "
+											</div>";
 										}
+										echo "</div>";
+									
 									//for ($student_with_teacher_aid = 0; $student_with_teacher_aid < ;$student_with_teacher_aid++){
 									//$_SESSION['id']
 									//}

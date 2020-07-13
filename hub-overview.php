@@ -95,13 +95,23 @@
                 <div style="display:  grid; grid-template-columns: 78% 20%; grid-gap: 2%; margin: 2%; margin-bottom: 0;">
                     <div class = "selections">
                     ';
-                    $selections = explode(" ", $row["SELECTIONS_M&S"]);
+                    
 
                     //Displays choices based off the SELECTIONS_M&S database result.
                     $SelectionsObject = [];
-                    $numOfClasses = $CPYL['modules'][$yearToQual[$row['year_level']]] + $CPYL['spins'][$yearToQual[$row['year_level']]];
+                    $classCountQuery = "SELECT `count` FROM class_template WHERE `year_level` = ".$row['year_level'].";";
+                    $classCountResult = mysqli_query($dbconnect, $classCountQuery);
+                    $numOfClasses = 0; //[$yearToQual[$row['year_level']]]
+                    while ($countRow = mysqli_fetch_array($classCountResult)){
+                        $numOfClasses += $countRow['count'];
+                    }
+                    echo($numOfClasses);
+                    //$numOfClasses = $CPYL['modules'][$yearToQual[$row['year_level']]] + $CPYL['spins'][$yearToQual[$row['year_level']]];
                     $numOfChoices = 3;
-
+                    //$selections = explode(" ", $row["SELECTIONS_M&S"]);
+                    $selectionsQuery = "SELECT `class_id`,`type`,`preference` JOIN PROBABLY";
+                    $result = mysqli_query($dbconnect, $selectionsQuery);
+                    $selections = 
                     while (sizeof($selections) < $numOfClasses * $numOfChoices){
                         array_push($selections, "ERROR! Class Not Chosen!");
                     }
@@ -178,7 +188,7 @@
                 <div class = "application">
                 ';
                 
-                getApplication($row['ID'], $dbconnect);
+                getApplication($row['id'], $dbconnect);
 
                 echo '
                 </div>
