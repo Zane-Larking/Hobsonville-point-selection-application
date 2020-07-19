@@ -71,6 +71,57 @@
             
             </div>
             <?php
+            
+            function CleanStudentSelectionsResults($r){
+                         /*Because the JOIN's in the 'class queries' select multiple rows for a single class 
+                        the rows need to be consolidated into one.*/
+
+                        $row = mysqli_fetch_array($r);
+
+                        while(true){
+                            $lookAhead = mysqli_fetch_array($r);
+                            if (!isset($class) AND $row) {
+                                //creates the class array to be yielded
+                                $class = [];
+                                $class["class_id"] = $row["class_id"];
+                                $class["classes"] = ["class_id" => $row["class_id"], "class_code" => $row["code"], "class_name" => $row["name"], "class_type" => $row["type"], "class_period" => $row["period"], "class_description" => $row["description"], "starting_term" => $row["starting_term"]];
+                                $class["preference"] = $row["preference"];
+                                $class["approval_status"] = $row["approval_status"];
+                                $class["year"] = $row["year"];
+
+                                $class["subjects"] = [$row["subject"]];
+                                
+                                $class["teachers"] = [["teacher_id" => $row["teacher_id"], "first_name" => $row["first_name"], "last_name" => $row["last_name"], "kamar_code" => $row["kamar_code"]]];
+                            }
+                            elseif($row) {
+                                //puts adds differing subjects to subjects property.
+                                if (!in_array($row["subject"],$class["subjects"])) {
+                                    array_push($class["subjects"], $row["subject"]);
+                                }
+                                //puts adds differing subjects to year_levels property.
+                                //if (!in_array($row["year_level"], $class["year_levels"])) {
+                                    //array_push($class["year_levels"], $row["year_level"]);
+                                //}
+                                //puts adds differing subjects to teachers property.
+                                if (!in_array(["teacher_id" => $row["teacher_id"], "first_name" => $row["first_name"], "last_name" => $row["last_name"], "kamar_code" => $row["kamar_code"]], $class["teachers"])) {
+                                    array_push($class["teachers"], ["teacher_id" => $row["teacher_id"], "first_name" => $row["first_name"], "last_name" => $row["last_name"], "kamar_code" => $row["kamar_code"]]);
+                                }
+                                
+                                if ($class["class_id"] != $lookAhead["class_id"]) {
+                                    yield $class;
+                                    unset($class);                      
+                                } 
+                                else {
+                                }
+                            }
+                            else{
+                                return;
+                            }
+                            $row = $lookAhead;
+                        }
+                    }
+
+
             //Creates content on each students choices from the database.
             $query = "SELECT `id`, `first_name`, `last_name`, `year_level` FROM students WHERE `coach_id` = '".$_SESSION['id']."';";
             $result = mysqli_query($dbconnect, $query);
@@ -105,13 +156,207 @@
                     while ($countRow = mysqli_fetch_array($classCountResult)){
                         $numOfClasses += $countRow['count'];
                     }
-                    echo($numOfClasses);
+                    //echo($numOfClasses);
                     //$numOfClasses = $CPYL['modules'][$yearToQual[$row['year_level']]] + $CPYL['spins'][$yearToQual[$row['year_level']]];
                     $numOfChoices = 3;
-                    //$selections = explode(" ", $row["SELECTIONS_M&S"]);
-                    $selectionsQuery = "SELECT `class_id`,`type`,`preference` JOIN PROBABLY";
-                    $result = mysqli_query($dbconnect, $selectionsQuery);
-                    $selections = 
+                    $selections = explode(" ", $row["SELECTIONS_M&S"]);
+                    //$selectionsQuery = "SELECT `selections.class_id`,`selections.type`,`selections.preference`,`selections.approval_status`,`selections.year` FROM selections INNER JOIN class_subjects ON selections.class_id=class_subjects.class_id INNER JOIN selections.class_id=class_teachers.class_id ON class_teachers;";
+                    //$selectionsQuery = "SELECT selections.class_id,selections.type,selections.preference,selections.approval_status,selections.year,class_teachers.teacher_id,class_subjects.subject FROM selections INNER JOIN class_subjects ON selections.class_id=class_subjects.class_id INNER JOIN selections.class_id=class_teachers.class_id ON class_teachers WHERE selections.student_id =".$row['id'].";";
+                    //$selectionsQuery = "SELECT selections.class_id,selections.type,selections.preference,selections.approval_status,selections.year,class_teachers.teacher_id,class_subjects.subject FROM selections INNER JOIN class_teachers ON selections.class_id=class_teachers.class_id INNER JOIN class_subjects ON selections.class_id=class_subjects.class_id WHERE selections.student_id =".$row['id'].";";
+                    $selectionsQuery = "SELECT selections.class_id,classes.id,classes.code,classes.name,classes.starting_term,classes.type AS period ,selections.type,classes.description,selections.class_id,selections.preference,selections.approval_status,selections.year,class_teachers.teacher_id,class_subjects.subject,staff.first_name,staff.last_name,staff.kamar_code
+                                        #AS class_id,type,preference,approval_status,year,teacher_id,subject,first_name,last_name,kamar_code
+                                        FROM selections 
+                                        LEFT JOIN class_teachers ON selections.class_id=class_teachers.class_id 
+                                        LEFT JOIN class_subjects ON selections.class_id=class_subjects.class_id
+                                        LEFT JOIN classes ON selections.class_id=classes.id
+                                        LEFT JOIN staff ON staff.id = class_teachers.teacher_id 
+                                        WHERE selections.student_id =".$row['id'].";"; 
+
+
+
+
+
+
+                    $selectionsResult = mysqli_query($dbconnect, $selectionsQuery);
+
+                    
+                    $selection = CleanStudentSelectionsResults($selectionsResult);
+
+                    $selectionsArray = array();
+                    foreach($selection as $s){
+                        array_push($selectionsArray,$s);
+                    }
+
+                    //echo count($selection);
+
+                    
+
+                    //while ($rrr = mysqli_fetch_array($selectionsResult)){
+                        //echo $rrr['type'];
+                    //}
+                    //$selections = 
+
+                    echo "<br><br><br><br><br><br><br><br><br><br><br>";
+
+
+                    //echo $row['year_level'];
+                    $formatClassesQuery = "SELECT year_level, class_type, curriculum, count, choices, duration FROM class_template WHERE year_level = ".$row['year_level'].";";
+                    $formatClasses = mysqli_query($dbconnect, $formatClassesQuery);
+
+                    //echo json_encode($formatClasses);
+
+                    echo "<br><br><br><br><br><br><br><br><br><br><br>";
+
+                    $classTypeCounter = mysqli_num_rows($formatClasses);
+                    //echo $classTypeCounter;
+
+                    echo "<br>";
+                    
+
+
+                    //echo json_encode($formatClasses);
+                    //$e = count($selection);
+                    //echo $e;
+
+
+                    $classTypeColumnCount = str_repeat("auto ", $classTypeCounter);
+
+                    $yearLevelDuration = [2,2,2,4,4];// TEMPORARY
+
+                    echo"
+                    <div class='grid-container'>";
+
+                    $timeTableComposition = [];
+
+                    while($f = $formatClasses->fetch_assoc()){
+                        for($i = 1;$i<=ceil($yearLevelDuration[$row['year_level']-9]/$f['duration']);$i++){
+                            array_push($timeTableComposition,[$f['class_type'].$i,ceil($yearLevelDuration[$row['year_level']-9]/$f['duration']),intval($f['duration']),intval($f['count']),intval($f['choices']),intval($f['curriculum'])]);
+                        }   //                                          0                                          1                                        2                3                      4                      5             
+                    }
+                    //echo json_encode($timeTableComposition);
+                    //echo count($timeTableComposition);
+                    //echo "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+
+
+
+
+
+
+                    /*while($f = $formatClasses->fetch_assoc()) {
+
+                         echo "<div class='classColumn'>";
+                        
+                        for($classRow = 0; $classRow <  $f['count']; $classRow++){
+                            //$classDetails = mysqli_fetch_array($formatClasses,$classRow);
+                            echo "<div class='classRow'>";
+                            echo $f['class_type'];
+                            echo "<br>";
+                             
+
+                            foreach ($selectionsArray as $s) {
+
+                                if($s['classes']['class_type'] == $f['class_type']){
+                                    echo $s['class_id'];
+                                }
+                            }
+                           
+                            echo "</div>";
+                        }
+                        echo "</div>";
+                    }*/
+
+
+
+
+
+
+                    for($i=0;$i<count($timeTableComposition);$i++){
+                        echo "<div class='classColumn'>";
+                        //strval((intval($s['classes']['starting_term'])+$timeTableComposition[2]-1)/$timeTableComposition[2]);
+                        //echo $timeTableComposition[$i][1];
+                        
+                        for($classRow = 0; $classRow <  $timeTableComposition[$i][3]/$timeTableComposition[$i][1]; $classRow++){
+                            echo $timeTableComposition[$i][0];
+                            echo $timeTableComposition[$i][3];
+                            echo $timeTableComposition[$i][1];
+                            //$classDetails = mysqli_fetch_array($formatClasses,$classRow);
+                            echo "<div class='classRow'>";
+                            //echo $f['class_type'];
+                             
+                            $classChosenExists = false;
+                            foreach ($selectionsArray as $s) {
+
+
+                                if($timeTableComposition[$i][0] == $s['classes']['class_type'].strval((intval($s['classes']['starting_term'])+$timeTableComposition[$i][2]-1)/$timeTableComposition[$i][2]) && $classRow+1 == substr($s['classes']['class_period'],-1)){
+                                    echo $s['class_id'];
+                                    $classChosenExists = true;
+                                }
+
+                            }
+                            if($classChosenExists == false){
+                                echo "Class Not Chosen!";
+                            }
+                           
+                            echo "</div>";
+                        }
+                        echo "</div>";
+                    }
+
+                    echo "</div>
+
+                    <style>
+                    .grid-container {
+                        display: grid;
+                        grid-template: 500px / ".$classTypeColumnCount.";
+                        grid-gap: 10px;
+                        padding:10px;
+                    }
+
+                    .grid-container > div {
+                        border-style:solid;
+                        text-align: center;
+                        padding: 20px 0;
+                        font-size: 30px;
+                    }
+
+                    .classRow {
+                        border-style:solid;
+                        margin:30px 10px 30px 10px;
+                    }
+
+                    </style>
+
+
+                    ";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    echo "<br><br><br><br><br><br><br><br><br><br><br>";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     while (sizeof($selections) < $numOfClasses * $numOfChoices){
                         array_push($selections, "ERROR! Class Not Chosen!");
                     }
