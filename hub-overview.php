@@ -223,8 +223,7 @@
 
                     $yearLevelDuration = [2,2,2,4,4];// TEMPORARY
 
-                    echo"
-                    <div class='grid-container'>";
+                    echo"<div class='grid-container'>";
 
                     $timeTableComposition = [];
 
@@ -268,38 +267,41 @@
 
 
 
+                    for($r=0;$r<3;$r++){
+                        for($i=0;$i<count($timeTableComposition);$i++){
+                            echo "<div class='classColumn'>";
+                            //strval((intval($s['classes']['starting_term'])+$timeTableComposition[2]-1)/$timeTableComposition[2]);
+                            //echo $timeTableComposition[$i][1];
+                            
+                            for($classRow = 0; $classRow <  $timeTableComposition[$i][3]; $classRow++){
+                                echo $timeTableComposition[$i][0];
+                                //echo $timeTableComposition[$i][3];
+                                //echo $timeTableComposition[$i][1];
+                                //$classDetails = mysqli_fetch_array($formatClasses,$classRow);
+                                echo "<div class='classRow'>";
+                                //echo $f['class_type'];
+                                 
+                                $classChosenExists = false;
+                                foreach ($selectionsArray as $s) {
 
 
-                    for($i=0;$i<count($timeTableComposition);$i++){
-                        echo "<div class='classColumn'>";
-                        //strval((intval($s['classes']['starting_term'])+$timeTableComposition[2]-1)/$timeTableComposition[2]);
-                        //echo $timeTableComposition[$i][1];
-                        
-                        for($classRow = 0; $classRow <  $timeTableComposition[$i][3]/$timeTableComposition[$i][1]; $classRow++){
-                            echo $timeTableComposition[$i][0];
-                            echo $timeTableComposition[$i][3];
-                            echo $timeTableComposition[$i][1];
-                            //$classDetails = mysqli_fetch_array($formatClasses,$classRow);
-                            echo "<div class='classRow'>";
-                            //echo $f['class_type'];
-                             
-                            $classChosenExists = false;
-                            foreach ($selectionsArray as $s) {
+                                    if($timeTableComposition[$i][0] == $s['classes']['class_type'].strval((intval($s['classes']['starting_term'])+$timeTableComposition[$i][2]-1)/$timeTableComposition[$i][2]) && $classRow+1 == substr($s['classes']['class_period'],-1) && $s['preference'] == $r+1){
+                                        echo $timeTableComposition[$i][0];
+                                        echo "<br><br>";
+                                        echo $s['class_id'];
+                                        echo $s['classes']['class_name'];
+                                        $classChosenExists = true;
+                                    }
 
-
-                                if($timeTableComposition[$i][0] == $s['classes']['class_type'].strval((intval($s['classes']['starting_term'])+$timeTableComposition[$i][2]-1)/$timeTableComposition[$i][2]) && $classRow+1 == substr($s['classes']['class_period'],-1)){
-                                    echo $s['class_id'];
-                                    $classChosenExists = true;
                                 }
-
+                                if($classChosenExists == false){
+                                    echo "Class Not Chosen!";
+                                }
+                               
+                                echo "</div>";
                             }
-                            if($classChosenExists == false){
-                                echo "Class Not Chosen!";
-                            }
-                           
                             echo "</div>";
                         }
-                        echo "</div>";
                     }
 
                     echo "</div>
