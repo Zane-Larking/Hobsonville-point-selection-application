@@ -160,6 +160,12 @@
                     //$numOfClasses = $CPYL['modules'][$yearToQual[$row['year_level']]] + $CPYL['spins'][$yearToQual[$row['year_level']]];
                     $numOfChoices = 3;
                     $selections = explode(" ", $row["SELECTIONS_M&S"]);
+
+
+
+
+
+                    // Jack's changes
                     //$selectionsQuery = "SELECT `selections.class_id`,`selections.type`,`selections.preference`,`selections.approval_status`,`selections.year` FROM selections INNER JOIN class_subjects ON selections.class_id=class_subjects.class_id INNER JOIN selections.class_id=class_teachers.class_id ON class_teachers;";
                     //$selectionsQuery = "SELECT selections.class_id,selections.type,selections.preference,selections.approval_status,selections.year,class_teachers.teacher_id,class_subjects.subject FROM selections INNER JOIN class_subjects ON selections.class_id=class_subjects.class_id INNER JOIN selections.class_id=class_teachers.class_id ON class_teachers WHERE selections.student_id =".$row['id'].";";
                     //$selectionsQuery = "SELECT selections.class_id,selections.type,selections.preference,selections.approval_status,selections.year,class_teachers.teacher_id,class_subjects.subject FROM selections INNER JOIN class_teachers ON selections.class_id=class_teachers.class_id INNER JOIN class_subjects ON selections.class_id=class_subjects.class_id WHERE selections.student_id =".$row['id'].";";
@@ -223,7 +229,7 @@
 
                     $yearLevelDuration = [2,2,2,4,4];// TEMPORARY
 
-                    echo"<div class='grid-container'>";
+                    
 
                     $timeTableComposition = [];
 
@@ -268,12 +274,13 @@
 
 
                     for($r=0;$r<3;$r++){
+                        echo"<div class='grid-container' id='rankypoo".($r+1).$row['id']."''>";
                         for($i=0;$i<count($timeTableComposition);$i++){
-                            echo "<div class='classColumn'>";
+                            echo "<div class='classColumn' style='display:block;'>";
                             //strval((intval($s['classes']['starting_term'])+$timeTableComposition[2]-1)/$timeTableComposition[2]);
                             //echo $timeTableComposition[$i][1];
                             
-                            for($classRow = 0; $classRow <  $timeTableComposition[$i][3]; $classRow++){
+                            for($classRow = 0; $classRow <  $timeTableComposition[$i][3]/$timeTableComposition[$i][1]; $classRow++){
                                 echo $timeTableComposition[$i][0];
                                 //echo $timeTableComposition[$i][3];
                                 //echo $timeTableComposition[$i][1];
@@ -302,9 +309,10 @@
                             }
                             echo "</div>";
                         }
+                        echo"</div>";
                     }
 
-                    echo "</div>
+                    echo "
 
                     <style>
                     .grid-container {
@@ -365,16 +373,16 @@
 
                     //Formats the Classes
                     $currentClass = 0;
-                    foreach (['module', 'spin'] as $classType) {
+                    foreach ($formatClasses as $classTemplate) {
                         for ($rank = 0; $rank < $numOfChoices; $rank++) {
-                            for ($i = 0; $i < $CPYL[$classType.'s'][$yearToQual[$row['year_level']]]; $i++) {
-                                $SelectionsObject[$rank][$classType][$i] = $selections[$currentClass];
+                            for ($i = 0; $i < $CPYL[strtolower($classTemplate['class_type']).'s'][$yearToQual[$row['year_level']]]; $i++) {
+                                $SelectionsObject[$rank][$classTemplate['class_type']][$i] = $selections[$currentClass];
                                 $currentClass++;
                             }
                         }
                     }
 
-                    //Creates HTML elements in groups of rank class type and class.
+                    //Creates HTML elements in groups of rank, class type and class.
                     for ($rank = 0; $rank < $numOfChoices; $rank++) { 
                         if ($rank == 0) {
                             echo'
@@ -387,19 +395,19 @@
 
                             ';
                         }
-                        foreach (['module', 'spin'] as $classType) {
+                        foreach ($formatClasses as $classTemplate) {
                             /*echo '
-                            <div class = "'.$classType.'">
+                            <div class = "'.$classTemplate.'">
                             ';
                             */
-                            for ($i = 0; $i < $CPYL[$classType.'s'][$yearToQual[$row['year_level']]]; $i++) {
-                                $choice = $SelectionsObject[$rank][$classType][$i];
+                            for ($i = 0; $i < $CPYL[strtolower($classTemplate['class_type']).'s'][$yearToQual[$row['year_level']]]; $i++) {
+                                $choice = $SelectionsObject[$rank][$classTemplate['class_type']][$i];
 
 
                                 echo '
-                                <div class = "'.$choice.' roundedContainer"'; if ($classType == 'module') {echo ' style = "grid-column: 1';} echo ';">
+                                <div class = "'.$choice.' roundedContainer"'; if ($classTemplate['class_type'] == 'MODULE') {echo ' style = "grid-column: 1';} echo ';">
                                     <div class = "roundedHeader">
-                                        <h4>'.$classType.' '.($i + 1).'</h4>
+                                        <h4>'.$classTemplate['class_type'].' '.($i + 1).'</h4>
 
                                     </div>
                                     <div class = "roundedContent bissectedContainer">
@@ -432,6 +440,7 @@
 
 
                 </div>
+                <!--application-->
                 <div class = "application">
                 ';
                 
@@ -451,6 +460,9 @@
     <style>
         html {
             font-family: Tahoma, Geneva, sans-serif; 
+        }
+        #rankypoo {
+            /*display:none;*/
         }
         #mainGrid {
             grid-template-areas: "pannel selections";
@@ -580,6 +592,7 @@
         }
     </style>
     <script>
+
     function displayTabs(e, group, content) {
         // console.log("click");
         // console.log(group);
@@ -601,6 +614,8 @@
                 contentEls[i].className += " " + group;
             }
         }
+        var el = document.getElementById("rankypoo0");
+        el.style.display = "none";
     }
     </script>
     <script>

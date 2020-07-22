@@ -1,5 +1,5 @@
 <?php 
-    $CPYL = ['modules' => [3,2,1,0], 'spins' => [3,2,3,5], 'floorTimes' => [3,2,2,1]];
+    $CPYL = ['modules' => [3,2,1,0], 'spins' => [3,2,3,5], 'floorTimes' => [3,2,2,1], 'projects' => [1,1,1,1]];
     //echo json_encode($CPYL);
 
     /*
