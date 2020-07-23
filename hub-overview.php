@@ -45,19 +45,49 @@
                 <!-- List students in the search pannel -->
                 <div class="scrollPannel students">
                     <?php
-                        $query = "SELECT `first_name`, `last_name`, `year_level` FROM `students` WHERE `coach_id` = ".$_SESSION['id'].";";
+                        $query = "SELECT `id`, `first_name`, `last_name`, `year_level` FROM `students` WHERE `coach_id` = ".$_SESSION['id'].";";
                         $result = mysqli_query($dbconnect, $query);
                         if(!mysqli_num_rows($result))
                         {
                             echo("No students found");
                         }else{
                             while ($row = mysqli_fetch_array($result)){
+                                $selectionsDoneQuery = "SELECT `id`,`approval_status` FROM `selections` WHERE `student_id` =".$row['id'].";";
+                                $classCountQuery = "SELECT `count` FROM `class_template` WHERE `year_level` =".$row['year_level'].";";
+                                $selectionsDoneResult = mysqli_query($dbconnect, $selectionsDoneQuery);
+                                $classCountResult = mysqli_query($dbconnect, $classCountQuery);
+                                $classesRequiredCount = 0;
+                                $unverifiedClassExists = false; #if the hub coach has classes yet to verify
+                                foreach($classCountResult as $s){ #counting how many classes a student should have
+                                    $classesRequiredCount += $s['count'];
+                                }
+                                foreach($selectionsDoneResult as $s){  #checking if the hub coach has classes yet to verify
+                                    if($s['approval_status']==0){
+                                        $unverifiedClassExists = true;
+                                    }
+                                }
+                                
+                                $classesCount = mysqli_num_rows($selectionsDoneResult); #counting selections student has made
+
+                                if($classesRequiredCount == $classesCount){
+                                    if($unverifiedClassExists){
+                                        $sign = '!'; #exclamation mark
+                                        $backgroundColor = 'ffa500'; #orange
+                                    }else{
+                                        $sign = 'check'; #tick
+                                        $backgroundColor = '#40f364';#green
+                                    }
+                                }else{
+                                    $sign = 'clear'; #cross
+                                    $backgroundColor = '#e03a2a';#red
+                                }
+
                                 echo '
                                 <div class="scrollItem student  '.$row['first_name'].'-'.$row['last_name'].'" onclick = "displayTabs(event, '."'".'currentStudentSelections'."', '".$row['first_name'].'-'.$row['last_name']."'".')">
                                     <img src="Images/portrait-placeholder.png" alt="Profile picture" style="height: 1em; border-radius: 50%;">
                                     <p>'.$row['first_name'].' '.$row['last_name'].'</p>
-                                    <div class="coverageCheck approved">
-                                        <div class="material-icons">check</div>
+                                    <div class="coverageCheck approved" style="background-color:'.$backgroundColor.';">
+                                        <div class="material-icons" >'.$sign.'</div>
 
                                     </div>
                                 </div>
@@ -83,6 +113,8 @@
                             if (!isset($class) AND $row) {
                                 //creates the class array to be yielded
                                 $class = [];
+                                $class["selection_id"] = $row["selection_id"];
+                                $class["id"] = $row["id"];
                                 $class["class_id"] = $row["class_id"];
                                 $class["classes"] = ["class_id" => $row["class_id"], "class_code" => $row["code"], "class_name" => $row["name"], "class_type" => $row["type"], "class_period" => $row["period"], "class_description" => $row["description"], "starting_term" => $row["starting_term"]];
                                 $class["preference"] = $row["preference"];
@@ -152,7 +184,7 @@
                     </div>
                 </div>
                 <div style="display:  grid; grid-template-columns: 78% 20%; grid-gap: 2%; margin: 2%; margin-bottom: 0;">
-                    <div class = "selections">
+                    <div class = "selections" style = "margin-top:0px;">
                     ';
                     
 
@@ -177,7 +209,7 @@
                     //$selectionsQuery = "SELECT `selections.class_id`,`selections.type`,`selections.preference`,`selections.approval_status`,`selections.year` FROM selections INNER JOIN class_subjects ON selections.class_id=class_subjects.class_id INNER JOIN selections.class_id=class_teachers.class_id ON class_teachers;";
                     //$selectionsQuery = "SELECT selections.class_id,selections.type,selections.preference,selections.approval_status,selections.year,class_teachers.teacher_id,class_subjects.subject FROM selections INNER JOIN class_subjects ON selections.class_id=class_subjects.class_id INNER JOIN selections.class_id=class_teachers.class_id ON class_teachers WHERE selections.student_id =".$row['id'].";";
                     //$selectionsQuery = "SELECT selections.class_id,selections.type,selections.preference,selections.approval_status,selections.year,class_teachers.teacher_id,class_subjects.subject FROM selections INNER JOIN class_teachers ON selections.class_id=class_teachers.class_id INNER JOIN class_subjects ON selections.class_id=class_subjects.class_id WHERE selections.student_id =".$row['id'].";";
-                    $selectionsQuery = "SELECT selections.class_id,classes.id,classes.code,classes.name,classes.starting_term,classes.type AS period ,selections.type,classes.description,selections.class_id,selections.preference,selections.approval_status,selections.year,class_teachers.teacher_id,class_subjects.subject,staff.first_name,staff.last_name,staff.kamar_code
+                    $selectionsQuery = "SELECT selections.id AS selection_id,selections.class_id,classes.id,classes.code,classes.name,classes.starting_term,classes.type AS period ,selections.type,classes.description,selections.class_id,selections.preference,selections.approval_status,selections.year,class_teachers.teacher_id,class_subjects.subject,staff.first_name,staff.last_name,staff.kamar_code
                                         #AS class_id,type,preference,approval_status,year,teacher_id,subject,first_name,last_name,kamar_code
                                         FROM selections 
                                         LEFT JOIN class_teachers ON selections.class_id=class_teachers.class_id 
@@ -330,7 +362,8 @@
 
                                     if($timeTableComposition[$i][0] == $s['classes']['class_type'].strval((intval($s['classes']['starting_term'])+$timeTableComposition[$i][2]-1)/$timeTableComposition[$i][2]) && $classRow+1 == substr($s['classes']['class_period'],-1) && $s['preference'] == $r+1){
                                         
-                                        
+                                        $approved = (intval($s['approval_status']) > 0) ? "1" : "0"; 
+                                        $selection_id = $s['selection_id'];
                                         $classCode = $s['classes']['class_code'];
                                         $classSubjects = "";
                                         $classTeachers = "";
@@ -352,12 +385,17 @@
                                 
                                 if($classChosenExists == false){
 
-                                    echo "Class Not Chosen!
+                                    echo 'Class Not Chosen!
                                     <br>
                                     <br>
                                     <br>
                                     <br>
-                                    ";
+                                    </div>
+                                    <div class = "recommendButton">
+                                        <div class="material-icons prefix error" style = "font-size: 30rem;";>clear</div>
+                                    </div>
+                                </div>
+                                    ';
                                 }else{
                                 
                                 echo'
@@ -366,15 +404,14 @@
                                         <div>Class Code: '.$classCode.'</div>
                                         <div>Subjects: '.$classSubjects.'</div>
                                         <div>Teachers: '.$classTeachers.'</div>
-                                        <a href="" style="display: grid; justify-content:center; margin-top: 5rem;">Class Information</a>';
+                                        <a href="" style="display: grid; justify-content:center; margin-top: 5rem;">Class Information</a>
+                                        </div>
+                                        <div class = "recommendButton">
+                                            <div approval-status="'.$approved.'" selection-id = "'.strval($selection_id).'"class="material-icons prefix approve-button" style = "font-size: 30rem";>check</div>
+                                        </div>
+                                    </div>
+                                    ';
                                 }
-                                echo'
-                                    </div>
-                                    <div class = "recommendButton">
-                                        <div class="material-icons prefix" style = "font-size: 30rem";>check</div>
-                                    </div>
-                                </div>
-                                ';
 
 
                                 echo "</div>";
@@ -397,7 +434,7 @@
                     .grid-container > div {
                         //border-style:solid;
                         text-align: center;
-                        padding: 20px 0;
+                        padding: 0px ;
                         font-size: 14px;
                     }
 
@@ -554,7 +591,7 @@
             align-items: end;
         }
         .material-icons {
-            font-size: 1.5em;
+            font-size: 1.4em;
         }
         .studentSelections {
             display: none;
@@ -663,6 +700,17 @@
             background-color: #EEEEEE;
             border: 1px solid #4D4D4D;
         }
+
+        .recommendButton [approval-status="1"] {
+            background-color: #52c7ff;
+        }
+        .recommendButton [approval-status="0"] {
+            background-color: #ffa500;
+        }
+
+        .error {
+            background-color: rgb(180, 180, 180);
+        }
     </style>
     <script>
 
@@ -697,7 +745,7 @@
     }
     </script>
     <script>
-        els = document.getElementsByClassName("coverageCheck");
+        /*els = document.getElementsByClassName("coverageCheck");
             for(let i=0; i<els.length; i++){
                 var bigFatVariable = i
                 if(bigFatVariable % 3 == 0){
@@ -729,11 +777,12 @@
                 }
 
 
-            }
-
-        
-
+            }*/
+    
+    
+    
     </script>
+    <script src="Scripts/hub-overview.js"></script>
 
 </body>
 </html>
