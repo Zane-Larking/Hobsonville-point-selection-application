@@ -135,12 +135,20 @@
                         <h3>'.$row['first_name'].' '.$row['last_name'].' | Year '.$row['year_level'].'</h3>         
                     </div>
                     ';
+
                     //Creates a toggle for each set of choices a student has (Currently unmutable). 
-                    echo '
+                    /*echo '
                     <div class = "choiceToggles" style = "grid-area: toggles">
                         <div class="toggleChoice choice1'.'" onclick = "displayTabs(event, '."'".'currentChoiceSelections'."', '".' choice1'."'".')">1st</div>
                         <div class="toggleChoice choice2'.'" onclick = "displayTabs(event, '."'".'currentChoiceSelections'."', '".' choice2'."'".')">2nd</div>
                         <div class="toggleChoice choice3'.'" onclick = "displayTabs(event, '."'".'currentChoiceSelections'."', '".' choice3'."'".')">3rd</div>
+                    </div> ';*/
+
+                    echo '
+                    <div class = "choiceToggles" style = "grid-area: toggles">
+                        <div class="toggleChoice choice1'.'" onclick = "hideTables(1,'.$row['id'].')">1st</div>
+                        <div class="toggleChoice choice2'.'" onclick = "hideTables(2,'.$row['id'].')">2nd</div>
+                        <div class="toggleChoice choice3'.'" onclick = "hideTables(3,'.$row['id'].')">3rd</div>
                     </div>
                 </div>
                 <div style="display:  grid; grid-template-columns: 78% 20%; grid-gap: 2%; margin: 2%; margin-bottom: 0;">
@@ -273,38 +281,90 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     for($r=0;$r<3;$r++){
-                        echo"<div class='grid-container' id='rankypoo".($r+1).$row['id']."''>";
+                        $initialDisplay = "none";
+                        if($r==0){
+                            $initialDisplay = "";
+                        }
+                        echo"<div class='grid-container' id='selectionsTableChoice".($r+1).$row['id']."'' style='display:".$initialDisplay."'>";
                         for($i=0;$i<count($timeTableComposition);$i++){
                             echo "<div class='classColumn' style='display:block;'>";
                             //strval((intval($s['classes']['starting_term'])+$timeTableComposition[2]-1)/$timeTableComposition[2]);
                             //echo $timeTableComposition[$i][1];
                             
                             for($classRow = 0; $classRow <  $timeTableComposition[$i][3]/$timeTableComposition[$i][1]; $classRow++){
-                                echo $timeTableComposition[$i][0];
+                                //echo $timeTableComposition[$i][0];
                                 //echo $timeTableComposition[$i][3];
                                 //echo $timeTableComposition[$i][1];
                                 //$classDetails = mysqli_fetch_array($formatClasses,$classRow);
-                                echo "<div class='classRow'>";
+                                echo "<div class='classRow roundedContainer'>";
                                 //echo $f['class_type'];
-                                 
+                                echo '<div class = "roundedHeader" style="font-weight: bolder">';
+                                echo $timeTableComposition[$i][0];
+                                echo '
+                                </div>
+                                
+                                <div class = "roundedContent bissectedContainer" style="padding-top:5px;">
+
+                                    <div>
+                                ';
                                 $classChosenExists = false;
+
                                 foreach ($selectionsArray as $s) {
 
 
                                     if($timeTableComposition[$i][0] == $s['classes']['class_type'].strval((intval($s['classes']['starting_term'])+$timeTableComposition[$i][2]-1)/$timeTableComposition[$i][2]) && $classRow+1 == substr($s['classes']['class_period'],-1) && $s['preference'] == $r+1){
-                                        echo $timeTableComposition[$i][0];
-                                        echo "<br><br>";
-                                        echo $s['class_id'];
-                                        echo $s['classes']['class_name'];
+                                        
+                                        
+                                        //echo $s['class_id'];
+                                        //echo $s['classes']['class_name'];
                                         $classChosenExists = true;
                                     }
 
                                 }
+                                
                                 if($classChosenExists == false){
-                                    echo "Class Not Chosen!";
+
+                                    echo "Class Not Chosen!
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    ";
+                                }else{
+                                
+                                echo'
+
+                                        
+                                        <div>Class Code:'.'</div>
+                                        <div>Subjects:'.'</div>
+                                        <div>Teachers:'.'</div>
+                                        <a href="" style="display: grid; justify-content:center; margin-top: 5rem;">Class Information</a>';
                                 }
-                               
+                                echo'
+                                    </div>
+                                    <div class = "recommendButton">
+                                        <div class="material-icons prefix" style = "font-size: 30rem";>check</div>
+                                    </div>
+                                </div>
+                                ';
+
+
                                 echo "</div>";
                             }
                             echo "</div>";
@@ -323,15 +383,17 @@
                     }
 
                     .grid-container > div {
-                        border-style:solid;
+                        //border-style:solid;
                         text-align: center;
                         padding: 20px 0;
-                        font-size: 30px;
+                        font-size: 14px;
                     }
 
                     .classRow {
                         border-style:solid;
                         margin:30px 10px 30px 10px;
+                        text-align: left;
+
                     }
 
                     </style>
@@ -461,9 +523,7 @@
         html {
             font-family: Tahoma, Geneva, sans-serif; 
         }
-        #rankypoo {
-            /*display:none;*/
-        }
+        
         #mainGrid {
             grid-template-areas: "pannel selections";
             grid-template-columns: minmax(min-content, 200rem) auto;
@@ -593,6 +653,12 @@
     </style>
     <script>
 
+    function hideTables(except,student) { //preference
+        for(let i=1; i<4; i++){
+            document.getElementById("selectionsTableChoice"+i+student).style.display = "none";
+        }
+        document.getElementById("selectionsTableChoice"+except+student).style.display = "";
+    } 
     function displayTabs(e, group, content) {
         // console.log("click");
         // console.log(group);
@@ -614,8 +680,7 @@
                 contentEls[i].className += " " + group;
             }
         }
-        var el = document.getElementById("rankypoo0");
-        el.style.display = "none";
+        
     }
     </script>
     <script>
