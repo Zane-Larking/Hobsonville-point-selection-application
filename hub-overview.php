@@ -338,6 +338,7 @@
                                             $classSubjects=$classSubjects."    ".$subjects;
                                         }
 
+                                        //echo $classSubjects;
 
                                         foreach($s['teachers'] as $teachers){
                                             $classTeachers=$classTeachers."    ".$teachers['first_name']." ".$teachers['last_name'];
