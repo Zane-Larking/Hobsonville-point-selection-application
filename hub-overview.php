@@ -167,7 +167,7 @@
                     //echo($numOfClasses);
                     //$numOfClasses = $CPYL['modules'][$yearToQual[$row['year_level']]] + $CPYL['spins'][$yearToQual[$row['year_level']]];
                     $numOfChoices = 3;
-                    $selections = explode(" ", $row["SELECTIONS_M&S"]);
+                    //$selections = explode(" ", $row["SELECTIONS_M&S"]);
 
 
 
@@ -210,7 +210,7 @@
                     //}
                     //$selections = 
 
-                    echo "<br><br><br><br><br><br><br><br><br><br><br>";
+                    //echo "<br><br><br><br><br><br><br><br><br><br><br>";
 
 
                     //echo $row['year_level'];
@@ -219,7 +219,7 @@
 
                     //echo json_encode($formatClasses);
 
-                    echo "<br><br><br><br><br><br><br><br><br><br><br>";
+                    //echo "<br><br><br><br><br><br><br><br><br><br><br>";
 
                     $classTypeCounter = mysqli_num_rows($formatClasses);
                     //echo $classTypeCounter;
@@ -331,7 +331,18 @@
                                     if($timeTableComposition[$i][0] == $s['classes']['class_type'].strval((intval($s['classes']['starting_term'])+$timeTableComposition[$i][2]-1)/$timeTableComposition[$i][2]) && $classRow+1 == substr($s['classes']['class_period'],-1) && $s['preference'] == $r+1){
                                         
                                         
-                                        //echo $s['class_id'];
+                                        $classCode = $s['classes']['class_code'];
+                                        $classSubjects = "";
+                                        $classTeachers = "";
+                                        foreach($s['subjects'] as $subjects){
+                                            $classSubjects=$classSubjects."    ".$subjects;
+                                        }
+
+
+                                        foreach($s['teachers'] as $teachers){
+                                            $classTeachers=$classTeachers."    ".$teachers['first_name']." ".$teachers['last_name'];
+                                        }
+                                        
                                         //echo $s['classes']['class_name'];
                                         $classChosenExists = true;
                                     }
@@ -351,9 +362,9 @@
                                 echo'
 
                                         
-                                        <div>Class Code:'.'</div>
-                                        <div>Subjects:'.'</div>
-                                        <div>Teachers:'.'</div>
+                                        <div>Class Code: '.$classCode.'</div>
+                                        <div>Subjects: '.$classSubjects.'</div>
+                                        <div>Teachers: '.$classTeachers.'</div>
                                         <a href="" style="display: grid; justify-content:center; margin-top: 5rem;">Class Information</a>';
                                 }
                                 echo'
@@ -377,7 +388,7 @@
                     <style>
                     .grid-container {
                         display: grid;
-                        grid-template: 500px / ".$classTypeColumnCount.";
+                        grid-template: 400px / ".$classTypeColumnCount.";
                         grid-gap: 10px;
                         padding:10px;
                     }
@@ -410,7 +421,7 @@
 
 
 
-
+                    /*
 
 
 
@@ -458,10 +469,10 @@
                             ';
                         }
                         foreach ($formatClasses as $classTemplate) {
-                            /*echo '
-                            <div class = "'.$classTemplate.'">
-                            ';
-                            */
+                            //echo '
+                            //<div class = "'.$classTemplate.'">
+                            //';
+                            
                             for ($i = 0; $i < $CPYL[strtolower($classTemplate['class_type']).'s'][$yearToQual[$row['year_level']]]; $i++) {
                                 $choice = $SelectionsObject[$rank][$classTemplate['class_type']][$i];
 
@@ -486,19 +497,20 @@
 
                                 ';
                             }
-                            /*
-                            echo '
-                            </div>';
-                            */
+                            //
+                            //echo '
+                            //</div>';
+                            //
                         }
                         echo '
                         </div>';
-                    }
+                    }*/
                     echo '
                     </div>
                     <div style="background-color: #EEEEEE; border: 1px solid #707070;">
                         
                     </div>
+
 
 
                 </div>
