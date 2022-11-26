@@ -61,6 +61,6 @@
 
 
     } else if (!isset($_SESSION['access_token'])) {
-        header('Location: login.php');
+        header('Location: login2.php');
     }
 ?>
